@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "posts/Untitled.html",
-    "href": "posts/Untitled.html",
-    "title": "Earthquake",
-    "section": "",
-    "text": "Real analysis\nsdd"
-  },
-  {
     "objectID": "posts/GODE/2022-09-02-paper_simulation.html",
     "href": "posts/GODE/2022-09-02-paper_simulation.html",
     "title": "Simulation",
@@ -410,7 +403,7 @@
     "href": "index.html",
     "title": ":)",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://seoyeonc.github.io/blog/posts/Study/index.html</loc>
+    <lastmod>2022-12-31T08:43:41.311Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/Study/2022-12-31-Space-study.html</loc>
+    <lastmod>2022-12-31T08:43:41.610Z</lastmod>
+  </url>
+  <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-09-02-paper_simulation.html</loc>
-    <lastmod>2022-12-31T08:26:27.195Z</lastmod>
+    <lastmod>2022-12-31T08:43:42.203Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-27-DFT_study.html</loc>
-    <lastmod>2022-12-31T08:26:27.475Z</lastmod>
+    <lastmod>2022-12-31T08:43:42.489Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/Untitled.html</loc>
-    <lastmod>2022-12-31T08:26:27.717Z</lastmod>
+    <lastmod>2022-12-31T08:43:42.750Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/index.html</loc>
-    <lastmod>2022-12-31T08:26:27.965Z</lastmod>
+    <lastmod>2022-12-31T08:43:43.008Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-10-02-Earthquake_real.html</loc>
-    <lastmod>2022-12-31T08:26:28.785Z</lastmod>
+    <lastmod>2022-12-31T08:43:43.878Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-11-19-class_code_for_paper.html</loc>
-    <lastmod>2022-12-31T08:26:29.646Z</lastmod>
+    <lastmod>2022-12-31T08:43:44.747Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-01-graph_code_guebin.html</loc>
-    <lastmod>2022-12-31T08:26:30.198Z</lastmod>
+    <lastmod>2022-12-31T08:43:45.305Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-07-torchgcn.html</loc>
-    <lastmod>2022-12-31T08:26:30.454Z</lastmod>
+    <lastmod>2022-12-31T08:43:45.577Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-28-gcn_simulation.html</loc>
-    <lastmod>2022-12-31T08:26:30.755Z</lastmod>
+    <lastmod>2022-12-31T08:43:45.879Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-21-st-gcn.html</loc>
-    <lastmod>2022-12-31T08:26:31.299Z</lastmod>
+    <lastmod>2022-12-31T08:43:46.434Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/index.html</loc>
-    <lastmod>2022-12-31T08:26:31.535Z</lastmod>
+    <lastmod>2022-12-31T08:43:46.674Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/index.html</loc>
-    <lastmod>2022-12-31T08:26:31.830Z</lastmod>
+    <lastmod>2022-12-31T08:43:46.990Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/about.html</loc>
-    <lastmod>2022-12-31T08:26:32.060Z</lastmod>
+    <lastmod>2022-12-31T08:43:47.236Z</lastmod>
   </url>
 </urlset>

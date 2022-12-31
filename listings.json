@@ -3,11 +3,13 @@
     "listing": "/index.html",
     "items": [
       "/posts/GODE/Untitled.html",
+      "/posts/Study/2022-12-31-Space-study.html",
       "/posts/GCN/2022-12-28-gcn_simulation.html",
       "/posts/GODE/2022-12-27-DFT_study.html",
       "/posts/GCN/2022-12-21-st-gcn.html",
       "/posts/GCN/2022-12-07-torchgcn.html",
       "/posts/GCN/index.html",
+      "/posts/Study/index.html",
       "/posts/GODE/2022-12-01-graph_code_guebin.html",
       "/posts/GODE/2022-10-02-Earthquake_real.html",
       "/posts/GODE/2022-11-19-class_code_for_paper.html",

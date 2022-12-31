@@ -1,0 +1,13 @@
+---
+title: ":)"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: table
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  date-format: medium
+page-layout: full
+title-block-banner: true
+---

@@ -1,1 +1,1 @@
-# blog
+https://seoyeonc.github.io/blog/

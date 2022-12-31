@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "posts/Study/index.html",
+    "href": "posts/Study/index.html",
+    "title": "Study",
+    "section": "",
+    "text": "About Study"
+  },
+  {
+    "objectID": "posts/Study/2022-12-31-Space-study.html",
+    "href": "posts/Study/2022-12-31-Space-study.html",
+    "title": "Study for Spaces",
+    "section": "",
+    "text": "Spaces"
+  },
+  {
+    "objectID": "posts/Study/2022-12-31-Space-study.html#내적공간",
+    "href": "posts/Study/2022-12-31-Space-study.html#내적공간",
+    "title": "Study for Spaces",
+    "section": "내적공간",
+    "text": "내적공간\n\\[|a||b| \\cos \\theta\\]\n\n길이 + 각의 개념\n\nProjection"
+  },
+  {
+    "objectID": "posts/Study/2022-12-31-Space-study.html#바나흐공간",
+    "href": "posts/Study/2022-12-31-Space-study.html#바나흐공간",
+    "title": "Study for Spaces",
+    "section": "바나흐공간",
+    "text": "바나흐공간\n\\[|---|\\]\n\n길이 + 극한의 개념"
+  },
+  {
+    "objectID": "posts/Study/2022-12-31-Space-study.html#노름공간",
+    "href": "posts/Study/2022-12-31-Space-study.html#노름공간",
+    "title": "Study for Spaces",
+    "section": "노름공간",
+    "text": "노름공간\n\\[|   |\\]\n\n길이의 개념"
+  },
+  {
+    "objectID": "posts/Study/2022-12-31-Space-study.html#힐베르트공간유클리드-비유클리드-모두-존재",
+    "href": "posts/Study/2022-12-31-Space-study.html#힐베르트공간유클리드-비유클리드-모두-존재",
+    "title": "Study for Spaces",
+    "section": "힐베르트공간(유클리드 + 비유클리드 모두 존재)",
+    "text": "힐베르트공간(유클리드 + 비유클리드 모두 존재)\n퓨리에 해석 - 길이 + 각 + 극한의 개념"
+  },
+  {
     "objectID": "posts/GODE/2022-09-02-paper_simulation.html",
     "href": "posts/GODE/2022-09-02-paper_simulation.html",
     "title": "Simulation",
@@ -298,7 +340,7 @@
     "href": "posts/GCN/2022-12-28-gcn_simulation.html",
     "title": "Simulation of geometric-temporal",
     "section": "",
-    "text": "Simulation\n\nhttps://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/dataset.html#module-torch_geometric_temporal.dataset.chickenpox\n\nimport\n\nimport networkx as nx\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport torch\n\n\n\n공식 홈페이지 예제\n\ndata\n\nfrom torch_geometric_temporal.dataset import WikiMathsDatasetLoader\nfrom torch_geometric_temporal.signal import temporal_signal_split\n\nloader = WikiMathsDatasetLoader()\n\ndataset = loader.get_dataset(lags=14)\n\ntrain_dataset, test_dataset = temporal_signal_split(dataset, train_ratio=0.5)\n\n\n\nRecurrentGCN\n\nimport torch\nimport torch.nn.functional as F\nfrom torch_geometric_temporal.nn.recurrent import GConvGRU\n\nclass RecurrentGCN(torch.nn.Module):\n    def __init__(self, node_features, filters):\n        super(RecurrentGCN, self).__init__()\n        self.recurrent = GConvGRU(node_features, filters, 2)\n        self.linear = torch.nn.Linear(filters, 1)\n\n    def forward(self, x, edge_index, edge_weight):\n        h = self.recurrent(x, edge_index, edge_weight)\n        h = F.relu(h)\n        h = self.linear(h)\n        return h\n\n\n\nLearn\n\nfrom tqdm import tqdm\n\nmodel = RecurrentGCN(node_features=14, filters=32)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, snapshot in enumerate(train_dataset):\n        y_hat = model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)\n        cost = torch.mean((y_hat-snapshot.y)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [09:56<00:00, 11.92s/it]\n\n\n\nfor time, snapshot in enumerate(train_dataset):\n    _x = snapshot.x \n    _edge_index = snapshot.edge_index \n    _edge_attr = snapshot.edge_attr\n    _y = snapshot.y\n    break\n\n\n_x.shape\n\ntorch.Size([1068, 14])\n\n\n\n1068개의 nodes\n한 개의 node에 mapping된 차원의 수\n\n\n_edge_index.shape\n\ntorch.Size([2, 27079])\n\n\n\n_edge_attr.shape\n\ntorch.Size([27079])\n\n\n\n_y.shape\n\ntorch.Size([1068])\n\n\n\n_x.shape\n\ntorch.Size([1068, 14])\n\n\n\n\n\n우리 예제\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport torch\n\n\nT = 100\nN = 4 # number of Nodes\nE = np.array([[0,1],[1,2],[2,3],[3,0]]).T\nV = np.array([1,2,3,4])\nAMP = np.array([3,2,1,2.2])\nt = np.arange(0,T)\nnode_features = 1\n\n\nf = np.stack([a*np.sin(2*t**2/1000)+np.random.normal(loc=0,scale=0.2,size=T) for a in AMP],axis=1).reshape(T,N,node_features)\nf = torch.tensor(f).float()\n\n\nf.shape\n\ntorch.Size([100, 4, 1])\n\n\n\nX = f[:99,:,:]\ny = f[1:,:,:]\n\n\nplt.plot(y[:,0,0],label=\"v1\")\nplt.plot(y[:,1,0],label=\"v2\")\nplt.plot(y[:,2,0],label=\"v3\")\nplt.plot(y[:,3,0],label=\"v4\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7fe112dc3e80>\n\n\n\n\n\n\nedge_index = torch.tensor(E)\nedge_attr = torch.tensor(np.array([1,1,1,1]),dtype=torch.float32)\n\n\n_ee = enumerate(zip(X,y))\n\n\nfrom tqdm import tqdm\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(X,y)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [00:16<00:00,  2.98it/s]\n\n\n\nyhat = torch.stack([model(xt, edge_index, edge_attr) for xt in X]).detach().numpy()\n\n\nplt.plot(y[:,0,0],label=\"y in V1\")\nplt.plot(yhat[:,0,0],label=\"yhat in V1\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7fe1104e0e20>\n\n\n\n\n\n\nplt.plot(y[:,1,0],label=\"y in V2\")\nplt.plot(yhat[:,1,0],label=\"yhat in V2\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7fe11044a400>\n\n\n\n\n\n\nplt.plot(y[:,2,0],label=\"y in V3\")\nplt.plot(yhat[:,2,0],label=\"yhat in V3\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7fe1103b81f0>\n\n\n\n\n\n\nplt.plot(y[:,3,0],label=\"y in V4\")\nplt.plot(yhat[:,3,0],label=\"yhat in V4\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7fe110391be0>"
+    "text": "Simulation\n\nhttps://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/dataset.html#module-torch_geometric_temporal.dataset.chickenpox\n\nimport\n\nimport networkx as nx\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport torch\n\n\n\n공식 홈페이지 예제\n\ndata\n\nfrom torch_geometric_temporal.dataset import WikiMathsDatasetLoader\nfrom torch_geometric_temporal.signal import temporal_signal_split\n\nloader = WikiMathsDatasetLoader()\n\ndataset = loader.get_dataset(lags=14)\n\ntrain_dataset, test_dataset = temporal_signal_split(dataset, train_ratio=0.5)\n\n\n\nRecurrentGCN\n\nimport torch\nimport torch.nn.functional as F\nfrom torch_geometric_temporal.nn.recurrent import GConvGRU\n\nclass RecurrentGCN(torch.nn.Module):\n    def __init__(self, node_features, filters):\n        super(RecurrentGCN, self).__init__()\n        self.recurrent = GConvGRU(node_features, filters, 2)\n        self.linear = torch.nn.Linear(filters, 1)\n\n    def forward(self, x, edge_index, edge_weight):\n        h = self.recurrent(x, edge_index, edge_weight)\n        h = F.relu(h)\n        h = self.linear(h)\n        return h\n\n\n\nLearn\n\nfrom tqdm import tqdm\n\nmodel = RecurrentGCN(node_features=14, filters=32)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, snapshot in enumerate(train_dataset):\n        y_hat = model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)\n        cost = torch.mean((y_hat-snapshot.y)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [08:40<00:00, 10.42s/it]\n\n\n\nfor time, snapshot in enumerate(train_dataset):\n    _x = snapshot.x \n    _edge_index = snapshot.edge_index \n    _edge_attr = snapshot.edge_attr\n    _y = snapshot.y\n    break\n\n\n_x.shape\n\ntorch.Size([1068, 14])\n\n\n\n1068개의 nodes\n한 개의 node에 mapping된 차원의 수\n\n\n_edge_index.shape\n\ntorch.Size([2, 27079])\n\n\n\n_edge_attr.shape\n\ntorch.Size([27079])\n\n\n\n_y.shape\n\ntorch.Size([1068])\n\n\n\n_x.shape\n\ntorch.Size([1068, 14])\n\n\n\n\n\n우리 예제\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport torch\n\n\nT = 100\nN = 4 # number of Nodes\nE = np.array([[0,1],[1,2],[2,3],[3,0]]).T\nV = np.array([1,2,3,4])\nAMP = np.array([3,2,1,2.2])\nt = np.arange(0,T)\nnode_features = 1\n\n\nf = np.stack([a*np.sin(2*t**2/1000)+np.random.normal(loc=0,scale=0.2,size=T) for a in AMP],axis=1).reshape(T,N,node_features)\nf = torch.tensor(f).float()\n\n\nf.shape\n\ntorch.Size([100, 4, 1])\n\n\n\nX = f[:99,:,:]\ny = f[1:,:,:]\n\n\nplt.plot(y[:,0,0],label=\"v1\")\nplt.plot(y[:,1,0],label=\"v2\")\nplt.plot(y[:,2,0],label=\"v3\")\nplt.plot(y[:,3,0],label=\"v4\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7efc48673490>\n\n\n\n\n\n\nedge_index = torch.tensor(E)\nedge_attr = torch.tensor(np.array([1,1,1,1]),dtype=torch.float32)\n\n\n_ee = enumerate(zip(X,y))\n\n\nfrom tqdm import tqdm\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(X,y)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [00:16<00:00,  3.01it/s]\n\n\n\nyhat = torch.stack([model(xt, edge_index, edge_attr) for xt in X]).detach().numpy()\n\n\nplt.plot(y[:,0,0],label=\"y in V1\")\nplt.plot(yhat[:,0,0],label=\"yhat in V1\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7efc48524730>\n\n\n\n\n\n\nplt.plot(y[:,1,0],label=\"y in V2\")\nplt.plot(yhat[:,1,0],label=\"yhat in V2\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7efc4849c730>\n\n\n\n\n\n\nplt.plot(y[:,2,0],label=\"y in V3\")\nplt.plot(yhat[:,2,0],label=\"yhat in V3\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7efc484098e0>\n\n\n\n\n\n\nplt.plot(y[:,3,0],label=\"y in V4\")\nplt.plot(yhat[:,3,0],label=\"yhat in V4\")\nplt.legend()\n\n<matplotlib.legend.Legend at 0x7efc483f5880>"
   },
   {
     "objectID": "posts/GCN/2022-12-21-st-gcn.html",
@@ -403,7 +445,7 @@
     "href": "index.html",
     "title": ":)",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

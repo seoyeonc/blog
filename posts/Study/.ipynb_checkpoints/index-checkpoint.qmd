@@ -1,0 +1,8 @@
+---
+title: "Study"
+author: "SEOYEON CHOI"
+date: "2022-12-"
+categories: [Study]
+---
+
+About Study

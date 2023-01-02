@@ -338,7 +338,7 @@
   {
     "objectID": "posts/Quarto_tip/2023-01-02-quarto_tips.html",
     "href": "posts/Quarto_tip/2023-01-02-quarto_tips.html",
-    "title": "callout - block",
+    "title": "quarto blog tips",
     "section": "",
     "text": "note, tip, warning, caution, and important.\n\n\ncallout\nThere are three types of callouts.\n:::{.callout-note}\nNote that there are five types of callouts, including:\n`note`, `tip`, `warning`, `caution`, and `important`.\n:::\n\n:::{.callout-tip}\n## Tip With Caption\n\nThis is an example of a callout with a caption.\n:::\n\n\ncollapse\n\n\n\n\n\n\n\ntype\ninfo\n\n\n\n\ndefault\nThe default appearance with colored header and an icon.\n\n\nsimple\nA lighter weight appearance that doesn’t include a colored header background.\n\n\nminimal\nA minimal treatment that applies borders to the callout, but doesn’t include a header background color or icon.\n\n\n\n::: {.callout-note appearance=\"simple\"}\n\n## Pay Attention\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n:::\n\n\nLists\nMarkdown Syntax Output\n* unordered list\n    + sub-item 1\n    + sub-item 2\n        - sub-sub-item 1\n1. ordered list\n2. item 2\n    i) sub-item 1\n         A.  sub-sub-item 1\n\n\nVideo\n\n\n\nSub figures\n::: {#fig-elephants layout-ncol=2}\n\n![Surus](surus.png){#fig-surus}\n\n![Hanno](hanno.png){#fig-hanno}\n\nFamous Elephants\n:::\n\n\nFigure Panels\n::: {layout-ncol=2}\n![Surus](surus.png)\n\n![Hanno](hanno.png)\n:::"
   },
@@ -459,7 +459,7 @@
     "href": "index.html",
     "title": ":)",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 2, 2023\n\n\ncallout - block\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 2, 2023\n\n\nquarto blog tips\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

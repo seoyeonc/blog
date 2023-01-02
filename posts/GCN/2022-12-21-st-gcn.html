@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#windmilloutputlargedatasetloader" id="toc-windmilloutputlargedatasetloader" class="nav-link" data-scroll-target="#windmilloutputlargedatasetloader">WindmillOutputLargeDatasetLoader</a></li>
   <li><a href="#windmilloutputmediumdatasetloader" id="toc-windmilloutputmediumdatasetloader" class="nav-link" data-scroll-target="#windmilloutputmediumdatasetloader">WindmillOutputMediumDatasetLoader</a></li>
   <li><a href="#windmilloutputsmalldatasetloader" id="toc-windmilloutputsmalldatasetloader" class="nav-link" data-scroll-target="#windmilloutputsmalldatasetloader">WindmillOutputSmallDatasetLoader</a></li>
-  <li><a href="#metrladatasetloader" id="toc-metrladatasetloader" class="nav-link" data-scroll-target="#metrladatasetloader">METRLADatasetLoader</a></li>
+  <li><a href="#metrladatasetloader_real-world-traffic-dataset" id="toc-metrladatasetloader_real-world-traffic-dataset" class="nav-link" data-scroll-target="#metrladatasetloader_real-world-traffic-dataset">METRLADatasetLoader_real world traffic dataset</a></li>
   <li><a href="#pemsbaydatasetloader" id="toc-pemsbaydatasetloader" class="nav-link" data-scroll-target="#pemsbaydatasetloader">PemsBayDatasetLoader</a></li>
   <li><a href="#englandcoviddatasetloader" id="toc-englandcoviddatasetloader" class="nav-link" data-scroll-target="#englandcoviddatasetloader">EnglandCovidDatasetLoader</a></li>
   <li><a href="#montevideobusdatasetloader" id="toc-montevideobusdatasetloader" class="nav-link" data-scroll-target="#montevideobusdatasetloader">MontevideoBusDatasetLoader</a></li>
@@ -1050,7 +1050,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <hr>
-<div class="cell" data-execution_count="181">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  WindmillOutputLargeDatasetLoader</span>
 <span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> WindmillOutputLargeDatasetLoader()</span>
 <span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1272,8 +1272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <hr>
 </section>
-<section id="metrladatasetloader" class="level2">
-<h2 class="anchored" data-anchor-id="metrladatasetloader">METRLADatasetLoader</h2>
+<section id="metrladatasetloader_real-world-traffic-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="metrladatasetloader_real-world-traffic-dataset">METRLADatasetLoader_real world traffic dataset</h2>
 <p>A traffic forecasting dataset based on Los Angeles Metropolitan traffic conditions. The dataset contains traffic readings collected from 207 loop detectors on highways in Los Angeles County in aggregated 5 minute intervals for 4 months between March 2012 to June 2012.</p>
 <p>https://arxiv.org/pdf/1707.01926.pdf</p>
 <p><code>-</code> Nodes : <code>15</code> - vertices are localities</p>
@@ -1352,6 +1352,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <hr>
+<div class="cell" data-execution_count="187">
+<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> METRLADatasetLoader</span>
+<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> METRLADatasetLoader()</span>
+<span id="cb209-3"><a href="#cb209-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="#cb209-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb209-5"><a href="#cb209-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-6"><a href="#cb209-6" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+</div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>lags option 없어서 error 뜸</code> : get_dataset() got an unexpected keyword argument ‘lags’</p>
+</div>
+</div>
+<section id="recurrentgcn-1" class="level4">
+<h4 class="anchored" data-anchor-id="recurrentgcn-1">RecurrentGCN</h4>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb210"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb210-2"><a href="#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb210-3"><a href="#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
+<span id="cb210-4"><a href="#cb210-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-5"><a href="#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb210-6"><a href="#cb210-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb210-7"><a href="#cb210-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb210-8"><a href="#cb210-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvGRU(node_features, filters, <span class="dv">2</span>)</span>
+<span id="cb210-9"><a href="#cb210-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb210-10"><a href="#cb210-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-11"><a href="#cb210-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight):</span>
+<span id="cb210-12"><a href="#cb210-12" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight)</span>
+<span id="cb210-13"><a href="#cb210-13" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> F.relu(h)</span>
+<span id="cb210-14"><a href="#cb210-14" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb210-15"><a href="#cb210-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h</span></code></pre></div>
+</div>
+</section>
+<section id="learn-4" class="level4">
+<h4 class="anchored" data-anchor-id="learn-4">Learn</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">1</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-3"><a href="#cb211-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb211-4"><a href="#cb211-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-5"><a href="#cb211-5" aria-hidden="true" tabindex="-1"></a>model.train()</span>
+<span id="cb211-6"><a href="#cb211-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-7"><a href="#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb211-8"><a href="#cb211-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb211-9"><a href="#cb211-9" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb211-10"><a href="#cb211-10" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> torch.mean((y_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb211-11"><a href="#cb211-11" aria-hidden="true" tabindex="-1"></a>        cost.backward()</span>
+<span id="cb211-12"><a href="#cb211-12" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb211-13"><a href="#cb211-13" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="190">
+<div class="sourceCode cell-code" id="cb212"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb212-1"><a href="#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb212-2"><a href="#cb212-2" aria-hidden="true" tabindex="-1"></a>    _x <span class="op">=</span> snapshot.x </span>
+<span id="cb212-3"><a href="#cb212-3" aria-hidden="true" tabindex="-1"></a>    _edge_index <span class="op">=</span> snapshot.edge_index </span>
+<span id="cb212-4"><a href="#cb212-4" aria-hidden="true" tabindex="-1"></a>    _edge_attr <span class="op">=</span> snapshot.edge_attr</span>
+<span id="cb212-5"><a href="#cb212-5" aria-hidden="true" tabindex="-1"></a>    _y <span class="op">=</span> snapshot.y</span>
+<span id="cb212-6"><a href="#cb212-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="191">
+<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>_x.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="191">
+<pre><code>torch.Size([207, 2, 12])</code></pre>
+</div>
+</div>
+<ul>
+<li>node 207개, traffic sensor 2개</li>
+</ul>
+<div class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a>_edge_index.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="192">
+<pre><code>torch.Size([2, 1722])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="193">
+<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>_edge_attr.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="193">
+<pre><code>torch.Size([1722])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="194">
+<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>_y.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="194">
+<pre><code>torch.Size([207, 12])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="195">
+<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>_x.shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="195">
+<pre><code>torch.Size([207, 2, 12])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="199">
+<div class="sourceCode cell-code" id="cb223"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>_x[<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="199">
+<pre><code>tensor([[ 0.5332,  0.4486,  0.5146, -2.6522, -2.6522,  0.1847,  0.6383,  0.4961,
+          0.7497,  0.4899,  0.5751,  0.4280],
+        [-1.7292, -1.7171, -1.7051, -1.6930, -1.6810, -1.6689, -1.6569, -1.6448,
+         -1.6328, -1.6207, -1.6087, -1.5966]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="200">
+<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a>_y[<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="200">
+<pre><code>tensor([0.3724, 0.2452, 0.4961, 0.6521, 0.1126, 0.5311, 0.5091, 0.4713, 0.4218,
+        0.3909, 0.4761, 0.5641])</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="pemsbaydatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="pemsbaydatasetloader">PemsBayDatasetLoader</h2>
@@ -1361,73 +1477,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code>Edges : <code>2694</code> - weighted edges are between seonsor paris measured by the road nretwork distance</p>
 <p><code>-</code> Time : <code>52081</code> - 6 months of traffic readings ranging from Jan 1st 2017 to May 31th 2017 in 5 minute intervals</p>
 <div class="cell" data-execution_count="1578">
-<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PemsBayDatasetLoader</span>
-<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
-<span id="cb209-3"><a href="#cb209-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-4"><a href="#cb209-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> PemsBayDatasetLoader()</span>
-<span id="cb209-5"><a href="#cb209-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-6"><a href="#cb209-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
-<span id="cb209-7"><a href="#cb209-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-8"><a href="#cb209-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PemsBayDatasetLoader</span>
+<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
+<span id="cb227-3"><a href="#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-4"><a href="#cb227-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> PemsBayDatasetLoader()</span>
+<span id="cb227-5"><a href="#cb227-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-6"><a href="#cb227-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb227-7"><a href="#cb227-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-8"><a href="#cb227-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1579">
-<div class="sourceCode cell-code" id="cb210"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb210-1"><a href="#cb210-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
-<span id="cb210-2"><a href="#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb210-3"><a href="#cb210-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb228"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
+<span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1348">
-<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1348">
 <pre><code>52081</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1349">
-<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1349">
 <pre><code>(torch.Size([325, 2, 12]), torch.Size([2, 2694]), torch.Size([2694]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1350">
-<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1351">
-<div class="sourceCode cell-code" id="cb216"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">325</span>)).tolist()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb234"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">325</span>)).tolist()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1352">
-<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>data[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a>data[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1352">
 <pre><code>[52081,
  Data(x=[325, 2, 12], edge_index=[2, 2694], edge_attr=[2694], y=[325, 2, 12])]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1353">
-<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb237"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1354">
-<div class="sourceCode cell-code" id="cb220"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb220-1"><a href="#cb220-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
-<span id="cb220-2"><a href="#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb220-3"><a href="#cb220-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
-<span id="cb220-4"><a href="#cb220-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb238"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
+<span id="cb238-2"><a href="#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb238-3"><a href="#cb238-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
+<span id="cb238-4"><a href="#cb238-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1355">
-<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb239"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1356">
-<div class="sourceCode cell-code" id="cb222"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb222-1"><a href="#cb222-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb240"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb240-1"><a href="#cb240-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1356">
 <pre><code>(325, 2404)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1363">
-<div class="sourceCode cell-code" id="cb224"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn_files/figure-html/cell-155-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-st-gcn_files/figure-html/cell-166-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
 <p>time별 같은 edge 정보를 가지고 있나 확인</p>
 <div class="cell" data-execution_count="1580">
-<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">10</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb243"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb243-1"><a href="#cb243-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">10</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1580">
 <pre><code>(array([], dtype=int64), array([], dtype=int64))</code></pre>
 </div>
@@ -1442,78 +1558,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code>Edges : <code>2158</code> - the spatial edges capture county-to-county movement at a specific date, and a county is connected to a number of past instances of itself with temporal edges.</p>
 <p><code>-</code> Time : <code>52</code> - from 3 March to 12 of May</p>
 <div class="cell" data-execution_count="1581">
-<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> EnglandCovidDatasetLoader</span>
-<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
-<span id="cb227-3"><a href="#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-4"><a href="#cb227-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> EnglandCovidDatasetLoader()</span>
-<span id="cb227-5"><a href="#cb227-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-6"><a href="#cb227-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
-<span id="cb227-7"><a href="#cb227-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb227-8"><a href="#cb227-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb245"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> EnglandCovidDatasetLoader</span>
+<span id="cb245-2"><a href="#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
+<span id="cb245-3"><a href="#cb245-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-4"><a href="#cb245-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> EnglandCovidDatasetLoader()</span>
+<span id="cb245-5"><a href="#cb245-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-6"><a href="#cb245-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb245-7"><a href="#cb245-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-8"><a href="#cb245-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1582">
-<div class="sourceCode cell-code" id="cb228"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
-<span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb246"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
+<span id="cb246-2"><a href="#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb246-3"><a href="#cb246-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1366">
-<div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb247"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1377">
 <pre><code>52</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1367">
-<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1378">
 <pre><code>(torch.Size([129, 8]), torch.Size([2, 2158]), torch.Size([2158]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1368">
-<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb251"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1369">
-<div class="sourceCode cell-code" id="cb234"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">129</span>)).tolist()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb252"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb252-1"><a href="#cb252-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">129</span>)).tolist()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1370">
-<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb253"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb253-1"><a href="#cb253-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1371">
-<div class="sourceCode cell-code" id="cb236"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a>data[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a>data[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1382">
 <pre><code>[52, Data(x=[129, 8], edge_index=[2, 1424], edge_attr=[1424], y=[129])]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1387">
-<div class="sourceCode cell-code" id="cb238"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb256"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb256-1"><a href="#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1387">
 <pre><code>2158</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1392">
-<div class="sourceCode cell-code" id="cb240"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb240-1"><a href="#cb240-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
-<span id="cb240-2"><a href="#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">52</span>):</span>
-<span id="cb240-3"><a href="#cb240-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
-<span id="cb240-4"><a href="#cb240-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb258"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb258-1"><a href="#cb258-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
+<span id="cb258-2"><a href="#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">52</span>):</span>
+<span id="cb258-3"><a href="#cb258-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb258-4"><a href="#cb258-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1393">
-<div class="sourceCode cell-code" id="cb241"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb259"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb259-1"><a href="#cb259-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1394">
-<div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb260-1"><a href="#cb260-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1394">
 <pre><code>(129, 1230)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1396">
-<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb262"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb262-1"><a href="#cb262-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn_files/figure-html/cell-169-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-st-gcn_files/figure-html/cell-180-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
 <p>time별 같은 edge 정보를 가지고 있나 확인</p>
 <div class="cell" data-execution_count="1590">
-<div class="sourceCode cell-code" id="cb245"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span>data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb263"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span>data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1590">
 <pre><code>(array([], dtype=int64), array([], dtype=int64))</code></pre>
 </div>
@@ -1527,66 +1643,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code>Edges : <code>690</code> - edges are links between bus stops when a bus line connects them and the weight represent the road distance</p>
 <p><code>-</code> Time : <code>739</code> - hourly inflow passenger data at bus stop level for 11 bus lines during October 2020 from Montevideo city (Uruguay).</p>
 <div class="cell" data-execution_count="1591">
-<div class="sourceCode cell-code" id="cb247"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
-<span id="cb247-2"><a href="#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
-<span id="cb247-3"><a href="#cb247-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-4"><a href="#cb247-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> MontevideoBusDatasetLoader()</span>
-<span id="cb247-5"><a href="#cb247-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-6"><a href="#cb247-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
-<span id="cb247-7"><a href="#cb247-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-8"><a href="#cb247-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb265"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb265-1"><a href="#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
+<span id="cb265-2"><a href="#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
+<span id="cb265-3"><a href="#cb265-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="#cb265-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> MontevideoBusDatasetLoader()</span>
+<span id="cb265-5"><a href="#cb265-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-6"><a href="#cb265-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb265-7"><a href="#cb265-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-8"><a href="#cb265-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1592">
-<div class="sourceCode cell-code" id="cb248"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb248-1"><a href="#cb248-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
-<span id="cb248-2"><a href="#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb248-3"><a href="#cb248-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb266"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb266-1"><a href="#cb266-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
+<span id="cb266-2"><a href="#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb266-3"><a href="#cb266-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1399">
-<div class="sourceCode cell-code" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb267"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1399">
 <pre><code>739</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1400">
-<div class="sourceCode cell-code" id="cb251"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb269"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb269-1"><a href="#cb269-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1400">
 <pre><code>(torch.Size([675, 4]), torch.Size([2, 690]), torch.Size([690]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1401">
-<div class="sourceCode cell-code" id="cb253"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb253-1"><a href="#cb253-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb271"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb271-1"><a href="#cb271-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1402">
-<div class="sourceCode cell-code" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">675</span>)).tolist()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb272"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb272-1"><a href="#cb272-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">675</span>)).tolist()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1403">
-<div class="sourceCode cell-code" id="cb255"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb273"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb273-1"><a href="#cb273-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1404">
-<div class="sourceCode cell-code" id="cb256"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb256-1"><a href="#cb256-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
-<span id="cb256-2"><a href="#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">739</span>):</span>
-<span id="cb256-3"><a href="#cb256-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
-<span id="cb256-4"><a href="#cb256-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb274"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb274-1"><a href="#cb274-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
+<span id="cb274-2"><a href="#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">739</span>):</span>
+<span id="cb274-3"><a href="#cb274-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
+<span id="cb274-4"><a href="#cb274-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1405">
-<div class="sourceCode cell-code" id="cb257"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb257-1"><a href="#cb257-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb275"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb275-1"><a href="#cb275-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1406">
-<div class="sourceCode cell-code" id="cb258"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb258-1"><a href="#cb258-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb276"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb276-1"><a href="#cb276-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1406">
 <pre><code>(675, 690)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1410">
-<div class="sourceCode cell-code" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb260-1"><a href="#cb260-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb278"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb278-1"><a href="#cb278-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn_files/figure-html/cell-181-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-st-gcn_files/figure-html/cell-192-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
 <p>time별 같은 edge 정보를 가지고 있나 확인</p>
 <div class="cell" data-execution_count="1593">
-<div class="sourceCode cell-code" id="cb261"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb261-1"><a href="#cb261-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">10</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb279"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb279-1"><a href="#cb279-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">10</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1593">
 <pre><code>(array([], dtype=int64), array([], dtype=int64))</code></pre>
 </div>
@@ -1600,40 +1716,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code>Edges : <code>119</code> - edges are mentions between them</p>
 <p><code>-</code> Time : <code>52081</code> - Twitter mention graphs related to major tennis tournaments from 2017</p>
 <div class="cell" data-execution_count="1621">
-<div class="sourceCode cell-code" id="cb263"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> TwitterTennisDatasetLoader</span>
-<span id="cb263-2"><a href="#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
-<span id="cb263-3"><a href="#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-4"><a href="#cb263-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> TwitterTennisDatasetLoader()</span>
-<span id="cb263-5"><a href="#cb263-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-6"><a href="#cb263-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
-<span id="cb263-7"><a href="#cb263-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-8"><a href="#cb263-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb281"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb281-1"><a href="#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> TwitterTennisDatasetLoader</span>
+<span id="cb281-2"><a href="#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
+<span id="cb281-3"><a href="#cb281-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-4"><a href="#cb281-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> TwitterTennisDatasetLoader()</span>
+<span id="cb281-5"><a href="#cb281-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-6"><a href="#cb281-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb281-7"><a href="#cb281-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-8"><a href="#cb281-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1622">
-<div class="sourceCode cell-code" id="cb264"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
-<span id="cb264-2"><a href="#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb264-3"><a href="#cb264-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb282"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb282-1"><a href="#cb282-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
+<span id="cb282-2"><a href="#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb282-3"><a href="#cb282-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1623">
-<div class="sourceCode cell-code" id="cb265"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb265-1"><a href="#cb265-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb283"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb283-1"><a href="#cb283-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1623">
 <pre><code>119</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1624">
-<div class="sourceCode cell-code" id="cb267"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb285"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb285-1"><a href="#cb285-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1624">
 <pre><code>(torch.Size([1000, 16]), torch.Size([2, 89]), torch.Size([89]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1630">
-<div class="sourceCode cell-code" id="cb269"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb269-1"><a href="#cb269-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].x[<span class="dv">0</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb287"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb287-1"><a href="#cb287-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].x[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1630">
 <pre><code>tensor([0., 0., 0., 0., 1., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1631">
-<div class="sourceCode cell-code" id="cb271"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb271-1"><a href="#cb271-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb289"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb289-1"><a href="#cb289-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1631">
 <pre><code>tensor([ 42, 909, 909, 909, 233, 233, 450, 256, 256, 256, 256, 256, 434, 434,
         434, 233, 233, 233, 233, 233, 233, 233,   9,   9, 355,  84,  84,  84,
@@ -1645,7 +1761,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="1633">
-<div class="sourceCode cell-code" id="cb273"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb273-1"><a href="#cb273-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].edge_attr</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb291"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb291-1"><a href="#cb291-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>][<span class="dv">1</span>].edge_attr</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1633">
 <pre><code>tensor([2., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
         1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
@@ -1655,45 +1771,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="1438">
-<div class="sourceCode cell-code" id="cb275"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb275-1"><a href="#cb275-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb293"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb293-1"><a href="#cb293-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1439">
-<div class="sourceCode cell-code" id="cb276"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb276-1"><a href="#cb276-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">1000</span>)).tolist()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb294-1"><a href="#cb294-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">1000</span>)).tolist()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1440">
-<div class="sourceCode cell-code" id="cb277"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb277-1"><a href="#cb277-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb295"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb295-1"><a href="#cb295-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1441">
-<div class="sourceCode cell-code" id="cb278"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb278-1"><a href="#cb278-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
-<span id="cb278-2"><a href="#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">119</span>):</span>
-<span id="cb278-3"><a href="#cb278-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):</span>
-<span id="cb278-4"><a href="#cb278-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb296"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb296-1"><a href="#cb296-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
+<span id="cb296-2"><a href="#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">119</span>):</span>
+<span id="cb296-3"><a href="#cb296-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):</span>
+<span id="cb296-4"><a href="#cb296-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1442">
-<div class="sourceCode cell-code" id="cb279"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb279-1"><a href="#cb279-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="#cb297-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1443">
-<div class="sourceCode cell-code" id="cb280"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb280-1"><a href="#cb280-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb298"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb298-1"><a href="#cb298-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1443">
 <pre><code>(1000, 2819)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1444">
-<div class="sourceCode cell-code" id="cb282"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb282-1"><a href="#cb282-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb300-1"><a href="#cb300-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn_files/figure-html/cell-196-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-st-gcn_files/figure-html/cell-207-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
 <p>time별 같은 edge 정보를 가지고 있나 확인</p>
 <div class="cell" data-execution_count="1603">
-<div class="sourceCode cell-code" id="cb283"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb283-1"><a href="#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">2</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1603">
 <pre><code>67</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1606">
-<div class="sourceCode cell-code" id="cb285"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb285-1"><a href="#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1606">
 <pre><code>89</code></pre>
 </div>
@@ -1708,66 +1824,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>-</code>Edges : <code>19</code> - edges are the bones connecting them</p>
 <p><code>-</code> Time : <code>14452</code></p>
 <div class="cell" data-execution_count="1607">
-<div class="sourceCode cell-code" id="cb287"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb287-1"><a href="#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MTMDatasetLoader</span>
-<span id="cb287-2"><a href="#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
-<span id="cb287-3"><a href="#cb287-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-4"><a href="#cb287-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> MTMDatasetLoader()</span>
-<span id="cb287-5"><a href="#cb287-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-6"><a href="#cb287-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
-<span id="cb287-7"><a href="#cb287-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-8"><a href="#cb287-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb305"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb305-1"><a href="#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MTMDatasetLoader</span>
+<span id="cb305-2"><a href="#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
+<span id="cb305-3"><a href="#cb305-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb305-4"><a href="#cb305-4" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> MTMDatasetLoader()</span>
+<span id="cb305-5"><a href="#cb305-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb305-6"><a href="#cb305-6" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset()</span>
+<span id="cb305-7"><a href="#cb305-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb305-8"><a href="#cb305-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1608">
-<div class="sourceCode cell-code" id="cb288"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb288-1"><a href="#cb288-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
-<span id="cb288-2"><a href="#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
-<span id="cb288-3"><a href="#cb288-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb306"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb306-1"><a href="#cb306-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
+<span id="cb306-2"><a href="#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb306-3"><a href="#cb306-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1609">
-<div class="sourceCode cell-code" id="cb289"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb289-1"><a href="#cb289-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb307"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb307-1"><a href="#cb307-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1609">
 <pre><code>14452</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1448">
-<div class="sourceCode cell-code" id="cb291"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb291-1"><a href="#cb291-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb309"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb309-1"><a href="#cb309-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1448">
 <pre><code>(torch.Size([3, 21, 16]), torch.Size([2, 19]), torch.Size([19]))</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1449">
-<div class="sourceCode cell-code" id="cb293"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb293-1"><a href="#cb293-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb311"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb311-1"><a href="#cb311-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1450">
-<div class="sourceCode cell-code" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb294-1"><a href="#cb294-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">21</span>)).tolist()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb312"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb312-1"><a href="#cb312-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">21</span>)).tolist()</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1451">
-<div class="sourceCode cell-code" id="cb295"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb295-1"><a href="#cb295-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb313"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb313-1"><a href="#cb313-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1453">
-<div class="sourceCode cell-code" id="cb296"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb296-1"><a href="#cb296-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
-<span id="cb296-2"><a href="#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">14452</span>):</span>
-<span id="cb296-3"><a href="#cb296-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
-<span id="cb296-4"><a href="#cb296-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb314"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb314-1"><a href="#cb314-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
+<span id="cb314-2"><a href="#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">14452</span>):</span>
+<span id="cb314-3"><a href="#cb314-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
+<span id="cb314-4"><a href="#cb314-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1454">
-<div class="sourceCode cell-code" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="#cb297-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb315"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb315-1"><a href="#cb315-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="1455">
-<div class="sourceCode cell-code" id="cb298"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb298-1"><a href="#cb298-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb316"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb316-1"><a href="#cb316-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1455">
 <pre><code>(21, 19)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="1457">
-<div class="sourceCode cell-code" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb300-1"><a href="#cb300-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb318"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb318-1"><a href="#cb318-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn_files/figure-html/cell-209-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-st-gcn_files/figure-html/cell-220-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
 <p>time별 같은 edge 정보를 가지고 있나 확인</p>
 <div class="cell" data-execution_count="1611">
-<div class="sourceCode cell-code" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="#cb301-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">12</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb319"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb319-1"><a href="#cb319-1" aria-hidden="true" tabindex="-1"></a>np.where(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index <span class="op">!=</span> data[<span class="dv">12</span>][<span class="dv">1</span>].edge_index)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1611">
 <pre><code>(array([], dtype=int64), array([], dtype=int64))</code></pre>
 </div>

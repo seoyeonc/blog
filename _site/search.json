@@ -455,11 +455,39 @@
     "text": "About GCN Study"
   },
   {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html",
+    "href": "posts/GCN/2023-01-05-GNAR.html",
+    "title": "GNAR data",
+    "section": "",
+    "text": "GNAR"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html#ex-1",
+    "href": "posts/GCN/2023-01-05-GNAR.html#ex-1",
+    "title": "GNAR data",
+    "section": "Ex 1",
+    "text": "Ex 1\n\n%%R\nplot(fiveNet, vertex.label = c(\"A\", \"B\", \"C\", \"D\", \"E\"))\n\n\n\n\n\n%%R\nsummary(\"fiveNet\")\n\n   Length     Class      Mode \n        1 character character \n\n\n\n%%R\nfiveNet2 <- GNARtoigraph(net = fiveNet)\nsummary(fiveNet2)\n\nIGRAPH eee756c U-W- 5 5 -- \n+ attr: weight (e/n)\n\n\n\n%%R\nfiveNet3 <- igraphtoGNAR(fiveNet2)\nall.equal(fiveNet, fiveNet3)\n\n[1] TRUE\n\n\nwhereas the reverse conversion would be performed as\n\n%%R\ng <- make_ring(10)\nprint(igraphtoGNAR(g))\n\nGNARnet with 10 nodes \nedges:1--2 1--10 2--1 2--3 3--2 3--4 4--3 4--5 5--4 5--6 \n     6--5 6--7 7--6 7--8 8--7 8--9 9--8 9--10 10--1 10--9 \n     \n edges of each of length  1 \n\n\nwe can prosucean adjacency matrix for the fiveNet obeject with\n\n%%R\nas.matrix(fiveNet)\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    0    0    0    1    1\n[2,]    0    0    1    1    0\n[3,]    0    1    0    1    0\n[4,]    1    1    1    0    0\n[5,]    1    0    0    0    0\n\n\nand an example converting a weighted adjacency matrix to a GNARnet object is\n\n%%R\nadj <- matrix(runif(9), ncol = 3, nrow = 3)\nadj[adj < 0.3] <- 0\nprint(matrixtoGNAR(adj))\n\nWARNING: diagonal entries present in original matrix, these will be removed\nGNARnet with 3 nodes \nedges:1--3 2--1 2--3 3--1 \n edges of unequal lengths"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html#ex-2.",
+    "href": "posts/GCN/2023-01-05-GNAR.html#ex-2.",
+    "title": "GNAR data",
+    "section": "Ex 2.",
+    "text": "Ex 2.\n\n%%R\ndata(\"fiveNode\")\nanswer <- GNARfit(vts = fiveVTS, net = fiveNet, alphaOrder = 2, betaOrder = c(1, 1))\nanswer\n\nModel: \nGNAR(2,[1,1]) \n\nCall:\nlm(formula = yvec ~ dmat + 0)\n\nCoefficients:\n dmatalpha1  dmatbeta1.1   dmatalpha2  dmatbeta2.1  \n    0.20624      0.50277      0.02124     -0.09523  \n\n\n\n\n%%R\nplot(fiveVTS[, 1], ylab = \"Node A Time Series\")\nlines(fitted(answer)[, 1], col = 2)\n\n\n\n\n\n%%R\nmyresiduals <- residuals(answer)[, 1]\nlayout(matrix(c(1, 2), 2, 1))\nplot(ts(residuals(answer)[, 1]), ylab = \"`answer' model residuals\")\nhist(residuals(answer)[, 1], main = \"\", xlab = \"`answer' model residuals\")"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html#ex-3.",
+    "href": "posts/GCN/2023-01-05-GNAR.html#ex-3.",
+    "title": "GNAR data",
+    "section": "Ex 3.",
+    "text": "Ex 3.\n\nEx 1. 이어서\n\n\n%R -o x_1\n%R -o index_of_trueoutlier_1\n%R -o signal_1"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": ":)",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 2, 2023\n\n\nquarto blog tips\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 5, 2023\n\n\nGNAR data\n\n\nSEOYEON CHOI\n\n\n\n\nJan 2, 2023\n\n\nquarto blog tips\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch Geometric Temporal Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

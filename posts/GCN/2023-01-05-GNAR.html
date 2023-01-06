@@ -336,6 +336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#ex-1" id="toc-ex-1" class="nav-link active" data-scroll-target="#ex-1">Ex 1</a></li>
   <li><a href="#ex-2." id="toc-ex-2." class="nav-link" data-scroll-target="#ex-2.">Ex 2.</a></li>
   <li><a href="#ex-3." id="toc-ex-3." class="nav-link" data-scroll-target="#ex-3.">Ex 3.</a></li>
+  <li><a href="#missing-data-and-changing-connection-weights-with-gnar-models" id="toc-missing-data-and-changing-connection-weights-with-gnar-models" class="nav-link" data-scroll-target="#missing-data-and-changing-connection-weights-with-gnar-models">Missing data and changing connection weights with GNAR models</a></li>
+  <li><a href="#stationary-conditions-for-a-gnar-process-with-fixed-network" id="toc-stationary-conditions-for-a-gnar-process-with-fixed-network" class="nav-link" data-scroll-target="#stationary-conditions-for-a-gnar-process-with-fixed-network">Stationary conditions for a GNAR process with fixed network</a></li>
   </ul>
 </nav>
     </div>
@@ -480,10 +482,89 @@ Coefficients:
 <ul>
 <li>Ex 1. 이어서</li>
 </ul>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fiveVTS2 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.4</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.6</span>, <span class="dv">0</span>, <span class="dv">0</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.3</span>)))</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS2, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(1,[1]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+dmatalpha1node1  dmatalpha1node2  dmatalpha1node3  dmatalpha1node4  
+        0.45902          0.13133         -0.49166          0.03828  
+dmatalpha1node5      dmatbeta1.1  
+        0.02249          0.24848  
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>fiveVTS3 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>), rep(<span class="fl">0.3</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.2</span>, <span class="fl">0.3</span>), c(<span class="dv">0</span>)))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS3, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">2</span>,<span class="dv">0</span>)))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(2,[2,0]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+ dmatalpha1  dmatbeta1.1  dmatbeta1.2   dmatalpha2  
+     0.2537       0.1049       0.3146       0.2907  
+</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-data-and-changing-connection-weights-with-gnar-models" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data-and-changing-connection-weights-with-gnar-models">Missing data and changing connection weights with GNAR models</h2>
+<ul>
+<li>as changing connection weights</li>
+<li>overall network os considered fixed</li>
+</ul>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>fiveVTS0 <span class="op">&lt;-</span> fiveVTS</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>fiveVTS0[<span class="dv">50</span>:<span class="dv">150</span>, <span class="dv">3</span>] <span class="op">&lt;-</span> NA</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>nafit <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> fiveVTS0, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plot(ts(fitted(nafit)[, <span class="dv">3</span>]), ylab <span class="op">=</span> <span class="st">"Node C fitted values"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plot(ts(fitted(nafit)[, <span class="dv">4</span>]), ylab <span class="op">=</span> <span class="st">"Node D fitted values"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="stationary-conditions-for-a-gnar-process-with-fixed-network" class="level2">
+<h2 class="anchored" data-anchor-id="stationary-conditions-for-a-gnar-process-with-fixed-network">Stationary conditions for a GNAR process with fixed network</h2>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>fiveVTS4 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.85</span>)))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>c(mean(fiveVTS4[<span class="dv">1</span>:<span class="dv">50</span>, ]), mean(fiveVTS4[<span class="dv">51</span>:<span class="dv">100</span>, ]), mean(fiveVTS4[<span class="dv">101</span>:<span class="dv">150</span>, ]), mean(fiveVTS4[<span class="dv">151</span>:<span class="dv">200</span>, ]))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]    -120.511   -1370.216  -15725.884 -180319.140</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.003953124</code></pre>
+</div>
+</div>
 <div class="cell" data-execution_count="1067">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o x_1</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier_1</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o signal_1</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o x_1</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier_1</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o signal_1</span></code></pre></div>
 </div>
 
 

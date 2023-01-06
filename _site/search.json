@@ -480,7 +480,21 @@
     "href": "posts/GCN/2023-01-05-GNAR.html#ex-3.",
     "title": "GNAR data",
     "section": "Ex 3.",
-    "text": "Ex 3.\n\nEx 1. 이어서\n\n\n%R -o x_1\n%R -o index_of_trueoutlier_1\n%R -o signal_1"
+    "text": "Ex 3.\n\nEx 1. 이어서\n\n\n%%R\nset.seed(10)\nfiveVTS2 <- GNARsim(n = 200, net = fiveNet, alphaParams = list(c(0.4, 0, -0.6, 0, 0)), betaParams = list(c(0.3)))\n\n\n%%R\nprint(GNARfit(vts = fiveVTS2, net = fiveNet, alphaOrder = 1, betaOrder = 1, globalalpha = FALSE))\n\nModel: \nGNAR(1,[1]) \n\nCall:\nlm(formula = yvec ~ dmat + 0)\n\nCoefficients:\ndmatalpha1node1  dmatalpha1node2  dmatalpha1node3  dmatalpha1node4  \n        0.45902          0.13133         -0.49166          0.03828  \ndmatalpha1node5      dmatbeta1.1  \n        0.02249          0.24848  \n\n\n\n\n%%R\nset.seed(10)\nfiveVTS3 <- GNARsim(n = 200, net = fiveNet, alphaParams = list(rep(0.2, 5), rep(0.3, 5)), betaParams = list(c(0.2, 0.3), c(0)))\nprint(GNARfit(vts = fiveVTS3, net = fiveNet, alphaOrder = 2, betaOrder = c(2,0)))\n\nModel: \nGNAR(2,[2,0]) \n\nCall:\nlm(formula = yvec ~ dmat + 0)\n\nCoefficients:\n dmatalpha1  dmatbeta1.1  dmatbeta1.2   dmatalpha2  \n     0.2537       0.1049       0.3146       0.2907"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html#missing-data-and-changing-connection-weights-with-gnar-models",
+    "href": "posts/GCN/2023-01-05-GNAR.html#missing-data-and-changing-connection-weights-with-gnar-models",
+    "title": "GNAR data",
+    "section": "Missing data and changing connection weights with GNAR models",
+    "text": "Missing data and changing connection weights with GNAR models\n\nas changing connection weights\noverall network os considered fixed\n\n\n%%R\nfiveVTS0 <- fiveVTS\nfiveVTS0[50:150, 3] <- NA\nnafit <- GNARfit(vts = fiveVTS0, net = fiveNet, alphaOrder = 2, betaOrder = c(1, 1))\nlayout(matrix(c(1, 2), 2, 1))\nplot(ts(fitted(nafit)[, 3]), ylab = \"Node C fitted values\")\nplot(ts(fitted(nafit)[, 4]), ylab = \"Node D fitted values\")"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-05-GNAR.html#stationary-conditions-for-a-gnar-process-with-fixed-network",
+    "href": "posts/GCN/2023-01-05-GNAR.html#stationary-conditions-for-a-gnar-process-with-fixed-network",
+    "title": "GNAR data",
+    "section": "Stationary conditions for a GNAR process with fixed network",
+    "text": "Stationary conditions for a GNAR process with fixed network\n\n%%R\nset.seed(10)\nfiveVTS4 <- GNARsim(n = 200, net = fiveNet, alphaParams = list(rep(0.2, 5)), betaParams = list(c(0.85)))\nc(mean(fiveVTS4[1:50, ]), mean(fiveVTS4[51:100, ]), mean(fiveVTS4[101:150, ]), mean(fiveVTS4[151:200, ]))\n\n[1]    -120.511   -1370.216  -15725.884 -180319.140\n\n\n\n%%R\nBIC(GNARfit())\n\n[1] -0.003953124\n\n\n\n%R -o x_1\n%R -o index_of_trueoutlier_1\n%R -o signal_1"
   },
   {
     "objectID": "index.html",

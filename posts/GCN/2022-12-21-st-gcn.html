@@ -389,10 +389,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="chickenpoxdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="chickenpoxdatasetloader">ChickenpoxDatasetLoader</h2>
 <p>A dataset of county level chicken pox cases in Hungary between 2004 and 2014. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are counties and edges are neighbourhoods. Vertex features are lagged weekly counts of the chickenpox cases (we included 4 lags). The target is the weekly number of cases for the upcoming week (signed integers). Our dataset consist of more than 500 snapshots (weeks).</p>
-<p>데이터정리 - T = 519 - N = 20 # number of nodes - E = 102 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) - 시간에 따라서 Number of nodes가 변하는지? False - 시간에 따라서 Number of nodes가 변하는지? False - X: (20,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (20,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>20</code> - vertices are counties</p>
-<p><code>-</code>Edges : <code>102</code> - edges are neighbourhoods</p>
-<p><code>-</code> Time : <code>519</code> - between 2004 and 2014 - per weeks</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 519</li>
+<li>N = 20 # number of nodes</li>
+<li>E = 102 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,)</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>X: (20,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (20,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>20</code></p>
+<ul>
+<li>vertices are counties</li>
+</ul>
+<p><code>-</code>Edges : <code>102</code></p>
+<ul>
+<li>edges are neighbourhoods</li>
+</ul>
+<p><code>-</code> Time : <code>519</code></p>
+<ul>
+<li>between 2004 and 2014</li>
+<li>per weeks</li>
+</ul>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  ChickenpoxDatasetLoader</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -499,7 +520,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>(tensor([-0.0011,  0.0286,  0.3547,  0.2954]), tensor(0.7106))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
@@ -521,7 +546,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 20개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{20}\}, t=1,2,\dots,519\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -595,13 +624,8 @@ f(v_{20},t=5)
 </div>
 <p>x</p>
 <ul>
-<li>Vertex features are lagged weekly counts of the chickenpox cases (we included 4 lags).</li>
-<li>주마다 수두가 몇 퍼센트로 발생하는지, 4주(4lags)를 features로 둔 것은 아닐지..!</li>
-</ul>
-<p>y</p>
-<ul>
-<li>The target is the weekly number of cases for the upcoming week</li>
-<li>매주 수두가 몇 퍼센트로 발생하는지?</li>
+<li><p>Vertex features are lagged weekly counts of the chickenpox cases (we included 4 lags). y</p></li>
+<li><p>The target is the weekly number of cases for the upcoming week</p></li>
 </ul>
 <div class="cell" data-execution_count="224">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>_x</span></code></pre></div>
@@ -641,10 +665,32 @@ f(v_{20},t=5)
 <section id="pedalmedatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="pedalmedatasetloader">PedalMeDatasetLoader</h2>
 <p>A dataset of PedalMe Bicycle deliver orders in London between 2020 and 2021. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are localities and edges are spatial_connections. Vertex features are lagged weekly counts of the delivery demands (we included 4 lags). The target is the weekly number of deliveries the upcoming week. Our dataset consist of more than 30 snapshots (weeks).</p>
-<p>데이터정리 - T = 33 - V = 지역의 집합 - N = 15 # number of nodes - E = 225 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # number of deliveries - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (15,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (15,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>15</code> - vertices are localities</p>
-<p><code>-</code>Edges : <code>225</code> - edges are spatial_connections</p>
-<p><code>-</code> Time : <code>33</code> - between 2020 and 2021 - per weeks</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 33</li>
+<li>V = 지역의 집합</li>
+<li>N = 15 # number of nodes</li>
+<li>E = 225 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # number of deliveries</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (15,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (15,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>15</code></p>
+<ul>
+<li>vertices are localities</li>
+</ul>
+<p><code>-</code>Edges : <code>225</code></p>
+<ul>
+<li>edges are spatial_connections</li>
+</ul>
+<p><code>-</code> Time : <code>33</code></p>
+<ul>
+<li>between 2020 and 2021</li>
+<li>per weeks</li>
+</ul>
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  PedalMeDatasetLoader</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -736,7 +782,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([ 3.0574, -0.0477, -0.3076,  0.2437]), tensor(-0.2710))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="234">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>], (data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="234">
@@ -758,7 +808,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 15개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{15}\}, t=1,2,\dots,33\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -860,10 +914,32 @@ f(v_{20},t=5)
 <section id="wikimathsdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="wikimathsdatasetloader">WikiMathsDatasetLoader</h2>
 <p>A dataset of vital mathematics articles from Wikipedia. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are Wikipedia pages and edges are links between them. The graph is directed and weighted. Weights represent the number of links found at the source Wikipedia page linking to the target Wikipedia page. The target is the daily user visits to the Wikipedia pages between March 16th 2019 and March 15th 2021 which results in 731 periods.</p>
-<p>데이터정리 - T = 722 - V = 위키피디아 페이지 - N = 1068 # number of nodes - E = 27079 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # 해당페이지를 유저가 방문한 횟수 - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (1068,8) (N,8), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3),f(v,t_4),f(v,t_5),f(v,t_6),f(v,t_7)\)</span> - y: (1068,) (N,), <span class="math inline">\(f(v,t_8)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>1068</code> - vertices are Wikipedia pages</p>
-<p><code>-</code>Edges : <code>27079</code> - edges are links between them</p>
-<p><code>-</code> Time : <code>722</code> - Wikipedia pages between March 16th 2019 and March 15th 2021 - per weeks</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 722</li>
+<li>V = 위키피디아 페이지</li>
+<li>N = 1068 # number of nodes</li>
+<li>E = 27079 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # 해당페이지를 유저가 방문한 횟수</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (1068,8) (N,8), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3),f(v,t_4),f(v,t_5),f(v,t_6),f(v,t_7)\)</span></li>
+<li>y: (1068,) (N,), <span class="math inline">\(f(v,t_8)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>1068</code></p>
+<ul>
+<li>vertices are Wikipedia pages</li>
+</ul>
+<p><code>-</code>Edges : <code>27079</code></p>
+<ul>
+<li>edges are links between them</li>
+</ul>
+<p><code>-</code> Time : <code>722</code></p>
+<ul>
+<li>Wikipedia pages between March 16th 2019 and March 15th 2021</li>
+<li>per weeks</li>
+</ul>
 <div class="cell" data-execution_count="1640">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  WikiMathsDatasetLoader</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -975,7 +1051,11 @@ f(v_{20},t=5)
  tensor(-0.4067))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3,,x_4,x_5,x_6,x_7\)</span> - y:= <span class="math inline">\(x_9\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3,,x_4,x_5,x_6,x_7\)</span></li>
+<li>y:= <span class="math inline">\(x_9\)</span></li>
+</ul>
 <div class="cell" data-execution_count="243">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="243">
@@ -999,7 +1079,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_{10}\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 1068개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7) \to (x_8)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8) \to (x_9)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7) \to (x_8)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8) \to (x_9)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{1068}\}, t=1,2,\dots,722\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -1125,10 +1209,31 @@ f(v_{20},t=5)
 <section id="windmilloutputlargedatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="windmilloutputlargedatasetloader">WindmillOutputLargeDatasetLoader</h2>
 <p>Hourly energy output of windmills from a European country for more than 2 years. Vertices represent 319 windmills and weighted edges describe the strength of relationships. The target variable allows for regression tasks.</p>
-<p>데이터정리 - T = 17470 - V = 풍력발전소 - N = 319 # number of nodes - E = 101761 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>319</code> - vertices represent 319 windmills</p>
-<p><code>-</code>Edges : <code>101761</code> - weighted edges describe the strength of relationships.</p>
-<p><code>-</code> Time : <code>17470</code> - more than 2 years</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 17470</li>
+<li>V = 풍력발전소</li>
+<li>N = 319 # number of nodes</li>
+<li>E = 101761 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>319</code></p>
+<ul>
+<li>vertices represent 319 windmills</li>
+</ul>
+<p><code>-</code>Edges : <code>101761</code></p>
+<ul>
+<li>weighted edges describe the strength of relationships.</li>
+</ul>
+<p><code>-</code> Time : <code>17470</code></p>
+<ul>
+<li>more than 2 years</li>
+</ul>
 <div class="cell" data-execution_count="1566">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  WindmillOutputLargeDatasetLoader</span>
 <span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -1221,7 +1326,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([-0.5711, -0.7560,  2.6278, -0.8674]), tensor(-0.9877))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="249">
 <div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>], (data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="249">
@@ -1243,7 +1352,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 319개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{319}\}, t=1,2,\dots,17470\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -1342,10 +1455,31 @@ f(v_{20},t=5)
 <section id="windmilloutputmediumdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="windmilloutputmediumdatasetloader">WindmillOutputMediumDatasetLoader</h2>
 <p>Hourly energy output of windmills from a European country for more than 2 years. Vertices represent 26 windmills and weighted edges describe the strength of relationships. The target variable allows for regression tasks.</p>
-<p>데이터정리 - T = 17470 - V = 풍력발전소 - N = 319 # number of nodes - E = 101761 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>26</code> - vertices represent 26 windmills</p>
-<p><code>-</code>Edges : <code>225</code> - weighted edges describe the strength of relationships</p>
-<p><code>-</code> Time : <code>676</code> - more than 2 years</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 17470</li>
+<li>V = 풍력발전소</li>
+<li>N = 319 # number of nodes</li>
+<li>E = 101761 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>26</code></p>
+<ul>
+<li>vertices represent 26 windmills</li>
+</ul>
+<p><code>-</code>Edges : <code>225</code></p>
+<ul>
+<li>weighted edges describe the strength of relationships</li>
+</ul>
+<p><code>-</code> Time : <code>676</code></p>
+<ul>
+<li>more than 2 years</li>
+</ul>
 <div class="cell" data-execution_count="1569">
 <div class="sourceCode cell-code" id="cb189"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  WindmillOutputMediumDatasetLoader</span>
 <span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -1437,7 +1571,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([-0.2170, -0.2055, -0.1587, -0.1930]), tensor(-0.2149))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="254">
 <div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="254">
@@ -1459,7 +1597,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 26개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{26}\}, t=1,2,\dots,177470\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -1558,10 +1700,31 @@ f(v_{20},t=5)
 <section id="windmilloutputsmalldatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="windmilloutputsmalldatasetloader">WindmillOutputSmallDatasetLoader</h2>
 <p>Hourly energy output of windmills from a European country for more than 2 years. Vertices represent 11 windmills and weighted edges describe the strength of relationships. The target variable allows for regression tasks.</p>
-<p>데이터정리 - T = 17470 - V = 풍력발전소 - N = 319 # number of nodes - E = 101761 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>11</code> - vertices represent 11 windmills</p>
-<p><code>-</code>Edges : <code>121</code> - weighted edges describe the strength of relationships</p>
-<p><code>-</code> Time : <code>17470</code> - more than 2 years</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 17470</li>
+<li>V = 풍력발전소</li>
+<li>N = 319 # number of nodes</li>
+<li>E = 101761 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>11</code></p>
+<ul>
+<li>vertices represent 11 windmills</li>
+</ul>
+<p><code>-</code>Edges : <code>121</code></p>
+<ul>
+<li>weighted edges describe the strength of relationships</li>
+</ul>
+<p><code>-</code> Time : <code>17470</code></p>
+<ul>
+<li>more than 2 years</li>
+</ul>
 <div class="cell" data-execution_count="1572">
 <div class="sourceCode cell-code" id="cb232"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> WindmillOutputSmallDatasetLoader</span>
 <span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -1653,7 +1816,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([ 0.8199, -0.4972,  0.4923, -0.8299]), tensor(-0.6885))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="260">
 <div class="sourceCode cell-code" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="#cb254-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="260">
@@ -1675,7 +1842,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 11개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{11}\}, t=1,2,\dots,17463\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -1775,11 +1946,33 @@ f(v_{20},t=5)
 <section id="metrladatasetloader_real-world-traffic-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="metrladatasetloader_real-world-traffic-dataset">METRLADatasetLoader_real world traffic dataset</h2>
 <p>A traffic forecasting dataset based on Los Angeles Metropolitan traffic conditions. The dataset contains traffic readings collected from 207 loop detectors on highways in Los Angeles County in aggregated 5 minute intervals for 4 months between March 2012 to June 2012.</p>
-<p>데이터정리 - T = 33 - V = 구역 - N = 207 # number of nodes - E = 225 - <span class="math inline">\(f(v,t)\)</span>의 차원? (3,) # Hourly energy output - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (207,4) (N,2,12), <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span> - y: (207,) (N,), <span class="math inline">\((x_{12})\)</span> - 예제코드적용가능여부: No</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 33</li>
+<li>V = 구역</li>
+<li>N = 207 # number of nodes</li>
+<li>E = 225</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (3,) # Hourly energy output</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (207,4) (N,2,12), <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span></li>
+<li>y: (207,) (N,), <span class="math inline">\((x_{12})\)</span></li>
+<li>예제코드적용가능여부: No</li>
+</ul>
 <p>https://arxiv.org/pdf/1707.01926.pdf</p>
-<p><code>-</code> Nodes : <code>207</code> - vertices are localities</p>
-<p><code>-</code>Edges : <code>225</code> - edges are spatial_connections</p>
-<p><code>-</code> Time : <code>33</code> - between 2020 and 2021 - per weeks</p>
+<p><code>-</code> Nodes : <code>207</code></p>
+<ul>
+<li>vertices are localities</li>
+</ul>
+<p><code>-</code>Edges : <code>225</code></p>
+<ul>
+<li>edges are spatial_connections</li>
+</ul>
+<p><code>-</code> Time : <code>33</code></p>
+<ul>
+<li>between 2020 and 2021</li>
+<li>per weeks</li>
+</ul>
 <div class="cell" data-tags="[]" data-execution_count="1575">
 <div class="sourceCode cell-code" id="cb275"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb275-1"><a href="#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> METRLADatasetLoader</span>
 <span id="cb275-2"><a href="#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -1897,7 +2090,12 @@ Note
          0.3909, 0.4761, 0.5641]))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X,Z\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span> - Z:= <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span> - y:= <span class="math inline">\(x_{12}\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X,Z\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span></li>
+<li>Z:= <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span></li>
+<li>y:= <span class="math inline">\(x_{12}\)</span></li>
+</ul>
 <div class="cell" data-execution_count="266">
 <div class="sourceCode cell-code" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="#cb297-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="266">
@@ -1931,7 +2129,11 @@ Note
 <li>y:= <span class="math inline">\(x_{14}\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 207개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11} \to (x_{12})\)</span> - <span class="math inline">\(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},x_{12},z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11},z_{12} \to (x_{13})\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11} \to (x_{12})\)</span></li>
+<li><span class="math inline">\(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},x_{12},z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11},z_{12} \to (x_{13})\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{207}\}, t=1,2,\dots,34248\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -2030,10 +2232,39 @@ f(v_{20},t=5)
 <p>https://onlinelibrary.wiley.com/doi/pdf/10.1111/tgis.12644</p>
 <p>A traffic forecasting dataset as described in Diffusion Convolution Layer Paper.</p>
 <p>This traffic dataset is collected by California Transportation Agencies (CalTrans) Performance Measurement System (PeMS). It is represented by a network of 325 traffic sensors in the Bay Area with 6 months of traffic readings ranging from Jan 1st 2017 to May 31th 2017 in 5 minute intervals.</p>
-<p>데이터정리 - T = 17470 - V = 풍력발전소 - N = 325 # number of nodes - E = 101761 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output - 시간에 따라서 N이 변하는지? False - 시간에 따라서 E가 변하는지? False - X: (325,2,12) (N,2,12), - <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span> - <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span> - y: (325,) (N,2,12), - <span class="math inline">\(x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23},x_{24}\)</span> - <span class="math inline">\(z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23},z_{24}\)</span> - 예제코드적용가능여부: No</p>
-<p><code>-</code> Nodes : <code>325</code> - vertices are sensors</p>
-<p><code>-</code>Edges : <code>2694</code> - weighted edges are between seonsor paris measured by the road nretwork distance</p>
-<p><code>-</code> Time : <code>52081</code> - 6 months of traffic readings ranging from Jan 1st 2017 to May 31th 2017 in 5 minute intervals</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 17470</li>
+<li>V = 풍력발전소</li>
+<li>N = 325 # number of nodes</li>
+<li>E = 101761 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output</li>
+<li>시간에 따라서 N이 변하는지? False</li>
+<li>시간에 따라서 E가 변하는지? False</li>
+<li>X: (325,2,12) (N,2,12),
+<ul>
+<li><span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span></li>
+<li><span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span></li>
+</ul></li>
+<li>y: (325,) (N,2,12),
+<ul>
+<li><span class="math inline">\(x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23},x_{24}\)</span></li>
+<li><span class="math inline">\(z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23},z_{24}\)</span></li>
+</ul></li>
+<li>예제코드적용가능여부: No</li>
+</ul>
+<p><code>-</code> Nodes : <code>325</code></p>
+<ul>
+<li>vertices are sensors</li>
+</ul>
+<p><code>-</code>Edges : <code>2694</code></p>
+<ul>
+<li>weighted edges are between seonsor paris measured by the road nretwork distance</li>
+</ul>
+<p><code>-</code> Time : <code>52081</code></p>
+<ul>
+<li>6 months of traffic readings ranging from Jan 1st 2017 to May 31th 2017 in 5 minute intervals</li>
+</ul>
 <div class="cell" data-execution_count="1578">
 <div class="sourceCode cell-code" id="cb317"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb317-1"><a href="#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PemsBayDatasetLoader</span>
 <span id="cb317-2"><a href="#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -2133,7 +2364,13 @@ f(v_{20},t=5)
           -1.3694, -1.3572, -1.3450, -1.3329]]))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X,Z\)</span>와 <span class="math inline">\(y,s\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span> - Z:= <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span> - y:= <span class="math inline">\(x_{12},x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23}\)</span> - s:= <span class="math inline">\(z_{12},z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23}\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X,Z\)</span>와 <span class="math inline">\(y,s\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11}\)</span></li>
+<li>Z:= <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11}\)</span></li>
+<li>y:= <span class="math inline">\(x_{12},x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23}\)</span></li>
+<li>s:= <span class="math inline">\(z_{12},z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23}\)</span></li>
+</ul>
 <div class="cell" data-execution_count="272">
 <div class="sourceCode cell-code" id="cb339"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb339-1"><a href="#cb339-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="272">
@@ -2173,7 +2410,13 @@ f(v_{20},t=5)
 <li>s:= <span class="math inline">\(z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23},z_{24},z_{25}\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 325개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11} \to x_{12},x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23}\)</span> - <span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11} \to z_{12},z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23}\)</span> - <span class="math inline">\(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},x_{12} \to x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23},x_{24}\)</span> - <span class="math inline">\(z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11},z_{12} \to z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23},z_{24}\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\(x_0,x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11} \to x_{12},x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23}\)</span></li>
+<li><span class="math inline">\(z_0,z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11} \to z_{12},z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23}\)</span></li>
+<li><span class="math inline">\(x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_{10},x_{11},x_{12} \to x_{13},x_{14},x_{15},x_{16},x_{17},x_{18},x_{19},x_{20},x_{21},x_{22},x_{23},x_{24}\)</span></li>
+<li><span class="math inline">\(z_1,z_2,z_3,z_4,z_5,z_6,z_7,z_8,z_9,z_{10},z_{11},z_{12} \to z_{13},z_{14},z_{15},z_{16},z_{17},z_{18},z_{19},z_{20},z_{21},z_{22},z_{23},z_{24}\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{325}\}, t=1,2,\dots,52081\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -2286,10 +2529,31 @@ f(v_{20},t=5)
 <h2 class="anchored" data-anchor-id="englandcoviddatasetloader">EnglandCovidDatasetLoader</h2>
 <p>A dataset of mobility and history of reported cases of COVID-19 in England NUTS3 regions, from 3 March to 12 of May. The dataset is segmented in days and the graph is directed and weighted. The graph indicates how many people moved from one region to the other each day, based on Facebook Data For Good disease prevention maps. The node features correspond to the number of COVID-19 cases in the region in the past window days. The task is to predict the number of cases in each node after 1 day.</p>
 <p>https://arxiv.org/pdf/2009.08388.pdf</p>
-<p>데이터정리 - T = 52 - V = 지역 - N = 129 # number of nodes - E = 2158 - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # 코로나확진자수 - 시간에 따라서 Number of nodes가 변하는지? False - 시간에 따라서 Number of nodes가 변하는지? False - X: (20,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (20,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>129</code> - vertices are correspond to the number of COVID-19 cases in the region in the past window days.</p>
-<p><code>-</code>Edges : <code>2158</code> - the spatial edges capture county-to-county movement at a specific date, and a county is connected to a number of past instances of itself with temporal edges.</p>
-<p><code>-</code> Time : <code>52</code> - from 3 March to 12 of May</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 52</li>
+<li>V = 지역</li>
+<li>N = 129 # number of nodes</li>
+<li>E = 2158</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # 코로나확진자수</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>X: (20,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (20,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>129</code></p>
+<ul>
+<li>vertices are correspond to the number of COVID-19 cases in the region in the past window days.</li>
+</ul>
+<p><code>-</code>Edges : <code>2158</code></p>
+<ul>
+<li>the spatial edges capture county-to-county movement at a specific date, and a county is connected to a number of past instances of itself with temporal edges.</li>
+</ul>
+<p><code>-</code> Time : <code>52</code></p>
+<ul>
+<li>from 3 March to 12 of May</li>
+</ul>
 <div class="cell" data-execution_count="1581">
 <div class="sourceCode cell-code" id="cb359"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb359-1"><a href="#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> EnglandCovidDatasetLoader</span>
 <span id="cb359-2"><a href="#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -2387,7 +2651,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([-1.4697, -1.9283, -1.6990, -1.8137]), tensor(-1.8137))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="279">
 <div class="sourceCode cell-code" id="cb383"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb383-1"><a href="#cb383-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="279">
@@ -2409,7 +2677,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 129개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{129}\}, t=1,2,\dots,52\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -2517,10 +2789,31 @@ f(v_{20},t=5)
 <h2 class="anchored" data-anchor-id="montevideobusdatasetloader">MontevideoBusDatasetLoader</h2>
 <p>https://www.fing.edu.uy/~renzom/msc/uploads/msc-thesis.pdf</p>
 <p>A dataset of inflow passenger at bus stop level from Montevideo city. This dataset comprises hourly inflow passenger data at bus stop level for 11 bus lines during October 2020 from Montevideo city (Uruguay). The bus lines selected are the ones that carry people to the center of the city and they load more than 25% of the total daily inflow traffic. Vertices are bus stops, edges are links between bus stops when a bus line connects them and the weight represent the road distance. The target is the passenger inflow. This is a curated dataset made from different data sources of the Metropolitan Transportation System (STM) of Montevideo.</p>
-<p>데이터정리 - T = 739 - V = 버스정류장 - N = 675 # number of nodes - E = 101761 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # passenger inflow - 시간에 따라서 Number of nodes가 변하는지? False - 시간에 따라서 Number of nodes가 변하는지? False - X: (675,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span> - y: (675,,) (N,), <span class="math inline">\(f(v,t_4)\)</span> - 예제코드적용가능여부: Yes</p>
-<p><code>-</code> Nodes : <code>675</code> - vertices are bus stops</p>
-<p><code>-</code>Edges : <code>690</code> - edges are links between bus stops when a bus line connects them and the weight represent the road distance</p>
-<p><code>-</code> Time : <code>739</code> - hourly inflow passenger data at bus stop level for 11 bus lines during October 2020 from Montevideo city (Uruguay).</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 739</li>
+<li>V = 버스정류장</li>
+<li>N = 675 # number of nodes</li>
+<li>E = 101761 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # passenger inflow</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>X: (675,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (675,,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>675</code></p>
+<ul>
+<li>vertices are bus stops</li>
+</ul>
+<p><code>-</code>Edges : <code>690</code></p>
+<ul>
+<li>edges are links between bus stops when a bus line connects them and the weight represent the road distance</li>
+</ul>
+<p><code>-</code> Time : <code>739</code></p>
+<ul>
+<li>hourly inflow passenger data at bus stop level for 11 bus lines during October 2020 from Montevideo city (Uruguay).</li>
+</ul>
 <div class="cell" data-execution_count="1591">
 <div class="sourceCode cell-code" id="cb406"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb406-1"><a href="#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
 <span id="cb406-2"><a href="#cb406-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -2606,7 +2899,11 @@ f(v_{20},t=5)
 <pre><code>(tensor([-0.4200, -0.4200, -0.4200, -0.4200]), tensor(-0.4200))</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음. - X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span> - y:= <span class="math inline">\(x_4\)</span></p>
+<p><span class="math inline">\(t=0\)</span>에서 <span class="math inline">\(X\)</span>와 <span class="math inline">\(y\)</span>를 정리하면 아래와 같음.</p>
+<ul>
+<li>X:= <span class="math inline">\(x_0,x_1,x_2,x_3\)</span></li>
+<li>y:= <span class="math inline">\(x_4\)</span></li>
+</ul>
 <div class="cell" data-execution_count="284">
 <div class="sourceCode cell-code" id="cb426"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb426-1"><a href="#cb426-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">1</span>][<span class="dv">1</span>]).x[<span class="dv">0</span>],(data[<span class="dv">1</span>][<span class="dv">1</span>]).y[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="284">
@@ -2628,7 +2925,11 @@ f(v_{20},t=5)
 <li>y:=<span class="math inline">\(x_6\)</span></li>
 </ul>
 <p>하나의 노드에 길이가 <span class="math inline">\(T\)</span>인 시계열이 맵핑되어 있음. (노드는 총 675개)</p>
-<p>각 노드마다 아래와 같은 과정으로 예측이 됨 - <span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span> - <span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></p>
+<p>각 노드마다 아래와 같은 과정으로 예측이 됨</p>
+<ul>
+<li><span class="math inline">\((x_0,x_1,x_2,x_3) \to (x_4)\)</span></li>
+<li><span class="math inline">\((x_1,x_2,x_3,x_4) \to (x_5)\)</span></li>
+</ul>
 <p><span class="math inline">\(f(v,t), v \in \{v_1,\dots,v_{675}\}, t=1,2,\dots,739\)</span></p>
 <p><span class="math display">\[{\bf X}_{t=1} = \begin{bmatrix}
 f(v_1,t=1) &amp; f(v_1,t=2) &amp; f(v_1,t=3)&amp;  f(v_1,t=4) \\
@@ -2729,11 +3030,32 @@ f(v_{20},t=5)
 <h2 class="anchored" data-anchor-id="twittertennisdatasetloader">TwitterTennisDatasetLoader</h2>
 <p>https://appliednetsci.springeropen.com/articles/10.1007/s41109-018-0080-5?ref=https://githubhelp.com</p>
 <p>Twitter mention graphs related to major tennis tournaments from 2017. Nodes are Twitter accounts and edges are mentions between them. Each snapshot contains the graph induced by the most popular nodes of the original dataset. Node labels encode the number of mentions received in the original dataset for the next snapshot. Read more on the original Twitter data in the ‘Temporal Walk Based Centrality Metric for Graph Streams’ paper.</p>
-<p>데이터정리 - T = 52081 - V = 트위터계정<br>
-- N = 1000 # number of nodes - E = 119 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # passenger inflow - 시간에 따라서 N이 변하는지? ?? - 시간에 따라서 E가 변하는지? True - X: ? - y: ? - 예제코드적용가능여부: No</p>
-<p><code>-</code> Nodes : <code>1000</code> - vertices are Twitter accounts</p>
-<p><code>-</code>Edges : <code>119</code> - edges are mentions between them</p>
-<p><code>-</code> Time : <code>52081</code> - Twitter mention graphs related to major tennis tournaments from 2017</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 52081</li>
+<li>V = 트위터계정<br>
+</li>
+<li>N = 1000 # number of nodes</li>
+<li>E = 119 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # passenger inflow</li>
+<li>시간에 따라서 N이 변하는지? ??</li>
+<li>시간에 따라서 E가 변하는지? True</li>
+<li>X: ?</li>
+<li>y: ?</li>
+<li>예제코드적용가능여부: No</li>
+</ul>
+<p><code>-</code> Nodes : <code>1000</code></p>
+<ul>
+<li>vertices are Twitter accounts</li>
+</ul>
+<p><code>-</code>Edges : <code>119</code></p>
+<ul>
+<li>edges are mentions between them</li>
+</ul>
+<p><code>-</code> Time : <code>52081</code></p>
+<ul>
+<li>Twitter mention graphs related to major tennis tournaments from 2017</li>
+</ul>
 <div class="cell" data-execution_count="1621">
 <div class="sourceCode cell-code" id="cb447"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb447-1"><a href="#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> TwitterTennisDatasetLoader</span>
 <span id="cb447-2"><a href="#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
@@ -2925,8 +3247,20 @@ f(v_{20},t=5)
 <section id="mtmdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="mtmdatasetloader">MTMDatasetLoader</h2>
 <p>A dataset of Methods-Time Measurement-1 (MTM-1) motions, signalled as consecutive video frames of 21 3D hand keypoints, acquired via MediaPipe Hands from RGB-Video material. Vertices are the finger joints of the human hand and edges are the bones connecting them. The targets are manually labeled for each frame, according to one of the five MTM-1 motions (classes ): Grasp, Release, Move, Reach, Position plus a negative class for frames without graph signals (no hand present). This is a classification task where consecutive frames need to be assigned to the corresponding class . The data x is returned in shape (3, 21, T), the target is returned one-hot-encoded in shape (T, 6).</p>
-<p>데이터정리 - T = 14452 - V = 손의 shape에 대응하는 dot<br>
-- N = 325 # number of nodes - E = 19 = N^2 # edges - <span class="math inline">\(f(v,t)\)</span>의 차원? (Grasp, Release, Move, Reach, Poision, -1) - 시간에 따라서 N이 변하는지? ?? - 시간에 따라서 E가 변하는지? ?? - X: ? - y: ? - 예제코드적용가능여부: No</p>
+<p>데이터정리</p>
+<ul>
+<li>T = 14452</li>
+<li>V = 손의 shape에 대응하는 dot<br>
+</li>
+<li>N = 325 # number of nodes</li>
+<li>E = 19 = N^2 # edges</li>
+<li><span class="math inline">\(f(v,t)\)</span>의 차원? (Grasp, Release, Move, Reach, Poision, -1)</li>
+<li>시간에 따라서 N이 변하는지? ??</li>
+<li>시간에 따라서 E가 변하는지? ??</li>
+<li>X: ?</li>
+<li>y: ?</li>
+<li>예제코드적용가능여부: No</li>
+</ul>
 <p><code>-</code> Nodes : <code>325</code> - vertices are are the finger joints of the human hand</p>
 <p><code>-</code>Edges : <code>19</code> - edges are the bones connecting them</p>
 <p><code>-</code> Time : <code>14452</code></p>

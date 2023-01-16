@@ -244,6 +244,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-16-Algorithm_EX_3.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-16-Algorithm_EX_4.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
   </div>
 </li>
@@ -433,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <blockquote class="blockquote">
-<p>Our method</p>
+<p>Our method; ST-GCN Dataset Example(WikiMathsDatasetLoader)</p>
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
@@ -1052,8 +1062,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>fhat_linearinterpolation <span class="op">=</span> torch.stack([model(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X_f_block_linearinterpolation]).detach().numpy()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>plt.plot(fhat_linearinterpolation[:,<span class="dv">2</span>].data)</span></code></pre></div>
+<div class="cell" data-execution_count="172">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>plt.plot(fhat_linearinterpolation[<span class="dv">5</span>].data)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-01-15-Algorithm_EX_2_files/figure-html/cell-95-output-1.png" class="img-fluid"></p>
 </div>

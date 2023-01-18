@@ -9,7 +9,7 @@
 <meta name="author" content="SEOYEON CHOI">
 <meta name="dcterms.date" content="2022-12-21">
 
-<title>Seoyeon’s Blog for study - PyTorch Geometric Temporal Dataset</title>
+<title>Seoyeon’s Blog for study - PyTorch ST-GCN Dataset</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -161,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">PyTorch Geometric Temporal Dataset</h1>
+      <h1 class="quarto-secondary-nav-title">PyTorch ST-GCN Dataset</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">PyTorch Geometric Temporal Dataset</h1>
+      <h1 class="title d-none d-lg-block">PyTorch ST-GCN Dataset</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">ST-GCN</div>
               </div>
@@ -233,6 +233,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-17-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
   </div>
 </li>
@@ -248,17 +258,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-16-Algorithm_EX_4.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 4</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-21-st-gcn Dataset.html" class="sidebar-item-text sidebar-link active">PyTorch Geometric Temporal Dataset</a>
+  <a href="../../posts/GCN/2022-12-21-ST-GCN Dataset.html" class="sidebar-item-text sidebar-link active">PyTorch ST-GCN Dataset</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -509,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="1677">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -771,7 +776,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1239">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -1026,7 +1031,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1250">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">100</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-71-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-71-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -1315,7 +1320,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1288">
 <div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-103-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-103-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -1560,7 +1565,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1328">
 <div class="sourceCode cell-code" id="cb204"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-130-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-130-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -1805,7 +1810,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1316">
 <div class="sourceCode cell-code" id="cb247"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-157-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-157-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -2054,7 +2059,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1345">
 <div class="sourceCode cell-code" id="cb290"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb290-1"><a href="#cb290-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-184-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-184-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -2069,7 +2074,7 @@ f(v_{20},t=5)
 <p>논문 내용 중</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/37a3da87-4414-4f4a-9e56-e4844a164c58-1-11ce66b1-dc5e-45b1-9309-a4b44c38de95.png" class="img-fluid figure-img"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/37a3da87-4414-4f4a-9e56-e4844a164c58-1-11ce66b1-dc5e-45b1-9309-a4b44c38de95.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
 </figure>
 </div>
@@ -2346,7 +2351,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1363">
 <div class="sourceCode cell-code" id="cb332"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb332-1"><a href="#cb332-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-211-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-211-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -2640,7 +2645,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1396">
 <div class="sourceCode cell-code" id="cb376"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb376-1"><a href="#cb376-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-239-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-239-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -2888,7 +2893,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1410">
 <div class="sourceCode cell-code" id="cb419"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb419-1"><a href="#cb419-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-266-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-266-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -3158,7 +3163,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1444">
 <div class="sourceCode cell-code" id="cb466"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb466-1"><a href="#cb466-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-295-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-295-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>
@@ -3359,7 +3364,7 @@ f(v_{20},t=5)
 <div class="cell" data-execution_count="1457">
 <div class="sourceCode cell-code" id="cb509"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb509-1"><a href="#cb509-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,with_labels<span class="op">=</span><span class="va">True</span>,font_weight<span class="op">=</span><span class="st">'bold'</span>,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">350</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-12-21-st-gcn Dataset_files/figure-html/cell-322-output-1.png" class="img-fluid"></p>
+<p><img src="2022-12-21-ST-GCN Dataset_files/figure-html/cell-322-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <hr>

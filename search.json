@@ -602,6 +602,139 @@
     "text": "About GCN Study"
   },
   {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "",
+    "text": "Try to divide train and test(GNAR fivenet)\n나중에는 노드별 trasfom"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "1) ST-GCN",
+    "text": "1) ST-GCN\n\nmean_f_fiveVTS_train = torch.tensor(fiveVTS_train_mean).reshape(160,5,1).float()\n\n\nmean_X_fiveVTS = mean_f_fiveVTS_train[:159,:,:]\nmean_y_fiveVTS = mean_f_fiveVTS_train[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(mean_X_fiveVTS,mean_y_fiveVTS)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [00:26<00:00,  1.87it/s]\n\n\n\nmean_fhat_fiveVTS = torch.stack([model(xt, edge_index, edge_attr) for xt in mean_X_fiveVTS]).detach().numpy()\n\n\nxt_test = torch.tensor(fiveVTS_test.reshape(40,5,1)[:-1,:,:]).float()\n\n\nmean_fhat_fiveVTS_forecast = torch.stack([model(xt, edge_index, edge_attr) for xt in xt_test]).detach().numpy()\n\n\nvis2(fiveVTS_test[1:],mean_fhat_fiveVTS_forecast);\n\n\n\n\n\nvis2(fiveVTS_train_mean,mean_fhat_fiveVTS);"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "2) Fourier transform",
+    "text": "2) Fourier transform\n\nw=np.zeros((159*N,159*N))\n\n\nfor i in range(159*N):\n    for j in range(159*N):\n        if i==j :\n            w[i,j] = 0\n        elif np.abs(i-j) <= 1 : \n            w[i,j] = 1\n\n\n# np.fft(mean_fhat_fiveVTS[:,0,0])\n\n\n# mean_fhat_fiveVTS.shape\n\n\n# fft_result =np.stack([np.fft.fft(mean_fhat_fiveVTS[:,n,0]) for n in range(N)]).T\n\n\n# plt.plot(abs(fft_result[:,0])**2)\n\n\nd = np.array(w.sum(axis=1))\nD = np.diag(d)\nL = np.array(np.diag(1/np.sqrt(d)) @ (D-w) @ np.diag(1/np.sqrt(d)))\nlamb, Psi = np.linalg.eigh(L)\nLamb = np.diag(lamb)\n\n\nfhatbar = Psi.T @ mean_fhat_fiveVTS.reshape(159*N,1)\npower = fhatbar**2"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "3) Ebayes",
+    "text": "3) Ebayes\n\nplt.plot(fhatbar.reshape(159,5)[:,0]**2)\n\n\n\n\n\nebayesthresh = importr('EbayesThresh').ebayesthresh\nfhatbar_threshed = ebayesthresh(FloatVector(fhatbar))\n\n\nplt.plot(fhatbar)\nplt.plot(fhatbar_threshed)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "4) Inverse Fourier transform",
+    "text": "4) Inverse Fourier transform\n\nfhatbarhat = Psi @ fhatbar_threshed\nfhatbarhat_mean_spatio_temporal = fhatbarhat.reshape(159,N,1)\n\n\nvis2(mean_fhat_fiveVTS,fhatbarhat_mean_spatio_temporal.reshape(159,5));"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-1",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-1",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "5) ST-GCN",
+    "text": "5) ST-GCN\n\nmean_spatio_temporal = torch.tensor(fhatbarhat_mean_spatio_temporal).reshape(159,5,1).float()\n\n\nmean_X_spatio_temporal = mean_spatio_temporal[:158,:,:]\nmean_y_spatio_temporal = mean_spatio_temporal[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(mean_X_spatio_temporal,mean_y_spatio_temporal)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [00:26<00:00,  1.91it/s]\n\n\n\nmean_fhat_spatio_temporal = torch.stack([model(xt, edge_index, edge_attr) for xt in mean_X_spatio_temporal]).detach().numpy()\n\n\nmean_fhat_spatio_temporal_test = torch.stack([model(xt, edge_index, edge_attr) for xt in xt_test]).detach().numpy()\n\n\nvis2(fiveVTS_test[1:],mean_fhat_spatio_temporal_test);\n\n\n\n\n\nvis2(fhatbarhat_mean_spatio_temporal,mean_fhat_spatio_temporal);"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-1",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-1",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "6) Fourier transform",
+    "text": "6) Fourier transform\n\nw=np.zeros((158*N,158*N))\n\n\nfor i in range(158*N):\n    for j in range(158*N):\n        if i==j :\n            w[i,j] = 0\n        elif np.abs(i-j) <= 1 : \n            w[i,j] = 1\n\n\nd = np.array(w.sum(axis=1))\nD = np.diag(d)\nL = np.array(np.diag(1/np.sqrt(d)) @ (D-w) @ np.diag(1/np.sqrt(d)))\nlamb, Psi = np.linalg.eigh(L)\nLamb = np.diag(lamb)\n\n\nfhatbar = Psi.T @ mean_fhat_spatio_temporal.reshape(158*N,1)\npower = fhatbar**2"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-1",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-1",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "7) Ebayes",
+    "text": "7) Ebayes\n\nebayesthresh = importr('EbayesThresh').ebayesthresh\nfhatbar_threshed = ebayesthresh(FloatVector(fhatbar))\n\n\nplt.plot(fhatbar)\nplt.plot(fhatbar_threshed)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-1",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-1",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "8) Inverse Fourier transform",
+    "text": "8) Inverse Fourier transform\n\nfhatbarhat = Psi @ fhatbar_threshed\nfhatbarhat_mean_spatio_temporal2 = fhatbarhat.reshape(158,N,1)\n\n\nvis2(mean_fhat_spatio_temporal,fhatbarhat_mean_spatio_temporal2.reshape(158,5));"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-2",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-2",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "9) ST-GCN",
+    "text": "9) ST-GCN\n\nmean_spatio_temporal2 = torch.tensor(fhatbarhat_mean_spatio_temporal2).reshape(158,5,1).float()\n\n\nmean_X_spatio_temporal2 = mean_spatio_temporal2[:157,:,:]\nmean_y_spatio_temporal2 = mean_spatio_temporal2[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(mean_X_spatio_temporal2,mean_y_spatio_temporal2)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n100%|██████████| 50/50 [00:26<00:00,  1.89it/s]\n\n\n\nmean_fhat_spatio_temporal2 = torch.stack([model(xt, edge_index, edge_attr) for xt in mean_X_spatio_temporal2]).detach().numpy()\n\n\nmean_fhat_spatio_temporal_test2 = torch.stack([model(xt, edge_index, edge_attr) for xt in xt_test]).detach().numpy()\n\n\nvis2(fiveVTS_test[1:],mean_fhat_spatio_temporal_test2);\n\n\n\n\n\nvis2(fhatbarhat_mean_spatio_temporal2,mean_fhat_spatio_temporal2);"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-3",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-3",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "1) ST-GCN",
+    "text": "1) ST-GCN\n\nlinear_f_fiveVTS_train = torch.tensor(linear_fiveVTS_train).reshape(160,5,1).float()\n\n\nlinear_X_fiveVTS = linear_f_fiveVTS_train[:159,:,:]\nlinear_y_fiveVTS = linear_f_fiveVTS_train[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(linear_X_fiveVTS,linear_y_fiveVTS)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n\nlinear_fhat_fiveVTS = torch.stack([model(xt, edge_index, edge_attr) for xt in linear_X_fiveVTS]).detach().numpy()"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-2",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-2",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "2) Fourier transform",
+    "text": "2) Fourier transform\n\nw=np.zeros((159*N,159*N))\n\n\nfor i in range(159*N):\n    for j in range(159*N):\n        if i==j :\n            w[i,j] = 0\n        elif np.abs(i-j) <= 1 : \n            w[i,j] = 1\n\n\nd = np.array(w.sum(axis=1))\nD = np.diag(d)\nL = np.array(np.diag(1/np.sqrt(d)) @ (D-w) @ np.diag(1/np.sqrt(d)))\nlamb, Psi = np.linalg.eigh(L)\nLamb = np.diag(lamb)\nfhatbar = Psi @ linear_fhat_fiveVTS.reshape(159*N,1)\npower = fhatbar**2"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-2",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-2",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "3) Ebayes",
+    "text": "3) Ebayes\n\nebayesthresh = importr('EbayesThresh').ebayesthresh\npower_threshed=np.array([np.array(ebayesthresh(FloatVector(fhatbar[i]**2))) for i in range(159*N)])\nfhatbar_threshed = np.where(power_threshed>0,fhatbar,0)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-2",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-2",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "4) Inverse Fourier transform",
+    "text": "4) Inverse Fourier transform\n\nfhatbarhat = Psi @ fhatbar_threshed\nfhatbarhat_linear_spatio_temporal = fhatbarhat.reshape(159,N,1)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-4",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-4",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "5) ST-GCN",
+    "text": "5) ST-GCN\n\nlinear_spatio_temporal = torch.tensor(fhatbarhat_linear_spatio_temporal).reshape(159,5,1).float()\n\n\nlinear_X_spatio_temporal = linear_spatio_temporal[:158,:,:]\nlinear_y_spatio_temporal = linear_spatio_temporal[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(linear_X_spatio_temporal,linear_y_spatio_temporal)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n\n\nlinear_X_spatio_temporal_fore = linear_spatio_temporal[119:,:,:]\n\n\nlinear_fhat_spatio_temporal = torch.stack([model(xt, edge_index, edge_attr) for xt in linear_X_spatio_temporal_fore]).detach().numpy()\n\n\nBox plot\n\nplt.figure(figsize=(20, 8))\nplt.boxplot((linear_fhat_spatio_temporal.reshape(40,5) -  fiveVTS_test))\n\n\nplt.figure(figsize=(20, 8))\nplt.boxplot(((linear_fhat_spatio_temporal.reshape(40,5) -  fiveVTS_test)).reshape(200,1))"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-3",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#fourier-transform-3",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "6) Fourier transform",
+    "text": "6) Fourier transform\n\nlinear_fhat_spatio_temporal = torch.stack([model(xt, edge_index, edge_attr) for xt in linear_spatio_temporal]).detach().numpy()\n\n\nw=np.zeros((159*N,159*N))\n\n\nfor i in range(159*N):\n    for j in range(159*N):\n        if i==j :\n            w[i,j] = 0\n        elif np.abs(i-j) <= 1 : \n            w[i,j] = 1\n\n\nd = np.array(w.sum(axis=1))\nD = np.diag(d)\nL = np.array(np.diag(1/np.sqrt(d)) @ (D-w) @ np.diag(1/np.sqrt(d)))\nlamb, Psi = np.linalg.eigh(L)\nLamb = np.diag(lamb)\nfhatbar = Psi @ linear_fhat_fiveVTS.reshape(159*N,1)\npower = fhatbar**2"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-3",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#ebayes-3",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "7) Ebayes",
+    "text": "7) Ebayes\n\nebayesthresh = importr('EbayesThresh').ebayesthresh\npower_threshed=np.array([np.array(ebayesthresh(FloatVector(fhatbar[i]**2))) for i in range(159*N)])\nfhatbar_threshed = np.where(power_threshed>0,fhatbar,0)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-3",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#inverse-fourier-transform-3",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "8) Inverse Fourier transform",
+    "text": "8) Inverse Fourier transform\n\nfhatbarhat = Psi @ fhatbar_threshed\nfhatbarhat_linear_spatio_temporal = fhatbarhat.reshape(159,N,1)"
+  },
+  {
+    "objectID": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-5",
+    "href": "posts/GCN/2023-01-20-Algorithm_traintest.html#st-gcn-5",
+    "title": "1st ST-GCN Example dividing train and test",
+    "section": "9) ST-GCN",
+    "text": "9) ST-GCN\n\nlinear_spatio_temporal2 = torch.tensor(fhatbarhat_linear_spatio_temporal).reshape(159,5,1).float()\n\n\nlinear_X_spatio_temporal2 = linear_spatio_temporal2[:158,:,:]\nlinear_y_spatio_temporal2 = linear_spatio_temporal2[1:,:,:]\n\n\nmodel = RecurrentGCN(node_features=1, filters=4)\n\noptimizer = torch.optim.Adam(model.parameters(), lr=0.01)\n\nmodel.train()\n\nfor epoch in tqdm(range(50)):\n    for time, (xt,yt) in enumerate(zip(linear_X_spatio_temporal2,linear_y_spatio_temporal2)):\n        y_hat = model(xt, edge_index, edge_attr)\n        cost = torch.mean((y_hat-yt)**2)\n        cost.backward()\n        optimizer.step()\n        optimizer.zero_grad()\n\n\nlinear_X_spatio_temporal_fore2 = linear_spatio_temporal2[119:,:,:]\n\n\nlinear_fhat_spatio_temporal2 = torch.stack([model(xt, edge_index, edge_attr) for xt in linear_X_spatio_temporal_fore2]).detach().numpy()\n\n\nBox plot\n\nplt.figure(figsize=(20, 8))\nplt.boxplot((linear_fhat_spatio_temporal2.reshape(40,5) -  fiveVTS_test))\n\n\nplt.figure(figsize=(20, 8))\nplt.boxplot(((linear_fhat_spatio_temporal2.reshape(40,5) -  fiveVTS_test)).reshape(200,1))"
+  },
+  {
     "objectID": "posts/GCN/2022-12-21-ST-GCN Dataset.html",
     "href": "posts/GCN/2022-12-21-ST-GCN Dataset.html",
     "title": "PyTorch ST-GCN Dataset",
@@ -788,7 +921,7 @@
     "href": "index.html",
     "title": ":)",
     "section": "",
-    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 17, 2023\n\n\n1st ST-GCN Example dividing train and test\n\n\nSEOYEON CHOI\n\n\n\n\nJan 17, 2023\n\n\n2nd ST-GCN Example dividing train and test\n\n\nSEOYEON CHOI\n\n\n\n\nJan 11, 2023\n\n\nGCN Algorithm Example 1\n\n\nSEOYEON CHOI\n\n\n\n\nJan 5, 2023\n\n\nGNAR data\n\n\nSEOYEON CHOI\n\n\n\n\nJan 2, 2023\n\n\nquarto blog tips\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch ST-GCN Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
+    "text": "Date\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJan 20, 2023\n\n\n1st ST-GCN Example dividing train and test\n\n\nSEOYEON CHOI\n\n\n\n\nJan 17, 2023\n\n\n1st ST-GCN Example dividing train and test\n\n\nSEOYEON CHOI\n\n\n\n\nJan 17, 2023\n\n\n2nd ST-GCN Example dividing train and test\n\n\nSEOYEON CHOI\n\n\n\n\nJan 11, 2023\n\n\nGCN Algorithm Example 1\n\n\nSEOYEON CHOI\n\n\n\n\nJan 5, 2023\n\n\nGNAR data\n\n\nSEOYEON CHOI\n\n\n\n\nJan 2, 2023\n\n\nquarto blog tips\n\n\nSEOYEON CHOI\n\n\n\n\nDec 31, 2022\n\n\nStudy for Spaces\n\n\nSEOYEON CHOI\n\n\n\n\nDec 28, 2022\n\n\nSimulation of geometric-temporal\n\n\nSEOYEON CHOI\n\n\n\n\nDec 27, 2022\n\n\nDiscrete Fourier Transform\n\n\nSEOYEON CHOI\n\n\n\n\nDec 21, 2022\n\n\nPyTorch ST-GCN Dataset\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nTORCH_GEOMETRIC.NN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 5, 2022\n\n\nGCN\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nStudy\n\n\nSEOYEON CHOI\n\n\n\n\nDec 1, 2022\n\n\nGraph code\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nEarthquake\n\n\nSEOYEON CHOI\n\n\n\n\nNov 24, 2022\n\n\nClass code for Comparison Study\n\n\nSEOYEON CHOI\n\n\n\n\nSep 2, 2022\n\n\nSimulation\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGODE\n\n\nSEOYEON CHOI\n\n\n\n\nSep 1, 2022\n\n\nGuarto tip\n\n\nSEOYEON CHOI\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

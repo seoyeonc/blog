@@ -527,30 +527,234 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="261">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>_zero <span class="op">=</span> Missing(fiveVTS_train)</span></code></pre></div>
 </div>
+<div class="cell" data-execution_count="321">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>_zero.percent</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="321">
+<pre><code>0.5</code></pre>
+</div>
+</div>
 <div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>_zero.miss(percent <span class="op">=</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>_zero.miss(percent <span class="op">=</span> <span class="fl">0.5</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>vis(_zero.missing)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vis(_zero.missing)<span class="op">;</span></span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="263">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>_zero.first_mean()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_zero.first_mean()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>vis(_zero.train_mean)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vis(_zero.train_mean)<span class="op">;</span></span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="264">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_zero.second_linear()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>_zero.second_linear()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>vis(np.array(_zero.train_linear).reshape(<span class="dv">160</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vis(np.array(_zero.train_linear).reshape(<span class="dv">160</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="329">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Method:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df,time):</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.N <span class="op">=</span> N</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.time <span class="op">=</span> time</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.edge_index <span class="op">=</span> edge_index</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.edge_attr <span class="op">=</span> edge_attr</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.node_features <span class="op">=</span> node_features</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.xt_test <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(<span class="bu">len</span>(fiveVTS_test)),<span class="va">self</span>.N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>()</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w <span class="op">=</span> np.zeros(((<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="va">self</span>.N,(<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="va">self</span>.N))</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mse <span class="op">=</span> []</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _weight(<span class="va">self</span>):</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>((<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="va">self</span>.N):</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>((<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="va">self</span>.N):</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> i<span class="op">==</span>j :</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>                    <span class="va">self</span>.w[i,j] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>                <span class="cf">elif</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">&lt;=</span> <span class="dv">1</span> : </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>                    <span class="va">self</span>.w[i,j] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _STGCN(<span class="va">self</span>):</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df2 <span class="op">=</span> torch.tensor(<span class="va">self</span>.df).reshape(<span class="va">self</span>.time,<span class="va">self</span>.N,<span class="dv">1</span>).<span class="bu">float</span>()</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.X <span class="op">=</span> <span class="va">self</span>.df2[:<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>,:,:]</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> <span class="va">self</span>.df2[<span class="dv">1</span>:,:,:]</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">1</span>, filters<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>        optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>        model.train()</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(<span class="va">self</span>.X,<span class="va">self</span>.y)):</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>                y_hat <span class="op">=</span> model(xt, edge_index, edge_attr)</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>                cost <span class="op">=</span> torch.mean((y_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>                cost.backward()</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>                optimizer.step()</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>                optimizer.zero_grad()</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_result <span class="op">=</span> torch.stack([model(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> <span class="va">self</span>.X]).detach().numpy()</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.test_result <span class="op">=</span> torch.stack([model(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> <span class="va">self</span>.xt_test]).detach().numpy()</span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.N):</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.mse.append(np.mean((fiveVTS_test[<span class="dv">1</span>:,i] <span class="op">-</span> <span class="va">self</span>.test_result.reshape(<span class="bu">int</span>(<span class="bu">len</span>(<span class="va">self</span>.xt_test)),<span class="va">self</span>.N)[:,i])))</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> FT(<span class="va">self</span>):</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._weight()</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._STGCN()</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d <span class="op">=</span> np.array(<span class="va">self</span>.w.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> np.diag(<span class="va">self</span>.d)</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.array(np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="va">self</span>.d)) <span class="op">@</span> (<span class="va">self</span>.D<span class="op">-</span><span class="va">self</span>.w) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="va">self</span>.d)))</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhatbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.train_result.reshape((<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="va">self</span>.N,<span class="dv">1</span>)</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhatbar_threshed <span class="op">=</span> ebayesthresh(FloatVector(<span class="va">self</span>.fhatbar))</span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhatbarhat <span class="op">=</span> <span class="va">self</span>.Psi <span class="op">@</span> <span class="va">self</span>.fhatbar_threshed</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.FT_result <span class="op">=</span> <span class="va">self</span>.fhatbarhat.reshape((<span class="va">self</span>.time<span class="op">-</span><span class="dv">1</span>),<span class="va">self</span>.N,<span class="dv">1</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="mean-dataset-name-calss.first_mean" class="level1">
 <h1>1. Mean Dataset Name : Calss.first_mean</h1>
+<p>mean result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vis(_zero.train_mean)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="330">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>_two <span class="op">=</span> Method(_zero.train_mean,<span class="dv">160</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="331">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>_two.FT()</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.85it/s]</code></pre>
+</div>
+</div>
+<p>ST-GCN</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>vis2(fiveVTS_test[<span class="dv">1</span>:],_two.test_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,_two.train_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<p>Ebayes result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.plot(_two.fhatbar)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.plot(_two.fhatbar_threshed)</span></code></pre></div>
+</div>
+<p>Inverse FT result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,_two.FT_result.reshape(<span class="dv">159</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="334">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>_two.mse</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="334">
+<pre><code>[-0.26380831130149446,
+ -0.1795596854694897,
+ 0.02812848429232009,
+ -0.35129635553515,
+ -0.21243283600138896]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="332">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>_three <span class="op">=</span> Method(_two.FT_result,<span class="dv">159</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="333">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>_three.FT()</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.87it/s]</code></pre>
+</div>
+</div>
+<p>ST-GCN</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>vis2(fiveVTS_test[<span class="dv">1</span>:],_three.test_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,_three.train_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<p>Ebayes result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.plot(_three.fhatbar)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plt.plot(_three.fhatbar_threshed)</span></code></pre></div>
+</div>
+<p>Inverse FT result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,_three.FT_result.reshape(<span class="dv">158</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="335">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>_three.mse</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="335">
+<pre><code>[-0.2488740354290622,
+ -0.07266371399933547,
+ 0.029141087065552435,
+ -0.26614867701738965,
+ -0.2206127487748514]</code></pre>
+</div>
+</div>
 </section>
 <section id="linear-interpolation-dataset-name-calss.second_linear" class="level1">
 <h1>2. Linear Interpolation Dataset Name : Calss.second_linear</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>vis(np.array(_zero.train_linear).reshape(<span class="dv">160</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="336">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>__two <span class="op">=</span> Method(_zero.train_linear,<span class="dv">160</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="337">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>__two.FT()</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.84it/s]</code></pre>
+</div>
+</div>
+<p>ST-GCN</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>vis2(fiveVTS_test[<span class="dv">1</span>:],__two.test_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_linear,__two.train_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<p>Ebayes result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>plt.plot(__two.fhatbar)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.plot(__two.fhatbar_threshed)</span></code></pre></div>
+</div>
+<p>Inverse FT result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,__two.FT_result.reshape(<span class="dv">159</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="338">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>__two.mse</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="338">
+<pre><code>[-0.059579834465363316,
+ -0.052492935485616586,
+ 0.018997180614363864,
+ -0.172068996515357,
+ -0.0844420533584131]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="339">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>__three <span class="op">=</span> Method(__two.FT_result,<span class="dv">159</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="340">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>__three.FT()</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.87it/s]</code></pre>
+</div>
+</div>
+<p>ST-GCN</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>vis2(fiveVTS_test[<span class="dv">1</span>:],__three.test_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_linear,__three.train_result)<span class="op">;</span></span></code></pre></div>
+</div>
+<p>Ebayes result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>plt.plot(__three.fhatbar)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>plt.plot(__three.fhatbar_threshed)</span></code></pre></div>
+</div>
+<p>Inverse FT result</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>vis2(_zero.train_mean,__three.FT_result.reshape(<span class="dv">158</span>,<span class="dv">5</span>))<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="341">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>__three.mse</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="341">
+<pre><code>[-0.07670746488558357,
+ -0.0200224191982531,
+ 0.02710332404309299,
+ -0.16360233171813654,
+ -0.10214599000861592]</code></pre>
+</div>
+</div>
 
 
 </section>

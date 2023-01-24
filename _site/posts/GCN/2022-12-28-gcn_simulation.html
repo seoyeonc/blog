@@ -270,6 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -374,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/dataset.html#module-torch_geometric_temporal.dataset.chickenpox</p>
 <section id="import" class="level3">
 <h3 class="anchored" data-anchor-id="import">import</h3>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -386,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="공식-홈페이지-예제">공식 홈페이지 예제</h3>
 <section id="data" class="level4">
 <h4 class="anchored" data-anchor-id="data">data</h4>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> WikiMathsDatasetLoader</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -399,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="recurrentgcn" class="level4">
 <h4 class="anchored" data-anchor-id="recurrentgcn">RecurrentGCN</h4>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
@@ -479,7 +484,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="우리-예제" class="level3">
 <h3 class="anchored" data-anchor-id="우리-예제">우리 예제</h3>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -598,25 +603,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="gnar" class="level3">
 <h3 class="anchored" data-anchor-id="gnar">GNAR</h3>
-<div class="cell" data-execution_count="93">
+<div class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro </span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector </span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="95">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>The rpy2.ipython extension is already loaded. To reload it, use:
-  %reload_ext rpy2.ipython</code></pre>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>R[write to console]: Loading required package: igraph
+
+R[write to console]: 
+Attaching package: ‘igraph’
+
+
+R[write to console]: The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+
+R[write to console]: The following object is masked from ‘package:base’:
+
+    union
+
+
+R[write to console]: Loading required package: wordcloud
+
+R[write to console]: Loading required package: RColorBrewer
+</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="114">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>summary(fiveNet)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -624,7 +647,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  of equal length  1</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="145">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>edges <span class="op">&lt;-</span> <span class="im">as</span>.matrix(fiveNet)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>edges</span></code></pre></div>
@@ -637,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [5,]    1    0    0    0    0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="180">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fiveNet)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -647,7 +670,7 @@ edges:1--4 1--5 2--3 2--4 3--2 3--4 4--1 4--2 4--3 5--1
  edges of each of length  1 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="176">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>data(<span class="st">"fiveNode"</span>)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> fiveVTS, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -665,7 +688,7 @@ Coefficients:
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="126">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">2</span>, byrow <span class="op">=</span> TRUE))</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">1</span>], ylab <span class="op">=</span> <span class="st">"Node A Time Series"</span>)</span>
@@ -680,7 +703,7 @@ Coefficients:
 <p><img src="2022-12-28-gcn_simulation_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="146">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o fiveVTS</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o edges</span></code></pre></div>
 </div>
@@ -688,27 +711,27 @@ Coefficients:
 <li>node: 5</li>
 <li>time 200</li>
 </ul>
-<div class="cell" data-execution_count="184">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>edges_tensor <span class="op">=</span> torch.tensor(edges)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="187">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>nonzero_indices <span class="op">=</span> edges_tensor.nonzero()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="210">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>fiveNet_edge <span class="op">=</span> np.array(nonzero_indices).T</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>fiveNet_edge</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="210">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>array([[0, 0, 1, 1, 2, 2, 3, 3, 3, 4],
        [3, 4, 2, 3, 1, 3, 0, 1, 2, 0]])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="170">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>fiveVTS.shape</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="170">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>(200, 5)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="277">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">200</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">5</span> <span class="co"># number of Nodes</span></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> fiveNet_edge</span>
@@ -716,26 +739,26 @@ Coefficients:
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(<span class="dv">0</span>,T)</span>
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>node_features <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="278">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> torch.tensor(fiveVTS).reshape(<span class="dv">200</span>,<span class="dv">5</span>,<span class="dv">1</span>).<span class="bu">float</span>()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="279">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> f[:<span class="dv">199</span>,:,:]</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f[<span class="dv">1</span>:,:,:]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="280">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>edge_index <span class="op">=</span> torch.tensor(E)</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>edge_attr <span class="op">=</span> torch.tensor(np.array([<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]),dtype<span class="op">=</span>torch.float32)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="281">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>_ee <span class="op">=</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="282">
+<div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">1</span>, filters<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">1</span>, filters<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.05</span>)</span>
 <span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>model.train()</span>
 <span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -747,19 +770,19 @@ Coefficients:
 <span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
 <span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:32&lt;00:00,  1.54it/s]</code></pre>
+<pre><code>100%|█| 50/50 [00:34&lt;00:00,  1.45it/</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="283">
+<div class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> torch.stack([model(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="284">
+<div class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>yhat.shape</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="284">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <pre><code>(199, 5, 1)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="285">
+<div class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>plt.plot(y[:,<span class="dv">1</span>])</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>plt.plot(yhat[:,<span class="dv">1</span>].data)</span></code></pre></div>
 <div class="cell-output cell-output-display">

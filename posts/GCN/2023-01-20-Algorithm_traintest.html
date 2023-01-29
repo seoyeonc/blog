@@ -245,6 +245,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin_seoyeon.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
   </div>
 </li>
@@ -256,6 +266,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin_seoyeon2.html" class="sidebar-item-text sidebar-link">import</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1491,18 +1506,37 @@ R[write to console]: Loading required package: RColorBrewer
 <section id="gnar" class="level1">
 <h1>3. GNAR</h1>
 <p><strong>mean</strong></p>
-<div class="cell">
+<div class="cell" data-execution_count="181">
 <div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i fiveVTS_train_mean</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="182">
 <div class="sourceCode cell-code" id="cb171"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a>meanprediction <span class="op">&lt;-</span> predict(GNARfit(vts <span class="op">=</span> fiveVTS_train_mean[<span class="dv">1</span>:<span class="dv">160</span>,], net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>)),n.ahead<span class="op">=</span><span class="dv">40</span>)</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="183">
 <div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o meanprediction</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb173"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>(meanprediction.reshape(<span class="dv">40</span>,<span class="dv">5</span>)[<span class="dv">1</span>] <span class="op">-</span>  fiveVTS_test[<span class="dv">1</span>])</span></code></pre></div>
+<div class="cell" data-execution_count="185">
+<div class="sourceCode cell-code" id="cb173"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []</span>
+<span id="cb173-2"><a href="#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">40</span>):</span>
+<span id="cb173-3"><a href="#cb173-3" aria-hidden="true" tabindex="-1"></a>    a.append((meanprediction.reshape(<span class="dv">40</span>,<span class="dv">5</span>)[i] <span class="op">-</span>  fiveVTS_test[i]))</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>((pd.DataFrame(a))<span class="op">**</span><span class="dv">2</span>).mean(axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="192">
+<pre><code>0    1.256051
+1    1.083987
+2    1.117363
+3    0.952564
+4    1.943335
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="193">
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>((pd.DataFrame(a))<span class="op">**</span><span class="dv">2</span>).mean(axis<span class="op">=</span><span class="dv">0</span>).mean()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="193">
+<pre><code>1.270659819100067</code></pre>
+</div>
 </div>
 
 

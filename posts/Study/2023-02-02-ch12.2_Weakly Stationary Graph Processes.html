@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="SEOYEON CHOI">
-<meta name="dcterms.date" content="2023-02-01">
+<meta name="dcterms.date" content="2023-02-03">
 
 <title>Seoyeon’s Blog for study - Chap 12.2: Weakly Stationary Graph Processes</title>
 <style>
@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -129,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 1, 2023</p>
+        <p class="date">February 3, 2023</p>
       </div>
     </div>
     
@@ -272,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Guarto tip</a>
+            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Quarto tip</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -328,6 +391,9 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>Chap 12.2: Weakly Stationary Graph Processes</p>
 </blockquote>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">FFTW</span></span></code></pre></div>
+</div>
 <p>Simultaneiusly Diagnalizable</p>
 <ul>
 <li>matrix A, B가 고유분해 가능할때, <span class="math inline">\(B = V_B \Lambda_B V_B^{-1}, A = V_A \Lambda_A V_A^{-1}\)</span>와 같이 표현할 수 있고, 특히 <span class="math inline">\(V_A = V_B\)</span>라면,
@@ -339,6 +405,240 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul></li>
 </ul>
+<p>Commute</p>
+<ul>
+<li><span class="math inline">\(AB = BA\)</span> 가 가능할때,</li>
+</ul>
+<p>Shift invariant filter</p>
+<ul>
+<li><span class="math inline">\(z h(z) = h(z)z, h(z) = h_0 Z^0 + h_1 z^{-1} + \dots + h_{N-1}z^{-(N-1)} \to\)</span> z-transform</li>
+<li><span class="math inline">\(Bh(B) = h(B)B, H = h(B) = h_0 B^0 + h_1 B^1 + \dots h_{N-1}B^{N-1} \to\)</span> cycluc shift
+<ul>
+<li><span class="math inline">\(h(B) = \frac{1}{3} + \frac{1}{3}B + \frac{1}{3} B^2\)</span>
+<ul>
+<li><span class="math inline">\(\to\)</span> matrix : 성질 1. 자료 2. 변환</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(x\)</span>가 정상시계열이라면, 모든 <span class="math inline">\(l = 0,1,2,\dots\)</span>에 대하여 <span class="math inline">\(E(XX^H) = E(B^l X)(B^lX)^H)\)</span>가 성립한다.</p>
+<p><span class="math inline">\(x\)</span>가 정상시계열이라면, <span class="math inline">\(X = Hn\)</span>(단, <span class="math inline">\(n\)</span>은 white noise를 만족하는 shift invariant operator)</p>
+<ul>
+<li><span class="math inline">\(H = \sum^{N-1}_{l=0} h_l B^l\)</span> 이 존재한다.</li>
+</ul>
+<p><span class="math inline">\(\begin{bmatrix}x_1 \\ x_2 \\ \dots \\ x_n \end{bmatrix} = \begin{bmatrix}\frac{1}{3} &amp;\frac{1}{3} &amp; 0 &amp; 0 &amp; \dots \\ \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} &amp; \dots &amp; \dots \\ \dots &amp; \dots &amp; \dots &amp; \dots \\ \dots &amp;\frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \end{bmatrix} = \begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \dots \\ \epsilon_n \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(x_1 = (\epsilon_1 + \epsilon_2) \times \frac{1}{3}\)</span></p>
+<p><span class="math inline">\(x_2 = (\epsilon_1 + \epsilon_2 + \epsilon_3) \times \frac{1}{3}\)</span></p>
+<p><span class="math inline">\(\dots\)</span></p>
+<p><span class="math inline">\(x_t = \frac{1}{3}\epsilon_t + \frac{1}{3}\epsilon_{t-1}) \frac{1}{3}\epsilon_{t-N}\)</span></p>
+<p><span class="math inline">\(E(e^xt)\)</span></p>
+<ul>
+<li><span class="math inline">\(E(n) = 0, E(nn^H) = I\)</span></li>
+</ul>
+<p><span class="math inline">\(E(XX^T) = E(Hnn^TH^T) = HE(nn^T)H = HH^T\)</span></p>
+<p><span class="math inline">\(n = \begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \dots \\ \epsilon_n \end{pmatrix}\)</span></p>
+<p><span class="math inline">\(nn^T = \begin{bmatrix} \epsilon_1\epsilon_1 &amp; \epsilon_1\epsilon_2 &amp; \epsilon_1\epsilon_3 \\ \epsilon_2\epsilon_1 &amp; \epsilon_2\epsilon_2 &amp; \epsilon_2\epsilon_3 \\ \epsilon_3\epsilon_1 &amp; \epsilon_3\epsilon_2 &amp; \epsilon_3\epsilon_3 \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(E(\begin{bmatrix} \epsilon_1\epsilon_1 &amp; \epsilon_1\epsilon_2 &amp; \epsilon_1\epsilon_3 \\ \epsilon_2\epsilon_1 &amp; \epsilon_2\epsilon_2 &amp; \epsilon_2\epsilon_3 \\ \epsilon_3\epsilon_1 &amp; \epsilon_3\epsilon_2 &amp; \epsilon_3\epsilon_3 \end{bmatrix}) = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} = I\)</span></p>
+<p>ex1)</p>
+<p><span class="math inline">\(x(1,2,3) \xrightarrow[]{h} x^2(1,4,9) = \tilde{x}\)</span></p>
+<p><span class="math inline">\(h(x) = x^2\)</span></p>
+<p>ex2)</p>
+<p><span class="math inline">\(x(1,2,3) \xrightarrow[]{h} 2x(2,4,6) = x^2\)</span></p>
+<p><span class="math inline">\(h(x) = 2x\)</span></p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>3-element Vector{Int64}:
+ 1
+ 2
+ 3</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [<span class="fl">2</span> <span class="fl">0</span> <span class="fl">0</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">2</span> <span class="fl">0</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">2</span> ] </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>3×3 Matrix{Int64}:
+ 2  0  0
+ 0  2  0
+ 0  0  2</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>3-element Vector{Int64}:
+ 2
+ 4
+ 6</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> ] </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>3×3 Matrix{Int64}:
+ 0  1  0
+ 0  0  1
+ 1  0  0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>B</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>3×3 Matrix{Int64}:
+ 0  2  0
+ 0  0  2
+ 2  0  0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>H</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>3×3 Matrix{Int64}:
+ 0  2  0
+ 0  0  2
+ 2  0  0</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(HB = BH\)</span></p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>3-element Vector{Int64}:
+ 2
+ 3
+ 1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>B<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>3-element Vector{Int64}:
+ 4
+ 6
+ 2</code></pre>
+</div>
+</div>
+<p>ex3)</p>
+<p><span class="math inline">\(x(1,2,3) \xrightarrow[]{h} \tilde{x}(1,0,0)\)</span></p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [<span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> ] </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>3×3 Matrix{Int64}:
+ 1  0  0
+ 0  0  0
+ 0  0  0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>3-element Vector{Int64}:
+ 1
+ 2
+ 3</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> ] </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>3×3 Matrix{Int64}:
+ 0  1  0
+ 0  0  1
+ 1  0  0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>B</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>3×3 Matrix{Int64}:
+ 0  1  0
+ 0  0  0
+ 0  0  0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>H</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>3×3 Matrix{Int64}:
+ 0  0  0
+ 0  0  0
+ 1  0  0</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(HB \neq BH\)</span></p>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>3-element Vector{Int64}:
+ 1
+ 0
+ 0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>3-element Vector{Int64}:
+ 2
+ 3
+ 1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>H<span class="op">*</span>B<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>3-element Vector{Int64}:
+ 2
+ 0
+ 0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>H<span class="op">*</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>3-element Vector{Int64}:
+ 0
+ 0
+ 1</code></pre>
+</div>
+</div>
+<p>어떠한 연속함수 <span class="math inline">\(f(x)\)</span>가 있을떄 아래와 같은 변환을 정의할 수 있다.</p>
+<ol type="i">
+<li><p><span class="math inline">\(\int^{\infty}_{-\infty} f(x) \times e^{-\text{ 복소수 }x} dx \sim E(e^{-tx}) \to\)</span> 라플라스</p></li>
+<li><p><span class="math inline">\(\int^{\infty}_{-\infty}f(x) e^{- \text{ 순허수 }x} dx \to\)</span> 퓨리에 변환</p></li>
+</ol>
+<ul>
+<li>여기서 <span class="math inline">\(f(x)\)</span>가 확률밀도함수를 의미할 수도 있으나 signal을 의미할 수도 있다.</li>
+<li>signal을 의미하는 경우 중 특히 이산 signal을 의미할 수도 있다.</li>
+<li>예를 들어서 <span class="math inline">\(f(0) = x_0, f(1) = x_1 , \dots\)</span>
+<ul>
+<li>이 경우 라플라스 transform은 <span class="math inline">\(\int^{\infty}_{-\infty}f(t) e^{-st}dt\)</span>,</li>
+<li>이산형이면 <span class="math inline">\(\sum^{\infty}_{t=0} x(t) e^{-st} = \sum^{\infty}_{t=0} x(t) z^{-t}\)</span>
+<ul>
+<li>단, <span class="math inline">\(e^{s} = z\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(x\)</span>가 정상시계열이라면, 임의의 <span class="math inline">\(n\)</span>에 대하여 <span class="math inline">\(x = Hn\)</span>을 만족하는 shift invariant operator H가 항상 존재한다.</p>
+<p><span class="math inline">\(C_x = E(XX^H) = HH^H\)</span>라 표현 가능, <span class="math inline">\(H,B\)</span>는 같은 고유행렬을 가진다. <span class="math inline">\(to\)</span> <span class="math inline">\(C_x\)</span>는 <span class="math inline">\(B\)</span>와 같은 고유행렬을 가진다. <span class="math inline">\(\to\)</span> simultaneously diagonalizable 도 만족</p>
+<p><span class="math inline">\(C_x = \psi \times \text{ diagonal matrix } \times \psi^H = DFT^H \times \text{ diagonal matrix } \times DFT\)</span></p>
+<ul>
+<li><span class="math inline">\(DFT^H = DFT\)</span>니까 순서는 상관이 없음</li>
+</ul>
+<p><span class="math inline">\(x\)</span>가 정상시계열이라면 <span class="math inline">\(C_x\)</span>는 DFT행렬로 대각화가 가능하다.</p>
+<p><span class="math inline">\(C_x = E(XX^T)\)</span></p>
+<p><span class="math inline">\(X_1,X_2,X_3 = X\)</span>일 떄, <span class="math inline">\(cov = \begin{bmatrix} cov(x_1,x_1) &amp; cov(x_1,x_2) &amp; \dots \\ cov(x_2,x_1) &amp; cov(x_2,x_2) &amp; \dots \\ cov(x_3,x_1) &amp; cov(x_3,x_2) &amp; \dots\end{bmatrix}\)</span></p>
+<p><span class="math inline">\(cov(x_1,x_2) = E(x_1,x_2) - E(x_1)E(x_2) = E(x_1x_2) - 0\)</span></p>
+<p><span class="math inline">\(cov(x) = \begin{bmatrix} E(x_1,x_1) &amp; E(x_1,x_2) &amp; \dots \\ E(x_2,x_1) &amp; E(x_2,x_2) &amp; \dots \\ E(x_3,x_1) &amp; E(x_3,x_2) &amp; \dots\end{bmatrix}\)</span></p>
+<p>그런데 <span class="math inline">\(XX^T = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \dots\end{bmatrix}\begin{bmatrix} x_1 &amp; x_2 &amp; x_3 \dots\end{bmatrix} = \begin{bmatrix} x_1x_1 &amp; x_1x_2 &amp; x_1x_3\\x_2x_1 &amp; x_2x_2 &amp; x_2x_3 \\x_3x_1 &amp; x_3x_2 &amp; x_3x_3 \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(E(XX^T) = E(\begin{bmatrix} x_1x_1 &amp; x_1x_2 &amp; x_1x_3\\x_2x_1 &amp; x_2x_2 &amp; x_2x_3 \\x_3x_1 &amp; x_3x_2 &amp; x_3x_3 \end{bmatrix}) = cov(X)\)</span></p>
 
 
 

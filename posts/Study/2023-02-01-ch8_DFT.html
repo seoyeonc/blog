@@ -402,14 +402,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\star\)</span> 시계열의 back shift operator 로 생각할 수 있고, foward shift operator도 가능하다.</p>
 <p><span class="math inline">\(\star\)</span> cyclic operator이어야 하는 이유? 책의 정의 이용 및 back/forward shift operator는 고유분해 안 될 수도.</p>
 <p>이 행렬을 고유분해(full rank)하여 나온 고유값과 고유벡터가 존재한다.</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span> [<span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span>] <span class="co"># cyclic shift operator B</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>B<span class="op">'</span>B <span class="co"># matrix B is orthogonal</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>5×5 Matrix{Int64}:
  1  0  0  0  0
  0  1  0  0  0
@@ -418,10 +418,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  0  0  0  0  1</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>s <span class="co"># matrix B is a cyclic shift operator</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>5-element Vector{Int64}:
  5
  1
@@ -430,9 +430,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  4</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">^</span><span class="fl">2</span><span class="op">*</span>s</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>5-element Vector{Int64}:
  4
  5
@@ -449,22 +449,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(\psi\)</span>인데 DFT로 표현 <span class="math inline">\(\to\)</span> 그래프 도메인으로 확장이 가능하기 때문</li>
 </ul></li>
 </ul>
-<p>여기서 <span class="math inline">\(DFT^*\)</span>는 <span class="math inline">\(\psi^*_k = DFT_k = \frac{1}{\sqrt{N}} \begin{bmatrix} 1 \\ \dots \\ e^{-\frac{2\pi}{N}(N-1)k} \end{bmatrix}\)</span>로서 표현(<span class="math inline">\(\in C^N\)</span> 길이가 <span class="math inline">\(N\)</span>인 vector(복소수)</p>
+<p>여기서 <span class="math inline">\(DFT^*\)</span>는 <span class="math inline">\(\psi^*_k = DFT_k = \frac{1}{\sqrt{N}} \begin{bmatrix} 1 \\ \dots \\ e^{-j\frac{2\pi}{N}(N-1)k} \end{bmatrix}\)</span>로서 표현(<span class="math inline">\(\in C^N\)</span> 길이가 <span class="math inline">\(N\)</span>인 vector(복소수))</p>
 <ul>
 <li>unitary and symmetric
 <ul>
 <li>unitary <span class="math inline">\(\to\)</span> complex space에서 정규직교기저를 이루고, <span class="math inline">\(A(A^*)^\top = I, \psi^{-1} = \psi^*, \psi^* \psi = \psi \psi^* = I\)</span></li>
 </ul></li>
-<li>위 <span class="math inline">\(k\)</span>개의 벡터들은 spectral components 이다.</li>
+<li>위 <span class="math inline">\(k\)</span>개의 벡터들은 <code>spectral components</code> 이다.</li>
 <li>the complex exponential sinusodal functions</li>
 </ul>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>λ, ψ <span class="op">=</span> <span class="fu">eigen</span>(B)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>LoadError: UndefVarError: eigen not defined</code></pre>
-</div>
-</div>
-<p>여기서 <span class="math inline">\(\lambda\)</span>는 the frequencies of the signal 로서 정의될 수 있다.</p>
+<p>여기서 <span class="math inline">\(\lambda\)</span>는 the <code>frequencies of the signal</code> 로서 정의될 수 있다.</p>
 <ul>
 <li>특징
 <ul>
@@ -474,23 +468,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>increasing from <span class="math inline">\(0\)</span> ro <span class="math inline">\(\frac{N-1}{N}\)</span></li>
 </ul></li>
 </ul>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>λ, ψ <span class="op">=</span> <span class="fu">eigen</span>(B)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>Eigen{ComplexF64, ComplexF64, Matrix{ComplexF64}, Vector{ComplexF64}}
+values:
+5-element Vector{ComplexF64}:
+ -0.8090169943749472 - 0.5877852522924725im
+ -0.8090169943749472 + 0.5877852522924725im
+ 0.30901699437494734 - 0.9510565162951536im
+ 0.30901699437494734 + 0.9510565162951536im
+  0.9999999999999998 + 0.0im
+vectors:
+5×5 Matrix{ComplexF64}:
+  0.138197+0.425325im   0.138197-0.425325im  …  0.447214+0.0im
+ -0.361803-0.262866im  -0.361803+0.262866im     0.447214+0.0im
+  0.447214-0.0im        0.447214+0.0im          0.447214+0.0im
+ -0.361803+0.262866im  -0.361803-0.262866im     0.447214+0.0im
+  0.138197-0.425325im   0.138197+0.425325im     0.447214+0.0im</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> ψ <span class="op">*</span> <span class="fu">Diagonal</span>(λ) <span class="op">*</span> ψ<span class="ch">'</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>5×5 Matrix{ComplexF64}:
+    2.498e-16-9.67158e-18im  …           1.0+1.81709e-18im
+          1.0+2.1793e-18im       5.55112e-16-1.09573e-17im
+ -3.88578e-16-7.89355e-18im     -3.21902e-16+8.57473e-18im
+ -4.16334e-16-8.06149e-18im       -4.996e-16-8.9293e-18im
+  2.99888e-16+1.53977e-17im      3.99189e-16+1.42498e-17im</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> ψ<span class="ch">'</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>5×5 adjoint(::Matrix{ComplexF64}) with eltype ComplexF64:
+  0.138197-0.425325im  -0.361803+0.262866im  …  0.138197+0.425325im
+  0.138197+0.425325im  -0.361803-0.262866im     0.138197-0.425325im
+ -0.361803-0.262866im  -0.361803+0.262866im     0.138197-0.425325im
+ -0.361803+0.262866im  -0.361803-0.262866im     0.138197+0.425325im
+  0.447214-0.0im        0.447214-0.0im          0.447214-0.0im</code></pre>
+</div>
+</div>
 <p><span class="math inline">\(B = \psi \Lambda \psi^{-1}\)</span></p>
 <ul>
 <li><span class="math inline">\(\psi^H := DFT\)</span> 이렇게 정의한다면 F의 고유벡터의 conjugate</li>
-<li>F <span class="math inline">\(\to\)</span> <span class="math inline">\(BF = I\)</span></li>
+<li><span class="math inline">\(F\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(BF = I\)</span></li>
 <li><span class="math inline">\(\psi \Lambda \psi^H F = I\)</span></li>
-<li>만약, F가 <span class="math inline">\(\psi^H\Lambda^{-1}\psi\)</span>라면, <span class="math inline">\(\psi \Lambda \psi^H\psi^H\Lambda \psi = I\)</span></li>
-<li>따라서 F는 <span class="math inline">\(\psi^{-1} \Lambda^{-1} \psi\)</span>로 고유분해</li>
+<li>만약, <span class="math inline">\(F\)</span>가 <span class="math inline">\(\psi^H\Lambda^{-1}\psi\)</span>라면, <span class="math inline">\(\psi \Lambda \psi^H\psi^H\Lambda \psi = I\)</span></li>
+<li>따라서 <span class="math inline">\(F\)</span>는 <span class="math inline">\(\psi^{-1} \Lambda^{-1} \psi\)</span>로 고유분해</li>
 </ul>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span><span class="op">-</span><span class="cn">im</span>,<span class="op">-</span><span class="cn">im</span>,<span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="fl">2im</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>4-element Vector{Complex{Int64}}:
+  1 + 0im
+  2 - 1im
+  0 - 1im
+ -1 + 2im</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_DFT <span class="op">=</span> <span class="fu">reshape</span>([i<span class="op">*</span>j for i <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span> for j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span>], (<span class="fl">4</span>,<span class="fl">4</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>_DFT</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>4×4 Matrix{Int64}:
+ 0  0  0  0
+ 0  1  2  3
+ 0  2  4  6
+ 0  3  6  9</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">exp</span>(<span class="op">-</span><span class="cn">im</span> <span class="op">*</span> (<span class="fl">2</span>π<span class="op">/</span><span class="fl">4</span>) <span class="op">*</span> x)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> _DFT <span class="op">.|&gt;</span> f</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>4×4 Matrix{ComplexF64}:
+ 1.0-0.0im           1.0-0.0im          …           1.0-0.0im
+ 1.0-0.0im   6.12323e-17-1.0im             -1.83697e-16+1.0im
+ 1.0-0.0im          -1.0-1.22465e-16im             -1.0-3.67394e-16im
+ 1.0-0.0im  -1.83697e-16+1.0im              5.51091e-16-1.0im</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">*</span> x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>4-element Vector{ComplexF64}:
+                   2.0 + 0.0im
+   -1.9999999999999998 - 2.0000000000000004im
+ 8.881784197001252e-16 - 1.9999999999999998im
+    3.9999999999999987 + 4.000000000000001im</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fft</span>(x)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>4-element Vector{ComplexF64}:
+  2.0 + 0.0im
+ -2.0 - 2.0im
+  0.0 - 2.0im
+  4.0 + 4.0im</code></pre>
+</div>
+</div>
 <p>DFT의 두 번쨰 정의</p>
 <ul>
-<li>복소수 sequence <span class="math inline">\(\{x_n\}\)</span>을 <code>규칙</code>에 따라 <span class="math inline">\(\{x_k\}\)</span>로 변환하는 것</li>
+<li>복소수 sequence <span class="math inline">\(\{x_n\}\)</span>을 <code>규칙</code>에 따라 <span class="math inline">\(\{X_k\}\)</span>로 변환하는 것</li>
 <li>규칙: <span class="math inline">\(x_k = \sum^{N-1}_{n=0} x_n e^{-i\frac{2\pi}{N}kn}\)</span>
 <ul>
 <li>특히, <span class="math inline">\(k=0\)</span>이면 <span class="math inline">\(X_0 = \sum^{N-1}{n=0}x_n\)</span>, constant term 이 되어 <span class="math inline">\(\beta_0\)</span>의 역할을 한다.</li>
 </ul></li>
 </ul>
-<p>행렬로 표현한다면, <span class="math inline">\(\begin{bmatrix}X_k \\ \dots \end{bmatrix} = DFT = \begin{bmatrix}X_n \\ \dots \end{bmatrix}\)</span></p>
+<p>행렬로 표현한다면, <span class="math inline">\(\begin{bmatrix}X_k \\ \dots \end{bmatrix} = DFT = \begin{bmatrix}x_n \\ \dots \end{bmatrix}\)</span></p>
 <ul>
 <li><span class="math inline">\(x_k = DFT^{-1}X_k\)</span>
 <ul>
@@ -510,6 +598,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>inverse DFT는 <span class="math inline">\(i = -i\)</span>를 넣은 행렬, 즉 DFT의 켤레전치 = inverse DFT</li>
 </ul>
+<p><span class="math inline">\(DFT = \frac{1}{\sqrt{N}}\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; \dots &amp; 1 \\ 1 &amp; e^{-i\frac{2\pi}{N}1} &amp; e^{-i\frac{2\pi}{N}1} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(N-1)} \\ 1 &amp; e^{-i\frac{2\pi}{N}2} &amp; e^{-i\frac{2\pi}{N}4} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(2(N-1)} \\ \dots &amp; \dots &amp; \dots &amp; \dots \\ 1 &amp; e^{-i\frac{2\pi}{N}(N-1)} &amp; e^{-i\frac{2\pi}{N}2(N-1)} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(N-1)^2}\end{bmatrix}\)</span></p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> (<span class="fl">1</span><span class="op">/</span>√<span class="fl">4</span>)<span class="op">*</span>DFT <span class="co"># 위의 정의 충족위해 1/sqrt(4)곱함</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>DFT<span class="op">'</span>DFT <span class="op">.|&gt;</span> round <span class="co"># 유니터리행렬임을 확인!</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<pre><code>4×4 Matrix{ComplexF64}:
+  0.0+0.0im  -0.0-0.0im   0.0-0.0im   0.0-0.0im
+ -0.0+0.0im   0.0+0.0im  -0.0-0.0im   0.0-0.0im
+  0.0+0.0im  -0.0+0.0im   0.0+0.0im  -0.0-0.0im
+  0.0+0.0im   0.0+0.0im  -0.0+0.0im   0.0+0.0im</code></pre>
+</div>
+</div>
 
 
 

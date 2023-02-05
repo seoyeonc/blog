@@ -734,7 +734,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.84it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.87it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="27">
@@ -762,7 +762,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"vars"</span>)</span></code></pre></div>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>library(tidyverse)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>R[write to console]: Loading required package: igraph
 
@@ -784,26 +784,21 @@ R[write to console]: Loading required package: wordcloud
 
 R[write to console]: Loading required package: RColorBrewer
 
-R[write to console]: Loading required package: MASS
+R[write to console]: ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
 
-R[write to console]: Loading required package: strucchange
+R[write to console]: ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.6     ✔ dplyr   1.0.7
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1
 
-R[write to console]: Loading required package: zoo
-
-R[write to console]: 
-Attaching package: ‘zoo’
-
-
-R[write to console]: The following objects are masked from ‘package:base’:
-
-    as.Date, as.Date.numeric
-
-
-R[write to console]: Loading required package: sandwich
-
-R[write to console]: Loading required package: urca
-
-R[write to console]: Loading required package: lmtest
+R[write to console]: ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::as_data_frame() masks tibble::as_data_frame(), igraph::as_data_frame()
+✖ purrr::compose()       masks igraph::compose()
+✖ tidyr::crossing()      masks igraph::crossing()
+✖ dplyr::filter()        masks stats::filter()
+✖ dplyr::groups()        masks igraph::groups()
+✖ dplyr::lag()           masks stats::lag()
+✖ purrr::simplify()      masks igraph::simplify()
 </code></pre>
 </div>
 </div>
@@ -845,9 +840,9 @@ R[write to console]: Loading required package: lmtest
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,a <span class="kw">in</span> <span class="bu">enumerate</span>(ax):     </span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="st">'node</span><span class="sc">{0}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> mse(train) = </span><span class="sc">{1:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{2:.2f}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> mse(train) = </span><span class="sc">{3:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{4:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(i,train_mse_eachnode_stgcn[i],test_mse_eachnode_stgcn[i],train_mse_eachnode_gnar[i],test_mse_eachnode_gnar[i]))</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),stgcn_train[:,i],label<span class="op">=</span><span class="st">'STCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),stgcn_test[:,i],label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">199</span>),stgcn_test[:,i],label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">160</span>),gnar_train.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:,i],label<span class="op">=</span><span class="st">'GNAR (train)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">200</span>),gnar_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">201</span>),gnar_test.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    a.legend()</span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">14</span>)</span>
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Scenario1: STGCN </span><span class="ch">\n</span><span class="st"> missing=0% </span><span class="ch">\n</span><span class="st"> interpolation=None </span><span class="ch">\n\n</span><span class="st"> STGCN: mse(train) = </span><span class="sc">{0:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{1:.2f}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> GNAR: mse(train) = </span><span class="sc">{2:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{3:.2f}</span><span class="st"> </span><span class="ch">\n</span><span class="st">"</span>.<span class="bu">format</span>(train_mse_total_stgcn,test_mse_total_stgcn,train_mse_total_gnar,test_mse_total_gnar),size<span class="op">=</span><span class="dv">15</span>)</span>
@@ -911,7 +906,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
 <span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.87it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.86it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="45">
@@ -1015,22 +1010,22 @@ R[write to console]: Loading required package: lmtest
 <div class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>train_mse_total_gnar,test_mse_total_gnar</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
-<pre><code>(0.5912792795156065, 1.3079834560425927)</code></pre>
+<pre><code>(0.6849312358003611, 1.3083946811592204)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plot(fiveVTS,<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">4</span>,color<span class="op">=</span><span class="st">'gray'</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.get_axes()</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,a <span class="kw">in</span> <span class="bu">enumerate</span>(ax):     </span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="st">'node</span><span class="sc">{0}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> STGCN: mse(train) = </span><span class="sc">{1:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{2:.2f}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> ESTGCN: mse(train) = </span><span class="sc">{3:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{4:.2f}</span><span class="ch">\n</span><span class="st"> GNAR: mse(train) = </span><span class="sc">{5:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{6:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(i,train_mse_eachnode_stgcn[i],test_mse_eachnode_stgcn[i],train_mse_eachnode_estgcn[i],test_mse_eachnode_estgcn[i],train_mse_eachnode_estgcn[i],test_mse_eachnode_estgcn[i],train_mse_eachnode_gnar[i],test_mse_eachnode_gnar[i]))</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    a.set_title(<span class="st">'node</span><span class="sc">{0}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> STGCN: mse(train) = </span><span class="sc">{1:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{2:.2f}</span><span class="st"> </span><span class="ch">\n</span><span class="st"> ESTGCN: mse(train) = </span><span class="sc">{3:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{4:.2f}</span><span class="ch">\n</span><span class="st"> GNAR: mse(train) = </span><span class="sc">{5:.2f}</span><span class="st">, mse(test) = </span><span class="sc">{6:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(i,train_mse_eachnode_stgcn[i],test_mse_eachnode_stgcn[i],train_mse_eachnode_estgcn[i],test_mse_eachnode_estgcn[i],train_mse_eachnode_gnar[i],test_mse_eachnode_gnar[i]))</span>
 <span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    a.plot(missing_index[i],fiveVTS_train[:,i][missing_index[i]],<span class="st">'xk'</span>,label<span class="op">=</span><span class="st">'missing'</span>)</span>
 <span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    a.plot(interpolated_signal[:,i],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'gray'</span>,label<span class="op">=</span><span class="st">'linear interpolation'</span>)</span>
 <span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),stgcn_train.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
-<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">199</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
 <span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),estgcn_train.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),estgcn_test.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">159</span>),gnar_train[:,i],label<span class="op">=</span><span class="st">'GNAR (train)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
-<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">200</span>),gnar_test[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">201</span>),gnar_test[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
 <span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a>    a.legend()</span>
 <span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">14</span>)</span>
@@ -1095,7 +1090,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
 <span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.89it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.84it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="68">
@@ -1143,7 +1138,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
 <span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a>    signal <span class="op">=</span> torch.concat([X.squeeze(),yt_hat.detach().squeeze().reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)])        </span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.82it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="74">
@@ -1199,7 +1194,7 @@ R[write to console]: Loading required package: lmtest
 <div class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>train_mse_total_gnar,test_mse_total_gnar</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="83">
-<pre><code>(0.36314894431334876, 1.3183012362352697)</code></pre>
+<pre><code>(0.40597657169187984, 1.2989839137306873)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="84">
@@ -1210,11 +1205,11 @@ R[write to console]: Loading required package: lmtest
 <span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    a.plot(missing_index[i],fiveVTS_train[:,i][missing_index[i]],<span class="st">'xk'</span>,label<span class="op">=</span><span class="st">'missing'</span>)</span>
 <span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    a.plot(interpolated_signal[:,i],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'gray'</span>,label<span class="op">=</span><span class="st">'linear interpolation'</span>)</span>
 <span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),stgcn_train.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">199</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
 <span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),estgcn_train.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),estgcn_test.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
-<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">159</span>),gnar_train[:,i],label<span class="op">=</span><span class="st">'GNAR (train)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
-<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">200</span>),gnar_test[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">3</span>,<span class="dv">160</span>),gnar_train[:,i],label<span class="op">=</span><span class="st">'GNAR (train)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
+<span id="cb93-12"><a href="#cb93-12" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">201</span>),gnar_test[:,i],label<span class="op">=</span><span class="st">'GNAR (test)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
 <span id="cb93-13"><a href="#cb93-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb93-14"><a href="#cb93-14" aria-hidden="true" tabindex="-1"></a>    a.legend()</span>
 <span id="cb93-15"><a href="#cb93-15" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">14</span>)</span>
@@ -1279,7 +1274,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
 <span id="cb99-10"><a href="#cb99-10" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:26&lt;00:00,  1.88it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.85it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="91">
@@ -1327,7 +1322,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb106-14"><a href="#cb106-14" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
 <span id="cb106-15"><a href="#cb106-15" aria-hidden="true" tabindex="-1"></a>    signal <span class="op">=</span> torch.concat([X.squeeze(),yt_hat.detach().squeeze().reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)])        </span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.82it/s]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.80it/s]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="97">
@@ -1383,7 +1378,7 @@ R[write to console]: Loading required package: lmtest
 <div class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>train_mse_total_gnar,test_mse_total_gnar</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="106">
-<pre><code>(0.7666029329920675, 1.3132997486153668)</code></pre>
+<pre><code>(0.7682484879421237, 1.3123869466036602)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="107">
@@ -1394,7 +1389,7 @@ R[write to console]: Loading required package: lmtest
 <span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>    a.plot(missing_index[i],fiveVTS_train[:,i][missing_index[i]],<span class="st">'xk'</span>,label<span class="op">=</span><span class="st">'missing'</span>)</span>
 <span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>    a.plot(interpolated_signal[:,i],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'gray'</span>,label<span class="op">=</span><span class="st">'linear interpolation'</span>)</span>
 <span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),stgcn_train.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
-<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">160</span>,<span class="dv">199</span>),stgcn_test.squeeze()[:,i],<span class="st">'--.'</span>,label<span class="op">=</span><span class="st">'STCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C0'</span>)</span>
 <span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">160</span>),estgcn_train.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (train)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">161</span>,<span class="dv">200</span>),estgcn_test.squeeze()[:,i],label<span class="op">=</span><span class="st">'ESTCGCN (test)'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb119-11"><a href="#cb119-11" aria-hidden="true" tabindex="-1"></a>    a.plot(<span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">159</span>),gnar_train[:,i],label<span class="op">=</span><span class="st">'GNAR (train)'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>

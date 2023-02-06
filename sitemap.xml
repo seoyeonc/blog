@@ -2,118 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Study/2023-02-01-ch8_DFT.html</loc>
-    <lastmod>2023-02-05T08:14:14.928Z</lastmod>
+    <lastmod>2023-02-06T09:15:53.598Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Study/index.html</loc>
-    <lastmod>2023-02-05T08:14:15.354Z</lastmod>
+    <lastmod>2023-02-06T09:15:54.039Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.html</loc>
-    <lastmod>2023-02-05T08:14:15.935Z</lastmod>
+    <lastmod>2023-02-06T09:15:54.659Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html</loc>
-    <lastmod>2023-02-05T08:14:16.377Z</lastmod>
+    <lastmod>2023-02-06T09:15:55.168Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Study/2022-12-31-Space-study.html</loc>
-    <lastmod>2023-02-05T08:14:16.789Z</lastmod>
+    <lastmod>2023-02-06T09:15:55.607Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-09-02-paper_simulation.html</loc>
-    <lastmod>2023-02-05T08:14:17.650Z</lastmod>
+    <lastmod>2023-02-06T09:15:56.475Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-27-DFT_study.html</loc>
-    <lastmod>2023-02-05T08:14:18.107Z</lastmod>
+    <lastmod>2023-02-06T09:15:56.947Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/Untitled.html</loc>
-    <lastmod>2023-02-05T08:14:18.495Z</lastmod>
+    <lastmod>2023-02-06T09:15:57.350Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/index.html</loc>
-    <lastmod>2023-02-05T08:14:18.893Z</lastmod>
+    <lastmod>2023-02-06T09:15:57.778Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-10-02-Earthquake_real.html</loc>
-    <lastmod>2023-02-05T08:14:20.272Z</lastmod>
+    <lastmod>2023-02-06T09:15:59.132Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-11-19-class_code_for_paper.html</loc>
-    <lastmod>2023-02-05T08:14:21.649Z</lastmod>
+    <lastmod>2023-02-06T09:16:00.555Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-01-graph_code_guebin.html</loc>
-    <lastmod>2023-02-05T08:14:22.556Z</lastmod>
+    <lastmod>2023-02-06T09:16:01.461Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Quarto_tip/index.html</loc>
-    <lastmod>2023-02-05T08:14:22.958Z</lastmod>
+    <lastmod>2023-02-06T09:16:01.862Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/Quarto_tip/2023-01-02-quarto_tips.html</loc>
-    <lastmod>2023-02-05T08:14:23.388Z</lastmod>
+    <lastmod>2023-02-06T09:16:02.296Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-07-torchgcn.html</loc>
-    <lastmod>2023-02-05T08:14:23.836Z</lastmod>
+    <lastmod>2023-02-06T09:16:02.743Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-28-gcn_simulation.html</loc>
-    <lastmod>2023-02-05T08:14:24.465Z</lastmod>
-  </url>
-  <url>
-    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-guebin_seoyeon.html</loc>
-    <lastmod>2023-02-05T08:14:25.402Z</lastmod>
+    <lastmod>2023-02-06T09:16:03.364Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-guebin.html</loc>
-    <lastmod>2023-02-05T08:14:26.192Z</lastmod>
+    <lastmod>2023-02-06T09:16:04.128Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/Untitled.html</loc>
-    <lastmod>2023-02-05T08:14:26.603Z</lastmod>
+    <lastmod>2023-02-06T09:16:04.541Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html</loc>
+    <lastmod>2023-02-06T09:16:05.458Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-11-Algorithm_EX_1.html</loc>
-    <lastmod>2023-02-05T08:14:27.723Z</lastmod>
+    <lastmod>2023-02-06T09:16:06.579Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-21-Class.html</loc>
-    <lastmod>2023-02-05T08:14:33.448Z</lastmod>
+    <lastmod>2023-02-06T09:16:12.455Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-18-Algorithm_traintest_2.html</loc>
-    <lastmod>2023-02-05T08:14:33.973Z</lastmod>
-  </url>
-  <url>
-    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-guebin_seoyeon2.html</loc>
-    <lastmod>2023-02-05T08:14:35.004Z</lastmod>
+    <lastmod>2023-02-06T09:16:13.008Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/index.html</loc>
-    <lastmod>2023-02-05T08:14:35.403Z</lastmod>
+    <lastmod>2023-02-06T09:16:13.408Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-20-Algorithm_traintest.html</loc>
-    <lastmod>2023-02-05T08:14:36.261Z</lastmod>
+    <lastmod>2023-02-06T09:16:14.345Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-21-ST-GCN Dataset.html</loc>
-    <lastmod>2023-02-05T08:14:37.870Z</lastmod>
+    <lastmod>2023-02-06T09:16:16.011Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-ESTGCN_STGCN_DATA.html</loc>
+    <lastmod>2023-02-06T09:16:17.037Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html</loc>
+    <lastmod>2023-02-06T09:16:17.576Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-05-GNAR.html</loc>
-    <lastmod>2023-02-05T08:14:38.629Z</lastmod>
+    <lastmod>2023-02-06T09:16:18.341Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html</loc>
+    <lastmod>2023-02-06T09:16:19.277Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/index.html</loc>
-    <lastmod>2023-02-05T08:14:39.200Z</lastmod>
+    <lastmod>2023-02-06T09:16:19.854Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/about.html</loc>
-    <lastmod>2023-02-05T08:14:39.587Z</lastmod>
+    <lastmod>2023-02-06T09:16:20.255Z</lastmod>
   </url>
 </urlset>

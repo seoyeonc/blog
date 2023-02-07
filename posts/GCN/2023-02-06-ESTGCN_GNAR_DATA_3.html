@@ -252,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR)</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -263,6 +263,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link active">Class of Method(GNAR) lag 2 missing 80% repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_STGCN_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,11 +298,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
   </div>
 </li>
       </ul>
@@ -402,7 +402,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#my-functions" id="toc-my-functions" class="nav-link" data-scroll-target="#my-functions">my functions</a></li>
   <li><a href="#data-정리" id="toc-data-정리" class="nav-link" data-scroll-target="#data-정리">data 정리</a></li>
   <li><a href="#random-missing-values" id="toc-random-missing-values" class="nav-link" data-scroll-target="#random-missing-values">Random Missing Values</a></li>
-  <li><a href="#enhencement-of-stgcn" id="toc-enhencement-of-stgcn" class="nav-link" data-scroll-target="#enhencement-of-stgcn">Enhencement of STGCN</a></li>
+  <li><a href="#enhencement-of-stgcn" id="toc-enhencement-of-stgcn" class="nav-link" data-scroll-target="#enhencement-of-stgcn">Enhencement of STGCN</a>
+  <ul class="collapse">
+  <li><a href="#missing-일정" id="toc-missing-일정" class="nav-link" data-scroll-target="#missing-일정">missing 일정</a></li>
+  <li><a href="#missing-매번-다르게" id="toc-missing-매번-다르게" class="nav-link" data-scroll-target="#missing-매번-다르게">missing 매번 다르게</a></li>
+  </ul></li>
   <li><a href="#gnar" id="toc-gnar" class="nav-link" data-scroll-target="#gnar">GNAR</a></li>
   </ul>
 </nav>
@@ -416,7 +420,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>GNAR fiveNet,fivenodes lag 2</p>
 </blockquote>
-<p>https://stats.libretexts.org/Bookshelves/Probability_Theory/Probability_Mathematical_Statistics_and_Stochastic_Processes_%28Siegrist%29/03:_Distributions/3.06:_Distribution_and_Quantile_Functions</p>
 <section id="import" class="level1">
 <h1>import</h1>
 <div class="cell" data-execution_count="2">
@@ -594,7 +597,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>보간방법: linear</li>
 </ul>
 <p><code>-</code> 결측치생성 + 보간</p>
-<div class="cell" data-tags="[]">
+<section id="missing-일정" class="level2">
+<h2 class="anchored" data-anchor-id="missing-일정">missing 일정</h2>
+<div class="cell" data-tags="[]" data-execution_count="197">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> []</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> []</span>
@@ -621,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    net.train()</span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    signal <span class="op">=</span> interpolated_signal.copy()</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        signal <span class="op">=</span> update_from_freq_domain(signal,missing_index)</span>
 <span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(np.stack([signal[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
 <span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(signal[<span class="dv">2</span>:,:]).<span class="bu">float</span>()</span>
@@ -648,142 +653,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    b.append(train_mse_total_estgcn.tolist())</span>
 <span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    c.append(test_mse_eachnode_estgcn.tolist())</span>
 <span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>    d.append(test_mse_total_estgcn.tolist())</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.76it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.74it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.76it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.76it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.76it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:27&lt;00:00,  1.79it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.78it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.77it/s]
-100%|██████████| 50/50 [00:28&lt;00:00,  1.76it/s]
- 18%|█▊        | 9/50 [00:05&lt;00:23,  1.74it/s]</code></pre>
 </div>
-</div>
-<div class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(a))<span class="op">;</span> <span class="co"># train_mse_eachnode_estgcn</span></span></code></pre></div>
+<div class="cell" data-execution_count="198">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(a))<span class="op">;</span> <span class="co"># train_mse_eachnode_estgcn</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(b)<span class="op">;</span> <span class="co"># train_mse_total_estgcn</span></span></code></pre></div>
+<div class="cell" data-execution_count="199">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(b)<span class="op">;</span> <span class="co"># train_mse_total_estgcn</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(c))<span class="op">;</span> <span class="co"># test_mse_eachnode_estgcn</span></span></code></pre></div>
+<div class="cell" data-execution_count="200">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(c))<span class="op">;</span> <span class="co"># test_mse_eachnode_estgcn</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(d)<span class="op">;</span> <span class="co"># test_mse_total_estgcn</span></span></code></pre></div>
+<div class="cell" data-execution_count="201">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(d)<span class="op">;</span> <span class="co"># test_mse_total_estgcn</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
+<section id="missing-매번-다르게" class="level2">
+<h2 class="anchored" data-anchor-id="missing-매번-다르게">missing 매번 다르게</h2>
+<div class="cell" data-tags="[]" data-execution_count="202">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> []</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> []</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> []</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> torch.tensor(np.stack([fiveVTS_test[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fiveVTS_test[<span class="dv">2</span>:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),:].reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span>,N,<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>real_y <span class="op">=</span> torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">2</span>:,:,:]</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    _zero.miss(percent <span class="op">=</span> <span class="fl">0.8</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    _zero.second_linear()</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    missing_index <span class="op">=</span> _zero.number</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    interpolated_signal <span class="op">=</span> _zero.train_linear</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> torch.tensor(np.stack([interpolated_signal[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> torch.tensor(interpolated_signal[<span class="dv">2</span>:,:]).<span class="bu">float</span>()</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    net <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">2</span>, filters<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    net.train()</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    signal <span class="op">=</span> interpolated_signal.copy()</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>        signal <span class="op">=</span> update_from_freq_domain(signal,missing_index)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(np.stack([signal[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(signal[<span class="dv">2</span>:,:]).<span class="bu">float</span>()</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y)):        </span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>            yt_hat <span class="op">=</span> net(xt, edge_index, edge_attr)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>            cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>            cost.backward()</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>            optimizer.step()</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad()</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>        signal <span class="op">=</span> torch.concat([X[:<span class="op">-</span><span class="dv">1</span>,:,<span class="dv">0</span>], X[<span class="op">-</span><span class="dv">1</span>,:,:].T, yt_hat.detach().squeeze().reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)])        </span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    yyhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> XX]).detach().numpy()</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    train_mse_eachnode_estgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    train_mse_total_estgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    test_mse_eachnode_estgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    test_mse_total_estgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    estgcn_train <span class="op">=</span> yhat.squeeze() <span class="co"># stgcn은 stgcn에 의한 적합결과를 의미함</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    estgcn_test <span class="op">=</span> yyhat.squeeze() </span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>    a.append(train_mse_eachnode_estgcn.tolist())</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>    b.append(train_mse_total_estgcn.tolist())</span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>    c.append(test_mse_eachnode_estgcn.tolist())</span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>    d.append(test_mse_total_estgcn.tolist())</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="203">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(a))<span class="op">;</span> <span class="co"># train_mse_eachnode_estgcn</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="204">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(b)<span class="op">;</span> <span class="co"># train_mse_total_estgcn</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="205">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(pd.DataFrame(c))<span class="op">;</span> <span class="co"># test_mse_eachnode_estgcn</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="206">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(d)<span class="op">;</span> <span class="co"># test_mse_total_estgcn</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
 <section id="gnar" class="level1">
 <h1>GNAR</h1>
 <p><code>-</code></p>
-<div class="cell" data-execution_count="167">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.tensor(np.stack([interpolated_signal[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(interpolated_signal[<span class="dv">2</span>:,:]).<span class="bu">float</span>()</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> torch.tensor(np.stack([fiveVTS_test[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fiveVTS_test[<span class="dv">2</span>:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),:].reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span>,N,<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="212">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> torch.tensor(np.stack([interpolated_signal[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(interpolated_signal[<span class="dv">2</span>:,:]).<span class="bu">float</span>()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> torch.tensor(np.stack([fiveVTS_test[i:(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span><span class="op">+</span>i),:] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)],axis <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)).<span class="bu">float</span>()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fiveVTS_test[<span class="dv">2</span>:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),:].reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>)<span class="op">-</span><span class="dv">2</span>,N,<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="168">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>X_train1 <span class="op">=</span> np.array(interpolated_signal).squeeze()</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>X_test1 <span class="op">=</span>  np.array(fiveVTS_test).squeeze()</span></code></pre></div>
+<div class="cell" data-execution_count="208">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>X_train1 <span class="op">=</span> np.array(interpolated_signal).squeeze()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>X_test1 <span class="op">=</span>  np.array(fiveVTS_test).squeeze()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="169">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X_train1</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X_test1</span></code></pre></div>
+<div class="cell" data-execution_count="209">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X_train1</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X_test1</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="185">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for(i in 1:100){</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> X_train1, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>train_mse_eachnode_gnar <span class="op">&lt;-</span> colMeans(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>test_mse_eachnode_gnar <span class="op">&lt;-</span> colMeans((X_test1 <span class="op">-</span> prediction)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>test_mse_total_gnar <span class="op">&lt;-</span> mean((X_test1 <span class="op">-</span> prediction)<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="210">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for(i in 1:100){</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> X_train1, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>train_mse_eachnode_gnar <span class="op">&lt;-</span> colMeans(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>test_mse_eachnode_gnar <span class="op">&lt;-</span> colMeans((X_test1 <span class="op">-</span> prediction)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>test_mse_total_gnar <span class="op">&lt;-</span> mean((X_test1 <span class="op">-</span> prediction)<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="186">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>train_mse_eachnode_gnar</span></code></pre></div>
+<div class="cell" data-execution_count="211">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>train_mse_eachnode_gnar</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.23792986 0.08335398 0.14341303 0.12407094 0.20140388</code></pre>
+<pre><code>[1] 0.14883067 0.11397092 0.20972447 0.12959694 0.05613478</code></pre>
 </div>
 </div>
 

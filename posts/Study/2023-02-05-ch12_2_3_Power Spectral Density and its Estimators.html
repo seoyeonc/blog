@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-21-ST-GCN Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -400,7 +400,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#p-표현식" id="toc-p-표현식" class="nav-link active" data-scroll-target="#p-표현식"><span class="math inline">\(p\)</span> 표현식</a></li>
+  <li><a href="#property-12.1" id="toc-property-12.1" class="nav-link" data-scroll-target="#property-12.1">Property 12.1</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -447,7 +454,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><span class="math inline">\(\tilde{x} : x\)</span>의 frequency representation</li>
 </ul>
-<p><span class="math inline">\(p\)</span> 표현식</p>
+<section id="p-표현식" class="level2">
+<h2 class="anchored" data-anchor-id="p-표현식"><span class="math inline">\(p\)</span> 표현식</h2>
 <ol type="1">
 <li><span class="math inline">\(C_x = Vdiag(p)V^H \sim diag(V^HC_xV), C_x = E(XX^H) \sim \frac{1}{R}\sum^R_{r=1} x_i x_r^H\)</span></li>
 </ol>
@@ -541,8 +549,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  2  10  21</code></pre>
 </div>
 </div>
+</section>
+<section id="property-12.1" class="level2">
+<h2 class="anchored" data-anchor-id="property-12.1">Property 12.1</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/62d54c47-7613-4e29-80f7-b40ed5b10642-1-f4d5242d-c497-455d-af5a-870bcb834b65.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/46b342eb-d82a-46d4-a36d-ba49fc45b482-1-18441b02-cf54-4e31-b2fa-84b7de0281fd.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>time domain 에서 convolution 연산은 freq-domain 에서 * 연산과 같음</p>
+<p>예시: X의 pdf 와 Y의 pdf를 각각 f,g 라고 하자. 그리고 mgf 를 각각 F,G 라고 하자.</p>
+<p>time domain: X+Y의 pdf는 conv(f,g)</p>
+<p>freq domain: X+Y의 mgf는 F*G</p>
+<p>https://dlsun.github.io/probability/sums-continuous.html</p>
+<p>Sums of Continuous Random Variables</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/4e4ed954-6a15-4ca6-bc69-8989e7ffb5af-1-33355a95-3a21-46a5-994c-7f89e752ae0b.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>https://en.wikipedia.org/wiki/Convolution_theorem</p>
+<p>In mathematics, the convolution theorem states that under suitable conditions the Fourier transform of a convolution of two functions (or signals) is the pointwise product of their Fourier transforms. More generally, convolution in one domain (e.g., time domain) equals point-wise multiplication in the other domain (e.g., frequency domain). Other versions of the convolution theorem are applicable to various Fourier-related transforms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/5bcda3df-da09-4e64-b1f1-6b60c97033c6-1-83e0136f-88c6-420d-97ae-1a0e45a619e8.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>https://faculty.math.illinois.edu/~hildebr/370/370mgfproblems.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/f596eabe-8eb4-469b-a66d-6750076db003-1-a3a43264-a7de-492d-96fe-0271dc899f39.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p><span class="math inline">\(f_T = f_x * f_y \to M_T = M_x \bullet M_y\)</span></p>
+<p>마치 <span class="math inline">\(f_x\)</span>를 <span class="math inline">\(M_x\)</span>로 바꾸고 <span class="math inline">\(f_Y\)</span>를 <span class="math inline">\(M_Y\)</span>로 바꾸고 <span class="math inline">\(f_T\)</span>를 <span class="math inline">\(M_T\)</span>로 바꾸고 <span class="math inline">\(*\)</span>연산은 <span class="math inline">\(\bullet\)</span> 연산으로 바꾸면 되는듯이 보이고, 실제로 그렇다.</p>
+<p><span class="math inline">\(Hx = h * x \to Hx = \tilde{h} \bullet \tilde{x}\)</span></p>
+<p>확률변수</p>
+<p>예) 동전 던지기를 한다고 했을때 사건, event <span class="math inline">\(\to\)</span> H 앞, T 뒤</p>
+<p>확률벡터</p>
+<p>예) 동전 던지기를 두 번 했을 떄, 나올 수 있는 집합,</p>
+<ul>
+<li>HH</li>
+<li>HT</li>
+<li>TH</li>
+<li>TT</li>
+</ul>
+<p>R = 1</p>
+<ul>
+<li>실제로, 한 관측치에서 시계열 하나만 갖을 수 있고, 여러개의 시계열을 가진다는 것은 비현실적이다.</li>
+<li>책에서 돌린 R=100의 개념은 시뮬레이션으로서 가능,
+<ul>
+<li>위 사진: R=1때 분산이 크고, R=100일때 TRUE값이 잘 맞음</li>
+<li>아래 사진: R=1일때 분산이 작아지고, R=100일때 TRUE값과 편차bias가 생겼다.</li>
+<li>현실적으로 R=1만 얻어지기 때문에 위보다 아래 방법을 쓰는 것이 더 낫다.</li>
+</ul></li>
+</ul>
+<p>R=1000 일때도 동일하다고 말하기 위해서 <code>정상</code>의 개념이 필요하다, 정상성을 띄고 있어야 시계열을 많이 가지고 있어도 일정하다고 말할 수 있기 때문</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

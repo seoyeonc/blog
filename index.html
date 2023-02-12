@@ -71,7 +71,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
+      page: 30,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
@@ -209,17 +210,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 Block Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2 80% Missing repeat</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2 Block Missing repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,6 +231,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./posts/GCN/2023-01-26-ESTGCN_STGCN_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -352,7 +358,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(30)</span></div><div class="category" data-category="DFT">DFT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Discrete Fourier Transform">Discrete Fourier Transform <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GCN">GCN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GNAR">GNAR <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GODE">GODE <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Power Spectral Density and its Estimators">Power Spectral Density and its Estimators <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ST-GCN">ST-GCN <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Spaces">Spaces <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Study">Study <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Weakly Stationary Graph Processes">Weakly Stationary Graph Processes <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(31)</span></div><div class="category" data-category="DFT">DFT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Discrete Fourier Transform">Discrete Fourier Transform <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GCN">GCN <span class="quarto-category-count">(1)</span></div><div class="category" data-category="GNAR">GNAR <span class="quarto-category-count">(2)</span></div><div class="category" data-category="GODE">GODE <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Power Spectral Density and its Estimators">Power Spectral Density and its Estimators <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Quarto">Quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ST-GCN">ST-GCN <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Spaces">Spaces <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Study">Study <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Weakly Stationary Graph Processes">Weakly Stationary Graph Processes <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-body" id="quarto-document-content">
 
@@ -388,18 +394,29 @@ Author
 <td class="listing-author">
 </td>
 </tr>
-<tr data-index="1" data-categories="ST-GCN" data-listing-date-sort="1675782000000" data-listing-file-modified-sort="1676041298000" data-listing-reading-time-sort="0.275" data-listing-title-sort="Class of Method(GNAR) lag 2 Block Missing repeat" data-listing-filename-sort="2023-02-08-ESTGCN_GNAR_DATA_4.ipynb">
+<tr data-index="1" data-categories="ST-GCN" data-listing-date-sort="1676041200000" data-listing-file-modified-sort="1676107720000" data-listing-reading-time-sort="0.29" data-listing-title-sort="Class of Method(WikiMath) lag 4 80% repeat" data-listing-filename-sort="2023-02-11-ESTGCN_STGCN_DATA_3.ipynb">
 <td class="listing-date">
-Feb 8, 2023
+Feb 11, 2023
 </td>
 <td class="listing-title">
-<a href="./posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="title">Class of Method(GNAR) lag 2 Block Missing repeat</a>
+<a href="./posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="title">Class of Method(WikiMath) lag 4 80% repeat</a>
 </td>
 <td class="listing-author">
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="2" data-categories="ST-GCN" data-listing-date-sort="1675695600000" data-listing-file-modified-sort="1675736111000" data-listing-reading-time-sort="0.815" data-listing-title-sort="Class of Method(WikiMath) lag 1" data-listing-filename-sort="2023-02-07-ESTGCN_STGCN_DATA_2.ipynb">
+<tr data-index="2" data-categories="ST-GCN" data-listing-date-sort="1675782000000" data-listing-file-modified-sort="1676170010000" data-listing-reading-time-sort="0.275" data-listing-title-sort="Class of Method(GNAR) lag 1 Block Missing repeat" data-listing-filename-sort="2023-02-08-ESTGCN_GNAR_DATA_4.ipynb">
+<td class="listing-date">
+Feb 8, 2023
+</td>
+<td class="listing-title">
+<a href="./posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="title">Class of Method(GNAR) lag 1 Block Missing repeat</a>
+</td>
+<td class="listing-author">
+SEOYEON CHOI
+</td>
+</tr>
+<tr data-index="3" data-categories="ST-GCN" data-listing-date-sort="1675695600000" data-listing-file-modified-sort="1675736111000" data-listing-reading-time-sort="0.815" data-listing-title-sort="Class of Method(WikiMath) lag 1" data-listing-filename-sort="2023-02-07-ESTGCN_STGCN_DATA_2.ipynb">
 <td class="listing-date">
 Feb 7, 2023
 </td>
@@ -410,18 +427,18 @@ Feb 7, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="3" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1676037647000" data-listing-reading-time-sort="0.275" data-listing-title-sort="Class of Method(GNAR) lag 2 80% Missing repeat" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_3.ipynb">
+<tr data-index="4" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1676170178000" data-listing-reading-time-sort="0.41" data-listing-title-sort="Class of Method(GNAR) lag 1 80% Missing repeat" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_3.ipynb">
 <td class="listing-date">
 Feb 6, 2023
 </td>
 <td class="listing-title">
-<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="title">Class of Method(GNAR) lag 2 80% Missing repeat</a>
+<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="title">Class of Method(GNAR) lag 1 80% Missing repeat</a>
 </td>
 <td class="listing-author">
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="4" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1675675115000" data-listing-reading-time-sort="0.805" data-listing-title-sort="Class of Method(GNAR) lag 2" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_2.ipynb">
+<tr data-index="5" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1675675115000" data-listing-reading-time-sort="0.805" data-listing-title-sort="Class of Method(GNAR) lag 2" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_2.ipynb">
 <td class="listing-date">
 Feb 6, 2023
 </td>
@@ -432,7 +449,7 @@ Feb 6, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="5" data-categories="Power Spectral Density and its Estimators" data-listing-date-sort="1675522800000" data-listing-file-modified-sort="1676017016000" data-listing-reading-time-sort="2.89" data-listing-title-sort="Chap 12.2 ~ 3: Power Spectral Density and its Estimators" data-listing-filename-sort="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.ipynb">
+<tr data-index="6" data-categories="Power Spectral Density and its Estimators" data-listing-date-sort="1675522800000" data-listing-file-modified-sort="1676107607000" data-listing-reading-time-sort="3.165" data-listing-title-sort="Chap 12.2 ~ 3: Power Spectral Density and its Estimators" data-listing-filename-sort="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.ipynb">
 <td class="listing-date">
 Feb 5, 2023
 </td>
@@ -443,7 +460,7 @@ Feb 5, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="6" data-categories="Weakly Stationary Graph Processes" data-listing-date-sort="1675350000000" data-listing-file-modified-sort="1675995959000" data-listing-reading-time-sort="3.15" data-listing-title-sort="Chap 12.2: Weakly Stationary Graph Processes" data-listing-filename-sort="2023-02-02-ch12.2_Weakly Stationary Graph Processes.ipynb">
+<tr data-index="7" data-categories="Weakly Stationary Graph Processes" data-listing-date-sort="1675350000000" data-listing-file-modified-sort="1675995959000" data-listing-reading-time-sort="3.15" data-listing-title-sort="Chap 12.2: Weakly Stationary Graph Processes" data-listing-filename-sort="2023-02-02-ch12.2_Weakly Stationary Graph Processes.ipynb">
 <td class="listing-date">
 Feb 3, 2023
 </td>
@@ -454,7 +471,7 @@ Feb 3, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="7" data-categories="Discrete Fourier Transform" data-listing-date-sort="1675177200000" data-listing-file-modified-sort="1675519443000" data-listing-reading-time-sort="2.07" data-listing-title-sort="Chap 8.3: Discrete Fourier Transform" data-listing-filename-sort="2023-02-01-ch8_DFT.ipynb">
+<tr data-index="8" data-categories="Discrete Fourier Transform" data-listing-date-sort="1675177200000" data-listing-file-modified-sort="1675519443000" data-listing-reading-time-sort="2.07" data-listing-title-sort="Chap 8.3: Discrete Fourier Transform" data-listing-filename-sort="2023-02-01-ch8_DFT.ipynb">
 <td class="listing-date">
 Feb 1, 2023
 </td>
@@ -465,7 +482,7 @@ Feb 1, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="8" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1675730492000" data-listing-reading-time-sort="0.795" data-listing-title-sort="Class of Method(GNAR) lag 1" data-listing-filename-sort="2023-01-26-ESTGCN_GNAR_DATA.ipynb">
+<tr data-index="9" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1675730492000" data-listing-reading-time-sort="0.795" data-listing-title-sort="Class of Method(GNAR) lag 1" data-listing-filename-sort="2023-01-26-ESTGCN_GNAR_DATA.ipynb">
 <td class="listing-date">
 Jan 28, 2023
 </td>
@@ -476,7 +493,7 @@ Jan 28, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="9" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1676017669000" data-listing-reading-time-sort="0.865" data-listing-title-sort="Class of Method(WikiMath) lag 4" data-listing-filename-sort="2023-01-26-ESTGCN_STGCN_DATA.ipynb">
+<tr data-index="10" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1676017669000" data-listing-reading-time-sort="0.865" data-listing-title-sort="Class of Method(WikiMath) lag 4" data-listing-filename-sort="2023-01-26-ESTGCN_STGCN_DATA.ipynb">
 <td class="listing-date">
 Jan 28, 2023
 </td>
@@ -487,7 +504,7 @@ Jan 28, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="10" data-categories="ST-GCN" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1675936618000" data-listing-reading-time-sort="0.565" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-26-guebin.ipynb">
+<tr data-index="11" data-categories="ST-GCN" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1675936618000" data-listing-reading-time-sort="0.565" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-26-guebin.ipynb">
 <td class="listing-date">
 Jan 26, 2023
 </td>
@@ -498,7 +515,7 @@ Jan 26, 2023
 Guebin Choi
 </td>
 </tr>
-<tr data-index="11" data-categories="ST-GCN" data-listing-date-sort="1674226800000" data-listing-file-modified-sort="1674899698000" data-listing-reading-time-sort="0.48" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-21-Class.ipynb">
+<tr data-index="12" data-categories="ST-GCN" data-listing-date-sort="1674226800000" data-listing-file-modified-sort="1674899698000" data-listing-reading-time-sort="0.48" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-21-Class.ipynb">
 <td class="listing-date">
 Jan 21, 2023
 </td>
@@ -509,7 +526,7 @@ Jan 21, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="12" data-categories="ST-GCN" data-listing-date-sort="1674140400000" data-listing-file-modified-sort="1674813192000" data-listing-reading-time-sort="0.48" data-listing-title-sort="1st ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-20-Algorithm_traintest.ipynb">
+<tr data-index="13" data-categories="ST-GCN" data-listing-date-sort="1674140400000" data-listing-file-modified-sort="1674813192000" data-listing-reading-time-sort="0.48" data-listing-title-sort="1st ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-20-Algorithm_traintest.ipynb">
 <td class="listing-date">
 Jan 20, 2023
 </td>
@@ -520,7 +537,7 @@ Jan 20, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="13" data-categories="ST-GCN" data-listing-date-sort="1673881200000" data-listing-file-modified-sort="1674017589000" data-listing-reading-time-sort="0.14" data-listing-title-sort="2nd ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-18-Algorithm_traintest_2.ipynb">
+<tr data-index="14" data-categories="ST-GCN" data-listing-date-sort="1673881200000" data-listing-file-modified-sort="1674017589000" data-listing-reading-time-sort="0.14" data-listing-title-sort="2nd ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-18-Algorithm_traintest_2.ipynb">
 <td class="listing-date">
 Jan 17, 2023
 </td>
@@ -531,7 +548,7 @@ Jan 17, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="14" data-categories="ST-GCN,GNAR" data-listing-date-sort="1673362800000" data-listing-file-modified-sort="1674051543000" data-listing-reading-time-sort="1.545" data-listing-title-sort="GCN Algorithm Example 1" data-listing-filename-sort="2023-01-11-Algorithm_EX_1.ipynb">
+<tr data-index="15" data-categories="ST-GCN,GNAR" data-listing-date-sort="1673362800000" data-listing-file-modified-sort="1674051543000" data-listing-reading-time-sort="1.545" data-listing-title-sort="GCN Algorithm Example 1" data-listing-filename-sort="2023-01-11-Algorithm_EX_1.ipynb">
 <td class="listing-date">
 Jan 11, 2023
 </td>
@@ -542,7 +559,7 @@ Jan 11, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="15" data-categories="GNAR" data-listing-date-sort="1672844400000" data-listing-file-modified-sort="1675851530000" data-listing-reading-time-sort="6.65" data-listing-title-sort="GNAR data" data-listing-filename-sort="2023-01-05-GNAR.ipynb">
+<tr data-index="16" data-categories="GNAR" data-listing-date-sort="1672844400000" data-listing-file-modified-sort="1675851530000" data-listing-reading-time-sort="6.65" data-listing-title-sort="GNAR data" data-listing-filename-sort="2023-01-05-GNAR.ipynb">
 <td class="listing-date">
 Jan 5, 2023
 </td>
@@ -553,7 +570,7 @@ Jan 5, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="16" data-listing-date-sort="1672585200000" data-listing-file-modified-sort="1672635078000" data-listing-reading-time-sort="0.765" data-listing-title-sort="quarto blog tips" data-listing-filename-sort="2023-01-02-quarto_tips.ipynb">
+<tr data-index="17" data-listing-date-sort="1672585200000" data-listing-file-modified-sort="1672635078000" data-listing-reading-time-sort="0.765" data-listing-title-sort="quarto blog tips" data-listing-filename-sort="2023-01-02-quarto_tips.ipynb">
 <td class="listing-date">
 Jan 2, 2023
 </td>
@@ -564,7 +581,7 @@ Jan 2, 2023
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="17" data-categories="Spaces" data-listing-date-sort="1672412400000" data-listing-file-modified-sort="1672476181000" data-listing-reading-time-sort="0.155" data-listing-title-sort="Study for Spaces" data-listing-filename-sort="2022-12-31-Space-study.ipynb">
+<tr data-index="18" data-categories="Spaces" data-listing-date-sort="1672412400000" data-listing-file-modified-sort="1672476181000" data-listing-reading-time-sort="0.155" data-listing-title-sort="Study for Spaces" data-listing-filename-sort="2022-12-31-Space-study.ipynb">
 <td class="listing-date">
 Dec 31, 2022
 </td>
@@ -575,7 +592,7 @@ Dec 31, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="18" data-categories="ST-GCN" data-listing-date-sort="1672153200000" data-listing-file-modified-sort="1674490127000" data-listing-reading-time-sort="0.94" data-listing-title-sort="Simulation of geometric-temporal" data-listing-filename-sort="2022-12-28-gcn_simulation.ipynb">
+<tr data-index="19" data-categories="ST-GCN" data-listing-date-sort="1672153200000" data-listing-file-modified-sort="1674490127000" data-listing-reading-time-sort="0.94" data-listing-title-sort="Simulation of geometric-temporal" data-listing-filename-sort="2022-12-28-gcn_simulation.ipynb">
 <td class="listing-date">
 Dec 28, 2022
 </td>
@@ -586,7 +603,7 @@ Dec 28, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="19" data-categories="DFT" data-listing-date-sort="1672066800000" data-listing-file-modified-sort="1672215408000" data-listing-reading-time-sort="0.295" data-listing-title-sort="Discrete Fourier Transform" data-listing-filename-sort="2022-12-27-DFT_study.ipynb">
+<tr data-index="20" data-categories="DFT" data-listing-date-sort="1672066800000" data-listing-file-modified-sort="1672215408000" data-listing-reading-time-sort="0.295" data-listing-title-sort="Discrete Fourier Transform" data-listing-filename-sort="2022-12-27-DFT_study.ipynb">
 <td class="listing-date">
 Dec 27, 2022
 </td>
@@ -597,7 +614,7 @@ Dec 27, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="20" data-categories="ST-GCN" data-listing-date-sort="1671548400000" data-listing-file-modified-sort="1673921177000" data-listing-reading-time-sort="15.95" data-listing-title-sort="PyTorch ST-GCN Dataset" data-listing-filename-sort="2022-12-21-ST-GCN_Dataset.ipynb">
+<tr data-index="21" data-categories="ST-GCN" data-listing-date-sort="1671548400000" data-listing-file-modified-sort="1673921177000" data-listing-reading-time-sort="15.95" data-listing-title-sort="PyTorch ST-GCN Dataset" data-listing-filename-sort="2022-12-21-ST-GCN_Dataset.ipynb">
 <td class="listing-date">
 Dec 21, 2022
 </td>
@@ -608,7 +625,7 @@ Dec 21, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="21" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1672475004000" data-listing-reading-time-sort="0.55" data-listing-title-sort="TORCH_GEOMETRIC.NN" data-listing-filename-sort="2022-12-07-torchgcn.ipynb">
+<tr data-index="22" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1672475004000" data-listing-reading-time-sort="0.55" data-listing-title-sort="TORCH_GEOMETRIC.NN" data-listing-filename-sort="2022-12-07-torchgcn.ipynb">
 <td class="listing-date">
 Dec 5, 2022
 </td>
@@ -619,7 +636,7 @@ Dec 5, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="22" data-categories="GODE" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1670240279000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GCN" data-listing-filename-sort="index.qmd">
+<tr data-index="23" data-categories="GODE" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1670240279000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GCN" data-listing-filename-sort="index.qmd">
 <td class="listing-date">
 Dec 5, 2022
 </td>
@@ -630,7 +647,7 @@ Dec 5, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="23" data-categories="Study" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1672475469000" data-listing-reading-time-sort="0.01" data-listing-title-sort="Study" data-listing-filename-sort="index.qmd">
+<tr data-index="24" data-categories="Study" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1672475469000" data-listing-reading-time-sort="0.01" data-listing-title-sort="Study" data-listing-filename-sort="index.qmd">
 <td class="listing-date">
 Dec 1, 2022
 </td>
@@ -641,7 +658,7 @@ Dec 1, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="24" data-categories="GODE" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1669416508000" data-listing-reading-time-sort="0.07" data-listing-title-sort="Graph code" data-listing-filename-sort="2022-12-01-graph_code_guebin.ipynb">
+<tr data-index="25" data-categories="GODE" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1669416508000" data-listing-reading-time-sort="0.07" data-listing-title-sort="Graph code" data-listing-filename-sort="2022-12-01-graph_code_guebin.ipynb">
 <td class="listing-date">
 Dec 1, 2022
 </td>
@@ -652,7 +669,7 @@ Dec 1, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="25" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1671378825000" data-listing-reading-time-sort="0.785" data-listing-title-sort="Earthquake" data-listing-filename-sort="2022-10-02-Earthquake_real.ipynb">
+<tr data-index="26" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1671378825000" data-listing-reading-time-sort="0.785" data-listing-title-sort="Earthquake" data-listing-filename-sort="2022-10-02-Earthquake_real.ipynb">
 <td class="listing-date">
 Nov 24, 2022
 </td>
@@ -663,7 +680,7 @@ Nov 24, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="26" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1671245240000" data-listing-reading-time-sort="1.385" data-listing-title-sort="Class code for Comparison Study" data-listing-filename-sort="2022-11-19-class_code_for_paper.ipynb">
+<tr data-index="27" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1671245240000" data-listing-reading-time-sort="1.385" data-listing-title-sort="Class code for Comparison Study" data-listing-filename-sort="2022-11-19-class_code_for_paper.ipynb">
 <td class="listing-date">
 Nov 24, 2022
 </td>
@@ -674,7 +691,7 @@ Nov 24, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="27" data-categories="GODE" data-listing-date-sort="1662044400000" data-listing-file-modified-sort="1669416478000" data-listing-reading-time-sort="1.245" data-listing-title-sort="Simulation" data-listing-filename-sort="2022-09-02-paper_simulation.ipynb">
+<tr data-index="28" data-categories="GODE" data-listing-date-sort="1662044400000" data-listing-file-modified-sort="1669416478000" data-listing-reading-time-sort="1.245" data-listing-title-sort="Simulation" data-listing-filename-sort="2022-09-02-paper_simulation.ipynb">
 <td class="listing-date">
 Sep 2, 2022
 </td>
@@ -685,7 +702,7 @@ Sep 2, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="28" data-categories="GODE" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1669416453000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GODE" data-listing-filename-sort="index.qmd">
+<tr data-index="29" data-categories="GODE" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1669416453000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GODE" data-listing-filename-sort="index.qmd">
 <td class="listing-date">
 Sep 1, 2022
 </td>
@@ -696,7 +713,7 @@ Sep 1, 2022
 SEOYEON CHOI
 </td>
 </tr>
-<tr data-index="29" data-categories="Quarto" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1675305992000" data-listing-reading-time-sort="0.025" data-listing-title-sort="Quarto tip" data-listing-filename-sort="index.qmd">
+<tr data-index="30" data-categories="Quarto" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1675305992000" data-listing-reading-time-sort="0.025" data-listing-title-sort="Quarto tip" data-listing-filename-sort="index.qmd">
 <td class="listing-date">
 Sep 1, 2022
 </td>
@@ -713,6 +730,9 @@ SEOYEON CHOI
 <div class="listing-no-matching d-none">
 No matching items
 </div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

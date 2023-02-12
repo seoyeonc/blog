@@ -258,17 +258,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 Block Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2 80% Missing repeat</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2 Block Missing repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,6 +279,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-26-ESTGCN_STGCN_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -405,7 +410,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#p-표현식" id="toc-p-표현식" class="nav-link active" data-scroll-target="#p-표현식"><span class="math inline">\(p\)</span> 표현식</a></li>
-  <li><a href="#property-12.1" id="toc-property-12.1" class="nav-link" data-scroll-target="#property-12.1">Property 12.1</a></li>
+  <li><a href="#property-12.1" id="toc-property-12.1" class="nav-link" data-scroll-target="#property-12.1">Property 12.1</a>
+  <ul class="collapse">
+  <li><a href="#sums-of-continuous-random-variables" id="toc-sums-of-continuous-random-variables" class="nav-link" data-scroll-target="#sums-of-continuous-random-variables">Sums of Continuous Random Variables</a></li>
+  <li><a href="#convolution-theorem" id="toc-convolution-theorem" class="nav-link" data-scroll-target="#convolution-theorem">Convolution Theorem</a></li>
+  </ul></li>
+  <li><a href="#r의-개념" id="toc-r의-개념" class="nav-link" data-scroll-target="#r의-개념"><span class="math inline">\(R\)</span>의 개념</a></li>
   </ul>
 </nav>
     </div>
@@ -418,8 +428,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>Chap 12.2 ~ 3: Power Spectral Density and its Estimators</p>
 </blockquote>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">Plots</span>, <span class="bu">FFTW</span>, <span class="bu">Statistics</span></span></code></pre></div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">Plots</span>, <span class="bu">FFTW</span>, <span class="bu">Statistics</span>, <span class="bu">Distributions</span></span></code></pre></div>
 </div>
 <p><span class="math inline">\(\star\)</span> 정상시계열은 유한차수의 ARMA로 근사할 수 있다.</p>
 <ul>
@@ -552,6 +562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="property-12.1" class="level2">
 <h2 class="anchored" data-anchor-id="property-12.1">Property 12.1</h2>
+<p><span class="math inline">\(f_T = f_x * f_y \to M_T = M_x \bullet M_y\)</span></p>
+<p>마치 <span class="math inline">\(f_x\)</span>를 <span class="math inline">\(M_x\)</span>로 바꾸고 <span class="math inline">\(f_Y\)</span>를 <span class="math inline">\(M_Y\)</span>로 바꾸고 <span class="math inline">\(f_T\)</span>를 <span class="math inline">\(M_T\)</span>로 바꾸고 <span class="math inline">\(*\)</span>연산은 <span class="math inline">\(\bullet\)</span> 연산으로 바꾸면 되는듯이 보이고, 실제로 그렇다.</p>
+<p><span class="math inline">\(Hx = h * x \to Hx = \tilde{h} \bullet \tilde{x}\)</span></p>
+<p>time domain 에서 convolution 연산은 freq-domain 에서 * 연산과 같음</p>
+<p>예시: X의 pdf 와 Y의 pdf를 각각 f,g 라고 하자. 그리고 mgf 를 각각 F,G 라고 하자.</p>
+<p>time domain: X+Y의 pdf는 conv(f,g)</p>
+<p>freq domain: X+Y의 mgf는 F*G</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/62d54c47-7613-4e29-80f7-b40ed5b10642-1-f4d5242d-c497-455d-af5a-870bcb834b65.png" class="img-fluid figure-img"></p>
@@ -564,12 +581,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
 </figure>
 </div>
-<p>time domain 에서 convolution 연산은 freq-domain 에서 * 연산과 같음</p>
-<p>예시: X의 pdf 와 Y의 pdf를 각각 f,g 라고 하자. 그리고 mgf 를 각각 F,G 라고 하자.</p>
-<p>time domain: X+Y의 pdf는 conv(f,g)</p>
-<p>freq domain: X+Y의 mgf는 F*G</p>
 <p>https://dlsun.github.io/probability/sums-continuous.html</p>
-<p>Sums of Continuous Random Variables</p>
+<section id="sums-of-continuous-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="sums-of-continuous-random-variables">Sums of Continuous Random Variables</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/4e4ed954-6a15-4ca6-bc69-8989e7ffb5af-1-33355a95-3a21-46a5-994c-7f89e752ae0b.png" class="img-fluid figure-img"></p>
@@ -577,6 +591,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 <p>https://en.wikipedia.org/wiki/Convolution_theorem</p>
+</section>
+<section id="convolution-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="convolution-theorem">Convolution Theorem</h3>
 <p>In mathematics, the convolution theorem states that under suitable conditions the Fourier transform of a convolution of two functions (or signals) is the pointwise product of their Fourier transforms. More generally, convolution in one domain (e.g., time domain) equals point-wise multiplication in the other domain (e.g., frequency domain). Other versions of the convolution theorem are applicable to various Fourier-related transforms.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -591,30 +608,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
 </figure>
 </div>
-<p><span class="math inline">\(f_T = f_x * f_y \to M_T = M_x \bullet M_y\)</span></p>
-<p>마치 <span class="math inline">\(f_x\)</span>를 <span class="math inline">\(M_x\)</span>로 바꾸고 <span class="math inline">\(f_Y\)</span>를 <span class="math inline">\(M_Y\)</span>로 바꾸고 <span class="math inline">\(f_T\)</span>를 <span class="math inline">\(M_T\)</span>로 바꾸고 <span class="math inline">\(*\)</span>연산은 <span class="math inline">\(\bullet\)</span> 연산으로 바꾸면 되는듯이 보이고, 실제로 그렇다.</p>
-<p><span class="math inline">\(Hx = h * x \to Hx = \tilde{h} \bullet \tilde{x}\)</span></p>
+</section>
+</section>
+<section id="r의-개념" class="level2">
+<h2 class="anchored" data-anchor-id="r의-개념"><span class="math inline">\(R\)</span>의 개념</h2>
 <p>확률변수</p>
 <p>예) 동전 던지기를 한다고 했을때 사건, event <span class="math inline">\(\to\)</span> H 앞, T 뒤</p>
 <p>확률벡터</p>
 <p>예) 동전 던지기를 두 번 했을 떄, 나올 수 있는 집합,</p>
 <ul>
-<li>HH</li>
-<li>HT</li>
-<li>TH</li>
-<li>TT</li>
+<li><span class="math inline">\(HH\)</span></li>
+<li><span class="math inline">\(HT\)</span></li>
+<li><span class="math inline">\(TH\)</span></li>
+<li><span class="math inline">\(TT\)</span></li>
 </ul>
-<p>R = 1</p>
+<p>동전을 100회 던질때, 이떄 각 사건은 독립.</p>
+<p><span class="math inline">\(X = \{ X_1, X_2, \dots, X_{100}\}\)</span></p>
+<p><span class="math inline">\(E(X_{77}) = 0.5\)</span>일 것이다.</p>
+<p>이게 정말 <span class="math inline">\(0.5\)</span>인지 시뮬레이션으로 확인해본다면,</p>
+<ol type="1">
+<li>100회의 평균을 제시하는 방법(R=1)</li>
+<li>simulation을 N번 하여 그 중 77번째의 값을 평균내는 방법(R=N)</li>
+</ol>
+<p>이 있는데, 2번의 방법은 현실적으로 불가능. 따라서 1번을 제시하는 경우가 많다.</p>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    N<span class="op">=</span><span class="fl">100</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span><span class="fl">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span><span class="fu">rand</span>(<span class="fu">Binomial</span>(n,p),N)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    mean: </span><span class="sc">$</span>(n<span class="op">*</span>p)<span class="st">,simulation: </span><span class="sc">$</span>(<span class="fu">mean</span>(X))<span class="st">"""</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>"mean: 0.5,simulation: 0.49"</code></pre>
+</div>
+</div>
+<p><code>-</code> 1번의 방법</p>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(<span class="fu">rand</span>(<span class="fu">Bernoulli</span>(<span class="fl">0.5</span>),<span class="fl">10000</span>),bins<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">0.01</span><span class="op">:</span><span class="fl">1.01</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/cell-11-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/187db07a-946f-4f0d-b902-7042587a3861-1-cfc8551b-8792-424a-99e4-9054b3b9932e.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p><span class="math inline">\(R\)</span> = 1</p>
 <ul>
 <li>실제로, 한 관측치에서 시계열 하나만 갖을 수 있고, 여러개의 시계열을 가진다는 것은 비현실적이다.</li>
-<li>책에서 돌린 R=100의 개념은 시뮬레이션으로서 가능,
+<li>책에서 돌린 <span class="math inline">\(R=100\)</span>의 개념은 시뮬레이션으로서 가능,
 <ul>
-<li>위 사진: R=1때 분산이 크고, R=100일때 TRUE값이 잘 맞음</li>
-<li>아래 사진: R=1일때 분산이 작아지고, R=100일때 TRUE값과 편차bias가 생겼다.</li>
-<li>현실적으로 R=1만 얻어지기 때문에 위보다 아래 방법을 쓰는 것이 더 낫다.</li>
+<li>왼쪽 위 사진: <span class="math inline">\(R=1\)</span>때 분산이 크고, <span class="math inline">\(R=100\)</span>일때 TRUE값이 잘 맞음</li>
+<li>왼쪽 아래 사진: <span class="math inline">\(R=1\)</span>일때 분산이 작아지고, R=100일때 TRUE값과 편차bias가 생겼다.</li>
+<li>현실적으로 <span class="math inline">\(R=1\)</span>만 얻어지기 때문에 위(periodogram)보다 아래(Win. Period) 방법을 쓰는 것이 더 낫다고 저자는 제안함</li>
 </ul></li>
 </ul>
-<p>R=1000 일때도 동일하다고 말하기 위해서 <code>정상</code>의 개념이 필요하다, 정상성을 띄고 있어야 시계열을 많이 가지고 있어도 일정하다고 말할 수 있기 때문</p>
+<p><span class="math inline">\(\star R=1000\)</span> 일때도 동일하다고 말하기 위해서 <code>정상</code>의 개념이 필요하다, 정상성을 띄고 있어야 시계열을 많이 가지고 있어도 일정하다고 말할 수 있기 때문</p>
 
 
 </section>

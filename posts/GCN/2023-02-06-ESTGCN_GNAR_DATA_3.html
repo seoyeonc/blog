@@ -9,7 +9,7 @@
 <meta name="author" content="SEOYEON CHOI">
 <meta name="dcterms.date" content="2023-02-06">
 
-<title>Seoyeon’s Blog for study - Class of Method(GNAR) lag 2 80% Missing repeat</title>
+<title>Seoyeon’s Blog for study - Class of Method(GNAR) lag 1 80% Missing repeat</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Class of Method(GNAR) lag 2 80% Missing repeat</h1>
+      <h1 class="quarto-secondary-nav-title">Class of Method(GNAR) lag 1 80% Missing repeat</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Class of Method(GNAR) lag 2 80% Missing repeat</h1>
+      <h1 class="title d-none d-lg-block">Class of Method(GNAR) lag 1 80% Missing repeat</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">ST-GCN</div>
               </div>
@@ -257,17 +257,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link active">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 Block Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link active">Class of Method(GNAR) lag 2 80% Missing repeat</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2 Block Missing repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -278,6 +278,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-26-ESTGCN_STGCN_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -459,8 +464,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># rpy2</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro </span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector </span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code></pre></div>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> robjects</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
@@ -654,19 +660,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    stgcn_train1.append(train_mse_total_stgcn.tolist())</span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    stgcn_test1.append(test_mse_total_stgcn.tolist())</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="36">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(stgcn_train1)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-execution_count="37">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(stgcn_test1)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
-</div>
 </div>
 </section>
 <section id="missing-다르게" class="level2">
@@ -714,19 +714,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    stgcn_train2.append(train_mse_total_stgcn.tolist())</span>
 <span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    stgcn_test2.append(test_mse_total_stgcn.tolist())</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="38">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(stgcn_train2)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-execution_count="39">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(stgcn_test2)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
-</div>
 </div>
 </section>
 </section>
@@ -785,19 +779,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    estgcn_train1.append(train_mse_total_estgcn.tolist())</span>
 <span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    estgcn_test1.append(test_mse_total_estgcn.tolist())</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="40">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(estgcn_train1)<span class="op">;</span> </span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-execution_count="41">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(estgcn_test1)<span class="op">;</span> </span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
-</div>
 </div>
 </section>
 <section id="missing-매번-다르게" class="level2">
@@ -850,19 +838,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>    estgcn_train2.append(train_mse_total_estgcn.tolist())</span>
 <span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>    estgcn_test2.append(test_mse_total_estgcn.tolist())</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="42">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(estgcn_train2)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
 </div>
-</div>
-<div class="cell" data-execution_count="43">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(estgcn_test2)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
-</div>
 </div>
 </section>
 </section>
@@ -872,185 +854,190 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span></code></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>library(zoo)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>GNAR <span class="op">=</span> importr(<span class="st">'GNAR'</span>) <span class="co"># import GNAR </span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>igraph <span class="op">=</span> importr(<span class="st">'igraph'</span>) <span class="co"># import igraph </span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fiveNet_m <span class="op">&lt;-</span> <span class="im">as</span>.matrix(fiveNet)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>library(zoo)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o fiveNet_m</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>GNAR <span class="op">=</span> importr(<span class="st">'GNAR'</span>) <span class="co"># import GNAR </span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>igraph <span class="op">=</span> importr(<span class="st">'igraph'</span>) <span class="co"># import igraph </span></span></code></pre></div>
 </div>
 <section id="missing-일정-2" class="level2">
 <h2 class="anchored" data-anchor-id="missing-일정-2">missing 일정</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>fiveVTS_train <span class="op">&lt;-</span> fiveVTS[<span class="dv">1</span>:<span class="dv">160</span>,]</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>fiveVTS_test <span class="op">&lt;-</span> fiveVTS[<span class="dv">161</span>:<span class="dv">200</span>,]</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>percent <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>time <span class="op">&lt;-</span> <span class="dv">160</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>missing_index <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">5</span>,nrow<span class="op">=</span><span class="dv">127</span>)</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">5</span>){</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    missing_index[,i] <span class="op">&lt;-</span> sample(<span class="dv">1</span>:(nrow(fiveVTS_train)<span class="op">-</span><span class="dv">1</span>), (nrow(fiveVTS_train))<span class="op">*</span>percent<span class="op">-</span><span class="dv">1</span>,replace <span class="op">=</span> FALSE)</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    fiveVTS_train[missing_index[,i],i] <span class="op">&lt;-</span> NaN</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    linear_missing <span class="op">&lt;-</span> fiveVTS_train</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    linear_missing[,i] <span class="op">&lt;-</span> na.approx(linear_missing[,i],na.rm<span class="op">=</span>TRUE)</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>}  </span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>interpolated_signal <span class="op">&lt;-</span> linear_missing</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>X <span class="op">&lt;-</span> interpolated_signal[c(<span class="dv">1</span>:(nrow(interpolated_signal)<span class="op">-</span><span class="dv">2</span>)),]</span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>XX <span class="op">&lt;-</span> fiveVTS_test[c(<span class="dv">1</span>:(nrow(fiveVTS_test))),]</span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>gnar_train1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>gnar_test1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">100</span>){</span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>  answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> X, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>  prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>  train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>  test_mse_total_gnar <span class="op">&lt;-</span> mean((XX <span class="op">-</span> prediction[<span class="dv">1</span>:<span class="dv">40</span>])<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a>  gnar_train1[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
-<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a>  gnar_test1[di] <span class="op">&lt;-</span> train_mse_total_gnar</span>
-<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>_zero <span class="op">=</span> Missing(fiveVTS_train)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>_zero.miss(percent <span class="op">=</span> <span class="fl">0.8</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>_zero.second_linear()</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>missing_index <span class="op">=</span> _zero.number</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>interpolated_signal <span class="op">=</span> _zero.train_linear</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array(torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:].squeeze())</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array(torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:].squeeze())</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>XX <span class="op">=</span> np.array(torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>().squeeze())</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> np.array(torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>().squeeze())</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>real_y <span class="op">=</span> np.array(torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:])</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_train1</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_test1</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i XX</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_train1)<span class="op">;</span></span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'gnar_train1' is not defined</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>gnar_train1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>gnar_test1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">100</span>){</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> X, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  test_mse_total_gnar <span class="op">&lt;-</span> mean((XX <span class="op">-</span> prediction[<span class="dv">1</span>:<span class="dv">40</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  gnar_train1[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  gnar_test1[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<pre><code>&lt;Figure size 864x576 with 0 Axes&gt;</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_train1</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_test1</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_test1)<span class="op">;</span></span></code></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_train1)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_test1)<span class="op">;</span></span></code></pre></div>
 </div>
 </section>
 <section id="missing-다르게-1" class="level2">
 <h2 class="anchored" data-anchor-id="missing-다르게-1">missing 다르게</h2>
+<p>m = robjects.r.matrix(FloatVector([0,0,0,1,1,0,0,1,1,0,0,1,0,1,0,1,1,1,0,0,1,0,0,0,0]), nrow = 5, ncol = 5) print(m)</p>
+<p>import rpy2.robjects.numpy2ri as rpyn # vector=rpyn.ri2numpy(vector_R)</p>
+<p>GNAR.GNARfit(vts=robjects.r.matrix(rpyn.numpy2rpy(np.array(X).squeeze()), nrow = 160, ncol = 5),net = GNAR.matrixtoGNAR(m), alphaOrder = 2, betaOrder = (1, 1))</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fiveVTS_train <span class="op">&lt;-</span> fiveVTS[<span class="dv">1</span>:<span class="dv">160</span>,]</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>fiveVTS_test <span class="op">&lt;-</span> fiveVTS[<span class="dv">161</span>:<span class="dv">200</span>,]</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>percent <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>time <span class="op">&lt;-</span> <span class="dv">160</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>XX <span class="op">&lt;-</span> fiveVTS_test[c(<span class="dv">1</span>:(nrow(fiveVTS_test))),]</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>gnar_train2 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>gnar_test2 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">100</span>){</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>  missing_index <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">5</span>,nrow<span class="op">=</span><span class="dv">127</span>)</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">5</span>){</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>    missing_index[,j] <span class="op">&lt;-</span> sample(<span class="dv">1</span>:(nrow(fiveVTS_train)<span class="op">-</span><span class="dv">1</span>), (nrow(fiveVTS_train))<span class="op">*</span>percent<span class="op">-</span><span class="dv">1</span>,replace <span class="op">=</span> FALSE)</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>      fiveVTS_train[missing_index[,j],] <span class="op">&lt;-</span> NaN</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>      linear_missing <span class="op">&lt;-</span> fiveVTS_train</span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    linear_missing[,j] <span class="op">&lt;-</span> na.approx(linear_missing[,j],na.rm<span class="op">=</span>TRUE)</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>      }  </span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> linear_missing, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>  prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>  test_mse_total_gnar <span class="op">&lt;-</span> mean((XX <span class="op">-</span> prediction[<span class="dv">1</span>:<span class="dv">40</span>])<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>  gnar_train2[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>  gnar_test2[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>fiveVTS_train <span class="op">&lt;-</span> fiveVTS[<span class="dv">1</span>:<span class="dv">160</span>,]</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>fiveVTS_test <span class="op">&lt;-</span> fiveVTS[<span class="dv">161</span>:<span class="dv">200</span>,]</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>percent <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>time <span class="op">&lt;-</span> <span class="dv">160</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>linear_missing <span class="op">&lt;-</span> fiveVTS_train</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>XX <span class="op">&lt;-</span> fiveVTS_test[c(<span class="dv">1</span>:(nrow(fiveVTS_test))),]</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>gnar_train2 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>gnar_test2 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">100</span>){</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  missing_index <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">5</span>,nrow<span class="op">=</span><span class="dv">127</span>)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">5</span>){</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>      missing_index[,j] <span class="op">&lt;-</span> sample(<span class="dv">1</span>:(nrow(fiveVTS_train)<span class="op">-</span><span class="dv">1</span>), (nrow(fiveVTS_train))<span class="op">*</span>percent<span class="op">-</span><span class="dv">1</span>,replace <span class="op">=</span> FALSE)</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>      fiveVTS_train[missing_index[,j],] <span class="op">&lt;-</span> NaN</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>      linear_missing[,j] <span class="op">&lt;-</span> na.approx(linear_missing[,j],na.rm<span class="op">=</span>TRUE)</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>      }  </span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> linear_missing, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>  prediction <span class="op">&lt;-</span> predict(answer,n.ahead<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>  train_mse_total_gnar <span class="op">&lt;-</span> mean(residuals(answer)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>  test_mse_total_gnar <span class="op">&lt;-</span> mean((XX <span class="op">-</span> prediction[<span class="dv">1</span>:<span class="dv">40</span>])<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>  gnar_train2[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  gnar_test2[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_train2</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_test2</span></code></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_train2)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_train2</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_test2</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_test2)<span class="op">;</span></span></code></pre></div>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_train2)<span class="op">;</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_test2)<span class="op">;</span></span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="visualization" class="level1">
 <h1>Visualization</h1>
-<div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">10</span>))</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_train1, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_train1, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bp3 = ax.boxplot(gnar_train1, positions=[3], notch=True, widths=0.35, patch_artist=True, boxprops=dict(facecolor="C2"))</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ["STGCN", "ESTGCN", "GNAR"], loc='upper right')</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TRAIN_Fix missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">10</span>))</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_test1, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_test1, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bp3 = ax.boxplot(gnar_test1, positions=[3], notch=True, widths=0.35, patch_artist=True, boxprops=dict(facecolor="C2"))</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ["STGCN", "ESTGCN", "GNAR"], loc='upper right')</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TEST_Fix missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_train1, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_train1, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>bp3 <span class="op">=</span> ax.boxplot(gnar_train1, positions<span class="op">=</span>[<span class="dv">3</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C2"</span>))</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp3[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>, <span class="st">"GNAR"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TRAIN_Fix missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">10</span>))</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_train2, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_train2, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bp3 = ax.boxplot(gnar_train2, positions=[3], notch=True, widths=0.35, patch_artist=True, boxprops=dict(facecolor="C2"))</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ["STGCN", "ESTGCN", "GNAR"], loc='upper right')</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TRAIN_Different missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_test1, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_test1, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>bp3 <span class="op">=</span> ax.boxplot(gnar_test1, positions<span class="op">=</span>[<span class="dv">3</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C2"</span>))</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp3[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>, <span class="st">"GNAR"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TEST_Fix missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">10</span>))</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_test2, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_test2, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bp3 = ax.boxplot(gnar_test2, positions=[3], notch=True, widths=0.35, patch_artist=True, boxprops=dict(facecolor="C2"))</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.legend([bp1["boxes"][0], bp2["boxes"][0], bp3["boxes"][0]], ["STGCN", "ESTGCN", "GNAR"], loc='upper right')</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_train2, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_train2, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>bp3 <span class="op">=</span> ax.boxplot(gnar_train2, positions<span class="op">=</span>[<span class="dv">3</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C2"</span>))</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp3[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>, <span class="st">"GNAR"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
 <span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TEST_Different missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TRAIN_Different missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-49-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">10</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>bp1 <span class="op">=</span> ax.boxplot(stgcn_test2, positions<span class="op">=</span>[<span class="dv">1</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C0"</span>))</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>bp2 <span class="op">=</span> ax.boxplot(estgcn_test2, positions<span class="op">=</span>[<span class="dv">2</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C1"</span>))</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>bp3 <span class="op">=</span> ax.boxplot(gnar_test2, positions<span class="op">=</span>[<span class="dv">3</span>], notch<span class="op">=</span><span class="va">True</span>, widths<span class="op">=</span><span class="fl">0.35</span>, patch_artist<span class="op">=</span><span class="va">True</span>, boxprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"C2"</span>))</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>ax.legend([bp1[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp2[<span class="st">"boxes"</span>][<span class="dv">0</span>], bp3[<span class="st">"boxes"</span>][<span class="dv">0</span>]], [<span class="st">"STGCN"</span>, <span class="st">"ESTGCN"</span>, <span class="st">"GNAR"</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.94</span>, s<span class="op">=</span><span class="st">"TEST_Different missing number_80% Missing"</span>, fontsize<span class="op">=</span><span class="dv">25</span>, ha<span class="op">=</span><span class="st">"center"</span>, transform<span class="op">=</span>fig.transFigure)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-06-ESTGCN_GNAR_DATA_3_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 

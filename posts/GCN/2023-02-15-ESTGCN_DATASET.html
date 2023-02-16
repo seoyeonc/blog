@@ -123,6 +123,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -273,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-07-ESTGCN_STGCN_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +286,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
+  <a href="../../posts/GCN/2023-02-11-ESTGCN_WIKI_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-16-ESTGCN_EnglandCovid_DATA_1.html" class="sidebar-item-text sidebar-link">EnglandCovidDatasetLoader lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,7 +321,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Number of Filter(Missing rate 80%)</a>
+  <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Number of Filter and gnar forecast updating</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-16-ESTGCN_PEDAL_DATA_1.html" class="sidebar-item-text sidebar-link">PedalMeDatasetLoader lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-15-ESTGCN_STGCN_DATA_4.html" class="sidebar-item-text sidebar-link">WikiMath lag 4 Randomly Missing comparison Table</a>
+  <a href="../../posts/GCN/2023-02-15-ESTGCN_WIKI_DATA_4.html" class="sidebar-item-text sidebar-link">WikiMath lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
       </ul>
@@ -435,20 +448,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <li><a href="#gnar-data" id="toc-gnar-data" class="nav-link" data-scroll-target="#gnar-data">GNAR Data</a>
   <ul class="collapse">
   <li><a href="#stgcn-missing-randomly-by-missing-rate" id="toc-stgcn-missing-randomly-by-missing-rate" class="nav-link" data-scroll-target="#stgcn-missing-randomly-by-missing-rate">STGCN missing randomly by Missing rate</a></li>
   <li><a href="#stgcn-missing-block" id="toc-stgcn-missing-block" class="nav-link" data-scroll-target="#stgcn-missing-block">STGCN missing block</a></li>
-  <li><a href="#stgcn-filter16" id="toc-stgcn-filter16" class="nav-link" data-scroll-target="#stgcn-filter16">STGCN filter16</a></li>
-  <li><a href="#stgcn-filter32" id="toc-stgcn-filter32" class="nav-link" data-scroll-target="#stgcn-filter32">STGCN filter32</a></li>
-  <li><a href="#stgcn-filter64" id="toc-stgcn-filter64" class="nav-link" data-scroll-target="#stgcn-filter64">STGCN filter64</a></li>
+  <li><a href="#stgcn-by-filter" id="toc-stgcn-by-filter" class="nav-link" data-scroll-target="#stgcn-by-filter">STGCN by filter</a></li>
   <li><a href="#estgcn-missing-randomly-by-missing-rate" id="toc-estgcn-missing-randomly-by-missing-rate" class="nav-link" data-scroll-target="#estgcn-missing-randomly-by-missing-rate">ESTGCN missing randomly by Missing rate</a></li>
   <li><a href="#estgcn-missing-block" id="toc-estgcn-missing-block" class="nav-link" data-scroll-target="#estgcn-missing-block">ESTGCN missing block</a></li>
-  <li><a href="#estgcn-filter16" id="toc-estgcn-filter16" class="nav-link" data-scroll-target="#estgcn-filter16">ESTGCN filter16</a></li>
-  <li><a href="#estgcn-filter32" id="toc-estgcn-filter32" class="nav-link" data-scroll-target="#estgcn-filter32">ESTGCN filter32</a></li>
-  <li><a href="#estgcn-filter64" id="toc-estgcn-filter64" class="nav-link" data-scroll-target="#estgcn-filter64">ESTGCN filter64</a></li>
+  <li><a href="#estgcn-by-filter" id="toc-estgcn-by-filter" class="nav-link" data-scroll-target="#estgcn-by-filter">ESTGCN by filter</a></li>
   <li><a href="#gnar-missing-randomly-by-missing-rate" id="toc-gnar-missing-randomly-by-missing-rate" class="nav-link" data-scroll-target="#gnar-missing-randomly-by-missing-rate">GNAR missing randomly by Missing rate</a></li>
   <li><a href="#gnar-missing-block" id="toc-gnar-missing-block" class="nav-link" data-scroll-target="#gnar-missing-block">GNAR missing block</a></li>
+  <li><a href="#gnar-forecast-by-1" id="toc-gnar-forecast-by-1" class="nav-link" data-scroll-target="#gnar-forecast-by-1">GNAR forecast by 1</a></li>
+  </ul></li>
+  <li><a href="#pedal-data" id="toc-pedal-data" class="nav-link" data-scroll-target="#pedal-data">Pedal Data</a>
+  <ul class="collapse">
+  <li><a href="#stgcn-missing-randomly-by-missing-rate-1" id="toc-stgcn-missing-randomly-by-missing-rate-1" class="nav-link" data-scroll-target="#stgcn-missing-randomly-by-missing-rate-1">STGCN missing randomly by Missing rate</a></li>
+  <li><a href="#estgcn-missing-randomly-by-missing-rate-1" id="toc-estgcn-missing-randomly-by-missing-rate-1" class="nav-link" data-scroll-target="#estgcn-missing-randomly-by-missing-rate-1">ESTGCN missing randomly by Missing rate</a></li>
+  <li><a href="#gnar-missing-randomly-by-missing-rate-1" id="toc-gnar-missing-randomly-by-missing-rate-1" class="nav-link" data-scroll-target="#gnar-missing-randomly-by-missing-rate-1">GNAR missing randomly by Missing rate</a></li>
+  </ul></li>
+  <li><a href="#englandcovid-data" id="toc-englandcovid-data" class="nav-link" data-scroll-target="#englandcovid-data">EnglandCovid Data</a>
+  <ul class="collapse">
+  <li><a href="#stgcn-missing-randomly-by-missing-rate-2" id="toc-stgcn-missing-randomly-by-missing-rate-2" class="nav-link" data-scroll-target="#stgcn-missing-randomly-by-missing-rate-2">STGCN missing randomly by Missing rate</a></li>
+  <li><a href="#estgcn-missing-randomly-by-missing-rate-2" id="toc-estgcn-missing-randomly-by-missing-rate-2" class="nav-link" data-scroll-target="#estgcn-missing-randomly-by-missing-rate-2">ESTGCN missing randomly by Missing rate</a></li>
+  <li><a href="#gnar-missing-randomly-by-missing-rate-2" id="toc-gnar-missing-randomly-by-missing-rate-2" class="nav-link" data-scroll-target="#gnar-missing-randomly-by-missing-rate-2">GNAR missing randomly by Missing rate</a></li>
+  </ul></li>
+  <li><a href="#wiki-data" id="toc-wiki-data" class="nav-link" data-scroll-target="#wiki-data">Wiki Data</a>
+  <ul class="collapse">
+  <li><a href="#stgcn-missing-randomly-by-missing-rate-3" id="toc-stgcn-missing-randomly-by-missing-rate-3" class="nav-link" data-scroll-target="#stgcn-missing-randomly-by-missing-rate-3">STGCN missing randomly by Missing rate</a></li>
+  <li><a href="#estgcn-missing-randomly-by-missing-rate-3" id="toc-estgcn-missing-randomly-by-missing-rate-3" class="nav-link" data-scroll-target="#estgcn-missing-randomly-by-missing-rate-3">ESTGCN missing randomly by Missing rate</a></li>
+  <li><a href="#gnar-missing-randomly-by-missing-rate-3" id="toc-gnar-missing-randomly-by-missing-rate-3" class="nav-link" data-scroll-target="#gnar-missing-randomly-by-missing-rate-3">GNAR missing randomly by Missing rate</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -464,98 +492,420 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>Import</h1>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data(fname):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname, <span class="st">'rb'</span>) <span class="im">as</span> outfile:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        data_dict <span class="op">=</span> pickle.load(outfile)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_dict</span></code></pre></div>
 </div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> save_data(data_dict,fname):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname,<span class="st">'wb'</span>) <span class="im">as</span> outfile:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        pickle.dump(data_dict,outfile)</span></code></pre></div>
+</div>
 </section>
-<section id="data" class="level1">
-<h1>Data</h1>
+<section id="gnar-data" class="level1">
+<h1>GNAR Data</h1>
 <section id="stgcn-missing-randomly-by-missing-rate" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn-missing-randomly-by-missing-rate">STGCN missing randomly by Missing rate</h2>
-<div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_30.pkl'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>stgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_50.pkl'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>stgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="294">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_0.pkl'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_30.pkl'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_50.pkl'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_70.pkl'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80.pkl'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_6 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_90.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="stgcn-missing-block" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn-missing-block">STGCN missing block</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAT_DATA_stgcn_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="295">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_7 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_block_node2.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
-<section id="stgcn-filter16" class="level2">
-<h2 class="anchored" data-anchor-id="stgcn-filter16">STGCN filter16</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter16.pkl'</span>)</span></code></pre></div>
-</div>
-</section>
-<section id="stgcn-filter32" class="level2">
-<h2 class="anchored" data-anchor-id="stgcn-filter32">STGCN filter32</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>stgcn_6 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter32.pkl'</span>)</span></code></pre></div>
-</div>
-</section>
-<section id="stgcn-filter64" class="level2">
-<h2 class="anchored" data-anchor-id="stgcn-filter64">STGCN filter64</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>stgcn_7 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter64.pkl'</span>)</span></code></pre></div>
+<section id="stgcn-by-filter" class="level2">
+<h2 class="anchored" data-anchor-id="stgcn-by-filter">STGCN by filter</h2>
+<div class="cell" data-execution_count="296">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_8 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter16.pkl'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_9 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter24.pkl'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_10 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter32.pkl'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>gnar_stgcn_11 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_stgcn_randomly_80_filter64.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="estgcn-missing-randomly-by-missing-rate" class="level2">
 <h2 class="anchored" data-anchor-id="estgcn-missing-randomly-by-missing-rate">ESTGCN missing randomly by Missing rate</h2>
-<div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>estgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_30.pkl'</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>estgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_50.pkl'</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>estgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="298">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_0.pkl'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_30.pkl'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_50.pkl'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_70.pkl'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80.pkl'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_6 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_90.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="estgcn-missing-block" class="level2">
 <h2 class="anchored" data-anchor-id="estgcn-missing-block">ESTGCN missing block</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>estgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAT_DATA_estgcn_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="299">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_7 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_block_node2.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
-<section id="estgcn-filter16" class="level2">
-<h2 class="anchored" data-anchor-id="estgcn-filter16">ESTGCN filter16</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>estgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter16.pkl'</span>)</span></code></pre></div>
-</div>
-</section>
-<section id="estgcn-filter32" class="level2">
-<h2 class="anchored" data-anchor-id="estgcn-filter32">ESTGCN filter32</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>estgcn_6 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter32.pkl'</span>)</span></code></pre></div>
-</div>
-</section>
-<section id="estgcn-filter64" class="level2">
-<h2 class="anchored" data-anchor-id="estgcn-filter64">ESTGCN filter64</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>estgcn_7 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter64.pkl'</span>)</span></code></pre></div>
+<section id="estgcn-by-filter" class="level2">
+<h2 class="anchored" data-anchor-id="estgcn-by-filter">ESTGCN by filter</h2>
+<div class="cell" data-execution_count="300">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_8 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter16.pkl'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_9 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter24.pkl'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_10 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter32.pkl'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>gnar_estgcn_11 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_estgcn_randomly_80_filter64.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="gnar-missing-randomly-by-missing-rate" class="level2">
 <h2 class="anchored" data-anchor-id="gnar-missing-randomly-by-missing-rate">GNAR missing randomly by Missing rate</h2>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gnar_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_30.pkl'</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gnar_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_50.pkl'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>gnar_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_80.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="302">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gnar_gnar_1 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_0.pkl'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gnar_gnar_2 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_30.pkl'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gnar_gnar_3 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_50.pkl'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>gnar_gnar_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_70.pkl'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>gnar_gnar_5 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_80.pkl'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>gnar_gnar_6 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_randomly_90.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="gnar-missing-block" class="level2">
 <h2 class="anchored" data-anchor-id="gnar-missing-block">GNAR missing block</h2>
+<div class="cell" data-execution_count="303">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gnar_gnar_7 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_block_node2.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="gnar-forecast-by-1" class="level2">
+<h2 class="anchored" data-anchor-id="gnar-forecast-by-1">GNAR forecast by 1</h2>
+<div class="cell" data-execution_count="304">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gnar_gnar_8 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_one_randomly_0.pkl'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gnar_gnar_9 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_one_randomly_30.pkl'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>gnar_gnar_10 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_one_randomly_70.pkl'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>gnar_gnar_11 <span class="op">=</span> load_data(<span class="st">'./data/GNAR_DATA_gnar_one_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="315">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span> pd.concat([gnar_stgcn_2,gnar_stgcn_4,gnar_estgcn_2,gnar_estgcn_4,gnar_gnar_2,gnar_gnar_4]).reset_index()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="316">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="316">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>index</th>
+      <th>Dataset</th>
+      <th>iteration</th>
+      <th>method</th>
+      <th>missingrate</th>
+      <th>missingtype</th>
+      <th>lag</th>
+      <th>number_of_filters</th>
+      <th>interpolation</th>
+      <th>MSE_train</th>
+      <th>MSE_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>fivenodes</td>
+      <td>1</td>
+      <td>stgcn</td>
+      <td>0.3</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Linear</td>
+      <td>1.045937</td>
+      <td>1.119354</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>fivenodes</td>
+      <td>2</td>
+      <td>stgcn</td>
+      <td>0.3</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Linear</td>
+      <td>1.042787</td>
+      <td>1.076095</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>fivenodes</td>
+      <td>3</td>
+      <td>stgcn</td>
+      <td>0.3</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Linear</td>
+      <td>1.061703</td>
+      <td>1.190215</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>fivenodes</td>
+      <td>4</td>
+      <td>stgcn</td>
+      <td>0.3</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Linear</td>
+      <td>1.033479</td>
+      <td>1.131586</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>fivenodes</td>
+      <td>5</td>
+      <td>stgcn</td>
+      <td>0.3</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Linear</td>
+      <td>1.031642</td>
+      <td>1.094495</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>595</th>
+      <td>95</td>
+      <td>fivenodes</td>
+      <td>96</td>
+      <td>gnar</td>
+      <td>0.7</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>None</td>
+      <td>Linear</td>
+      <td>0.310533</td>
+      <td>1.267245</td>
+    </tr>
+    <tr>
+      <th>596</th>
+      <td>96</td>
+      <td>fivenodes</td>
+      <td>97</td>
+      <td>gnar</td>
+      <td>0.7</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>None</td>
+      <td>Linear</td>
+      <td>0.288930</td>
+      <td>1.255394</td>
+    </tr>
+    <tr>
+      <th>597</th>
+      <td>97</td>
+      <td>fivenodes</td>
+      <td>98</td>
+      <td>gnar</td>
+      <td>0.7</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>None</td>
+      <td>Linear</td>
+      <td>0.314830</td>
+      <td>1.280109</td>
+    </tr>
+    <tr>
+      <th>598</th>
+      <td>98</td>
+      <td>fivenodes</td>
+      <td>99</td>
+      <td>gnar</td>
+      <td>0.7</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>None</td>
+      <td>Linear</td>
+      <td>0.267808</td>
+      <td>1.278689</td>
+    </tr>
+    <tr>
+      <th>599</th>
+      <td>99</td>
+      <td>fivenodes</td>
+      <td>100</td>
+      <td>gnar</td>
+      <td>0.7</td>
+      <td>randomly</td>
+      <td>1</td>
+      <td>None</td>
+      <td>Linear</td>
+      <td>0.283004</td>
+      <td>1.307602</td>
+    </tr>
+  </tbody>
+</table>
+<p>600 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="317">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'missingrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'MSE_test'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="46037c77-f400-40a7-99b7-3627e59ae80b" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("46037c77-f400-40a7-99b7-3627e59ae80b")) {                    Plotly.newPlot(                        "46037c77-f400-40a7-99b7-3627e59ae80b",                        [{"alignmentgroup":"True","hovertemplate":"method=stgcn<br>missingrate=%{x}<br>MSE_test=%{y}<extra></extra>","legendgroup":"stgcn","marker":{"color":"#636efa"},"name":"stgcn","notched":false,"offsetgroup":"stgcn","orientation":"v","showlegend":true,"x":[0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7],"x0":" ","xaxis":"x","y":[1.1193541288375854,1.076094627380371,1.1902145147323608,1.1315858364105225,1.0944949388504028,1.160965085029602,1.146174430847168,1.1391220092773438,1.1381099224090576,1.156801462173462,1.1363029479980469,1.1445058584213257,1.129626989364624,1.1609450578689575,1.1348360776901245,1.117777705192566,1.1228982210159302,1.1373353004455566,1.1281511783599854,1.1584820747375488,1.1277822256088257,1.129225492477417,1.1310553550720215,1.1530182361602783,1.1493951082229614,1.1947890520095825,1.159077525138855,1.1522595882415771,1.1467126607894897,1.1118781566619873,1.1676466464996338,1.1640796661376953,1.1396045684814453,1.1339309215545654,1.1327998638153076,1.1287089586257935,1.1080373525619507,1.097522497177124,1.118330478668213,1.107968807220459,1.1331127882003784,1.137614130973816,1.1134790182113647,1.1211742162704468,1.1290457248687744,1.1493748426437378,1.16367769241333,1.1583213806152344,1.122912883758545,1.1098897457122803,1.1523990631103516,1.11408269405365,1.1481820344924927,1.1083965301513672,1.136448860168457,1.119165301322937,1.1731452941894531,1.125805139541626,1.132035732269287,1.1122920513153076,1.1476994752883911,1.1793389320373535,1.135515809059143,1.1520507335662842,1.1793609857559204,1.1118286848068237,1.1351269483566284,1.1291948556900024,1.1988754272460938,1.1216766834259033,1.1189539432525635,1.1247714757919312,1.145066261291504,1.1662206649780273,1.1210253238677979,1.1462664604187012,1.1331603527069092,1.1656064987182617,1.1529737710952759,1.1388243436813354,1.1425087451934814,1.127544641494751,1.1053425073623657,1.1618906259536743,1.1634615659713745,1.1537272930145264,1.1566709280014038,1.142586588859558,1.1006356477737427,1.16051185131073,1.1856603622436523,1.1383706331253052,1.116692066192627,1.1291511058807373,1.1318340301513672,1.11918306350708,1.1241651773452759,1.1270817518234253,1.144946813583374,1.1468884944915771,1.373174786567688,1.4548053741455078,1.4472928047180176,1.4536999464035034,1.4251950979232788,1.4350420236587524,1.4557068347930908,1.4945238828659058,1.3993659019470215,1.5507137775421143,1.4549789428710938,1.4851740598678589,1.4420175552368164,1.4428231716156006,1.447899341583252,1.4782729148864746,1.4355288743972778,1.5459345579147339,1.5324161052703857,1.486320972442627,1.443603515625,1.526712417602539,1.534666657447815,1.4420204162597656,1.5203421115875244,1.4861820936203003,1.4228869676589966,1.473953127861023,1.509014368057251,1.5917929410934448,1.5225311517715454,1.5282082557678223,1.4542365074157715,1.4779638051986694,1.4922468662261963,1.5359375476837158,1.525781512260437,1.4479374885559082,1.439272403717041,1.4941415786743164,1.4282662868499756,1.4546738862991333,1.443156361579895,1.4834486246109009,1.4833670854568481,1.4822412729263306,1.4665946960449219,1.5110715627670288,1.533579707145691,1.4413979053497314,1.531733751296997,1.599839687347412,1.4814844131469727,1.4320127964019775,1.4837898015975952,1.4381275177001953,1.5008625984191895,1.5775049924850464,1.4598690271377563,1.441286325454712,1.5066137313842773,1.4735133647918701,1.4235459566116333,1.4682762622833252,1.4812983274459839,1.5254535675048828,1.5153484344482422,1.519178867340088,1.5721114873886108,1.524000644683838,1.4693667888641357,1.5247719287872314,1.5179203748703003,1.5064942836761475,1.4980138540267944,1.5357149839401245,1.5103734731674194,1.3873424530029297,1.436109185218811,1.4648536443710327,1.4552737474441528,1.539366364479065,1.4105908870697021,1.4233007431030273,1.4096746444702148,1.381568193435669,1.5404571294784546,1.5076364278793335,1.5970239639282227,1.556634783744812,1.4585685729980469,1.446994423866272,1.5051898956298828,1.4731825590133667,1.4162533283233643,1.469057559967041,1.4581222534179688,1.423362374305725,1.5258170366287231,1.5476140975952148],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"method=estgcn<br>missingrate=%{x}<br>MSE_test=%{y}<extra></extra>","legendgroup":"estgcn","marker":{"color":"#EF553B"},"name":"estgcn","notched":false,"offsetgroup":"estgcn","orientation":"v","showlegend":true,"x":[0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7],"x0":" ","xaxis":"x","y":[1.0702306032180786,1.0704761743545532,1.0872626304626465,1.094256043434143,1.0945603847503662,1.082186222076416,1.0749486684799194,1.1472316980361938,1.0952717065811157,1.0834336280822754,1.0820631980895996,1.103352665901184,1.0783611536026,1.1012881994247437,1.1026135683059692,1.130089521408081,1.0870951414108276,1.148072600364685,1.1076064109802246,1.0943562984466553,1.069727897644043,1.1177831888198853,1.0966129302978516,1.0760438442230225,1.1071958541870117,1.0956900119781494,1.1276079416275024,1.090592622756958,1.1324926614761353,1.1218125820159912,1.1112216711044312,1.0877171754837036,1.0752782821655273,1.1083847284317017,1.1291810274124146,1.0864406824111938,1.1037821769714355,1.0992270708084106,1.0951086282730103,1.0903362035751343,1.0925414562225342,1.0910134315490723,1.1049597263336182,1.0697273015975952,1.128899335861206,1.0921450853347778,1.076104998588562,1.0772128105163574,1.0831547975540161,1.171856164932251,1.1116083860397339,1.0703545808792114,1.1073848009109497,1.0764211416244507,1.0707753896713257,1.076738953590393,1.1083320379257202,1.109276294708252,1.09878671169281,1.0937985181808472,1.102392554283142,1.0658949613571167,1.1018526554107666,1.0922067165374756,1.0917853116989136,1.0955744981765747,1.0897090435028076,1.081031084060669,1.094370722770691,1.0763790607452393,1.081565022468567,1.096181035041809,1.136106252670288,1.0824271440505981,1.118439793586731,1.1265023946762085,1.1201057434082031,1.102911114692688,1.080349087715149,1.071583867073059,1.083659052848816,1.0763423442840576,1.1371079683303833,1.0827388763427734,1.110535740852356,1.0976096391677856,1.1113497018814087,1.1271215677261353,1.058623194694519,1.1091891527175903,1.1116441488265991,1.123177409172058,1.0776573419570923,1.0880967378616333,1.1162961721420288,1.0893833637237549,1.0982507467269897,1.104844331741333,1.0866355895996094,1.0638741254806519,1.2821483612060547,1.2482706308364868,1.203593134880066,1.095315933227539,1.2084912061691284,1.2615740299224854,1.2633228302001953,1.206982970237732,1.2329362630844116,1.2340967655181885,1.212715744972229,1.257551670074463,1.2023251056671143,1.2478210926055908,1.307163119316101,1.2968816757202148,1.3105988502502441,1.1979451179504395,1.3258082866668701,1.1917937994003296,1.1672877073287964,1.233485460281372,1.2119243144989014,1.2552605867385864,1.1932259798049927,1.1724565029144287,1.1794034242630005,1.2620904445648193,1.2212241888046265,1.2275804281234741,1.1804537773132324,1.154473066329956,1.304671287536621,1.2417314052581787,1.3504618406295776,1.2384334802627563,1.2533047199249268,1.2465726137161255,1.2096073627471924,1.240851879119873,1.2514184713363647,1.1840370893478394,1.1983834505081177,1.243434190750122,1.141448736190796,1.1728464365005493,1.2477842569351196,1.1581146717071533,1.2149783372879028,1.1695011854171753,1.139821171760559,1.1890515089035034,1.2664408683776855,1.2264448404312134,1.2142783403396606,1.2172075510025024,1.1898064613342285,1.1856828927993774,1.192550778388977,1.2612690925598145,1.199527382850647,1.199317455291748,1.1740190982818604,1.1902294158935547,1.2437349557876587,1.2597805261611938,1.2741634845733643,1.2452431917190552,1.25203275680542,1.2275173664093018,1.2071573734283447,1.260425090789795,1.212037444114685,1.1674185991287231,1.2313424348831177,1.1990525722503662,1.2301015853881836,1.247941493988037,1.2382205724716187,1.1914764642715454,1.2414658069610596,1.31393563747406,1.2281217575073242,1.2835253477096558,1.1930149793624878,1.188017725944519,1.2146085500717163,1.2016929388046265,1.1487643718719482,1.1808463335037231,1.38768470287323,1.2372525930404663,1.2770754098892212,1.319111943244934,1.5356838703155518,1.369739055633545,1.225549578666687,1.1788290739059448,1.3086384534835815,1.2389097213745117],"y0":" ","yaxis":"y","type":"box"},{"alignmentgroup":"True","hovertemplate":"method=gnar<br>missingrate=%{x}<br>MSE_test=%{y}<extra></extra>","legendgroup":"gnar","marker":{"color":"#00cc96"},"name":"gnar","notched":false,"offsetgroup":"gnar","orientation":"v","showlegend":true,"x":[0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.7],"x0":" ","xaxis":"x","y":[1.2709029923025281,1.2531918629080905,1.266264385626158,1.2660918061618904,1.2678427266177363,1.2656127582471288,1.269061930946469,1.2646557896710087,1.2759655899997626,1.2661923627167735,1.2651547171997208,1.2508749071217828,1.269312070089221,1.261372807940599,1.2688066031343845,1.2664942835811859,1.2496726282804589,1.2655892903123578,1.2581650282040755,1.284124220351351,1.2555234826294186,1.2680466561754464,1.2504585142635252,1.2657005198898825,1.2649060127306366,1.2731733981397553,1.2686960225144284,1.2540320971717296,1.258824900247807,1.257693293158662,1.2704792594626766,1.2532663752626632,1.2632286004036195,1.2655224502264337,1.2680059238123036,1.265580741690769,1.2613775177099102,1.262764297047045,1.2741747589976997,1.2562289264660778,1.2672443777953248,1.2641738998338243,1.2636046777360903,1.2548582286447751,1.262222378736652,1.2498186406750351,1.2721313729100672,1.2708767116014386,1.2617125771056075,1.2639708292212832,1.2622515247132742,1.2661956192127617,1.26758277277967,1.2714536483508443,1.2696437272387087,1.2576439541214957,1.275461258879487,1.2668412699702591,1.2661926139632627,1.266312680434515,1.2724260597068016,1.2642531267776727,1.2686647994710447,1.2566871207332166,1.267399418037228,1.250899507174408,1.2545580191483907,1.261885907051131,1.2633792805541841,1.263778464726742,1.2665643092221044,1.266816805550716,1.2568639344995391,1.265004181436339,1.2573916071283762,1.2653082322509228,1.26844020629473,1.2605327826054329,1.2489050425501547,1.2571935783458332,1.2557210728724315,1.2541459801100587,1.2651592218384229,1.265327558752067,1.2541427260672267,1.2699688501272381,1.2633399447301148,1.264927840254378,1.2675421605210901,1.2663482900736787,1.255453410935988,1.2648467782033426,1.2636179527092752,1.2705021245556178,1.261948644377654,1.2570653940131091,1.2615457748584866,1.2728760193766933,1.2642834634819633,1.2667663919424457,1.329920559210299,1.329300004881059,1.2618042543027077,1.2519444142974778,1.250358610956486,1.2745743857232867,1.3565787011142523,1.3420202245228525,1.3872549828278757,1.4210353675902583,1.340525066921222,1.3263047746082819,1.3310273964392312,1.293752836637397,1.386891535413728,1.2251855900478121,1.245361119556119,1.306506946959814,1.392091844122035,1.307516316952266,1.3234793265950762,1.2558352682695726,1.2887759679991728,1.3962319146651978,1.3010338795239331,1.270962261256386,1.2590612443685922,1.2481843554516585,1.2530885022673597,1.3019124733036596,1.2364733542498607,1.2693969574663067,1.2642949813637925,1.2393840639702927,1.25348956600468,1.325782889331335,1.260059993208839,1.328154226494327,1.2755661229174713,1.2993583840499372,1.2581842062096253,1.3887750404393344,1.3326244711798974,1.2827920157473027,1.2639446439538469,1.2802590922336134,1.2905091095668417,1.268948427570062,1.2840936713672546,1.2412848294771042,1.3260558795559876,1.2638305127508729,1.2592426722695833,1.2648907286590676,1.2505508758122064,1.2452789038880903,1.361948374649196,1.2911368783054065,1.2645030364122463,1.2917920482388217,1.2622155201044478,1.2314285952522437,1.3282870413109016,1.2613755854482789,1.2444306293952525,1.3277439765976344,1.264688805698406,1.3101229244742336,1.265809665740617,1.258564227320604,1.3311050314910553,1.3409771230640861,1.2493102669172953,1.2509675959155409,1.252328996387292,1.2449213064292672,1.270475646225526,1.292987735407805,1.2683725874865548,1.3460322856159466,1.2407544758753968,1.27992081713359,1.3839549658350652,1.2824811473615108,1.2472965795117659,1.3829719921139136,1.303135723778209,1.2615612680339852,1.2498704610345102,1.310293454239651,1.2753831559312416,1.3028241937460248,1.2231475786989456,1.340655062411127,1.2655762677704572,1.2672453627399725,1.2553944429715787,1.2801089570204354,1.2786889181644192,1.307602086882744],"y0":" ","yaxis":"y","type":"box"}],                        {"template":{"data":{"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"missingrate"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"MSE_test"}},"legend":{"title":{"text":"method"},"tracegroupgap":0},"margin":{"t":60},"boxmode":"group"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('46037c77-f400-40a7-99b7-3627e59ae80b');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+</section>
+<section id="pedal-data" class="level1">
+<h1>Pedal Data</h1>
+<section id="stgcn-missing-randomly-by-missing-rate-1" class="level2">
+<h2 class="anchored" data-anchor-id="stgcn-missing-randomly-by-missing-rate-1">STGCN missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="267">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pedal_stgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_stgcn_randomly_0.pkl'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pedal_stgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_stgcn_randomly_30.pkl'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>pedal_stgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_stgcn_randomly_50.pkl'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>pedal_stgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_stgcn_randomly_70.pkl'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>pedal_stgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_stgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="estgcn-missing-randomly-by-missing-rate-1" class="level2">
+<h2 class="anchored" data-anchor-id="estgcn-missing-randomly-by-missing-rate-1">ESTGCN missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="268">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pedal_estgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_estgcn_randomly_0.pkl'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pedal_estgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_estgcn_randomly_30.pkl'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pedal_estgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_estgcn_randomly_50.pkl'</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pedal_estgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_estgcn_randomly_70.pkl'</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>pedal_estgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_estgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="gnar-missing-randomly-by-missing-rate-1" class="level2">
+<h2 class="anchored" data-anchor-id="gnar-missing-randomly-by-missing-rate-1">GNAR missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="269">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pedal_gnar_1 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_gnar_randomly_0.pkl'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pedal_gnar_2 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_gnar_randomly_30.pkl'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pedal_gnar_3 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_gnar_randomly_50.pkl'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>pedal_gnar_4 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_gnar_randomly_70.pkl'</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pedal_gnar_5 <span class="op">=</span> load_data(<span class="st">'./data/Pedal_DATA_gnar_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="englandcovid-data" class="level1">
+<h1>EnglandCovid Data</h1>
+<section id="stgcn-missing-randomly-by-missing-rate-2" class="level2">
+<h2 class="anchored" data-anchor-id="stgcn-missing-randomly-by-missing-rate-2">STGCN missing randomly by Missing rate</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gnar_4 <span class="op">=</span> load_data(<span class="st">'./data/GNAT_DATA_gnar_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>EnglandCovid_stgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_stgcn_randomly_0.pkl'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>EnglandCovid_stgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_stgcn_randomly_30.pkl'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>EnglandCovid_stgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_stgcn_randomly_50.pkl'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>EnglandCovid_stgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_stgcn_randomly_70.pkl'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>EnglandCovid_stgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_stgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="estgcn-missing-randomly-by-missing-rate-2" class="level2">
+<h2 class="anchored" data-anchor-id="estgcn-missing-randomly-by-missing-rate-2">ESTGCN missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>EnglandCovid_estgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_estgcn_randomly_0.pkl'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>EnglandCovid_estgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_estgcn_randomly_30.pkl'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>EnglandCovid_estgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_estgcn_randomly_50.pkl'</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>EnglandCovid_estgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_estgcn_randomly_70.pkl'</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>EnglandCovid_estgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_estgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="gnar-missing-randomly-by-missing-rate-2" class="level2">
+<h2 class="anchored" data-anchor-id="gnar-missing-randomly-by-missing-rate-2">GNAR missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="266">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>EnglandCovid_gnar_1 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_gnar_randomly_0.pkl'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>EnglandCovid_gnar_2 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_gnar_randomly_30.pkl'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>EnglandCovid_gnar_3 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_gnar_randomly_50.pkl'</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>EnglandCovid_gnar_4 <span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_gnar_randomly_70.pkl'</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>EnglandCovid_gnar_5<span class="op">=</span> load_data(<span class="st">'./data/EnglandCovid_DATA_gnar_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="wiki-data" class="level1">
+<h1>Wiki Data</h1>
+<section id="stgcn-missing-randomly-by-missing-rate-3" class="level2">
+<h2 class="anchored" data-anchor-id="stgcn-missing-randomly-by-missing-rate-3">STGCN missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="261">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>wiki_stgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_stgcn_randomly_0.pkl'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>wiki_stgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_stgcn_randomly_30.pkl'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>wiki_stgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_stgcn_randomly_50.pkl'</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>wiki_stgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_stgcn_randomly_70.pkl'</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>wiki_stgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_stgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="estgcn-missing-randomly-by-missing-rate-3" class="level2">
+<h2 class="anchored" data-anchor-id="estgcn-missing-randomly-by-missing-rate-3">ESTGCN missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>wiki_estgcn_1 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_estgcn_randomly_0.pkl'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>wiki_estgcn_2 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_estgcn_randomly_30.pkl'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>wiki_estgcn_3 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_estgcn_randomly_50.pkl'</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>wiki_estgcn_4 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_estgcn_randomly_70.pkl'</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>wiki_estgcn_5 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_estgcn_randomly_90.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="gnar-missing-randomly-by-missing-rate-3" class="level2">
+<h2 class="anchored" data-anchor-id="gnar-missing-randomly-by-missing-rate-3">GNAR missing randomly by Missing rate</h2>
+<div class="cell" data-execution_count="266">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wiki_gnar_1 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_gnar_randomly_0.pkl'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>wiki_gnar_2 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_gnar_randomly_30.pkl'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>wiki_gnar_3 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_gnar_randomly_50.pkl'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>wiki_gnar_4 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_gnar_randomly_70.pkl'</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>wiki_gnar_5 <span class="op">=</span> load_data(<span class="st">'./data/Wiki_DATA_gnar_randomly_90.pkl'</span>)</span></code></pre></div>
 </div>
 
 

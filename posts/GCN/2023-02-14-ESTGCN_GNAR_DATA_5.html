@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-07-ESTGCN_STGCN_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -283,7 +283,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-11-ESTGCN_STGCN_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
+  <a href="../../posts/GCN/2023-02-11-ESTGCN_WIKI_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4 80% repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-16-ESTGCN_EnglandCovid_DATA_1.html" class="sidebar-item-text sidebar-link">EnglandCovidDatasetLoader lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,7 +318,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Number of Filter(Missing rate 80%)</a>
+  <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Number of Filter and gnar forecast updating</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-16-ESTGCN_PEDAL_DATA_1.html" class="sidebar-item-text sidebar-link">PedalMeDatasetLoader lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-15-ESTGCN_STGCN_DATA_4.html" class="sidebar-item-text sidebar-link">WikiMath lag 4 Randomly Missing comparison Table</a>
+  <a href="../../posts/GCN/2023-02-15-ESTGCN_WIKI_DATA_4.html" class="sidebar-item-text sidebar-link">WikiMath lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
       </ul>
@@ -448,6 +458,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#stgcn-1" id="toc-stgcn-1" class="nav-link" data-scroll-target="#stgcn-1">STGCN</a></li>
   <li><a href="#enhencement-of-stgcn-1" id="toc-enhencement-of-stgcn-1" class="nav-link" data-scroll-target="#enhencement-of-stgcn-1">Enhencement of STGCN</a></li>
   <li><a href="#gnar-1" id="toc-gnar-1" class="nav-link" data-scroll-target="#gnar-1">GNAR</a></li>
+  </ul></li>
+  <li><a href="#when-the-number-of-missing-node-is-2" id="toc-when-the-number-of-missing-node-is-2" class="nav-link" data-scroll-target="#when-the-number-of-missing-node-is-2">When the number of missing node is 2</a>
+  <ul class="collapse">
+  <li><a href="#stgcn-2" id="toc-stgcn-2" class="nav-link" data-scroll-target="#stgcn-2">STGCN</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -633,326 +647,364 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Class code by Method</h1>
 <section id="stgcn" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn">STGCN</h2>
-<div class="cell" data-tags="[]" data-execution_count="15">
+<div class="cell" data-tags="[]">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STGCN_Block:</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        XX <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>()</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        real_y <span class="op">=</span> torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>            net <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lag, filters<span class="op">=</span><span class="va">self</span>.Number_of_filters)</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>            net.train()</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y)):</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                    yt_hat <span class="op">=</span> net(xt, edge_index, edge_attr)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>                    cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>                    cost.backward()</span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                    optimizer.step()</span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>                    optimizer.zero_grad()</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>            yhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>            yyhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> XX]).detach().numpy()</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>            train_mse_total_stgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>            test_mse_total_stgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
-<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
-<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
-<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_stgcn.tolist()</span>
-<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_stgcn.tolist()</span>
-<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        XX <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>()</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        real_y <span class="op">=</span> torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>            net <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lag, filters<span class="op">=</span><span class="va">self</span>.Number_of_filters)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>            optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>            net.train()</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y)):</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>                    yt_hat <span class="op">=</span> net(xt, edge_index, edge_attr)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>                    cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                    cost.backward()</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>                    optimizer.step()</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>                    optimizer.zero_grad()</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>            yhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>            yyhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> XX]).detach().numpy()</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>            train_mse_total_stgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>            test_mse_total_stgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'Dataset'</span>] <span class="op">=</span> <span class="va">self</span>.Dataset</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_stgcn.tolist()</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_stgcn.tolist()</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="enhencement-of-stgcn" class="level1">
 <h1>Enhencement of STGCN</h1>
 <p><code>-</code> 결측치생성 + 보간</p>
-<div class="cell" data-tags="[]" data-execution_count="16">
+<div class="cell" data-tags="[]">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ESTGCN_Block:</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>        XX <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>()</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        real_y <span class="op">=</span> torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
-<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>            net <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lag, filters<span class="op">=</span><span class="va">self</span>.Number_of_filters)</span>
-<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>            optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>            net.train()</span>
-<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>            signal <span class="op">=</span> interpolated_signal.copy()</span>
-<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
-<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>                signal <span class="op">=</span> update_from_freq_domain(signal,<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
-<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>                X <span class="op">=</span> torch.tensor(signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
-<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> torch.tensor(signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
-<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y)):        </span>
-<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>                    yt_hat <span class="op">=</span> net(xt, edge_index, edge_attr)</span>
-<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>                    cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>                    cost.backward()</span>
-<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>                    optimizer.step()</span>
-<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>                    optimizer.zero_grad()</span>
-<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>                signal <span class="op">=</span> torch.concat([X.squeeze(),yt_hat.detach().squeeze().reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)])        </span>
-<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>            yhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span>
-<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>            yyhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> XX]).detach().numpy()</span>
-<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>            train_mse_total_estgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>            test_mse_total_estgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
-<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
-<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_estgcn.tolist()</span>
-<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_estgcn.tolist()</span>
-<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        XX <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[:<span class="op">-</span><span class="dv">1</span>,:,:]).<span class="bu">float</span>()</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        real_y <span class="op">=</span> torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>            net <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="va">self</span>.lag, filters<span class="op">=</span><span class="va">self</span>.Number_of_filters)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>            optimizer <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>            net.train()</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>            signal <span class="op">=</span> interpolated_signal.copy()</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>                signal <span class="op">=</span> update_from_freq_domain(signal,<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>                X <span class="op">=</span> torch.tensor(signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">1</span>),:,:]</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> torch.tensor(signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:]</span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> time, (xt,yt) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(X,y)):        </span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>                    yt_hat <span class="op">=</span> net(xt, edge_index, edge_attr)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>                    cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>yt)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>                    cost.backward()</span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>                    optimizer.step()</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>                    optimizer.zero_grad()</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>                signal <span class="op">=</span> torch.concat([X.squeeze(),yt_hat.detach().squeeze().reshape(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)])        </span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>            yhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> X]).detach().numpy()</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>            yyhat <span class="op">=</span> torch.stack([net(xt, edge_index, edge_attr) <span class="cf">for</span> xt <span class="kw">in</span> XX]).detach().numpy()</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>            train_mse_total_estgcn <span class="op">=</span> (((real_y<span class="op">-</span>yhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>            test_mse_total_estgcn <span class="op">=</span> (((yy<span class="op">-</span>yyhat).squeeze())<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'Dataset'</span>] <span class="op">=</span> <span class="va">self</span>.Dataset</span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_estgcn.tolist()</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_estgcn.tolist()</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
 </section>
 <section id="gnar" class="level1">
 <h1>GNAR</h1>
-<div class="cell" data-execution_count="17">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="18">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>library(zoo)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>R[write to console]: Loading required package: igraph
-
-R[write to console]: 
-Attaching package: ‘igraph’
-
-
-R[write to console]: The following objects are masked from ‘package:stats’:
-
-    decompose, spectrum
-
-
-R[write to console]: The following object is masked from ‘package:base’:
-
-    union
-
-
-R[write to console]: Loading required package: wordcloud
-
-R[write to console]: Loading required package: RColorBrewer
-
-R[write to console]: 
-Attaching package: ‘zoo’
-
-
-R[write to console]: The following objects are masked from ‘package:base’:
-
-    as.Date, as.Date.numeric
-
-</code></pre>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>GNAR <span class="op">=</span> importr(<span class="st">'GNAR'</span>) <span class="co"># import GNAR </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>igraph <span class="op">=</span> importr(<span class="st">'igraph'</span>) <span class="co"># import igraph </span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> robjects.r.matrix(FloatVector([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]), nrow <span class="op">=</span> <span class="dv">5</span>, ncol <span class="op">=</span> <span class="dv">5</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>GNAR <span class="op">=</span> importr(<span class="st">'GNAR'</span>) <span class="co"># import GNAR </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>igraph <span class="op">=</span> importr(<span class="st">'igraph'</span>) <span class="co"># import igraph </span></span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> robjects.r.matrix(FloatVector([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]), nrow <span class="op">=</span> <span class="dv">5</span>, ncol <span class="op">=</span> <span class="dv">5</span>)</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GNAR_Block:</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">2</span>),:,:]</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>            answer <span class="op">=</span> GNAR.GNARfit(vts<span class="op">=</span>robjects.r.matrix(rpyn.numpy2rpy(np.array(X).squeeze()), nrow <span class="op">=</span> <span class="dv">160</span>, ncol <span class="op">=</span> <span class="dv">5</span>),net <span class="op">=</span> GNAR.matrixtoGNAR(m), alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> FloatVector([<span class="dv">1</span>, <span class="dv">1</span>]))             </span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            predict <span class="op">=</span> GNAR.predict_GNARfit(answer,n_ahead<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>            train_mse_total_gnar <span class="op">=</span> ((pd.DataFrame(GNAR.residuals_GNARfit(answer)).values.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>))<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>            test_mse_total_gnar <span class="op">=</span> ((yy.squeeze() <span class="op">-</span> pd.DataFrame(predict).values.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:<span class="op">-</span><span class="dv">1</span>,:])<span class="op">**</span><span class="dv">2</span>).mean()</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_gnar.tolist()</span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_gnar.tolist()</span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GNAR_Block:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Method <span class="op">=</span> Method</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingrate <span class="op">=</span> Missingrate</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Missingtype <span class="op">=</span> Missingtype</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lag <span class="op">=</span> lag</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Number_of_filters <span class="op">=</span> Number_of_filters</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Interpolation <span class="op">=</span> Interpolation</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node <span class="op">=</span> start,end,node</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="bu">iter</span>(<span class="va">self</span>):</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        _zero.miss(<span class="va">self</span>.start,<span class="va">self</span>.end,<span class="va">self</span>.node)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        _zero.second_linear()</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        missing_index <span class="op">=</span> _zero.number</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        interpolated_signal <span class="op">=</span> _zero.train_linear</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> torch.tensor(interpolated_signal).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[:<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span><span class="op">-</span><span class="dv">2</span>),:,:]</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.iterable):</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>            answer <span class="op">=</span> GNAR.GNARfit(vts<span class="op">=</span>robjects.r.matrix(rpyn.numpy2rpy(np.array(X).squeeze()), nrow <span class="op">=</span> <span class="dv">160</span>, ncol <span class="op">=</span> <span class="dv">5</span>),net <span class="op">=</span> GNAR.matrixtoGNAR(m), alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> FloatVector([<span class="dv">1</span>, <span class="dv">1</span>]))             </span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>            predict <span class="op">=</span> GNAR.predict_GNARfit(answer,n_ahead<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>            train_mse_total_gnar <span class="op">=</span> ((pd.DataFrame(GNAR.residuals_GNARfit(answer)).values.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>))<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>            test_mse_total_gnar <span class="op">=</span> ((yy.squeeze() <span class="op">-</span> pd.DataFrame(predict).values.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:<span class="op">-</span><span class="dv">1</span>,:])<span class="op">**</span><span class="dv">2</span>).mean()</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>            df_row <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'Dataset'</span>] <span class="op">=</span> <span class="va">self</span>.Dataset,</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'iteration'</span>] <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span>, <span class="co"># 1,2,3,...,10 </span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'method'</span>] <span class="op">=</span> <span class="va">self</span>.Method, <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingrate'</span>] <span class="op">=</span> <span class="va">self</span>.Missingrate, <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'missingtype'</span>] <span class="op">=</span> <span class="va">self</span>.Missingtype,  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'lag'</span>] <span class="op">=</span> <span class="va">self</span>.lag, <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'number_of_filters'</span>] <span class="op">=</span> <span class="va">self</span>.Number_of_filters, <span class="co"># 16,24,32, ... </span></span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'interpolation'</span>] <span class="op">=</span> <span class="va">self</span>.Interpolation, <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_train'</span>] <span class="op">=</span> train_mse_total_gnar.tolist()</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>            df_row[<span class="st">'MSE_test'</span>] <span class="op">=</span> test_mse_total_gnar.tolist()</span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
 <section id="stgcn-1" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn-1">STGCN</h2>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'stgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="dv">4</span> <span class="co"># 16,24,32, ... </span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Dataset <span class="op">=</span> <span class="st">'fivenodes'</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'stgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="dv">4</span> <span class="co"># 16,24,32, ... </span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'Dataset'</span>, <span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>stgcn <span class="op">=</span> STGCN_Block(<span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stgcn <span class="op">=</span> STGCN_Block(Dataset, <span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>stgcn.<span class="bu">iter</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stgcn.<span class="bu">iter</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_stgcn <span class="op">=</span> stgcn.df.copy()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df_stgcn <span class="op">=</span> stgcn.df.copy()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>save_data(df_stgcn, <span class="st">'./data/GNAT_DATA_stgcn_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>save_data(df_stgcn, <span class="st">'./data/GNAT_DATA_stgcn_block_node2.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="enhencement-of-stgcn-1" class="level2">
 <h2 class="anchored" data-anchor-id="enhencement-of-stgcn-1">Enhencement of STGCN</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'estgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="dv">4</span> <span class="co"># 16,24,32, ... </span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
+<div class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Dataset <span class="op">=</span> <span class="st">'fivenodes'</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'estgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="dv">4</span> <span class="co"># 16,24,32, ... </span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'Dataset'</span>, <span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>estgcn <span class="op">=</span> ESTGCN_Block(Dataset, <span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>estgcn.<span class="bu">iter</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_estgcn <span class="op">=</span> estgcn.df.copy()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>estgcn <span class="op">=</span> ESTGCN_Block(<span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>estgcn.<span class="bu">iter</span>()</span></code></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_estgcn <span class="op">=</span> estgcn.df.copy()</span></code></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>save_data(df_estgcn, <span class="st">'./data/GNAR_DATA_estgcn_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>save_data(df_estgcn, <span class="st">'./data/GNAR_DATA_estgcn_block_node2.pkl'</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="gnar-1" class="level2">
 <h2 class="anchored" data-anchor-id="gnar-1">GNAR</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'gnar'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="va">None</span> <span class="co"># 16,24,32, ... </span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Dataset <span class="op">=</span> <span class="st">'fivedodes'</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'gnar'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="va">None</span> <span class="co"># 16,24,32, ... </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'Dataset'</span>, <span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gnar <span class="op">=</span> GNAR_Block(Dataset, <span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gnar.<span class="bu">iter</span>()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df_gnar <span class="op">=</span> gnar.df.copy()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>save_data(df_gnar, <span class="st">'./data/GNAR_DATA_gnar_block_node2.pkl'</span>)</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="when-the-number-of-missing-node-is-2" class="level1">
+<h1>When the number of missing node is 2</h1>
+<section id="stgcn-2" class="level2">
+<h2 class="anchored" data-anchor-id="stgcn-2">STGCN</h2>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'stgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="va">None</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'block'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>Number_of_filters <span class="op">=</span> <span class="dv">4</span> <span class="co"># 16,24,32, ... </span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>stgcn <span class="op">=</span> STGCN_Block(<span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>stgcn.miss(<span class="dv">40</span>,<span class="dv">140</span>,<span class="dv">3</span>)</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>AttributeError: 'STGCN_Block' object has no attribute 'miss'</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>stgcn.<span class="bu">iter</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gnar <span class="op">=</span> GNAR_Block(<span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>,df, iterable,Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df_stgcn <span class="op">=</span> stgcn.df.copy()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gnar.<span class="bu">iter</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>save_data(df_stgcn, <span class="st">'./data/GNAT_DATA_stgcn_block_nodssse2.pkl'</span>)</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df_gnar <span class="op">=</span> gnar.df.copy()</span></code></pre></div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>_zero <span class="op">=</span> Missing(fiveVTS_train)</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>save_data(df_gnar, <span class="st">'./data/GNAR_DATA_gnar_block_node2.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>_zero.miss(<span class="dv">50</span>,<span class="dv">150</span>,<span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>_zero1 <span class="op">=</span> Missing(_zero.missing)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>_zero1.miss(<span class="dv">40</span>,<span class="dv">140</span>,<span class="dv">3</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>_zero1.second_linear()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>plt.plot(_zero1.missing[:,<span class="dv">3</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-14-ESTGCN_GNAR_DATA_5_files/figure-html/cell-57-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>plt.plot(_zero1.train_linear[:,<span class="dv">3</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-02-14-ESTGCN_GNAR_DATA_5_files/figure-html/cell-58-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 
 

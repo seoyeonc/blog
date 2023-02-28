@@ -313,6 +313,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_6.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
   </div>
 </li>
@@ -323,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-19-ESTGCN_MontevideoBus_DATA_1.html" class="sidebar-item-text sidebar-link">MontevideoBus lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  <a href="../../posts/GCN/2023-02-19-ESTGCN_MONTEVIDEOBUS_DATA_1.html" class="sidebar-item-text sidebar-link">MontevideoBus lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -475,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -503,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects.numpy2ri <span class="im">as</span> rpyn</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -519,18 +529,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="my-functions" class="level1">
 <h1>my functions</h1>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data(fname):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname, <span class="st">'rb'</span>) <span class="im">as</span> outfile:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        data_dict <span class="op">=</span> pickle.load(outfile)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_dict</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> save_data(data_dict,fname):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname,<span class="st">'wb'</span>) <span class="im">as</span> outfile:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        pickle.dump(data_dict,outfile)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot(f,<span class="op">*</span>args,t<span class="op">=</span><span class="va">None</span>,h<span class="op">=</span><span class="fl">2.5</span>,<span class="op">**</span>kwargs):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    T,N <span class="op">=</span> f.shape</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t <span class="op">==</span> <span class="va">None</span>: t <span class="op">=</span> <span class="bu">range</span>(T)</span>
@@ -544,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    plt.close()</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_add(fig,f,<span class="op">*</span>args,t<span class="op">=</span><span class="va">None</span>,<span class="op">**</span>kwargs):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> f.shape[<span class="dv">0</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> f.shape[<span class="dv">1</span>] </span>
@@ -554,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        ax[n].plot(t,f[:,n],<span class="op">*</span>args,<span class="op">**</span>kwargs)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_Psi(T):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> np.zeros((T,T))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
@@ -569,10 +579,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    lamb, Psi <span class="op">=</span> np.linalg.eigh(L)</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Psi</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> trim(f):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.array(f)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(f.shape)<span class="op">==</span><span class="dv">1</span>: f <span class="op">=</span> f.reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
@@ -583,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    fhat <span class="op">=</span> Psi <span class="op">@</span> fbar_threshed <span class="co"># inverse dft </span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fhat</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_from_freq_domain(signal, missing_index):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    signal <span class="op">=</span> np.array(signal)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    T,N <span class="op">=</span> signal.shape </span>
@@ -596,10 +606,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="data-정리" class="level1">
 <h1>data 정리</h1>
 <p><code>-</code> 데이터정리</p>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>edges_tensor <span class="op">=</span> torch.tensor(data[<span class="st">'edges'</span>])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fiveVTS <span class="op">=</span> np.array(data[<span class="st">'f'</span>])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>nonzero_indices <span class="op">=</span> edges_tensor.nonzero()</span>
@@ -614,14 +624,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>edge_attr <span class="op">=</span> torch.tensor(np.array([<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]),dtype<span class="op">=</span>torch.float32)</span></code></pre></div>
 </div>
 <p><code>-</code> train / test</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fiveVTS_train <span class="op">=</span> fiveVTS[:<span class="bu">int</span>(<span class="bu">len</span>(fiveVTS)<span class="op">*</span><span class="fl">0.8</span>)]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fiveVTS_test <span class="op">=</span> fiveVTS[<span class="bu">int</span>(<span class="bu">len</span>(fiveVTS)<span class="op">*</span><span class="fl">0.8</span>):]</span></code></pre></div>
 </div>
 </section>
 <section id="random-missing-values" class="level1">
 <h1>Random Missing Values</h1>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Missing:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
@@ -645,17 +655,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_linear <span class="op">=</span> <span class="va">self</span>.train_linear.fillna(<span class="dv">0</span>)</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_linear <span class="op">=</span> np.array(<span class="va">self</span>.train_linear).reshape(<span class="bu">int</span>(<span class="bu">len</span>(<span class="va">self</span>.df)),N)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> [<span class="st">'Dataset'</span>,<span class="st">'iteration'</span>, <span class="st">'method'</span>, <span class="st">'missingrate'</span>, <span class="st">'missingtype'</span>, <span class="st">'lag'</span>, <span class="st">'number_of_filters'</span>, <span class="st">'interpolation'</span>,<span class="st">'MSE_train'</span>, <span class="st">'MSE_test'</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>filter_num <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">16</span>,<span class="dv">24</span>,<span class="dv">32</span>,<span class="dv">64</span>]</span></code></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>filter_num <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">16</span>,<span class="dv">24</span>,<span class="dv">32</span>,<span class="dv">64</span>]</span></code></pre></div>
 </div>
 </section>
 <section id="class-code-by-method" class="level1">
 <h1>Class code by Method</h1>
 <section id="stgcn" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn">STGCN</h2>
-<div class="cell" data-tags="[]" data-execution_count="16">
+<div class="cell" data-tags="[]" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STGCN_Missing:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
@@ -718,9 +728,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="enhencement-of-stgcn" class="level2">
 <h2 class="anchored" data-anchor-id="enhencement-of-stgcn">Enhencement of STGCN</h2>
-<div class="cell" data-tags="[]" data-execution_count="17">
+<div class="cell" data-tags="[]" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ESTGCN_Missing:</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.iterable <span class="op">=</span> iterable</span>
@@ -787,7 +797,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="stgcn-1" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn-1">STGCN</h2>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Dataset <span class="op">=</span> <span class="st">'fivenodes'</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'stgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
@@ -796,7 +806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>iterable <span class="op">=</span> <span class="dv">100</span></span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_stgcn<span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>col)</span></code></pre></div>
 </div>
 <div class="cell">
@@ -816,7 +826,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Dataset <span class="op">=</span> <span class="st">'fivenodes'</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Method <span class="op">=</span> <span class="st">'estgcn'</span> <span class="co"># 'stgcn','estgcn','gnar' </span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="fl">0.8</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Missingrate <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># 0.0, 0.2, 0.4, 0.6, 0.8 </span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Missingtype <span class="op">=</span> <span class="st">'randomly'</span>  <span class="co"># None, 'randomly' and 'block' </span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>lag <span class="op">=</span> <span class="dv">1</span> <span class="co"># 1,2,3,4 ... </span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>Interpolation <span class="op">=</span> <span class="st">'Linear'</span> <span class="co"># None, 'mean', 'linear'</span></span>
@@ -934,9 +944,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    df_add <span class="op">=</span> gnar.df.copy()</span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    df_gnar <span class="op">=</span> pd.concat([df_gnar,df_add],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>save_data(df_gnar, <span class="st">'./data/GANR_gnar_one_randomly_by_rate.pkl'</span>)</span></code></pre></div>
-</div>
+<p>save_data(df_gnar, ‘./data/GANR_gnar_one_randomly_by_rate.pkl’)</p>
 
 
 </section>

@@ -313,6 +313,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_6.html" class="sidebar-item-text sidebar-link">GNAR lag 1 Randomly Missing comparison Table by Missing Rate</a>
   </div>
 </li>
@@ -323,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-19-ESTGCN_MontevideoBus_DATA_1.html" class="sidebar-item-text sidebar-link">MontevideoBus lag 1 Randomly Missing comparison Table by Missing Rate</a>
+  <a href="../../posts/GCN/2023-02-19-ESTGCN_MONTEVIDEOBUS_DATA_1.html" class="sidebar-item-text sidebar-link">MontevideoBus lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -456,10 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#class-code-by-method" id="toc-class-code-by-method" class="nav-link" data-scroll-target="#class-code-by-method">Class code by Method</a>
   <ul class="collapse">
   <li><a href="#stgcn" id="toc-stgcn" class="nav-link" data-scroll-target="#stgcn">STGCN</a></li>
-  </ul></li>
   <li><a href="#enhencement-of-stgcn" id="toc-enhencement-of-stgcn" class="nav-link" data-scroll-target="#enhencement-of-stgcn">Enhencement of STGCN</a></li>
-  <li><a href="#gnar" id="toc-gnar" class="nav-link" data-scroll-target="#gnar">GNAR</a>
-  <ul class="collapse">
+  <li><a href="#gnar" id="toc-gnar" class="nav-link" data-scroll-target="#gnar">GNAR</a></li>
   <li><a href="#stgcn-1" id="toc-stgcn-1" class="nav-link" data-scroll-target="#stgcn-1">STGCN</a></li>
   <li><a href="#enhencement-of-stgcn-1" id="toc-enhencement-of-stgcn-1" class="nav-link" data-scroll-target="#enhencement-of-stgcn-1">Enhencement of STGCN</a></li>
   <li><a href="#gnar-1" id="toc-gnar-1" class="nav-link" data-scroll-target="#gnar-1">GNAR</a></li>
@@ -657,7 +665,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Class code by Method</h1>
 <section id="stgcn" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn">STGCN</h2>
-<div class="cell" data-tags="[]" data-execution_count="93">
+<div class="cell" data-tags="[]" data-execution_count="153">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> STGCN_Block:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Dataset <span class="op">=</span> Dataset</span>
@@ -719,10 +727,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
 </section>
-</section>
-<section id="enhencement-of-stgcn" class="level1">
-<h1>Enhencement of STGCN</h1>
-<p><code>-</code> 결측치생성 + 보간</p>
+<section id="enhencement-of-stgcn" class="level2">
+<h2 class="anchored" data-anchor-id="enhencement-of-stgcn">Enhencement of STGCN</h2>
 <div class="cell" data-tags="[]" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ESTGCN_Block:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,Dataset, start,end,node,df, iterable, Method, Missingrate, Missingtype, lag, Number_of_filters, Interpolation):</span>
@@ -791,8 +797,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
 </section>
-<section id="gnar" class="level1">
-<h1>GNAR</h1>
+<section id="gnar" class="level2">
+<h2 class="anchored" data-anchor-id="gnar">GNAR</h2>
 <div class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -862,6 +868,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.df <span class="op">=</span> pd.concat([<span class="va">self</span>.df,df_row])</span></code></pre></div>
 </div>
+</section>
 <section id="stgcn-1" class="level2">
 <h2 class="anchored" data-anchor-id="stgcn-1">STGCN</h2>
 <div class="cell" data-execution_count="24">

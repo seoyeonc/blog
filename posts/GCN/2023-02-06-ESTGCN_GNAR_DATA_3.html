@@ -333,6 +333,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">IT-STGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-02-19-ESTGCN_MONTEVIDEOBUS_DATA_1.html" class="sidebar-item-text sidebar-link">MontevideoBus lag 4 Randomly Missing comparison Table</a>
   </div>
 </li>
@@ -927,10 +932,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="gnar" class="level1">
 <h1>GNAR</h1>
-<div class="cell">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span>
@@ -967,20 +972,20 @@ R[write to console]: The following objects are masked from ‘package:base’:
 </code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>fiveNet_m <span class="op">&lt;-</span> <span class="im">as</span>.matrix(fiveNet)</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o fiveNet_m</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>GNAR <span class="op">=</span> importr(<span class="st">'GNAR'</span>) <span class="co"># import GNAR </span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>igraph <span class="op">=</span> importr(<span class="st">'igraph'</span>) <span class="co"># import igraph </span></span></code></pre></div>
 </div>
 <section id="missing-일정-2" class="level2">
 <h2 class="anchored" data-anchor-id="missing-일정-2">missing 일정</h2>
-<div class="cell">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>_zero <span class="op">=</span> Missing(fiveVTS_train)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>_zero.miss(percent <span class="op">=</span> <span class="fl">0.8</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>_zero.second_linear()</span>
@@ -996,11 +1001,11 @@ R[write to console]: The following objects are masked from ‘package:base’:
 <span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>real_y <span class="op">=</span> np.array(torch.tensor(fiveVTS_train).reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>),N,<span class="dv">1</span>).<span class="bu">float</span>()[<span class="dv">1</span>:,:,:])</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i X</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>i XX</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>gnar_train1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>gnar_test1 <span class="op">&lt;-</span> matrix(ncol<span class="op">=</span><span class="dv">1</span>,nrow<span class="op">=</span><span class="dv">100</span>)</span>
@@ -1015,7 +1020,7 @@ R[write to console]: The following objects are masked from ‘package:base’:
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  gnar_test1[i] <span class="op">&lt;-</span> train_mse_total_gnar</span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_train1</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o gnar_test1</span></code></pre></div>
 </div>
@@ -1036,7 +1041,7 @@ R[write to console]: The following objects are masked from ‘package:base’:
 </section>
 <section id="missing-다르게-1" class="level2">
 <h2 class="anchored" data-anchor-id="missing-다르게-1">missing 다르게</h2>
-<div class="cell">
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> robjects.r.matrix(FloatVector([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>]), nrow <span class="op">=</span> <span class="dv">5</span>, ncol <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(m)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1049,13 +1054,13 @@ R[write to console]: The following objects are masked from ‘package:base’:
 </code></pre>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gnar_train2 <span class="op">=</span> []</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>gnar_test2 <span class="op">=</span> []</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> torch.tensor(fiveVTS_test.reshape(<span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.2</span>),N,<span class="dv">1</span>)[<span class="dv">1</span>:,:,:]).<span class="bu">float</span>()</span></code></pre></div>
 </div>
-<div class="cell" data-tags="[]">
+<div class="cell" data-tags="[]" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    _zero <span class="op">=</span> Missing(fiveVTS_train)</span>
@@ -1077,7 +1082,7 @@ R[write to console]: The following objects are masked from ‘package:base’:
 <span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    gnar_train2.append(train_mse_total_gnar.tolist())</span>
 <span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>    gnar_test2.append(test_mse_total_gnar.tolist())</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>plt.boxplot(gnar_train2)<span class="op">;</span></span></code></pre></div>
 <div class="cell-output cell-output-display">

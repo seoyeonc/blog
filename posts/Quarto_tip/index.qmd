@@ -1,5 +1,5 @@
 ---
-title: "Guarto tip"
+title: "Quarto tip"
 author: "SEOYEON CHOI"
 date: "2022-09-01"
 categories: [Quarto]

@@ -11,3 +11,10 @@ about:
 ---
 
 Hi, there ;)
+
+[참고](https://miruetoto.github.io/yechan/%EC%A6%90%EC%B0%BE/2000/01/05/(%EC%A6%90%EC%B0%BE)-%EC%A3%BC%ED%94%BC%ED%84%B0%EB%9E%A9-%EC%A6%90%EC%B0%BE.html)
+
+terminal check
+
+- top
+- nvidia-smi

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="SEOYEON CHOI">
-<meta name="dcterms.date" content="2023-02-01">
+<meta name="dcterms.date" content="2023-02-13">
 
-<title>Seoyeon’s Blog for study - Chap 8.3: Discrete Fourier Transform</title>
+<title>Seoyeon’s Blog for study - asdf</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,7 +124,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -162,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Chap 8.3: Discrete Fourier Transform</h1>
+      <h1 class="quarto-secondary-nav-title">asdf</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -173,9 +172,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Chap 8.3: Discrete Fourier Transform</h1>
+      <h1 class="title d-none d-lg-block">asdf</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Discrete Fourier Transform</div>
+                <div class="quarto-category">Power Spectral Density and its Estimators</div>
               </div>
                   </div>
   </div>
@@ -193,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 1, 2023</p>
+        <p class="date">February 13, 2023</p>
       </div>
     </div>
     
@@ -434,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/Untitled.html" class="sidebar-item-text sidebar-link">asdf</a>
+  <a href="../../posts/Study/Untitled.html" class="sidebar-item-text sidebar-link active">asdf</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -449,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link active">Chap 8.3: Discrete Fourier Transform</a>
+  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -479,226 +478,139 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<blockquote class="blockquote">
-<p>Chap 8.3: Discrete Fourier Transform</p>
-</blockquote>
-<div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">FFTW</span></span></code></pre></div>
-</div>
-<p>Shift Operator B가 존재할 떄,</p>
-<ul>
-<li>직교 행렬orthogonal</li>
-<li>cyclic shift operator(<span class="math inline">\(BS_n = S_{n-1}\)</span>) <span class="math inline">\(\to\)</span> <span class="math inline">\(S_{n-1}\)</span>은 vector space components</li>
-</ul>
-<p><span class="math inline">\(\star\)</span> 시계열의 back shift operator 로 생각할 수 있고, foward shift operator도 가능하다.</p>
-<p><span class="math inline">\(\star\)</span> cyclic operator이어야 하는 이유? 책의 정의 이용 및 back/forward shift operator는 고유분해 안 될 수도.</p>
-<p>이 행렬을 고유분해(full rank)하여 나온 고유값과 고유벡터가 존재한다.</p>
-<div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span> [<span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span>] <span class="co"># cyclic shift operator B</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>B<span class="op">'</span>B <span class="co"># matrix B is orthogonal</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
-<pre><code>5×5 Matrix{Int64}:
- 1  0  0  0  0
- 0  1  0  0  0
- 0  0  1  0  0
- 0  0  0  1  0
- 0  0  0  0  1</code></pre>
+<div class="cell" data-tags="[]" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>2</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>B<span class="op">*</span>s <span class="co"># matrix B is a cyclic shift operator</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
-<pre><code>5-element Vector{Int64}:
- 5
- 1
- 2
- 3
- 4</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>B<span class="op">^</span><span class="fl">2</span><span class="op">*</span>s</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
-<pre><code>5-element Vector{Int64}:
- 4
- 5
- 1
- 2
- 3</code></pre>
-</div>
-</div>
-<p>이 고유값<span class="math inline">\(\lambda\)</span>, 고유벡터<span class="math inline">\(\psi\)</span>가 존재한다면 B는 <span class="math inline">\(DFT^* \Lambda DFT\)</span>로 표현 가능핟하다.</p>
-<ul>
-<li><span class="math inline">\(DFT^*\)</span>
-<ul>
-<li>conjugate matrix</li>
-<li><span class="math inline">\(\psi\)</span>인데 DFT로 표현 <span class="math inline">\(\to\)</span> 그래프 도메인으로 확장이 가능하기 때문</li>
-</ul></li>
-</ul>
-<p>여기서 <span class="math inline">\(DFT^*\)</span>는 <span class="math inline">\(\psi^*_k = DFT_k = \frac{1}{\sqrt{N}} \begin{bmatrix} 1 \\ \dots \\ e^{-j\frac{2\pi}{N}(N-1)k} \end{bmatrix}\)</span>로서 표현(<span class="math inline">\(\in C^N\)</span> 길이가 <span class="math inline">\(N\)</span>인 vector(복소수))</p>
-<ul>
-<li>unitary and symmetric
-<ul>
-<li>unitary <span class="math inline">\(\to\)</span> complex space에서 정규직교기저를 이루고, <span class="math inline">\(A(A^*)^\top = I, \psi^{-1} = \psi^*, \psi^* \psi = \psi \psi^* = I\)</span></li>
-</ul></li>
-<li>위 <span class="math inline">\(k\)</span>개의 벡터들은 <code>spectral components</code> 이다.</li>
-<li>the complex exponential sinusodal functions</li>
-</ul>
-<p>여기서 <span class="math inline">\(\lambda\)</span>는 the <code>frequencies of the signal</code> 로서 정의될 수 있다.</p>
-<ul>
-<li>특징
-<ul>
-<li>distinct</li>
-<li>positive</li>
-<li>equally spaced</li>
-<li>increasing from <span class="math inline">\(0\)</span> ro <span class="math inline">\(\frac{N-1}{N}\)</span></li>
-</ul></li>
-</ul>
-<div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>λ, ψ <span class="op">=</span> <span class="fu">eigen</span>(B)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
-<pre><code>Eigen{ComplexF64, ComplexF64, Matrix{ComplexF64}, Vector{ComplexF64}}
-values:
-5-element Vector{ComplexF64}:
- -0.8090169943749472 - 0.5877852522924725im
- -0.8090169943749472 + 0.5877852522924725im
- 0.30901699437494734 - 0.9510565162951536im
- 0.30901699437494734 + 0.9510565162951536im
-  0.9999999999999998 + 0.0im
-vectors:
-5×5 Matrix{ComplexF64}:
-  0.138197+0.425325im   0.138197-0.425325im  …  0.447214+0.0im
- -0.361803-0.262866im  -0.361803+0.262866im     0.447214+0.0im
-  0.447214-0.0im        0.447214+0.0im          0.447214+0.0im
- -0.361803+0.262866im  -0.361803-0.262866im     0.447214+0.0im
-  0.138197-0.425325im   0.138197+0.425325im     0.447214+0.0im</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> ψ <span class="op">*</span> <span class="fu">Diagonal</span>(λ) <span class="op">*</span> ψ<span class="ch">'</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>5×5 Matrix{ComplexF64}:
-    2.498e-16-9.67158e-18im  …           1.0+1.81709e-18im
-          1.0+2.1793e-18im       5.55112e-16-1.09573e-17im
- -3.88578e-16-7.89355e-18im     -3.21902e-16+8.57473e-18im
- -4.16334e-16-8.06149e-18im       -4.996e-16-8.9293e-18im
-  2.99888e-16+1.53977e-17im      3.99189e-16+1.42498e-17im</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> ψ<span class="ch">'</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>5×5 adjoint(::Matrix{ComplexF64}) with eltype ComplexF64:
-  0.138197-0.425325im  -0.361803+0.262866im  …  0.138197+0.425325im
-  0.138197+0.425325im  -0.361803-0.262866im     0.138197-0.425325im
- -0.361803-0.262866im  -0.361803+0.262866im     0.138197-0.425325im
- -0.361803+0.262866im  -0.361803-0.262866im     0.138197+0.425325im
-  0.447214-0.0im        0.447214-0.0im          0.447214-0.0im</code></pre>
-</div>
-</div>
-<p><span class="math inline">\(B = \psi \Lambda \psi^{-1}\)</span></p>
-<ul>
-<li><span class="math inline">\(\psi^H := DFT\)</span> 이렇게 정의한다면 F의 고유벡터의 conjugate</li>
-<li><span class="math inline">\(F\)</span> <span class="math inline">\(\to\)</span> <span class="math inline">\(BF = I\)</span></li>
-<li><span class="math inline">\(\psi \Lambda \psi^H F = I\)</span></li>
-<li>만약, <span class="math inline">\(F\)</span>가 <span class="math inline">\(\psi^H\Lambda^{-1}\psi\)</span>라면, <span class="math inline">\(\psi \Lambda \psi^H\psi^H\Lambda \psi = I\)</span></li>
-<li>따라서 <span class="math inline">\(F\)</span>는 <span class="math inline">\(\psi^{-1} \Lambda^{-1} \psi\)</span>로 고유분해</li>
-</ul>
-<div class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">1</span>,<span class="fl">2</span><span class="op">-</span><span class="cn">im</span>,<span class="op">-</span><span class="cn">im</span>,<span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="fl">2im</span>]</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>4-element Vector{Complex{Int64}}:
-  1 + 0im
-  2 - 1im
-  0 - 1im
- -1 + 2im</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_DFT <span class="op">=</span> <span class="fu">reshape</span>([i<span class="op">*</span>j for i <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span> for j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span><span class="fl">3</span>], (<span class="fl">4</span>,<span class="fl">4</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>_DFT</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
-<pre><code>4×4 Matrix{Int64}:
- 0  0  0  0
- 0  1  2  3
- 0  2  4  6
- 0  3  6  9</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fu">exp</span>(<span class="op">-</span><span class="cn">im</span> <span class="op">*</span> (<span class="fl">2</span>π<span class="op">/</span><span class="fl">4</span>) <span class="op">*</span> x)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> _DFT <span class="op">.|&gt;</span> f</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
-<pre><code>4×4 Matrix{ComplexF64}:
- 1.0-0.0im           1.0-0.0im          …           1.0-0.0im
- 1.0-0.0im   6.12323e-17-1.0im             -1.83697e-16+1.0im
- 1.0-0.0im          -1.0-1.22465e-16im             -1.0-3.67394e-16im
- 1.0-0.0im  -1.83697e-16+1.0im              5.51091e-16-1.0im</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="55">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">*</span> x</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
-<pre><code>4-element Vector{ComplexF64}:
-                   2.0 + 0.0im
-   -1.9999999999999998 - 2.0000000000000004im
- 8.881784197001252e-16 - 1.9999999999999998im
-    3.9999999999999987 + 4.000000000000001im</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fft</span>(x)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
-<pre><code>4-element Vector{ComplexF64}:
-  2.0 + 0.0im
- -2.0 - 2.0im
-  0.0 - 2.0im
-  4.0 + 4.0im</code></pre>
-</div>
-</div>
-<p>DFT의 두 번쨰 정의</p>
-<ul>
-<li>복소수 sequence <span class="math inline">\(\{x_n\}\)</span>을 <code>규칙</code>에 따라 <span class="math inline">\(\{X_k\}\)</span>로 변환하는 것</li>
-<li>규칙: <span class="math inline">\(x_k = \sum^{N-1}_{n=0} x_n e^{-i\frac{2\pi}{N}kn}\)</span>
-<ul>
-<li>특히, <span class="math inline">\(k=0\)</span>이면 <span class="math inline">\(X_0 = \sum^{N-1}{n=0}x_n\)</span>, constant term 이 되어 <span class="math inline">\(\beta_0\)</span>의 역할을 한다.</li>
-</ul></li>
-</ul>
-<p>행렬로 표현한다면, <span class="math inline">\(\begin{bmatrix}X_k \\ \dots \end{bmatrix} = DFT = \begin{bmatrix}x_n \\ \dots \end{bmatrix}\)</span></p>
-<ul>
-<li><span class="math inline">\(x_k = DFT^{-1}X_k\)</span>
-<ul>
-<li><span class="math inline">\(x_k\)</span> = bias, 관측값</li>
-<li><span class="math inline">\(DFT^{-1}\)</span>: 설명변수, unitary라 <span class="math inline">\(DFT^{-1} = DFT = DFT^*\)</span>, symmetric, orthogonal(설명변수가 독립적이라 다중공선성이 존재하지 않는다.)
-<ul>
-<li>다중공선성이 있으면 각 설명변수의 설명이 안 될 수도 있고 그 설명변수를 해석하기도 어려워짐.</li>
-</ul></li>
-<li><span class="math inline">\(X_k = \beta\)</span>, codfficient(푸리에 변환의 결과이다)</li>
-</ul></li>
-</ul>
-<p>DFT 행렬의 특징</p>
-<ol type="1">
-<li>유니터리unitary 행렬, 즉, <span class="math inline">\(DFT^* = DFT, DFT^*DFT = I\)</span></li>
-<li>대칭symmetric 행렬 <span class="math inline">\(\to\)</span> 그렇기 떄문에 이 행렬의 켤레전치는 <span class="math inline">\(i = \sqrt{-1}\)</span> 대신 <span class="math inline">\(i\)</span>를 넣은 것과 같음.</li>
-</ol>
-<ul>
-<li>inverse DFT는 <span class="math inline">\(i = -i\)</span>를 넣은 행렬, 즉 DFT의 켤레전치 = inverse DFT</li>
-</ul>
-<p><span class="math inline">\(DFT = \frac{1}{\sqrt{N}}\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; \dots &amp; 1 \\ 1 &amp; e^{-i\frac{2\pi}{N}1} &amp; e^{-i\frac{2\pi}{N}1} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(N-1)} \\ 1 &amp; e^{-i\frac{2\pi}{N}2} &amp; e^{-i\frac{2\pi}{N}4} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(2(N-1)} \\ \dots &amp; \dots &amp; \dots &amp; \dots \\ 1 &amp; e^{-i\frac{2\pi}{N}(N-1)} &amp; e^{-i\frac{2\pi}{N}2(N-1)} &amp; \dots &amp; e^{-i\frac{2\pi}{N}(N-1)^2}\end{bmatrix}\)</span></p>
-<div class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DFT <span class="op">=</span> (<span class="fl">1</span><span class="op">/</span>√<span class="fl">4</span>)<span class="op">*</span>DFT <span class="co"># 위의 정의 충족위해 1/sqrt(4)곱함</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>DFT<span class="op">'</span>DFT <span class="op">.|&gt;</span> round <span class="co"># 유니터리행렬임을 확인!</span></span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
-<pre><code>4×4 Matrix{ComplexF64}:
-  0.0+0.0im  -0.0-0.0im   0.0-0.0im   0.0-0.0im
- -0.0+0.0im   0.0+0.0im  -0.0-0.0im   0.0-0.0im
-  0.0+0.0im  -0.0+0.0im   0.0+0.0im  -0.0-0.0im
-  0.0+0.0im   0.0+0.0im  -0.0+0.0im   0.0+0.0im</code></pre>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git add .</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git commit <span class="op">-</span>m .</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>git push </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>quarto publish <span class="op">--</span>no<span class="op">-</span>browser <span class="op">--</span>no<span class="op">-</span>prompt </span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[main 0eda2b1] .
+ 2 files changed, 146 insertions(+)
+ create mode 100644 posts/Study/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+ create mode 100644 posts/Study/Untitled.ipynb
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 28 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 1.07 KiB | 1.07 MiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/seoyeonc/blog.git
+   4e1306e..0eda2b1  main -&gt; main
+From https://github.com/seoyeonc/blog
+ * branch            gh-pages   -&gt; FETCH_HEAD
+Rendering for publish:
+
+[ 1/45] index.qmd
+WARNING: File /home/csy/Dropbox/blog/posts/Study/2022-12-31-Space-study.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/Study/2023-02-01-ch8_DFT.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/Study/Untitled.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/Quarto_tip/2023-01-02-quarto_tips.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2022-12-21-ST-GCN_Dataset.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-26-guebin.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-19-ESTGCN_MONTEVIDEOBUS_DATA_1.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-14-ESTGCN_GNAR_DATA_5.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-05-GNAR.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-15-ESTGCN_DATASET.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-20-Algorithm_traintest.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-18-Algorithm_traintest_2.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-16-ESTGCN_EnglandCovid_DATA_1.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-11-ESTGCN_WIKI_DATA_3.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2022-12-07-torchgcn.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-21-Class.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_6.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-15-ESTGCN_WIKI_DATA_4.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2022-12-28-gcn_simulation.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-02-16-ESTGCN_PEDAL_DATA_1.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GCN/2023-01-11-Algorithm_EX_1.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/2022-12-01-graph_code_guebin.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/2022-11-19-class_code_for_paper.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/2022-09-02-paper_simulation.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/2022-10-02-Earthquake_real.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/2022-12-27-DFT_study.ipynb in the listing 'listing' contains no metadata.
+WARNING: File /home/csy/Dropbox/blog/posts/GODE/Untitled.ipynb in the listing 'listing' contains no metadata.
+[ 2/45] posts/Study/index.qmd
+[ 3/45] posts/Study/2022-12-31-Space-study.ipynb
+[ 4/45] posts/Study/2023-02-01-ch8_DFT.ipynb
+[ 5/45] posts/Study/Untitled.ipynb
+[ 6/45] posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.ipynb
+[ 7/45] posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.ipynb
+[ 8/45] posts/Quarto_tip/index.qmd
+[ 9/45] posts/Quarto_tip/2023-01-02-quarto_tips.ipynb
+[10/45] posts/GCN/2022-12-21-ST-GCN_Dataset.ipynb
+[11/45] posts/GCN/index.qmd
+[12/45] posts/GCN/2023-01-26-guebin.ipynb
+[13/45] posts/GCN/2023-02-19-ESTGCN_MONTEVIDEOBUS_DATA_1.ipynb
+[14/45] posts/GCN/2023-02-14-ESTGCN_GNAR_DATA_5.ipynb
+[15/45] posts/GCN/2023-01-05-GNAR.ipynb
+[16/45] posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.ipynb
+[17/45] posts/GCN/2023-02-15-ESTGCN_DATASET.ipynb
+[18/45] posts/GCN/2023-01-20-Algorithm_traintest.ipynb
+[19/45] posts/GCN/2023-01-18-Algorithm_traintest_2.ipynb
+[20/45] posts/GCN/2023-02-16-ESTGCN_EnglandCovid_DATA_1.ipynb
+[21/45] posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_7.ipynb
+[22/45] posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.ipynb
+[23/45] posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.ipynb
+[24/45] posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.ipynb
+[25/45] posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.ipynb
+[26/45] posts/GCN/2023-02-11-ESTGCN_WIKI_DATA_3.ipynb
+[27/45] posts/GCN/2023-02-08-ESTGCN_GNAR_DATA_4.ipynb
+[28/45] posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.ipynb
+[29/45] posts/GCN/2022-12-07-torchgcn.ipynb
+[30/45] posts/GCN/2023-01-21-Class.ipynb
+[31/45] posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.ipynb
+[32/45] posts/GCN/2023-02-15-ESTGCN_GNAR_DATA_6.ipynb
+[33/45] posts/GCN/2023-02-15-ESTGCN_WIKI_DATA_4.ipynb
+[34/45] posts/GCN/2022-12-28-gcn_simulation.ipynb
+[35/45] posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.ipynb
+[36/45] posts/GCN/2023-02-16-ESTGCN_PEDAL_DATA_1.ipynb
+[37/45] posts/GCN/2023-01-11-Algorithm_EX_1.ipynb
+[38/45] posts/GODE/2022-12-01-graph_code_guebin.ipynb
+[39/45] posts/GODE/index.qmd
+[40/45] posts/GODE/2022-11-19-class_code_for_paper.ipynb
+[41/45] posts/GODE/2022-09-02-paper_simulation.ipynb
+[42/45] posts/GODE/2022-10-02-Earthquake_real.ipynb
+[43/45] posts/GODE/2022-12-27-DFT_study.ipynb
+[44/45] posts/GODE/Untitled.ipynb
+[45/45] about.qmd
+
+Preparing worktree (resetting branch 'gh-pages'; was at 4d28be3)
+Branch 'gh-pages' set up to track remote branch 'gh-pages' from 'origin'.
+HEAD is now at 4d28be3 Built site for gh-pages
+[gh-pages 74dec2f] Built site for gh-pages
+ 50 files changed, 2350 insertions(+), 1522 deletions(-)
+ create mode 100644 posts/Study/Untitled.html
+origin  https://github.com/seoyeonc/blog.git (fetch)
+origin  https://github.com/seoyeonc/blog.git (push)
+To https://github.com/seoyeonc/blog.git
+   4d28be3..74dec2f  HEAD -&gt; gh-pages
+
+NOTE: GitHub Pages sites use caching so you might need to click the refresh
+button within your web browser to see changes after deployment.
+
+[✓] Published to https://seoyeonc.github.io/blog/
+
+NOTE: GitHub Pages deployments normally take a few minutes (your site updates
+will be visible once the deploy completes)
+</code></pre>
 </div>
 </div>
 

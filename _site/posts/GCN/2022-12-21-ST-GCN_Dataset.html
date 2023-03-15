@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -434,6 +434,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/Untitled.html" class="sidebar-item-text sidebar-link">asdf</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html" class="sidebar-item-text sidebar-link">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</a>
   </div>
 </li>
@@ -445,6 +450,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-16-stgcn_paper_review_1.html" class="sidebar-item-text sidebar-link">STGCN papers review</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,6 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#chickenpoxdatasetloader" id="toc-chickenpoxdatasetloader" class="nav-link active" data-scroll-target="#chickenpoxdatasetloader">ChickenpoxDatasetLoader</a></li>
   <li><a href="#pedalmedatasetloader" id="toc-pedalmedatasetloader" class="nav-link" data-scroll-target="#pedalmedatasetloader">PedalMeDatasetLoader</a></li>
   <li><a href="#wikimathsdatasetloader" id="toc-wikimathsdatasetloader" class="nav-link" data-scroll-target="#wikimathsdatasetloader">WikiMathsDatasetLoader</a></li>
+  <li><a href="#windmill-output-datasets" id="toc-windmill-output-datasets" class="nav-link" data-scroll-target="#windmill-output-datasets">Windmill Output Datasets</a>
+  <ul class="collapse">
   <li><a href="#windmilloutputlargedatasetloader" id="toc-windmilloutputlargedatasetloader" class="nav-link" data-scroll-target="#windmilloutputlargedatasetloader">WindmillOutputLargeDatasetLoader</a></li>
   <li><a href="#windmilloutputmediumdatasetloader" id="toc-windmilloutputmediumdatasetloader" class="nav-link" data-scroll-target="#windmilloutputmediumdatasetloader">WindmillOutputMediumDatasetLoader</a></li>
   <li><a href="#windmilloutputsmalldatasetloader" id="toc-windmilloutputsmalldatasetloader" class="nav-link" data-scroll-target="#windmilloutputsmalldatasetloader">WindmillOutputSmallDatasetLoader</a></li>
@@ -477,6 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#montevideobusdatasetloader" id="toc-montevideobusdatasetloader" class="nav-link" data-scroll-target="#montevideobusdatasetloader">MontevideoBusDatasetLoader</a></li>
   <li><a href="#twittertennisdatasetloader" id="toc-twittertennisdatasetloader" class="nav-link" data-scroll-target="#twittertennisdatasetloader">TwitterTennisDatasetLoader</a></li>
   <li><a href="#mtmdatasetloader" id="toc-mtmdatasetloader" class="nav-link" data-scroll-target="#mtmdatasetloader">MTMDatasetLoader</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -490,6 +503,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>PyTorch Geometric Temporal Dataset</p>
 </blockquote>
 <p>https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/dataset.html#module-torch_geometric_temporal.dataset.chickenpox</p>
+<p><a href="https://arxiv.org/pdf/2104.07788.pdf">논문</a></p>
+<p>|Dataset|Signal|Graph|Frequency|𝑇|ㅣ𝑉ㅣ | |:–:|:–:||:–:||:–:| |Chickenpox Hungary|Temporal|Static|Weekly|522|20| |Windmill Large|Temporal|Static|Hourly|17,472|319| |Windmill Medium|Temporal|Static|Hourly|17,472|26| |Windmill Small|Temporal|Static|Hourly|17,472|11| |Pedal Me Deliveries|Temporal|Static|Weekly|36|15| |Wikipedia Math|Temporal|Static|Daily|731|1,068| |Twitter Tennis RG|Static|Dynamic|Hourly|120|1000| |Twitter Tennis UO|Static|Dynamic|Hourly|112|1000| |Covid19 England|Temporal|Dynamic|Daily|61|129| |Montevideo Buses|Temporal|Static|Hourly|744|675| |MTM-1 Hand Motions|Temporal|Static|1/24 Seconds|14,469|21|</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -519,7 +534,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="chickenpoxdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="chickenpoxdatasetloader">ChickenpoxDatasetLoader</h2>
-<p>A dataset of county level chicken pox cases in Hungary between 2004 and 2014. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are counties and edges are neighbourhoods. Vertex features are lagged weekly counts of the chickenpox cases (we included 4 lags). The target is the weekly number of cases for the upcoming week (signed integers). Our dataset consist of more than 500 snapshots (weeks).</p>
+<p>Chickenpox Hungary</p>
+<ul>
+<li>A spatiotemporal dataset about the officially reported cases of chickenpox in Hungary. The nodes are counties and edges describe direct neighbourhood relationships. The dataset covers the weeks between 2005 and 2015 without missingness.</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 519</li>
@@ -795,7 +813,10 @@ f(v_{20},t=5)
 </section>
 <section id="pedalmedatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="pedalmedatasetloader">PedalMeDatasetLoader</h2>
-<p>A dataset of PedalMe Bicycle deliver orders in London between 2020 and 2021. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are localities and edges are spatial_connections. Vertex features are lagged weekly counts of the delivery demands (we included 4 lags). The target is the weekly number of deliveries the upcoming week. Our dataset consist of more than 30 snapshots (weeks).</p>
+<p>Pedal Me Deliveries</p>
+<ul>
+<li>A dataset about the number of weekly bicycle package deliveries by Pedal Me in London during 2020 and 2021. Nodes in the graph represent geographical units and edges are proximity based mutual adjacency relationships.</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 33</li>
@@ -1044,7 +1065,10 @@ f(v_{20},t=5)
 </section>
 <section id="wikimathsdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="wikimathsdatasetloader">WikiMathsDatasetLoader</h2>
-<p>A dataset of vital mathematics articles from Wikipedia. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are Wikipedia pages and edges are links between them. The graph is directed and weighted. Weights represent the number of links found at the source Wikipedia page linking to the target Wikipedia page. The target is the daily user visits to the Wikipedia pages between March 16th 2019 and March 15th 2021 which results in 731 periods.</p>
+<p>Wikipedia Math</p>
+<ul>
+<li>Contains Wikipedia pages about popular mathematics topics and edges describe the links from one page to another. Features describe the number of daily visits between 2019 and 2021 March.</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 722</li>
@@ -1327,7 +1351,7 @@ f(v_{20},t=5)
 <pre><code>tensor([-0.4067, -0.1620, -0.4043])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="147">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>y_hat[:<span class="dv">3</span>].data</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="147">
 <pre><code>tensor([[-0.0648],
@@ -1337,6 +1361,11 @@ f(v_{20},t=5)
 </div>
 </section>
 </section>
+<section id="windmill-output-datasets" class="level1">
+<h1>Windmill Output Datasets</h1>
+<ul>
+<li>An hourly windfarm energy output dataset covering 2 years from a European country. Edge weights are calculated from the proximity of the windmills – high weights imply that two windmill stations are in close vicinity. The size of the dataset relates to the groupping of windfarms considered; the smaller datasets are more localized to a single region.</li>
+</ul>
 <section id="windmilloutputlargedatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="windmilloutputlargedatasetloader">WindmillOutputLargeDatasetLoader</h2>
 <p>Hourly energy output of windmills from a European country for more than 2 years. Vertices represent 319 windmills and weighted edges describe the strength of relationships. The target variable allows for regression tasks.</p>
@@ -2658,7 +2687,10 @@ f(v_{20},t=5)
 </section>
 <section id="englandcoviddatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="englandcoviddatasetloader">EnglandCovidDatasetLoader</h2>
-<p>A dataset of mobility and history of reported cases of COVID-19 in England NUTS3 regions, from 3 March to 12 of May. The dataset is segmented in days and the graph is directed and weighted. The graph indicates how many people moved from one region to the other each day, based on Facebook Data For Good disease prevention maps. The node features correspond to the number of COVID-19 cases in the region in the past window days. The task is to predict the number of cases in each node after 1 day.</p>
+<p>Covid19 England</p>
+<ul>
+<li>A dataset about mass mobility between regions in England and the number of confirmed COVID-19 cases from March to May 2020 [38]. Each day contains a different mobility graph and node features corresponding to the number of cases in the previous days. Mobility stems from Facebook Data For Good 1 and cases from gov.uk 2</li>
+</ul>
 <p>https://arxiv.org/pdf/2009.08388.pdf</p>
 <p>데이터정리</p>
 <ul>
@@ -2919,7 +2951,10 @@ f(v_{20},t=5)
 <section id="montevideobusdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="montevideobusdatasetloader">MontevideoBusDatasetLoader</h2>
 <p>https://www.fing.edu.uy/~renzom/msc/uploads/msc-thesis.pdf</p>
-<p>A dataset of inflow passenger at bus stop level from Montevideo city. This dataset comprises hourly inflow passenger data at bus stop level for 11 bus lines during October 2020 from Montevideo city (Uruguay). The bus lines selected are the ones that carry people to the center of the city and they load more than 25% of the total daily inflow traffic. Vertices are bus stops, edges are links between bus stops when a bus line connects them and the weight represent the road distance. The target is the passenger inflow. This is a curated dataset made from different data sources of the Metropolitan Transportation System (STM) of Montevideo.</p>
+<p>Montevideo Buses</p>
+<ul>
+<li>A dataset about the hourly passenger inflow at bus stop level for eleven bus lines from the city of Montevideo. Nodes are bus stops and edges represent connections between the stops; the dataset covers a whole month of traffic patterns.</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 739</li>
@@ -3160,7 +3195,10 @@ f(v_{20},t=5)
 <section id="twittertennisdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="twittertennisdatasetloader">TwitterTennisDatasetLoader</h2>
 <p>https://appliednetsci.springeropen.com/articles/10.1007/s41109-018-0080-5?ref=https://githubhelp.com</p>
-<p>Twitter mention graphs related to major tennis tournaments from 2017. Nodes are Twitter accounts and edges are mentions between them. Each snapshot contains the graph induced by the most popular nodes of the original dataset. Node labels encode the number of mentions received in the original dataset for the next snapshot. Read more on the original Twitter data in the ‘Temporal Walk Based Centrality Metric for Graph Streams’ paper.</p>
+<p>Twitter Tennis RG and UO</p>
+<ul>
+<li>Twitter mention graphs of major tennis tournaments from 2017. Each snapshot contains the graph of popular player or sport news accounts and mentions between them [5, 6]. Node labels encode the number of mentions received and vertex features are structural properties</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 52081</li>
@@ -3392,7 +3430,10 @@ f(v_{20},t=5)
 </section>
 <section id="mtmdatasetloader" class="level2">
 <h2 class="anchored" data-anchor-id="mtmdatasetloader">MTMDatasetLoader</h2>
-<p>A dataset of Methods-Time Measurement-1 (MTM-1) motions, signalled as consecutive video frames of 21 3D hand keypoints, acquired via MediaPipe Hands from RGB-Video material. Vertices are the finger joints of the human hand and edges are the bones connecting them. The targets are manually labeled for each frame, according to one of the five MTM-1 motions (classes ): Grasp, Release, Move, Reach, Position plus a negative class for frames without graph signals (no hand present). This is a classification task where consecutive frames need to be assigned to the corresponding class . The data x is returned in shape (3, 21, T), the target is returned one-hot-encoded in shape (T, 6).</p>
+<p>MTM-1 Hand Motions</p>
+<ul>
+<li>A temporal dataset of MethodsTime Measurement-1 [36] motions, signalled as consecutive graph frames of 21 3D hand key points that were acquired via MediaPipe Hands [64] from original RGB-Video material. Node features encode the normalized xyz-coordinates of each finger joint and the vertices are connected according to the human hand structure.</li>
+</ul>
 <p>데이터정리</p>
 <ul>
 <li>T = 14452</li>
@@ -3630,6 +3671,7 @@ f(v_{20},t=5)
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

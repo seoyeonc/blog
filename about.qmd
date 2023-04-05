@@ -14,6 +14,13 @@ Hi, there ;)
 
 [참고](https://miruetoto.github.io/yechan/%EC%A6%90%EC%B0%BE/2000/01/05/(%EC%A6%90%EC%B0%BE)-%EC%A3%BC%ED%94%BC%ED%84%B0%EB%9E%A9-%EC%A6%90%EC%B0%BE.html)
 
+- sudo reeboot 로 재부팅 후
+- jupyter notebook & 입력 후
+- enter 로 나가서
+- exit 하기
+- 재부팅시 drop box open ~ (~/.dropbox-dist/dropboxd)
+- nvidia-smi 로 GPU 상태 확인 ! 안 켜져 있다면? (sudo ./NVIDIA-Linux-x86_64-495.46.run(tab누르면 나옴))
+
 terminal check
 
 - top

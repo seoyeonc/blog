@@ -257,6 +257,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">chickenpox SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
   </div>
 </li>
@@ -333,11 +338,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">testtest SimualtionPlanner-Tutorial</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -570,7 +570,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="imports" class="level1">
 <h1>imports</h1>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn.planner </span></code></pre></div>
@@ -578,33 +578,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="read-data" class="level1">
 <h1>read data</h1>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span></code></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/chickenpox.pkl'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span></code></pre></div>
 </div>
 <section id="plnr_stgcn_rand" class="level2">
 <h2 class="anchored" data-anchor-id="plnr_stgcn_rand">PLNR_STGCN_RAND</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>], </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>, <span class="st">'linear'</span>],</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">150</span>]</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">12</span>], </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>, <span class="st">'linear'</span>],</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">150</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>29/1500</code></pre>
 </div>
@@ -612,92 +621,185 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="plnr_stgcn_manual" class="level2">
 <h2 class="anchored" data-anchor-id="plnr_stgcn_manual">PLNR_STGCN_MANUAL</h2>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> tstgcn.DatasetLoader(data_dict)</span></code></pre></div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span></code></pre></div>
 </div>
 <p>시도 1 노드 세 개 epoch 50</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">150</span>)),[]]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plans_stgcn_block <span class="op">=</span> {</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">4</span>, <span class="dv">8</span>,<span class="dv">12</span>], </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">150</span>)),[]]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plans_stgcn_block <span class="op">=</span> {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">4</span>, <span class="dv">8</span>,<span class="dv">12</span>], </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_STGCN_MANUAL(plans_stgcn_block,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>NameError: name 'itstgcn' is not defined</code></pre>
-</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_STGCN_MANUAL(plans_stgcn_block,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plnr.simulate(mindex<span class="op">=</span>mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>31/50</code></pre>
+</div>
 </div>
 </section>
 <section id="plnr_gnar_rand" class="level2">
 <h2 class="anchored" data-anchor-id="plnr_gnar_rand">PLNR_GNAR_RAND</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>data_dict<span class="op">=</span>itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>data_dict<span class="op">=</span>itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plans_gnar_rand <span class="op">=</span> {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    'method': ['GNAR'], </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    'nof_filters': [8,16], </span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    'epoch': [1]</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plans_gnar_rand <span class="op">=</span> {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    'method': ['GNAR'], </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>],</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    'nof_filters': [8,16], </span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#    'epoch': [1]</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="cell" data-tags="[]">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_GNAR_RAND(plans_gnar_rand,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_GNAR_RAND(plans_gnar_rand,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 </div>
 </section>
 <section id="plnr_gnar_block" class="level2">
 <h2 class="anchored" data-anchor-id="plnr_gnar_block">PLNR_GNAR_BLOCK</h2>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _data = itstgcn.load_data('./data/fivenodes.pkl')</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># _edges = torch.tensor(_data['edges']).nonzero().tolist()</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># _FX = _data['f'].tolist()</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># _node_ids = {'node1':0, 'node2':1, 'node3':2, 'node4':3, 'node5':4} </span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict = {'edges':_edges, 'node_ids':_node_ids, 'FX':_FX}</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.DatasetLoader(data_dict)</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># loader = itstgcn.load_data('./data/fivenodes.pkl')</span></span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = [list(range(10,100)),[],list(range(50,80)),[],[]]</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span> [[],[],[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">150</span>)),[]]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plans_gnar_block <span class="op">=</span> {</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">3</span>, </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'GNAR'</span>], </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>], </span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = [list(range(10,100)),[],list(range(50,80)),[],[]]</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [[],[],[],list(range(50,150)),[]]</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [list(range(10,100)),[],list(range(50,80)),[],[]] # node 2</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">150</span>)),[]] <span class="co"># node3</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plans_gnar_block <span class="op">=</span> {</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">3</span>, </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'GNAR'</span>], </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>], </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'cubic'</span>,<span class="st">'nearest'</span>,<span class="st">'linear'</span>],</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_GNAR_MANUAL(plans_gnar_block,loader,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate(mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plnr = itstgcn.planner.PLNR_GNAR_MANUAL(plans_gnar_block,loader,dataset_name='five_nodes')</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plnr.simulate(mindex,mtype='block')</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_GNAR_MANUAL(plans_gnar_block,loader,dataset_name<span class="op">=</span><span class="st">'chickenpox'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate(mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+1/3 is done
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+2/3 is done
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed
+3/3 is done
+All results are stored in ./simulation_results/2023-04-05_21-52-41.csv</code></pre>
+</div>
 </div>
 
 

@@ -318,6 +318,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link active">PyTorch ST-GCN Dataset</a>
   </div>
 </li>
@@ -428,12 +433,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-11-GCRN.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link">GCRN Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-04-04-nomalized graph laplacian.html" class="sidebar-item-text sidebar-link">Nomalized Graph Laplacian</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-03-15-shiny.html" class="sidebar-item-text sidebar-link">Old Faithful</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-STGCN_Existing_Method_Review.html" class="sidebar-item-text sidebar-link">STGCN Existing Method Review</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -827,7 +852,7 @@ f(v_{20},t=5)
 <li>between 2020 and 2021</li>
 <li>per weeks</li>
 </ul>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span>  PedalMeDatasetLoader</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2409,7 +2434,7 @@ f(v_{20},t=5)
 <ul>
 <li>6 months of traffic readings ranging from Jan 1st 2017 to May 31th 2017 in 5 minute intervals</li>
 </ul>
-<div class="cell" data-execution_count="1578">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb317"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb317-1"><a href="#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PemsBayDatasetLoader</span>
 <span id="cb317-2"><a href="#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split</span>
 <span id="cb317-3"><a href="#cb317-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2419,55 +2444,55 @@ f(v_{20},t=5)
 <span id="cb317-7"><a href="#cb317-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb317-8"><a href="#cb317-8" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1579">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb318"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb318-1"><a href="#cb318-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>[]</span>
 <span id="cb318-2"><a href="#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> time, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
 <span id="cb318-3"><a href="#cb318-3" aria-hidden="true" tabindex="-1"></a>    data.append([time,snapshot])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1348">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb319"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb319-1"><a href="#cb319-1" aria-hidden="true" tabindex="-1"></a>time</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1348">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>52081</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="1349">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb321"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb321-1"><a href="#cb321-1" aria-hidden="true" tabindex="-1"></a>(data[<span class="dv">0</span>][<span class="dv">1</span>]).x.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_index.shape,(data[<span class="dv">0</span>][<span class="dv">1</span>]).edge_attr.shape</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1349">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>(torch.Size([325, 2, 12]), torch.Size([2, 2694]), torch.Size([2694]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="1350">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb323"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb323-1"><a href="#cb323-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1351">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb324"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb324-1"><a href="#cb324-1" aria-hidden="true" tabindex="-1"></a>node_list <span class="op">=</span> torch.tensor(<span class="bu">range</span>(<span class="dv">325</span>)).tolist()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1352">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb325"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb325-1"><a href="#cb325-1" aria-hidden="true" tabindex="-1"></a>data[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1352">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>[52081,
  Data(x=[325, 2, 12], edge_index=[2, 2694], edge_attr=[2694], y=[325, 2, 12])]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="1353">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb327"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb327-1"><a href="#cb327-1" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(node_list)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1354">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb328"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb328-1"><a href="#cb328-1" aria-hidden="true" tabindex="-1"></a>edge_list<span class="op">=</span>[]</span>
 <span id="cb328-2"><a href="#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
 <span id="cb328-3"><a href="#cb328-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data[<span class="dv">0</span>][<span class="dv">1</span>].edge_index[<span class="dv">0</span>])):</span>
 <span id="cb328-4"><a href="#cb328-4" aria-hidden="true" tabindex="-1"></a>        edge_list.append([data[i][<span class="dv">1</span>].edge_index[<span class="dv">0</span>][j].tolist(),data[i][<span class="dv">1</span>].edge_index[<span class="dv">1</span>][j].tolist()])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1355">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb329"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb329-1"><a href="#cb329-1" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edge_list)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="1356">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb330"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb330-1"><a href="#cb330-1" aria-hidden="true" tabindex="-1"></a>G.number_of_nodes(),G.number_of_edges()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1356">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>(325, 2404)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="1363">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb332"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb332-1"><a href="#cb332-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G,node_color<span class="op">=</span><span class="st">'green'</span>,node_size<span class="op">=</span><span class="dv">50</span>,font_color<span class="op">=</span><span class="st">'white'</span>,width<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-12-21-ST-GCN_Dataset_files/figure-html/cell-211-output-1.png" class="img-fluid"></p>

@@ -3,6 +3,11 @@
     "listing": "/index.html",
     "items": [
       "/posts/GODE/Untitled.html",
+      "/posts/Study/2023-04-11-GCRN.html",
+      "/posts/Study/2023-04-10-GCRN_riview.html",
+      "/posts/Study/2023-04-10-STGCN_Existing_Method_Review.html",
+      "/posts/Study/2023-04-08-wrting_down_algorithm.html",
+      "/posts/GCN/2023-04-06-METRLADatasetLoader.html",
       "/posts/GCN/2023-04-05-Simulation.html",
       "/posts/Study/2023-04-04-nomalized graph laplacian.html",
       "/posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html",

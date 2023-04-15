@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -195,11 +258,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">chickenpox SimualtionPlanner-Tutorial</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
   </div>
 </li>
@@ -266,6 +324,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -370,12 +433,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-04-11-GCRN.html" class="sidebar-item-text sidebar-link">GCRN</a>
+  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link active">GCRN Review</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link active">GCRN Review</a>
+  <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-04-03-(5주차) 4월2일.html" class="sidebar-item-text sidebar-link">Introduction to Python 5wk</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -390,7 +458,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-03-15-shiny.html" class="sidebar-item-text sidebar-link">Old Faithful</a>
+  <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -518,6 +586,83 @@ ul.task-list li input[type="checkbox"] {
 <p>따라서,</p>
 <p><span class="math inline">\(T_{2}(x) = \cos(2\cos^{-1}(x)) = 2x^{2}-1\)</span></p>
 <p>이렇게 구한 <span class="math inline">\(T_{2}(x)\)</span>는 Laplacian 행렬 <span class="math inline">\(L\)</span>에 대한 2차 Chebyshev 다항식 <span class="math inline">\(T_{2}(L)\)</span>의 계수로 사용될 수 있습니다.</p>
+<p>GConvGRU를 사용하였으며, Structured Sequence Modeling with Graph Convolutional Recurrent Networks 논문에서 제안된 모델</p>
+<p>이 논문은 그래프 합성곱 신경망 (Graph Convolutional Neural Network, GCN)을 이용한 시퀀스 모델링을 위해 제안된 구조인 그래프 합성곱 순환 신경망 (Graph Convolutional Recurrent Neural Network, GCRN)에 대한 연구입니다.</p>
+<p>GCRN은 시계열 데이터를 처리하기 위해 순환 신경망 (Recurrent Neural Network, RNN)과 같은 장기 의존성(long-term dependency)을 고려하는 방법으로 그래프 합성곱 신경망(GCN)을 확장합니다. 이를 위해 GCRN은 각 시간 스텝에서 그래프 상의 노드 간 상호 작용을 잘 나타낼 수 있는 새로운 그래프 합성곱 셀(GCN cell)을 도입합니다. 이 셀은 체비셰폴리노미알 필터 (Chebyshev Polynomial Filter)를 사용하여 그래프 신호의 재귀적인 확장을 수행하며, 게이트 메카니즘(Gate Mechanism)을 통해 순환 구조를 적용합니다.</p>
+<p>논문에서 실험은 여러 시퀀스 모델링 문제에서 GCRN의 성능을 검증합니다. 실험 결과 GCRN은 기존의 RNN과 GCN을 비롯한 다른 모델들과 비교하여 높은 예측 정확도를 보입니다. 이를 통해 GCRN이 그래프 시계열 데이터 분석 분야에서 유용하게 사용될 수 있다는 가능성을 제시합니다.</p>
+<p>Chebyshev polynomial filter는 Laplacian 행렬과 함께 사용하여 그래프 신경망에서 필터링을 수행하는 데 사용됩니다. 이 필터는 임의의 그래프에 대해 일반적으로 적용될 수 있으며, 이전의 고유 벡터와 함께 Laplacian의 K차 필터링을 수행하는 데 사용됩니다. 이 때 K는 Chebyshev 다항식의 차수입니다.</p>
+<p>GCRN의 은닉 레이어는 입력 데이터를 처리하여 모델이 패턴을 인식하고 기억하는 데 필요한 정보를 추출하는 레이어입니다. 이 레이어에서는 게이트 메카니즘이 사용됩니다. 각 노드마다 하나의 게이트 메카니즘이 존재하며, 이를 통해 입력 데이터의 중요성을 동적으로 조절하면서 학습 가능한 가중치를 유지합니다.</p>
+<p>수식으로 표현하면, 은닉 레이어의 출력값 H는 다음과 같이 계산됩니다.</p>
+<p><span class="math inline">\(H = (1 - G) * f(XWx) + G * H_prev\)</span></p>
+<p>여기서 X는 입력 데이터를, Wx는 입력 데이터와 연결된 가중치 매트릭스를 나타냅니다. f는 활성화 함수를 나타내며, 일반적으로 ReLU나 시그모이드 함수 등이 사용됩니다. G는 게이트 메카니즘을 나타내며, 이는 입력 데이터의 중요성을 동적으로 조절하는 가중치 매트릭스입니다. H_prev는 이전 시점(t-1)의 은닉 레이어의 출력값을 나타냅니다.</p>
+<p>게이트 메카니즘의 가중치 매트릭스 G는 다음과 같이 계산됩니다.</p>
+<p><span class="math inline">\(G = σ(XWg)\)</span></p>
+<p>여기서 σ는 시그모이드 함수를 나타내며, X는 입력 데이터를, Wg는 게이트 메카니즘과 연결된 가중치 매트릭스를 나타냅니다.</p>
+<p>이를 통해 입력 데이터의 중요성을 조절하면서, 이전 시점의 은닉 레이어 출력값과 현재 입력 데이터를 결합하여 새로운 정보를 추출하는 것이 은닉 레이어의 역할입니다. 이를 통해 GCRN은 패턴을 인식하고 기억하는 능력을 갖게 되며, 이를 이용하여 다양한 응용 분야에서 활용될 수 있습니다.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력 데이터의 차원</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>input_size <span class="op">=</span> <span class="dv">10</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 은닉 레이어의 차원</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hidden_size <span class="op">=</span> <span class="dv">20</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GCRN 모델 정의</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> GCRN(nn.Module):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, input_size, hidden_size):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(GCRN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.input_size <span class="op">=</span> input_size</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.hidden_size <span class="op">=</span> hidden_size</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_x <span class="op">=</span> nn.Linear(input_size, hidden_size)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_h_prev <span class="op">=</span> nn.Linear(hidden_size, hidden_size)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc_g <span class="op">=</span> nn.Linear(input_size, hidden_size)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.relu <span class="op">=</span> nn.ReLU()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.sigmoid <span class="op">=</span> nn.Sigmoid()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, h_prev):</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        xw <span class="op">=</span> <span class="va">self</span>.fc_x(x)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        hw_prev <span class="op">=</span> <span class="va">self</span>.fc_h_prev(h_prev)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> <span class="va">self</span>.sigmoid(<span class="va">self</span>.fc_g(x))</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> g) <span class="op">*</span> <span class="va">self</span>.relu(xw) <span class="op">+</span> g <span class="op">*</span> hw_prev</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 입력 데이터와 이전 시점의 은닉 레이어 출력값 정의</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">1</span>, input_size)<span class="op">;</span>x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>tensor([[ 0.3523, -1.2066,  1.0772, -0.4210,  0.0966, -0.0625,  1.2245, -1.5016,
+          0.9676,  0.7957]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>h_prev <span class="op">=</span> torch.randn(<span class="dv">1</span>, hidden_size)<span class="op">;</span>h_prev</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>tensor([[-1.1932, -0.5705,  0.5479, -0.1685, -0.8700,  0.9897, -0.3543,  1.1368,
+          0.2002, -2.0535,  0.2089,  0.0197, -1.6354,  0.4046,  1.2525,  0.0061,
+          1.1829, -0.9437, -0.4646, -0.4378]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GCRN 모델 생성 및 실행</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GCRN(input_size, hidden_size)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> model(x, h_prev)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(h)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[ 0.0327,  0.2234,  0.2752, -0.0619,  0.3870,  0.1196,  0.1651,  0.1339,
+          0.5128,  0.2298,  0.3821, -0.2497,  0.0820,  0.1898,  0.3247,  0.0905,
+          0.5839, -0.0843,  0.2252,  0.1654]], grad_fn=&lt;AddBackward0&gt;)</code></pre>
+</div>
+</div>
 
 
 </section>

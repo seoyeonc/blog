@@ -2680,266 +2680,399 @@ if (outputEl) {{
 </ul>
 <section id="random-3" class="level2">
 <h2 class="anchored" data-anchor-id="random-3">random</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/wiki_random.csv'</span>)<span class="op">;</span>data</span></code></pre></div>
+<div class="cell" data-execution_count="286">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_16-58-03.csv'</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_17-01-39.csv'</span>)</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_17-07-23.csv'</span>)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_17-13-13.csv'</span>)</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_17-29-49.csv'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="289">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="290">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method=='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="290">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.863623</td>
+      <td>25.504817</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.847675</td>
+      <td>27.086116</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.912734</td>
+      <td>30.048937</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.916843</td>
+      <td>27.104823</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.907305</td>
+      <td>24.776503</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.854127</td>
+      <td>24.608104</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.788011</td>
+      <td>24.233431</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.795219</td>
+      <td>24.228026</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.914080</td>
+      <td>26.301605</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>wikimath</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.975948</td>
+      <td>27.855870</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="291">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="291">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.908916</td>
+      <td>28.928112</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.856639</td>
+      <td>29.759748</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.864580</td>
+      <td>29.660712</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.926426</td>
+      <td>30.838968</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.871146</td>
+      <td>29.008776</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.905354</td>
+      <td>30.405766</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.822462</td>
+      <td>32.329447</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.4</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>0.817621</td>
+      <td>29.447260</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>1</td>
+      <td>0.878943</td>
+      <td>31.140878</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>wikimath</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12</td>
+      <td>cubic</td>
+      <td>1</td>
+      <td>1.002361</td>
+      <td>28.461372</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"mtype=='rand' and mrate != 0.9 and method!='GNAR' and inter_method=='cubic'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"mtype=='rand' and mrate != 0.9 and method!='GNAR' and inter_method=='cubic'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"mtype=='rand' and method!='GNAR' and inter_method=='linear'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"mtype=='rand' and method!='GNAR' and inter_method=='linear'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
 </div>
 <section id="시뮬-예정평균-시간-평균mse-6" class="level4">
 <h4 class="anchored" data-anchor-id="시뮬-예정평균-시간-평균mse-6">시뮬 예정(평균 시간, 평균mse)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='cubic' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='cubic' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='cubic' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='cubic' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method !='GNAR' and mrate==0.3 and inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and nof_filters==12 and lags==8"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method !='GNAR' and mrate==0.3 and nof_filters==12 and lags==8"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">400</span>)</span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="block-3" class="level2">
 <h2 class="anchored" data-anchor-id="block-3">block</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/wiki_block.csv'</span>)<span class="op">;</span>data</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/wiki_block.csv'</span>)<span class="op">;</span>data</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and inter_method=='cubic'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and inter_method=='cubic'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear'"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">1200</span>)</span></code></pre></div>
 </div>
 <section id="시뮬-예정평균-시간-평균mse-7" class="level4">
 <h4 class="anchored" data-anchor-id="시뮬-예정평균-시간-평균mse-7">시뮬 예정(평균 시간, 평균mse)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>)[<span class="st">'mse'</span>].mean()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">400</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"inter_method=='linear' and nof_filters==12 and lags==8"</span>).plot.box(backend<span class="op">=</span><span class="st">'plotly'</span>,x<span class="op">=</span><span class="st">'mrate'</span>,color<span class="op">=</span><span class="st">'method'</span>,y<span class="op">=</span><span class="st">'mse'</span>,facet_col<span class="op">=</span><span class="st">'lags'</span>,facet_row<span class="op">=</span><span class="st">'nof_filters'</span>,height<span class="op">=</span><span class="dv">400</span>)</span></code></pre></div>
 </div>
 </section>
 </section>
 </section>
 <section id="windmilmedium" class="level1">
 <h1>Windmilmedium</h1>
-<div class="cell" data-execution_count="204">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-06-12.csv'</span>) <span class="co"># GNAR</span></span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-19-44.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
-<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-28-32.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
-<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-36-55.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
-<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-54-30.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
-<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-03-08.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div class="cell" data-execution_count="229">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-06-12.csv'</span>) <span class="co"># GNAR</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-19-44.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-28-32.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-36-55.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_09-54-30.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-03-08.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a>df7 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-15-48.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a>df8 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-25-19.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-9"><a href="#cb111-9" aria-hidden="true" tabindex="-1"></a>df9 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-34-48.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb111-10"><a href="#cb111-10" aria-hidden="true" tabindex="-1"></a>df10 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-43-02.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="205">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6],axis<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="205">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>dataset</th>
-      <th>method</th>
-      <th>mrate</th>
-      <th>mtype</th>
-      <th>lags</th>
-      <th>nof_filters</th>
-      <th>inter_method</th>
-      <th>epoch</th>
-      <th>mse</th>
-      <th>calculation_time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>GNAR</td>
-      <td>0.1</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>cubic</td>
-      <td>NaN</td>
-      <td>1.410524</td>
-      <td>3.150951</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>GNAR</td>
-      <td>0.1</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>cubic</td>
-      <td>NaN</td>
-      <td>1.410524</td>
-      <td>2.926645</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>windmilmedium</td>
-      <td>GNAR</td>
-      <td>0.1</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>NaN</td>
-      <td>cubic</td>
-      <td>NaN</td>
-      <td>1.410524</td>
-      <td>2.406094</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>STGCN</td>
-      <td>0.1</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.038629</td>
-      <td>85.205226</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>IT-STGCN</td>
-      <td>0.1</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>0.991687</td>
-      <td>282.159899</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>STGCN</td>
-      <td>0.4</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.325845</td>
-      <td>85.721810</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>IT-STGCN</td>
-      <td>0.4</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.150386</td>
-      <td>282.688800</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>STGCN</td>
-      <td>0.8</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.874045</td>
-      <td>85.171979</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>IT-STGCN</td>
-      <td>0.8</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.772746</td>
-      <td>262.409024</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>STGCN</td>
-      <td>0.8</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>linear</td>
-      <td>1.0</td>
-      <td>1.427910</td>
-      <td>84.167046</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>IT-STGCN</td>
-      <td>0.8</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12.0</td>
-      <td>linear</td>
-      <td>1.0</td>
-      <td>1.182181</td>
-      <td>287.886245</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>windmilmedium</td>
-      <td>STGCN</td>
-      <td>0.5</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.568322</td>
-      <td>87.435629</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>windmilmedium</td>
-      <td>IT-STGCN</td>
-      <td>0.5</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12.0</td>
-      <td>cubic</td>
-      <td>1.0</td>
-      <td>1.232030</td>
-      <td>273.543777</td>
-    </tr>
-  </tbody>
-</table>
+<div class="cell" data-execution_count="230">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
-</div>
-</div>
-<div class="cell" data-execution_count="206">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method=='GNAR'"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="206">
+<div class="cell" data-execution_count="231">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method=='GNAR'"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="231">
 
 <div>
 
@@ -3004,9 +3137,9 @@ if (outputEl) {{
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="207">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method=='STGCN'"</span>).sort_values(<span class="st">'mrate'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="207">
+<div class="cell" data-execution_count="232">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method=='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="232">
 
 <div>
 
@@ -3073,6 +3206,32 @@ if (outputEl) {{
       <td>0.8</td>
       <td>rand</td>
       <td>2</td>
+      <td>4.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.256851</td>
+      <td>79.950040</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilmedium</td>
+      <td>STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>8.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.259840</td>
+      <td>83.667886</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilmedium</td>
+      <td>STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
       <td>12.0</td>
       <td>cubic</td>
       <td>1.0</td>
@@ -3092,14 +3251,40 @@ if (outputEl) {{
       <td>1.427910</td>
       <td>84.167046</td>
     </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilmedium</td>
+      <td>STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>16.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.449077</td>
+      <td>93.408642</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilmedium</td>
+      <td>STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>32.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.339085</td>
+      <td>88.795324</td>
+    </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="208">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method!='STGCN'"</span>).sort_values(<span class="st">'mrate'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="208">
+<div class="cell" data-execution_count="233">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method!='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="233">
 
 <div>
 
@@ -3166,6 +3351,32 @@ if (outputEl) {{
       <td>0.8</td>
       <td>rand</td>
       <td>2</td>
+      <td>4.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.217331</td>
+      <td>295.937213</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilmedium</td>
+      <td>IT-STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>8.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.162310</td>
+      <td>259.498000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilmedium</td>
+      <td>IT-STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
       <td>12.0</td>
       <td>cubic</td>
       <td>1.0</td>
@@ -3184,6 +3395,32 @@ if (outputEl) {{
       <td>1.0</td>
       <td>1.182181</td>
       <td>287.886245</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilmedium</td>
+      <td>IT-STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>16.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.430025</td>
+      <td>306.211073</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilmedium</td>
+      <td>IT-STGCN</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>2</td>
+      <td>32.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.203084</td>
+      <td>309.623751</td>
     </tr>
   </tbody>
 </table>
@@ -3192,10 +3429,10 @@ if (outputEl) {{
 </div>
 <p>linear, 0.7~0.9, 4,8,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation/windmilmedium_Simulation.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation/windmilmedium_Simulation.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].mean(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">max</span>(),data.query(<span class="st">"method!='GNAR'"</span>)[<span class="st">'calculation_time'</span>].<span class="bu">min</span>()</span></code></pre></div>
 </div>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">random</h2>
@@ -3206,6 +3443,600 @@ if (outputEl) {{
 </section>
 <section id="windmilsmall" class="level1">
 <h1>Windmilsmall</h1>
+<div class="cell" data-execution_count="240">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_10-59-28.csv'</span>) <span class="co"># GNAR</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_11-15-05.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_11-30-48.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_11-46-45.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>df5 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_12-02-19.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-04-15_15-00-32.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="co"># df7 = pd.read_csv('./simulation_results/2023-04-15_10-15-48.csv') # STGCN IT-STGCN</span></span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="co"># df8 = pd.read_csv('./simulation_results/2023-04-15_10-25-19.csv') # STGCN IT-STGCN</span></span>
+<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a><span class="co"># df9 = pd.read_csv('./simulation_results/2023-04-15_10-34-48.csv') # STGCN IT-STGCN</span></span>
+<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a><span class="co"># df10 = pd.read_csv('./simulation_results/2023-04-15_10-43-02.csv') # STGCN IT-STGCN</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="241">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="245">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method=='GNAR'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="245">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>1.222944</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.954795</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.761808</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.790776</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.987039</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.976644</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.901695</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.939233</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.986533</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.988925</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.692504</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.954345</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.938546</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.926433</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.830638</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.947263</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>cubic</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.939917</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>windmilsmall</td>
+      <td>GNAR</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.640339</td>
+      <td>0.950329</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="243">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method=='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="243">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.200871</td>
+      <td>73.057425</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.442769</td>
+      <td>82.757819</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.332673</td>
+      <td>73.738043</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.935493</td>
+      <td>75.276489</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.287041</td>
+      <td>72.605574</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.954025</td>
+      <td>72.804517</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>32.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.320776</td>
+      <td>74.728671</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>32.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.865486</td>
+      <td>75.110273</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.470515</td>
+      <td>74.648811</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>windmilsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>2.182147</td>
+      <td>71.730788</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="244">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"method!='GNAR' and method!='STGCN'"</span>).sort_values([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="244">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>0.997696</td>
+      <td>255.592267</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.3</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.049607</td>
+      <td>268.626712</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.103726</td>
+      <td>253.085496</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.459947</td>
+      <td>278.678849</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.110951</td>
+      <td>266.898954</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.314662</td>
+      <td>270.144128</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>32.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.153238</td>
+      <td>259.596158</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>32.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>1.341482</td>
+      <td>253.815536</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>linear</td>
+      <td>1.0</td>
+      <td>1.215104</td>
+      <td>283.833449</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>windmilsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>4</td>
+      <td>12.0</td>
+      <td>cubic</td>
+      <td>1.0</td>
+      <td>2.141516</td>
+      <td>279.526782</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>linear, lags 4,8. filter 8,12</p>
 <section id="random-5" class="level2">
 <h2 class="anchored" data-anchor-id="random-5">random</h2>
 </section>

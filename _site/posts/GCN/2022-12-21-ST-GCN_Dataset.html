@@ -131,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar docked nav-fixed">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -308,6 +309,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-05-ITSTGCN_LOADER.html" class="sidebar-item-text sidebar-link">ITSTGCN LOADERS Version</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
   </div>
 </li>
@@ -318,7 +324,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-notes.html" class="sidebar-item-text sidebar-link">Note_weight amtrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link active">PyTorch ST-GCN Dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,6 +354,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
   </div>
 </li>
@@ -343,12 +369,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
   </div>
 </li>
       </ul>
@@ -449,6 +495,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-23-lebesque_decompposition_therem.html" class="sidebar-item-text sidebar-link">Lebesgue’s decomposition theorem</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1878,13 +1929,13 @@ f(v_{20},t=5)
 <ul>
 <li>T = 17470</li>
 <li>V = 풍력발전소</li>
-<li>N = 319 # number of nodes</li>
-<li>E = 101761 = N^2 # edges</li>
+<li>N = 11 # number of nodes</li>
+<li>E = 121 = N^2 # edges</li>
 <li><span class="math inline">\(f(v,t)\)</span>의 차원? (1,) # Hourly energy output</li>
 <li>시간에 따라서 N이 변하는지? False</li>
 <li>시간에 따라서 E가 변하는지? False</li>
-<li>X: (319,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
-<li>y: (319,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
+<li>X: (11,4) (N,4), <span class="math inline">\(f(v,t_0),f(v,t_1),f(v,t_2),f(v,t_3)\)</span></li>
+<li>y: (11,) (N,), <span class="math inline">\(f(v,t_4)\)</span></li>
 <li>예제코드적용가능여부: Yes</li>
 </ul>
 <p><code>-</code> Nodes : <code>11</code></p>

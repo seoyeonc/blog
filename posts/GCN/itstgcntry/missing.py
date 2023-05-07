@@ -22,41 +22,43 @@ from .utils import MTMDatasetLoader
 from .utils import TwitterTennisDatasetLoader
 
 
-def padding(DL,train_dataset_miss,*args,interpolation_method='linear',num_timesteps_in=None, num_timesteps_out=None,frames=None,**kwargs):
+def padding(train_dataset_miss,*args,Datatyp='StaticGraphTemporalSignal_lags',interpolation_method='linear',num_timesteps_in=None, num_timesteps_out=None,frames=None,**kwargs):
     mindex = train_dataset_miss.mindex 
-    f,lags = convert_train_dataset(train_dataset_miss)
+    f,lags = convert_train_dataset(train_dataset_miss,Datatyp)
     T,N = f.shape
     FX = pd.DataFrame(f).interpolate(method=interpolation_method,axis=0,*args,**kwargs).fillna(method='bfill').fillna(method='ffill').to_numpy().tolist()
     
-    if isinstance(DL, (ChickenpoxDatasetLoader, PedalMeDatasetLoader, WindmillOutputLargeDatasetLoader, WindmillOutputMediumDatasetLoader, WindmillOutputSmallDatasetLoader, MontevideoBusDatasetLoader, WikiMathsDatasetLoader)):
+    if Datatyp=='StaticGraphTemporalSignal_lags':
         data_dict = {
         'edges':train_dataset_miss.edge_index.T.tolist(), 
         'node_ids':{'node'+str(i):i for i in range(N)}, 
         'FX':FX}
-        train_dataset_padded = DL(data_dict).get_dataset(lags=lags)
+        train_dataset_padded = ChickenpoxDatasetLoader(data_dict).get_dataset(lags=lags)
         
-    elif isinstance(DL, (EnglandCovidDatasetLoader)):
+    elif Datatyp=='DynamicGraphTemporalSignal':
         data_dict = {
             'edges':[train_dataset_miss.edge_indices[j].T.tolist() for j in range(T-1)],
             'node_ids':{'node'+str(i):i for i in range(N)}, 
-            'FX':FX}
-        train_dataset_padded = DL(data_dict).get_dataset(lags=lags)
+            'FX':FX,
+            'time_periods':snapshot_coun}
+        train_dataset_padded = EnglandCovidDatasetLoader(data_dict).get_dataset(lags=lags)
         
-    elif isinstance(DL, (METRLADatasetLoader,PemsBayDatasetLoader)): 
+    elif Datatyp=='StaticGraphTemporalSignal_timestamps':
         data_dict = {
             'edges':train_dataset_miss.edge_index.T.tolist(), 
             'node_ids':{'node'+str(i):i for i in range(N)}, 
             'FX':FX}
-        train_dataset_padded = DL(data_dict).get_dataset(num_timesteps_in=num_timesteps_in, num_timesteps_out=num_timesteps_out)
+        train_dataset_padded = METRLADatasetLoader(data_dict).get_dataset(num_timesteps_in=num_timesteps_in, num_timesteps_out=num_timesteps_out)
         
-    elif isinstance(DL, (MTMDatasetLoader)):
+    elif Datatyp=='StaticGraphTemporalSignal_frames':
         data_dict = {
             'edges':train_dataset_miss.edge_index.T.tolist(), 
             'node_ids':{'node'+str(i):i for i in range(N)}, 
             'FX':FX}
-        train_dataset_padded = DL(data_dict).get_dataset(frames=frames)
+        train_dataset_padded = MTMDatasetLoader(data_dict).get_dataset(frames=frames)
         
-        
+    else:
+        print("Please write down Datatyp StaticGraphTemporalSignal_lags or StaticGraphTemporalSignal_timestamps or StaticGraphTemporalSignal_frames or DynamicGraphTemporalSignal")
     # elif isinstance(DL, (TwitterTennisDatasetLoader)):
     #     data_dict = {
     #         'edges':train_dataset_miss.edge_index.T.tolist(), 
@@ -70,46 +72,49 @@ def padding(DL,train_dataset_miss,*args,interpolation_method='linear',num_timest
     train_dataset_padded.interpolation_method = interpolation_method
     return train_dataset_padded
 
-def rand_mindex(train_dataset,mrate = 0.5):
-    f,lags = convert_train_dataset(train_dataset)
+def rand_mindex(train_dataset,mrate = 0.5,Datatyp='StaticGraphTemporalSignal_lags'):
+    f,lags = convert_train_dataset(train_dataset,Datatyp)
     T,N = f.shape
     missing_count = int(np.round(mrate*T,0))
     mindex = [np.sort(np.random.choice(range(T),missing_count,replace=False)).tolist() for i in range(N)]  
     return mindex
 
-def miss(DL,train_dataset,mindex,mtype,num_timesteps_in=None, num_timesteps_out=None,frames=None):
-    f,lags = convert_train_dataset(train_dataset)
+def miss(train_dataset,mindex,mtype,Datatyp,num_timesteps_in=None, num_timesteps_out=None,frames=None):
+    f,lags = convert_train_dataset(train_dataset,Datatyp)
     T,N = f.shape
     for i,m in enumerate(mindex): 
         f[m,i] = np.nan
-    if isinstance(DL, (ChickenpoxDatasetLoader, PedalMeDatasetLoader, WindmillOutputLargeDatasetLoader, WindmillOutputMediumDatasetLoader, WindmillOutputSmallDatasetLoader, MontevideoBusDatasetLoader, WikiMathsDatasetLoader)):
+    if Datatyp=='StaticGraphTemporalSignal_lags':
         data_dict = {
         'edges':train_dataset.edge_index.T.tolist(), 
         'node_ids':{'node'+str(i):i for i in range(N)}, 
         'FX':f.tolist()
     }
         train_dataset = ChickenpoxDatasetLoader(data_dict).get_dataset(lags=lags)
-    elif isinstance(DL, (EnglandCovidDatasetLoader)):
+    elif Datatyp=='DynamicGraphTemporalSignal':
         data_dict = {
             'edges':[train_dataset.edge_indices[j].T.tolist() for j in range(T-1)],
             'node_ids':{'node'+str(i):i for i in range(N)}, 
             'FX':f.tolist()
         }
         train_dataset = EnglandCovidDatasetLoader(data_dict).get_dataset(lags=lags)
-    elif isinstance(DL, (METRLADatasetLoader,PemsBayDatasetLoader)): 
+    elif Datatyp=='StaticGraphTemporalSignal_timestamps':
         data_dict = {
             'edges':train_dataset.edge_index.T.tolist(), 
             'node_ids':{'node'+str(i):i for i in range(N)}, 
             'FX':f.tolist()
         }
         train_dataset = METRLADatasetLoader(data_dict).get_dataset(num_timesteps_in=num_timesteps_in, num_timesteps_out=num_timesteps_out)
-    elif isinstance(DL, (MTMDatasetLoader)):
+    elif Datatyp=='StaticGraphTemporalSignal_frames':
         data_dict = {
             'edges':train_dataset.edge_index.T.tolist(), 
             'node_ids':{'node'+str(i):i for i in range(N)}, 
             'FX':f.tolist()
         }
         train_dataset = MTMDatasetLoader(data_dict).get_dataset(frames=frames)
+            
+    else:
+        print("Please write down Datatyp StaticGraphTemporalSignal_lags or StaticGraphTemporalSignal_timestamps or StaticGraphTemporalSignal_frames or DynamicGraphTemporalSignal")
     # elif DL == TwitterTennisDatasetLoader:
     #     data_dict = {
     #         'edges':train_dataset.edge_index.T.tolist(), 

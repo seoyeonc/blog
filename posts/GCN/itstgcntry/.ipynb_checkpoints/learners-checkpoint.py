@@ -127,7 +127,7 @@ class ITStgcnLearner(StgcnLearner):
     def __init__(self,train_dataset,dataset_name = None):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
-    def learn(self,DL,filters=32,epoch=50,lr=0.01,num_timesteps_in = None, num_timesteps_out = None,frames = None):
+    def learn(self,Datatyp='StaticGraphTemporalSignal_lags',filters=32,epoch=50,lr=0.01,num_timesteps_in = None, num_timesteps_out = None,frames = None):
         self.model = RecurrentGCN(node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=lr)
         self.model.train()
@@ -136,34 +136,37 @@ class ITStgcnLearner(StgcnLearner):
             f,lags = convert_train_dataset(train_dataset_temp)
             f = update_from_freq_domain(f,self.mindex)
             T,N = f.shape 
-            if isinstance(DL, (ChickenpoxDatasetLoader, PedalMeDatasetLoader, WindmillOutputLargeDatasetLoader, WindmillOutputMediumDatasetLoader, WindmillOutputSmallDatasetLoader, MontevideoBusDatasetLoader, WikiMathsDatasetLoader)):
+            if Datatyp=='StaticGraphTemporalSignal_lags':
                 data_dict_temp = {
                     'edges':self.train_dataset.edge_index.T.tolist(), 
                     'node_ids':{'node'+str(i):i for i in range(N)}, 
                     'FX':f
                 }
-                train_dataset_temp = DL(data_dict_temp).get_dataset(lags=self.lags) 
-            elif isinstance(DL, (EnglandCovidDatasetLoader)):
+                train_dataset_temp = ChickenpoxDatasetLoader(data_dict_temp).get_dataset(lags=self.lags) 
+            elif Datatyp=='DynamicGraphTemporalSignal':
                 data_dict_temp = {
                     'edges':[self.train_dataset.edge_indices[j].T.tolist() for j in range(T-1)],
                     'node_ids':{'node'+str(i):i for i in range(N)}, 
                     'FX':f
                 }
-                train_dataset_temp = DL(data_dict_temp).get_dataset(lags=self.lags) 
-            elif isinstance(DL, (METRLADatasetLoader,PemsBayDatasetLoader)): 
+                train_dataset_temp = EnglandCovidDatasetLoader(data_dict_temp).get_dataset(lags=self.lags) 
+            elif Datatyp=='StaticGraphTemporalSignal_timestamps':
                 data_dict_temp = {
                     'edges':self.train_dataset.edge_index.T.tolist(), 
                     'node_ids':{'node'+str(i):i for i in range(N)}, 
                     'FX':f
                 }
-                train_dataset_temp = DL(data_dict_temp).get_dataset(num_timesteps_in=num_timesteps_in, num_timesteps_out=num_timesteps_out) 
-            elif isinstance(DL, (MTMDatasetLoader)):
+                train_dataset_temp = METRLADatasetLoader(data_dict_temp).get_dataset(num_timesteps_in=num_timesteps_in, num_timesteps_out=num_timesteps_out) 
+            elif Datatyp=='StaticGraphTemporalSignal_frames':
                 data_dict_temp = {
                     'edges':self.train_dataset.edge_index.T.tolist(), 
                     'node_ids':{'node'+str(i):i for i in range(N)}, 
                     'FX':f
                 }
-                train_dataset_temp = DL(data_dict_temp).get_dataset(frames=frames) 
+                train_dataset_temp = MTMDatasetLoader(data_dict_temp).get_dataset(frames=frames) 
+                
+            else:
+                print("Please write down Datatyp StaticGraphTemporalSignal_lags or StaticGraphTemporalSignal_timestamps or StaticGraphTemporalSignal_frames or DynamicGraphTemporalSignal")
             # elif isinstance(DL, (TwitterTennisDatasetLoader)):
             #     data_dict_temp = {
             #         'edges':self.train_dataset.edge_index.T.tolist(), 

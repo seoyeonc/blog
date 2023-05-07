@@ -69,9 +69,20 @@ def plot_add(fig,f,*args,t=None,**kwargs):
         ax[n].plot(t,f[:,n],*args,**kwargs)
     return fig
 
-def convert_train_dataset(train_dataset):
+def convert_train_dataset(train_dataset,Datatyp):
     lags = torch.tensor(train_dataset.features).shape[-1]
-    f = torch.concat([train_dataset[0].x.T,torch.tensor(train_dataset.targets)],axis=0).numpy()
+    if Datatyp=='StaticGraphTemporalSignal_lags':
+        f = torch.concat([train_dataset[0].x.T,torch.tensor(train_dataset.targets)],axis=0).numpy()
+
+    elif Datatyp=='StaticGraphTemporalSignal_timestamps':
+        f = torch.concat([train_dataset[0].x.T.reshape(-1,torch.tensor(train_dataset.targets).shape[1]),torch.tensor(train_dataset.targets).reshape(-1,torch.tensor(train_dataset.targets).shape[1])],axis=0).numpy()
+
+    elif Datatyp=='DynamicGraphTemporalSignal':
+        f = torch.concat([train_dataset[0].x.T,torch.tensor(train_dataset.targets)],axis=0).numpy()
+        
+    else:
+        f = torch.concat([train_dataset[0].x.T,torch.tensor(train_dataset.targets)],axis=0).numpy()
+    
     return f,lags 
 
 class ChickenpoxDatasetLoader(object):
@@ -190,6 +201,47 @@ class METRLADatasetLoader(object):
         self.raw_data_dir = raw_data_dir
         self._read_web_data()
 
+    def _download_url(self, url, save_path):  # pragma: no cover
+        with urllib.request.urlopen(url) as dl_file:
+            with open(save_path, "wb") as out_file:
+                out_file.write(dl_file.read())
+
+    def _read_web_data(self):
+        url = "https://graphmining.ai/temporal_datasets/METR-LA.zip"
+
+        # Check if zip file is in data folder from working directory, otherwise download
+        if not os.path.isfile(
+            os.path.join(self.raw_data_dir, "METR-LA.zip")
+        ):  # pragma: no cover
+            if not os.path.exists(self.raw_data_dir):
+                os.makedirs(self.raw_data_dir)
+            self._download_url(url, os.path.join(self.raw_data_dir, "METR-LA.zip"))
+
+        if not os.path.isfile(
+            os.path.join(self.raw_data_dir, "adj_mat.npy")
+        ) or not os.path.isfile(
+            os.path.join(self.raw_data_dir, "node_values.npy")
+        ):  # pragma: no cover
+            with zipfile.ZipFile(
+                os.path.join(self.raw_data_dir, "METR-LA.zip"), "r"
+            ) as zip_fh:
+                zip_fh.extractall(self.raw_data_dir)
+
+        A = np.load(os.path.join(self.raw_data_dir, "adj_mat.npy"))
+        X = np.load(os.path.join(self.raw_data_dir, "node_values.npy")).transpose(
+            (1, 2, 0)
+        )
+        X = X.astype(np.float32)
+
+        # Normalise as in DCRNN paper (via Z-Score Method)
+        means = np.mean(X, axis=(0, 2))
+        X = X - means.reshape(1, -1, 1)
+        stds = np.std(X, axis=(0, 2))
+        X = X / stds.reshape(1, -1, 1)
+
+        self.A = torch.from_numpy(A)
+        self.X = torch.from_numpy(X)
+
     def _get_edges_and_weights(self):
         edge_indices, values = dense_to_sparse(self.A)
         edge_indices = edge_indices.numpy()
@@ -223,7 +275,8 @@ class METRLADatasetLoader(object):
         self.targets = target
 
     def get_dataset(
-        self, num_timesteps_in: int = 12, num_timesteps_out: int = 12 ) -> torch_geometric_temporal.signal.StaticGraphTemporalSignal:
+        self, num_timesteps_in: int = 12, num_timesteps_out: int = 12
+    ) -> torch_geometric_temporal.signal.dynamic_graph_temporal_signal.DynamicGraphTemporalSignal:
         """Returns data iterator for METR-LA dataset as an instance of the
         static graph temporal signal class.
 
@@ -233,7 +286,7 @@ class METRLADatasetLoader(object):
         """
         self._get_edges_and_weights()
         self._generate_task(num_timesteps_in, num_timesteps_out)
-        dataset = torch_geometric_temporal.signal.StaticGraphTemporalSignal(
+        dataset = torch_geometric_temporal.signal.dynamic_graph_temporal_signal.DynamicGraphTemporalSignal(
             self.edges, self.edge_weights, self.features, self.targets
         )
 

@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-01-05">
+
+<title>Seoyeon’s Blog for study - GNAR data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">GNAR data</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">GNAR data</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">GNAR</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 5, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link active">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-05-ITSTGCN_LOADER.html" class="sidebar-item-text sidebar-link">ITSTGCN LOADERS Version</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Quarto tip</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Quarto_tip/2023-01-02-quarto_tips.html" class="sidebar-item-text sidebar-link">quarto blog tips</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Study/index.html" class="sidebar-item-text sidebar-link">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html" class="sidebar-item-text sidebar-link">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.html" class="sidebar-item-text sidebar-link">Chap 12.2: Weakly Stationary Graph Processes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-10-EbayesThreshold.html" class="sidebar-item-text sidebar-link">EbayesThresh: R Programs for Empirical Bayes Thresholding, Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link">GCRN Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-04-03-(5주차) 4월2일.html" class="sidebar-item-text sidebar-link">Introduction to Python 5wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-23-lebesque_decompposition_therem.html" class="sidebar-item-text sidebar-link">Lebesgue’s decomposition theorem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-04-nomalized graph laplacian.html" class="sidebar-item-text sidebar-link">Nomalized Graph Laplacian</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-STGCN_Existing_Method_Review.html" class="sidebar-item-text sidebar-link">STGCN Existing Method Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-16-stgcn_paper_review_1.html" class="sidebar-item-text sidebar-link">STGCN papers review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gnar-network-example" id="toc-gnar-network-example" class="nav-link active" data-scroll-target="#gnar-network-example">2.3 GNAR network example</a></li>
+  <li><a href="#example-gnar-model-fitting" id="toc-example-gnar-model-fitting" class="nav-link" data-scroll-target="#example-gnar-model-fitting">2.4. Example: GNAR model fitting</a></li>
+  <li><a href="#example-gnar-data-simulation-on-a-given-network" id="toc-example-gnar-data-simulation-on-a-given-network" class="nav-link" data-scroll-target="#example-gnar-data-simulation-on-a-given-network">2.5. Example: GNAR data simulation on a given network</a></li>
+  <li><a href="#missing-data-and-changing-connection-weights-with-gnar-models" id="toc-missing-data-and-changing-connection-weights-with-gnar-models" class="nav-link" data-scroll-target="#missing-data-and-changing-connection-weights-with-gnar-models">2.6 Missing data and changing connection weights with GNAR models</a></li>
+  <li><a href="#stationary-conditions-for-a-gnar-process-with-fixed-network" id="toc-stationary-conditions-for-a-gnar-process-with-fixed-network" class="nav-link" data-scroll-target="#stationary-conditions-for-a-gnar-process-with-fixed-network">2.7. Stationary conditions for a GNAR process with fixed network</a></li>
+  <li><a href="#benefits-of-our-model-and-comparisons-to-others" id="toc-benefits-of-our-model-and-comparisons-to-others" class="nav-link" data-scroll-target="#benefits-of-our-model-and-comparisons-to-others">2.8. Benefits of our model and comparisons to others</a></li>
+  <li><a href="#order-selection" id="toc-order-selection" class="nav-link" data-scroll-target="#order-selection">3.1. Order selection</a></li>
+  <li><a href="#model-selection-on-a-wind-network-time-series" id="toc-model-selection-on-a-wind-network-time-series" class="nav-link" data-scroll-target="#model-selection-on-a-wind-network-time-series">3.2. Model selection on a wind network time series</a></li>
+  <li><a href="#constructing-a-network-to-aid-prediction" id="toc-constructing-a-network-to-aid-prediction" class="nav-link" data-scroll-target="#constructing-a-network-to-aid-prediction">3.3. Constructing a network to aid prediction</a></li>
+  <li><a href="#oecd-gdp-network-structure-aids-prediction" id="toc-oecd-gdp-network-structure-aids-prediction" class="nav-link" data-scroll-target="#oecd-gdp-network-structure-aids-prediction">4. OECD GDP: Network structure aids prediction</a></li>
+  <li><a href="#finding-a-network-to-aid-prediction" id="toc-finding-a-network-to-aid-prediction" class="nav-link" data-scroll-target="#finding-a-network-to-aid-prediction">4.1. Finding a network to aid prediction</a></li>
+  <li><a href="#results-and-comparisons" id="toc-results-and-comparisons" class="nav-link" data-scroll-target="#results-and-comparisons">4.2. Results and comparisons</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>GNAR</p>
+</blockquote>
+<p>GNAR</p>
+<ul>
+<li>다변량 시계열이 이전 시간 step에서 인접 노드들에 따라 자기회귀와 유사한 모델을 따른다고 가정</li>
+<li>항상 노드의 수가 일정해야 함</li>
+<li>GNAR은 전제 데이터 set에 대해 이웃을 통해 모델화한다는 것이 장점</li>
+</ul>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>R[write to console]: Loading required package: igraph
+
+R[write to console]: 
+Attaching package: ‘igraph’
+
+
+R[write to console]: The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+
+R[write to console]: The following object is masked from ‘package:base’:
+
+    union
+
+
+R[write to console]: Loading required package: wordcloud
+
+R[write to console]: Loading required package: RColorBrewer
+</code></pre>
+</div>
+</div>
+<section id="gnar-network-example" class="level2">
+<h2 class="anchored" data-anchor-id="gnar-network-example">2.3 GNAR network example</h2>
+<ul>
+<li>edge(list)</li>
+<li>dist(list)</li>
+</ul>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plot(fiveNet, vertex.label <span class="op">=</span> c(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>summary(<span class="st">"fiveNet"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Length     Class      Mode 
+        1 character character </code></pre>
+</div>
+</div>
+<p><strong>other examples</strong></p>
+<ul>
+<li>igraphtoGNAR or GNARtoigraph쓰는 예제</li>
+</ul>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fiveNet2 <span class="op">&lt;-</span> GNARtoigraph(net <span class="op">=</span> fiveNet)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>summary(fiveNet2)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IGRAPH 2b4460d U-W- 5 5 -- 
++ attr: weight (e/n)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fiveNet3 <span class="op">&lt;-</span> igraphtoGNAR(fiveNet2)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>.equal(fiveNet, fiveNet3)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(igraphtoGNAR(fiveNet2))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GNARnet with 5 nodes 
+edges:1--4 1--5 2--3 2--4 3--2 3--4 4--1 4--2 4--3 5--1 
+     
+ edges of each of length  1 </code></pre>
+</div>
+</div>
+<p>edge들 보고 싶을 때</p>
+<p>whereas the <strong>reverse</strong> conversion would be performed as</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">&lt;-</span> make_ring(<span class="dv">10</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(igraphtoGNAR(g))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GNARnet with 10 nodes 
+edges:1--2 1--10 2--1 2--3 3--2 3--4 4--3 4--5 5--4 5--6 
+     6--5 6--7 7--6 7--8 8--7 8--9 9--8 9--10 10--1 10--9 
+     
+ edges of each of length  1 </code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>make_ring(<span class="dv">10</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IGRAPH 22f6be5 U--- 10 10 -- Ring graph
++ attr: name (g/c), mutual (g/l), circular (g/l)
++ edges from 22f6be5:
+ [1] 1-- 2 2-- 3 3-- 4 4-- 5 5-- 6 6-- 7 7-- 8 8-- 9 9--10 1--10</code></pre>
+</div>
+</div>
+<p>이어진 방향으로 각각의 edge를 만들어주는 게 igrapphtoGNAR이다</p>
+<p><code>GNARtoigraph</code> function으로 높은 수준의 이웃 구조를 포함한 그래프를 추출할 수 있다.</p>
+<ul>
+<li><code>as.matrix</code> or <code>matrixtoGNAR</code>로 인접 행렬 구할 수 있음</li>
+</ul>
+<p>we can prosucean adjacency matrix for the <code>fiveNet</code> obeject with</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>.matrix(fiveNet)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    0    0    0    1    1
+[2,]    0    0    1    1    0
+[3,]    0    1    0    1    0
+[4,]    1    1    1    0    0
+[5,]    1    0    0    0    0</code></pre>
+</div>
+</div>
+<p>and an example converting a weighted adjacency matrix to a <code>GNARnet</code> object is</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>adj <span class="op">&lt;-</span> matrix(runif(<span class="dv">9</span>), ncol <span class="op">=</span> <span class="dv">3</span>, nrow <span class="op">=</span> <span class="dv">3</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>adj[adj <span class="op">&lt;</span> <span class="fl">0.3</span>] <span class="op">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matrixtoGNAR(adj))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed
+GNARnet with 3 nodes 
+edges:1--2 1--3 2--1 2--3 3--1 3--2 
+ edges of unequal lengths </code></pre>
+</div>
+</div>
+</section>
+<section id="example-gnar-model-fitting" class="level2">
+<h2 class="anchored" data-anchor-id="example-gnar-model-fitting">2.4. Example: GNAR model fitting</h2>
+<ul>
+<li>GNAR로 fit과 predict 가능</li>
+</ul>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data(<span class="st">"fiveNode"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> fiveVTS, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>answer</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(2,[1,1]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+ dmatalpha1  dmatbeta1.1   dmatalpha2  dmatbeta2.1  
+    0.20624      0.50277      0.02124     -0.09523  
+</code></pre>
+</div>
+</div>
+<ul>
+<li>파라메터 4개 가지고 있음</li>
+</ul>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">1</span>], ylab <span class="op">=</span> <span class="st">"Node A Time Series"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>lines(fitted(answer)[, <span class="dv">1</span>], col <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">2</span>], ylab <span class="op">=</span> <span class="st">"Node B Time Series"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>lines(fitted(answer)[, <span class="dv">2</span>], col <span class="op">=</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">3</span>], ylab <span class="op">=</span> <span class="st">"Node C Time Series"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>lines(fitted(answer)[, <span class="dv">3</span>], col <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">4</span>], ylab <span class="op">=</span> <span class="st">"Node D Time Series"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>lines(fitted(answer)[, <span class="dv">4</span>], col <span class="op">=</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>각 노드의 time series(검정), fitted values from ‘answer’ model overlaid in red</li>
+</ul>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">1</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plot(ts(residuals(answer)[, <span class="dv">1</span>]), ylab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>hist(residuals(answer)[, <span class="dv">1</span>], main <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">2</span>]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plot(ts(residuals(answer)[, <span class="dv">1</span>]), ylab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>hist(residuals(answer)[, <span class="dv">2</span>], main <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">3</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>plot(ts(residuals(answer)[, <span class="dv">1</span>]), ylab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>hist(residuals(answer)[, <span class="dv">3</span>], main <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">4</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plot(ts(residuals(answer)[, <span class="dv">1</span>]), ylab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>hist(residuals(answer)[, <span class="dv">4</span>], main <span class="op">=</span> <span class="st">""</span>, xlab <span class="op">=</span> <span class="st">"`answer' model residuals"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li>residual plots from ‘answer’ model fit. Top: time sereies, Bottom: Histogram</li>
+</ul>
+</section>
+<section id="example-gnar-data-simulation-on-a-given-network" class="level2">
+<h2 class="anchored" data-anchor-id="example-gnar-data-simulation-on-a-given-network">2.5. Example: GNAR data simulation on a given network</h2>
+<ul>
+<li><p><code>fiveNet</code> 네트워크를 사용하여 네트워크 시계열 시뮬레이션 진행</p></li>
+<li><p>두 시뮬레이션 모두 sigma argument를 사용하여 표준 편차가 제어되는 표준 정규 노이즈를 사용하여 생성된다.</p></li>
+</ul>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fiveVTS2 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.4</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.6</span>, <span class="dv">0</span>, <span class="dv">0</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.3</span>)))</span></code></pre></div>
+</div>
+<ul>
+<li>fiveVTS2 네트워크를 사용하여 시뮬레이션 된 것이다보니 파라메터 계수 비슷</li>
+</ul>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS2, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(1,[1]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+dmatalpha1node1  dmatalpha1node2  dmatalpha1node3  dmatalpha1node4  
+        0.45902          0.13133         -0.49166          0.03828  
+dmatalpha1node5      dmatbeta1.1  
+        0.02249          0.24848  
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>fiveVTS3 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>), rep(<span class="fl">0.3</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.2</span>, <span class="fl">0.3</span>), c(<span class="dv">0</span>)))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS3, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">2</span>,<span class="dv">0</span>)))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(2,[2,0]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+ dmatalpha1  dmatbeta1.1  dmatbeta1.2   dmatalpha2  
+     0.2537       0.1049       0.3146       0.2907  
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>fiveVTS4 <span class="op">&lt;-</span> simulate(GNARfit(vts <span class="op">=</span> fiveVTS2, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE), n <span class="op">=</span> <span class="dv">200</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS4, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(1,[1]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+dmatalpha1node1  dmatalpha1node2  dmatalpha1node3  dmatalpha1node4  
+      0.4478300       -0.0008695       -0.4822675        0.0523652  
+dmatalpha1node5      dmatbeta1.1  
+     -0.0063702        0.2249530  
+</code></pre>
+</div>
+</div>
+<ul>
+<li>위와 같이 GNAR 모델에 있는 시계열을 simulate하기 위해 GNARfit object에 대해 simulate S3 method 사용할 수 있다</li>
+</ul>
+</section>
+<section id="missing-data-and-changing-connection-weights-with-gnar-models" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data-and-changing-connection-weights-with-gnar-models">2.6 Missing data and changing connection weights with GNAR models</h2>
+<ul>
+<li>The flexibility of GNAR modelling이 의미하는 것은 연결 가중치를 바꾸지 않고 변하는 네트워크로 missing data 를 모델링 할 수 있다.</li>
+<li>한 노드가 missing data 구간이 생기면 그 구간에서만 네트워크를 변화하여 weight가 변경된다.</li>
+</ul>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fiveVTS0 <span class="op">&lt;-</span> fiveVTS</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>fiveVTS0[<span class="dv">50</span>:<span class="dv">150</span>, <span class="dv">3</span>] <span class="op">&lt;-</span> NA</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>nafit <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> fiveVTS0, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>plot(ts(fitted(nafit)[, <span class="dv">3</span>]), ylab <span class="op">=</span> <span class="st">"Node C fitted values"</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>plot(ts(fitted(nafit)[, <span class="dv">4</span>]), ylab <span class="op">=</span> <span class="st">"Node D fitted values"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="stationary-conditions-for-a-gnar-process-with-fixed-network" class="level2">
+<h2 class="anchored" data-anchor-id="stationary-conditions-for-a-gnar-process-with-fixed-network">2.7. Stationary conditions for a GNAR process with fixed network</h2>
+<p><strong>Theorem 1</strong></p>
+<ul>
+<li><em>Given an unchanging network, <span class="math inline">\(\mathcal{G}\)</span> a sufficient condition for the GNAT model (1) to be stationary is</em></li>
+</ul>
+<p><span class="math display">\[\sum^p_{j=1}(|\alpha_{i,j}| + \sum^{C}_{c=1} \sum^{s_j}_{r=1} |\beta_{j,t,c}|)&lt;1 , \forall_i \in 1,\dots, N\]</span></p>
+<p>위 조건을 <code>GNARsim</code>을 이용하여 확인 할 수 있다.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>fiveVTS4 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.85</span>)))</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>c(mean(fiveVTS4[<span class="dv">1</span>:<span class="dv">50</span>, ]), mean(fiveVTS4[<span class="dv">51</span>:<span class="dv">100</span>, ]), mean(fiveVTS4[<span class="dv">101</span>:<span class="dv">150</span>, ]), mean(fiveVTS4[<span class="dv">151</span>:<span class="dv">200</span>, ]))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]    -120.511   -1370.216  -15725.884 -180319.140</code></pre>
+</div>
+</div>
+<ul>
+<li>The mean increases rapidly indicating nonstationarity.</li>
+<li>평균이 빠르게 증가하는 것으로 보아 정상성을 띄고 있지 않다.</li>
+</ul>
+</section>
+<section id="benefits-of-our-model-and-comparisons-to-others" class="level2">
+<h2 class="anchored" data-anchor-id="benefits-of-our-model-and-comparisons-to-others">2.8. Benefits of our model and comparisons to others</h2>
+</section>
+<section id="order-selection" class="level2">
+<h2 class="anchored" data-anchor-id="order-selection">3.1. Order selection</h2>
+<p><strong>Bayesian information criterion</strong></p>
+<p><span class="math display">\[BIC(p,s) = ln|\sum^{\hat{}}_{p,s}| + T^{-1} M ln(T)\]</span></p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.003953124</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">1</span>)))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02251406</code></pre>
+</div>
+</div>
+<p><strong>Akaike information criterion</strong></p>
+<p><span class="math display">\[AIC(p,s) = ln|\sum^{\hat{}}_{p,s}| + 2T^{-1} M\]</span></p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>AIC(GNARfit())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.06991947</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>AIC(GNARfit(betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">1</span>)))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.05994387</code></pre>
+</div>
+</div>
+</section>
+<section id="model-selection-on-a-wind-network-time-series" class="level2">
+<h2 class="anchored" data-anchor-id="model-selection-on-a-wind-network-time-series">3.2. Model selection on a wind network time series</h2>
+<p>the data suite vswind that contains a number of R objects pertaining to 721 wind speeds taken at each of 102 weather stations in England and Wales. The suite contains the vector time series vswindts, the associated network vswindnet, a character vector of the weather station location names in vswindnames and coordinates of the stations in the two column matrix vswindcoords. The data originate from the UK Met Office site http://wow.metoffice.gov.uk and full details can be found in the vswind help file in the GNAR package.</p>
+<ul>
+<li>nodes : 102</li>
+<li>time step : 721</li>
+</ul>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>oldpar <span class="op">&lt;-</span> par(cex <span class="op">=</span> <span class="fl">0.75</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>windnetplot()</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>par(oldpar)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Plot of the wind speed network</p>
+<ul>
+<li>blue numbers are relative distance between sites</li>
+<li>labels are the site name</li>
+</ul>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">0</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -233.3848</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>fiveFit <span class="op">&lt;-</span> GNARfit(fiveVTS[<span class="dv">1</span>:<span class="dv">160</span>,],net<span class="op">=</span>fiveNet, alphaOrder<span class="op">=</span><span class="dv">2</span>, betaOrder<span class="op">=</span>c(<span class="dv">2</span>,<span class="dv">0</span>)) <span class="co">#learn </span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>dim(fitted(fiveFit))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 158   5</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>dummyFit <span class="op">&lt;-</span> GNARfit(fiveVTS,net<span class="op">=</span>fiveNet, alphaOrder<span class="op">=</span><span class="dv">2</span>, betaOrder<span class="op">=</span>c(<span class="dv">2</span>,<span class="dv">0</span>)) <span class="co">#learn </span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>dummyFit$mod$coefficients <span class="op">&lt;-</span> fiveFit$mod$coefficients</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>fitted(dummyFit)[<span class="dv">161</span>:<span class="dv">200</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0.01093152  0.07611113  0.50989356  0.84380803  0.90488185 -0.12703505
+ [7] -0.57721780 -0.36681689 -0.26281975 -0.47712098 -0.62293008 -0.58121816
+[13] -0.81149078 -0.45403821 -0.60487041  0.28617606  0.20580455  0.19341988
+[19]  0.35296420  0.15628117  0.68350847  0.49043974  0.29627168 -0.35666858
+[25] -0.47565960  0.06692171 -0.14924170 -0.36616239 -0.49994894  0.22625500
+[31] -0.08023045  0.25371268 -0.47415540 -0.99390660 -1.16821429 -0.18438203
+[37] -1.10766872 -0.76969390  0.71828989  0.69737474</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>fitted(fiveFit)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               [,1]         [,2]         [,3]          [,4]         [,5]
+  [1,]  0.300764573  0.731759572  0.645747192  0.6590441235  0.329408573
+  [2,]  0.584155581  0.709939766  0.504838042  0.4006542005  0.002404727
+  [3,]  0.248206643 -0.053672929  0.089912292  0.3569760840  0.886027241
+  [4,]  0.431422029 -0.596332784 -0.445500333 -0.1950437084  0.998677531
+  [5,]  0.369251545 -0.131646096 -0.151852774 -0.0307057532  0.602574799
+  [6,] -0.281163998  0.372761568  0.470612441  0.0640593261 -0.793452225
+  [7,] -0.629184394  0.122210560 -0.064188223  0.2614228537  0.027403171
+  [8,]  0.176102146  0.054605602  0.001654112 -0.0679337406 -0.041235943
+  [9,] -0.168610998 -0.212095723 -0.204125726 -0.2125261302 -0.010579734
+ [10,] -0.161421278 -0.007465513  0.149274060 -0.0249484567 -0.327041759
+ [11,]  0.359655447 -0.077039236 -0.039580520 -0.0457447866  0.112500734
+ [12,] -0.015390804 -0.224700395 -0.236137628 -0.1566997305 -0.032236173
+ [13,] -0.254595294 -0.052425427 -0.222029463 -0.1955623614 -0.090852345
+ [14,] -0.133378083 -0.231175869 -0.262111004 -0.4557269171 -0.613390251
+ [15,] -0.299492590 -1.329777415 -1.157380728 -0.7395871328  0.367735930
+ [16,] -0.092939379 -0.649485715 -0.649077093 -0.5677985865  0.018220159
+ [17,] -0.197734475  0.006055154  0.003767933  0.0142878952  0.017169293
+ [18,] -0.593128663 -0.029057099  0.019930836 -0.1995170085 -0.699678586
+ [19,] -0.406803183 -0.080878255 -0.076916012 -0.0142207300  0.084031465
+ [20,]  0.195661742  0.636973567  0.514808183  0.1521298877 -0.565262518
+ [21,] -0.646798007  0.034595763 -0.038468526 -0.2844049647 -1.200687294
+ [22,] -0.858660467 -0.279197317 -0.100300563 -0.1774862659 -0.600631944
+ [23,]  0.072500668  0.171516441  0.137895886  0.1253750409  0.109017776
+ [24,]  0.361169443 -0.134591857 -0.172907391 -0.0276254736  0.454886946
+ [25,] -0.555837928  0.021772877  0.086135588 -0.5401601843 -1.758757275
+ [26,] -0.907025497 -0.516889787 -0.601369437 -0.4907248867 -0.518976355
+ [27,] -0.577788165 -0.883706611 -0.990274375 -0.5655498386  0.219126828
+ [28,] -0.381253476 -1.020667212 -0.974967606 -0.8163078225 -0.224880458
+ [29,] -0.418889129 -1.136651964 -1.192973176 -0.8278078873  0.075705061
+ [30,] -0.430848760 -0.711242749 -0.645456670 -0.7835485785 -0.902099485
+ [31,] -0.408762558 -0.330133901 -0.313267801 -0.2950574688 -0.516672981
+ [32,] -0.397456978 -0.177503203 -0.123190622  0.0851676997  0.175790185
+ [33,] -0.321504797  0.137826136  0.185516044 -0.0469442492 -0.541534195
+ [34,] -0.446890348  0.425984103  0.440639199  0.0859296090 -0.911239457
+ [35,] -0.409664931  0.661582101  0.615592428  0.4648149587 -0.620671093
+ [36,] -0.178853576  1.134703079  1.170584884  0.7788603566 -0.614547790
+ [37,] -0.187107405  0.975055141  0.894986103  0.7556786981  0.299963760
+ [38,] -0.421512891  0.230443777  0.311288224  0.3783662241  0.481463020
+ [39,]  0.551866636  0.010017627 -0.031712684 -0.0291730137  0.299117468
+ [40,] -0.415705371 -0.084974037 -0.102059950  0.0729357811 -0.004680301
+ [41,] -0.596582277 -0.181138675 -0.037759798 -0.0710576429 -0.300907209
+ [42,] -0.264388277  0.136784757  0.077185718  0.0270845136 -0.311590329
+ [43,]  0.413516614  0.932841430  0.935079115  0.7161523403 -0.158898407
+ [44,]  0.095801809  0.920995408  0.955252555  0.8459697803 -0.127453246
+ [45,]  0.975373534  1.209886345  1.185240223  1.0015804496  0.169827608
+ [46,]  0.618868253 -0.058442807 -0.058935046  0.2370795943  0.914954875
+ [47,]  0.366854292  0.267881271  0.247344186  0.2400219950  0.479987689
+ [48,] -0.150157867 -0.777932308 -0.717286974 -0.5794468369  0.195377648
+ [49,]  0.075029321 -0.299959011 -0.355342761 -0.1920419709  0.334423437
+ [50,]  0.386593451 -0.135877992 -0.072542184  0.2518678243  0.984484742
+ [51,]  0.697822864 -0.311896474 -0.295669625 -0.2502382955  0.585030936
+ [52,]  0.062654477 -0.191584061 -0.107314176  0.2208996954  1.056837103
+ [53,]  0.728773427 -0.477836693 -0.494169917 -0.4843342717  0.451358938
+ [54,]  0.585069845  0.665543312  0.719452401  0.5820396956  0.545931719
+ [55,]  1.079661317  0.127297862  0.038038488  0.0677187351  0.907180658
+ [56,]  0.651000271  0.443573833  0.461237609  0.2318123507  0.355931847
+ [57,]  0.047340441  0.061483244 -0.142562719 -0.0074741198  0.203598849
+ [58,]  0.020722674 -0.855956709 -0.772986200 -0.7280158105 -0.072139463
+ [59,] -0.197216261 -0.894976325 -0.740954981 -0.7972459012 -0.237856418
+ [60,] -0.335837112 -0.488349114 -0.651565734 -0.7163113371 -0.703717928
+ [61,] -0.573434288 -1.566963776 -1.470953366 -0.9358838106  0.340002593
+ [62,] -0.019967493 -1.006103326 -1.203028246 -0.7206978782  0.426166645
+ [63,]  0.289165755 -0.676589963 -0.529091393 -0.3863962807  0.580747013
+ [64,] -0.063683833 -0.320450285 -0.325613255 -0.2974046265 -0.105675029
+ [65,] -0.112032969 -0.527479112 -0.523398055 -0.1590403400  0.496544412
+ [66,] -0.286173235 -0.053400092  0.018863005 -0.0124208740 -0.118724115
+ [67,] -0.499744957  0.041067235  0.076504951 -0.2048682261 -0.787362589
+ [68,] -0.547870145 -0.732546310 -0.770409578 -0.7369449312 -0.331821251
+ [69,] -0.905056316 -0.829491825 -0.850502405 -0.7607730212 -0.656264847
+ [70,] -0.246440697 -0.279850678 -0.269853546 -0.5660758221 -1.111827018
+ [71,] -0.186335645  0.010799425 -0.077495418  0.0601490253  0.102437820
+ [72,]  0.010493539 -0.479453043 -0.453954591 -0.3426073144 -0.040090049
+ [73,] -0.673580794 -0.734494634 -0.564315445 -0.8190023610 -1.019947630
+ [74,] -0.640032299 -0.558498277 -0.596977420 -0.5456733025 -0.090276605
+ [75,] -0.464960459 -0.529199551 -0.552331950 -0.8884973812 -1.066744453
+ [76,] -0.887182659 -0.141258133 -0.110786546  0.0237603066  0.003998690
+ [77,] -0.073105627 -0.207336194 -0.187193599 -0.6930066146 -1.105251019
+ [78,] -0.689981040  0.027486354  0.151691133  0.2650861359 -0.203709649
+ [79,]  0.258382277  0.652801148  0.545006830  0.3925781271 -0.249181067
+ [80,]  0.751377138  0.239900459  0.276168396  0.6057405726  1.262601102
+ [81,]  0.631390471  0.411822991  0.543334476  0.2438621480  0.112347717
+ [82,] -0.034969641 -0.104184784 -0.097705561  0.1498464790  0.895833940
+ [83,]  0.120113065  0.049356967  0.046034277 -0.0721309377  0.217972070
+ [84,] -0.200386785 -0.203495710 -0.239586254 -0.1172887981  0.323191787
+ [85,]  0.185644181 -0.395187380 -0.370733604 -0.5009300085 -0.211102667
+ [86,] -0.237732516  0.276454796  0.287754635  0.2080093644 -0.223951494
+ [87,]  0.216163467  0.192130141  0.177949800 -0.0753244143 -0.351364565
+ [88,] -0.142649364 -0.186692214 -0.168987298 -0.1166303744  0.011404103
+ [89,]  0.548618117  0.747707315  0.770581155  0.5221810333  0.172075628
+ [90,]  0.028104354  0.688465275  0.636215214  0.5500772784  0.059464762
+ [91,] -0.495363724 -0.071919605 -0.008154852 -0.4353087653 -1.271143508
+ [92,] -1.107134875 -0.172815824 -0.303687490 -0.0844525666 -0.236711607
+ [93,] -0.149354271  0.009431534  0.092873697 -0.4137230613 -1.079758945
+ [94,] -0.480127162 -0.759207617 -0.733556252 -0.1155717520  0.856016011
+ [95,] -0.068768871 -0.262250231 -0.276510238 -0.4068034977 -0.281317568
+ [96,] -0.204766674 -0.466093264 -0.516820813 -0.4012743931 -0.036227691
+ [97,]  0.450365055 -0.345449271 -0.277951368 -0.0735386028  0.626942400
+ [98,]  0.825252322 -0.102070954  0.029346323  0.2224587296  0.891243876
+ [99,]  0.918255191  0.974393754  0.785132509  0.9588950601  0.747082329
+[100,]  1.161471681  0.803193156  1.046464965  1.2474096963  1.536524225
+[101,]  0.796513581  0.943461644  0.698756745  0.5968311778  0.275247231
+[102,]  0.189772234  0.088167353  0.193522913 -0.1055246595 -0.205361362
+[103,] -0.486312684  0.528260131  0.609425778  0.4533837262 -0.448633125
+[104,] -0.780106474  0.619638040  0.487082196  0.2699333424 -1.074329863
+[105,]  0.001495171  0.043686101  0.071429149 -0.0068869393  0.109059794
+[106,]  0.412811020  0.589258087  0.534530373  0.1827023688 -0.169191222
+[107,]  0.230033356  0.369815780  0.441499631  0.4808802972  0.619074058
+[108,]  0.887957665  0.299276196  0.242694214  0.2120811348  0.437908215
+[109,] -0.003445154 -0.934051132 -0.730038077 -0.3220444395  0.707556500
+[110,] -0.138607950 -0.723059594 -0.801323554 -0.7383525593 -0.366013353
+[111,] -0.761794858 -0.776583246 -0.767390838 -0.6281202398 -0.286591883
+[112,] -0.143995206 -0.994654745 -0.891931956 -0.8145750541  0.194529857
+[113,] -0.158840376 -0.789802525 -0.720611341 -0.3434589195  0.705106074
+[114,]  0.213701938  0.094954893 -0.066337346 -0.1715778242 -0.301015012
+[115,]  0.353147878 -0.162438159 -0.035453134  0.2417453098  0.692188468
+[116,] -0.259026322 -0.062564122 -0.069539905  0.0494333669  0.016725122
+[117,]  0.439567933  0.334238798  0.123452083  0.2899531832  0.536404389
+[118,]  0.243694767 -0.136731679 -0.062368473 -0.0505163356  0.329751821
+[119,] -0.221760052 -0.034088224 -0.073079140 -0.0719693132  0.080492952
+[120,] -0.639870092 -0.346958117 -0.350162454 -0.6158933852 -1.052705642
+[121,]  0.191514800  0.198936857  0.188570749  0.0576140540 -0.098783032
+[122,]  0.497040376  0.104911046  0.183534206  0.3233013200  0.725368718
+[123,]  0.912741276  0.906110114  0.847102372  0.9050828507  0.840894148
+[124,]  0.761509505  0.486180954  0.657445208  0.6485641139  0.813518998
+[125,]  0.316821416 -0.083720193 -0.173493262 -0.1007134067  0.356082268
+[126,] -0.067185056 -0.753094489 -0.702750670 -0.2621385119  1.046954137
+[127,] -0.091228436 -0.675109353 -0.703565297 -0.5564405787  0.258988050
+[128,] -0.109253436 -0.444143304 -0.399640932 -0.3580561559 -0.035762392
+[129,] -0.232521560 -0.039990247 -0.095241200 -0.0443450553 -0.430664437
+[130,]  0.123446724  0.200420996  0.173518282  0.5184071044  0.313636742
+[131,]  0.285159008 -0.032242166  0.027550780  0.1048459050 -0.132334038
+[132,] -0.029094326  0.291860928  0.394652562  0.4297945912  0.077465921
+[133,]  0.607314455  0.854271821  0.946947611  0.7446008823  0.229008010
+[134,]  0.114274696  0.395094364  0.372741933  0.2933528915  0.073135295
+[135,]  0.058334948  0.020883512 -0.064495939 -0.0002935146  0.194116690
+[136,] -0.485203794  0.162128088  0.243616443  0.0173331790 -0.588154182
+[137,]  0.361414229  0.497203208  0.361158226  0.5018799742  0.573470360
+[138,]  0.819903948  0.366313425  0.363516294  0.3796662479  0.699684917
+[139,] -0.216165855 -0.335708047 -0.251520773 -0.2682301442  0.062768414
+[140,] -0.454294227 -0.359066363 -0.294969357 -0.4097376437 -0.479590775
+[141,] -0.062418172  0.009466708 -0.051169781  0.1398314442  0.275918751
+[142,]  0.546927988  0.424770686  0.388169659  0.1288546957 -0.347653081
+[143,] -0.311508529  0.345041027  0.500511866  0.3303953879 -0.189245985
+[144,]  0.156321321  0.623518356  0.518171727  0.4513620372  0.284295098
+[145,]  0.039622964  0.299954776  0.356381605  0.3469508290  0.326305082
+[146,]  0.579791654  0.695810253  0.652099702  0.5011115910  0.023065334
+[147,]  0.554655907  0.093490122  0.153079897  0.4182759318  0.767121199
+[148,]  0.384057236 -0.065678272 -0.023948715  0.0451867298  0.454508452
+[149,]  0.447874514  0.392017250  0.266888939  0.3039632644  0.540801889
+[150,]  0.497810670  0.980726335  1.014061377  0.9632510637  0.560362395
+[151,]  0.044270389  0.550595322  0.526083974  0.5090146051 -0.039702900
+[152,]  0.128989148  0.501717816  0.494582107  0.2658346703 -0.283886186
+[153,]  0.003640933  0.471547028  0.593579063  0.5105159483  0.179982706
+[154,]  0.207081614  0.420074580  0.265684904  0.2159979026 -0.161101019
+[155,] -0.478137997  0.240399554  0.349195339  0.3926704926 -0.290283502
+[156,] -0.368038032  0.588505317  0.539132547  0.2403574312 -0.831187194
+[157,] -0.452959327  0.212753187  0.402307299  0.1713284561 -0.415735323
+[158,]  0.013726373  0.132970935  0.077022243  0.0243587773 -0.211000744</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>fiveVTS</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#gdpVTSn2[52,]</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               [,1]         [,2]         [,3]         [,4]        [,5]
+  [1,] -0.106526553  1.077613724 -0.244694569  0.933710066  0.44443593
+  [2,]  0.664495737  0.935476457  1.402823610  0.826656526  0.02097885
+  [3,] -0.255977521 -1.478171940  2.160938890  1.746276180  0.80188586
+  [4,]  1.684436464  0.180662387  0.398879113 -0.418094544  0.28037722
+  [5,]  1.451205104  0.584157057 -1.700218367 -1.219724913  1.63810802
+  [6,]  0.728846398  0.536253148 -0.730310794 -0.297010221  1.04864255
+  [7,] -1.526780869  1.957817106 -0.506088728  0.470747730 -0.63167929
+  [8,]  1.269035583 -0.519870107  0.773038576 -0.176065931 -3.13354575
+  [9,] -0.403340381 -0.398760476  1.358212255 -0.755544421  1.58592625
+ [10,] -0.057805476 -0.932876792  0.163580296 -0.299486667 -0.31232748
+ [11,] -0.498505318  1.005323196 -0.762045202  0.136725053 -0.43412619
+ [12,]  0.057551667  0.252414834 -1.585146661  0.892773199  0.64534882
+ [13,] -0.235969810  0.168738145 -0.927906887 -0.201182245  0.28394360
+ [14,] -0.574265201 -0.451671164  1.523378623 -1.466113999  0.88143283
+ [15,] -1.120369546 -2.167955049 -0.290951250  0.951438750 -0.63430591
+ [16,]  0.734315543 -1.074175821 -2.550164018 -1.843026440  0.16372069
+ [17,] -0.300708705 -0.215965234 -1.251829204 -1.147084336  0.81200151
+ [18,]  0.168111491  0.617846030 -0.067553835 -0.316813889 -0.57552628
+ [19,] -1.130660662  1.049382642 -0.219923688 -0.838450813 -0.84289855
+ [20,]  0.491603006  0.911202204 -0.037939755 -1.146905077 -0.70878526
+ [21,] -1.282680651 -0.037695723  1.273889958  1.222120228  0.48792144
+ [22,] -1.977860407 -1.476586870  0.618312041  0.541447907 -1.59494685
+ [23,] -0.566157633  1.007129193 -0.421914435 -1.255494830 -1.57780757
+ [24,]  0.427751755  0.446864227 -0.006556415  0.235046101 -0.13251371
+ [25,]  0.588963964 -0.510977075 -0.208215798 -0.038859202  1.03505405
+ [26,] -3.577108873  0.063814248 -0.764773488  0.750897963 -0.57677829
+ [27,] -0.762998219 -0.715903539  0.070974165 -1.767866460 -0.85886671
+ [28,]  1.154873570 -2.505711766 -0.235496918 -1.464120269 -1.74689908
+ [29,] -0.272693870 -1.857460255 -1.012583601 -1.478438760 -0.20065611
+ [30,]  0.395708110 -2.601309968 -1.102332663 -1.418525692 -0.67074519
+ [31,] -1.632021790 -1.389226367 -1.406639927 -0.164463613 -0.57992151
+ [32,] -0.593868925 -0.604746854 -0.889344852  0.170550009 -1.19152282
+ [33,]  0.902385866  0.859337939 -0.216488189 -1.019066503 -1.20331830
+ [34,] -0.755599082  1.205454399 -0.315142793 -0.182216870 -0.76219579
+ [35,] -1.402617202  1.327218071  0.030109089  0.508358610 -1.19204930
+ [36,] -0.248901260  0.835443000  0.673836075  1.249100802 -2.50681088
+ [37,] -0.821889741  2.683690391  1.991361276  0.628557722 -0.63183483
+ [38,]  0.509052231  2.387571425  3.198218488 -1.313720751  0.41614740
+ [39,]  1.760264680  1.329747672  0.589082315 -0.959062662 -2.17248032
+ [40,]  0.407692882 -0.494160904 -0.336544078  0.518871030  1.17098422
+ [41,]  0.529542953 -0.109371157  0.276546799 -0.441917032 -1.77465267
+ [42,]  0.071422121  1.390859571 -0.656166400 -1.112883997 -1.53889722
+ [43,] -0.038685141  0.343631869 -0.121075284  0.189519172 -1.28519302
+ [44,]  0.032507365  1.105775541  0.745569895  2.313785056 -0.54606867
+ [45,]  0.326298291  1.672376452  0.867801558  1.596593083 -1.38530798
+ [46,]  0.493735214  0.828445070  0.665517459  3.545540325  0.17892418
+ [47,]  1.046193130  0.182022439  0.076358398 -0.564071723  2.31894117
+ [48,]  0.487801423  0.402192928  0.660265277  0.160859127  0.85916399
+ [49,]  0.012036883 -0.575802156 -1.375502706 -1.555497631  0.78253503
+ [50,]  0.566249612 -0.679123506 -0.342116629 -0.293370938  0.16791547
+ [51,]  1.983899460  0.325870466 -0.462247924 -0.144103964  0.20428669
+ [52,]  0.082477869 -0.015707410 -0.827420937 -0.533338717  3.03848854
+ [53,]  2.025321199  1.260059506 -0.667274520 -0.983423623 -0.25069462
+ [54,] -0.182207953 -0.492329932 -1.572486971 -0.318050791  3.11590615
+ [55,]  0.310016519  2.163157480  0.539075569  0.775034293  1.55599197
+ [56,]  0.344219807 -0.289984010  0.019376746  0.352604618  3.88803701
+ [57,] -0.628460347  0.908826573  0.839215153  0.387888048  2.79852674
+ [58,]  0.219514752 -1.949662023  1.297952270  0.245509848 -0.10715958
+ [59,] -0.703231049 -1.872499373 -0.948118550 -0.956147553  1.46327573
+ [60,] -1.037484518 -0.353586885 -2.197040404 -1.022195776  1.03019923
+ [61,] -1.671104120 -1.807816077 -0.456726722 -0.275561042  0.23349098
+ [62,]  1.082454650 -2.163914674 -2.772699788 -1.867484810 -1.15276058
+ [63,]  0.733526181 -2.901286567 -0.144692022 -1.533368920  0.64538823
+ [64,]  0.607622782 -0.564034684 -1.024446572 -0.860302664  1.46464103
+ [65,] -0.249447697 -0.622497600 -0.860157861  0.059602510 -0.28629810
+ [66,]  1.242991882 -0.553213122 -0.784868076 -0.866755329 -0.50726271
+ [67,]  0.025808026  1.134045937 -0.194833475 -0.766397319 -0.66714031
+ [68,] -1.280038469  0.969797971 -0.529341149 -0.274648131 -0.88451275
+ [69,] -0.899437152 -0.455454165 -0.889218336 -2.081201461  0.63782940
+ [70,] -0.485225451 -1.579881065 -1.542956678 -0.728773133 -2.63529295
+ [71,] -2.232840088 -0.666470900 -0.802215707  0.306471316  0.36000506
+ [72,]  0.263283350 -0.473210196  0.858443996 -0.330691066 -0.23528971
+ [73,]  0.194868023 -1.673792947 -1.157081284  0.464290012 -0.67196384
+ [74,] -2.374209088  0.746939110 -1.641811447 -1.805924541  0.66216561
+ [75,] -0.319164807  0.368646446 -0.675529010 -2.103798682  0.06414596
+ [76,] -2.347006749 -0.926133386 -1.280596322 -0.435692565  0.21824222
+ [77,]  0.446994651  1.473521493  0.734103122 -2.231131628 -1.36931119
+ [78,] -2.402766578 -0.673636271 -1.514644362  0.766704957  0.57180703
+ [79,]  0.591165442  1.638210347 -0.954659887  0.008337226 -2.90507678
+ [80,] -0.284550885  0.812008860  0.745209777  1.099796776  0.12632330
+ [81,]  2.404372924  0.494780967 -0.137672593  0.738809147  0.71597343
+ [82,] -0.732204526  2.210038243 -0.355431422  0.339909653  2.46725315
+ [83,]  1.437145004  1.547713162 -0.345952409 -1.578834604  0.52850356
+ [84,] -0.084957358  1.234464257 -0.032386550 -0.956802127  1.29018233
+ [85,]  0.630013261  0.172600953 -0.127816246 -1.056826347 -0.23795324
+ [86,] -0.893457396 -0.660542921 -1.265061454  0.015612038  1.27234265
+ [87,] -0.287301062  0.963686285  0.359594848  0.203580641 -0.80393259
+ [88,] -1.133229025  0.151632482 -0.040554491  0.515841576  1.28839412
+ [89,] -0.023953670 -0.117144878 -0.537169309 -0.192949617 -0.19885872
+ [90,] -0.238994400  1.725878556  1.063475592  0.828811176  1.72692730
+ [91,]  0.299232378  0.799624873  1.181753039  0.831726730 -0.84857446
+ [92,] -2.481179710  0.113529319 -0.650053446  0.011672273 -0.33558946
+ [93,]  0.312713660 -0.079515578  1.502108851 -2.180229770 -2.24161884
+ [94,] -1.996496328 -0.407588562 -0.652585366  0.923280995 -0.15832811
+ [95,]  2.250167112 -0.220512659 -0.805730284 -2.066199413 -1.28057608
+ [96,] -0.763689773 -0.031020794 -0.208759418 -0.867474784  0.72626616
+ [97,]  0.014431435 -1.336163148 -0.640654650 -0.333381100 -0.44435745
+ [98,]  0.957691513 -0.361694475 -0.967050395  0.060214711  1.10246612
+ [99,]  1.469745730  0.554733531 -1.990318074  1.277950650  0.91469843
+[100,]  1.356192755  0.363980993  1.646543813  2.153855538  0.49502358
+[101,]  3.001712443  2.666746291 -0.368684582  1.849950555  0.63675201
+[102,] -0.281234965  0.456235005  2.292473984  0.854928226  2.22619190
+[103,] -1.140727890  0.202030354 -0.219402824  0.310787559  1.38376301
+[104,] -0.101523413  1.693526806  0.088496042  0.849098718 -2.58113447
+[105,] -1.122014513  0.674017745  1.696074464  0.065284585 -2.46042966
+[106,] -0.050503692  0.476461163  0.741019471 -1.033544711  1.30742678
+[107,] -0.977589842  0.119899249  1.188456997  1.081889577  1.41965239
+[108,]  0.909422801  1.255343375  0.842509208 -0.192153747  0.71392520
+[109,]  0.441028047 -0.896440332 -0.270300473  1.985698469  1.24604331
+[110,]  1.237351903  0.285784091 -2.573210003 -1.364613642  0.30715435
+[111,] -0.812621272 -1.216797535 -1.946208168 -0.293442424  0.01613793
+[112,] -0.569590223 -0.000629766 -0.657769831 -2.422099355 -0.23850071
+[113,]  0.013135413 -0.269047393 -2.386679520 -1.612243344  1.04220642
+[114,]  1.497050345  0.473005141 -2.121414725 -1.449151157 -0.36453856
+[115,] -0.826489548 -0.635578799  0.160746530  0.588310936  0.64139235
+[116,]  1.714414681 -0.069917852 -1.565924860  1.120471391 -0.78042307
+[117,]  0.090005879  1.200734542  0.270198304 -1.404710351 -0.03628579
+[118,]  1.236752409 -1.518803758  1.237344754  1.129076932 -0.20967169
+[119,] -0.087766705  0.109758177  0.830463404 -1.215657793  2.10369911
+[120,]  0.171155851 -0.458798255  0.673636072 -0.491339577 -0.55057403
+[121,] -2.015292503 -0.870762059 -0.029309395 -0.793820162 -0.46857349
+[122,] -0.362231614 -0.364385616  0.389845581  0.862317056  0.58137591
+[123,]  1.134908449  0.528983153 -0.215140490  0.381732812  0.95051905
+[124,]  1.457741194  0.847372382  1.281677103  1.882417946  0.73169697
+[125,]  1.108355891  2.153722703 -0.310021511  0.663789759  1.50520899
+[126,]  0.071438586 -0.058006918 -0.325876606 -0.374044712  1.44845100
+[127,]  1.793527240  0.106114670 -0.893934806 -2.276541783  0.63834022
+[128,]  0.315117203 -0.717323756 -0.955019446 -1.370627155  0.39051426
+[129,] -0.043340209 -0.312945747 -1.197591049 -0.317055511 -0.20153262
+[130,] -0.102618844 -0.880170227 -0.604543790  1.138606188 -2.06784587
+[131,]  1.740909147 -0.637353850 -0.010562729  1.561563247 -2.32157478
+[132,]  0.188345255 -0.469433386 -0.998242748  1.333047029 -0.61688863
+[133,]  0.478267920  1.814870921 -0.214383410  0.211463195 -0.68793981
+[134,]  0.520210151  2.448452650 -0.463708150  1.952197392  0.18188706
+[135,] -0.269362229  1.911952464  0.242272223 -0.444547682  1.07677467
+[136,]  0.423190923 -0.410880998 -0.195993929  0.257239829 -0.28741994
+[137,] -1.026903990  1.526871656  0.360358335 -0.772639199 -0.55385790
+[138,]  1.450078506 -0.349330702  1.034884543  1.105119122 -0.44915787
+[139,]  0.550436921  0.247527774  1.257978907  0.192344787  2.62949378
+[140,] -0.191655801  0.134136826 -0.521197521 -1.048113725  0.16877213
+[141,] -0.791900380  0.321889000 -1.170523314 -0.640876817 -0.67475039
+[142,]  0.971146450  0.021298110 -0.039896748  0.046666821 -0.88362522
+[143,] -0.982608481 -0.377262589  0.171316614  1.854723760  0.99834845
+[144,] -0.495627812  2.483176264  0.354246741 -0.684488580 -0.02501307
+[145,]  0.561938527  0.993967044  1.211151634  0.257789007  0.12399797
+[146,]  0.709311790  1.260796758  0.500729309 -0.317030392 -0.10472747
+[147,]  0.242781056  0.024085820  0.200161589  2.499565048 -0.35615091
+[148,]  1.391448147  0.433674956 -0.406153463  0.535043661  0.73457838
+[149,]  0.412636662  0.657392857 -0.602350630 -0.222007914  1.28589205
+[150,]  0.464724442  0.241309629  1.384164088 -0.007823340  1.51425328
+[151,]  1.387500492  1.166650199  1.425112356  1.867514447 -0.82096695
+[152,]  0.324362289  0.546923900  1.123115609  0.598062895 -0.86820404
+[153,] -0.642847662  0.488927474  1.005998211  0.623605903  0.36832761
+[154,]  0.580613501  1.826643913  0.215912542  0.360628058 -0.61370894
+[155,] -0.144307876 -0.646151661  0.724633376  1.186826797 -0.31028196
+[156,]  0.546715317  0.754951418 -0.046634000  0.644574743 -3.02529497
+[157,] -1.292512590  1.254904828  1.493495999 -0.128867226 -0.51111891
+[158,] -0.178360098  1.914596966 -0.981080025  0.228541535 -1.75337640
+[159,] -0.292207540  0.598820101 -0.516651587  0.274304089  0.03373131
+[160,] -2.308524149  0.208852278  1.461230272 -0.500911249 -2.27810147
+[161,] -1.379791032  0.145882158  0.915799429  1.484776097 -3.50041126
+[162,] -0.687780533 -0.916656103  1.270414228  1.016692379 -0.33067553
+[163,]  0.719998169  2.802816864  1.671148575 -0.623046401  0.58186844
+[164,]  0.720895216 -0.441022235  1.355521153  0.169312739  1.37392204
+[165,]  1.255917246  1.237433250 -1.261445845  1.156903886  1.34803048
+[166,]  1.705742677 -2.082080117  1.178644006  0.035092003  2.31810280
+[167,] -1.241297515 -1.810899663  0.429577096 -1.605573403  1.82238571
+[168,] -1.733594362 -1.512615033 -0.660630798 -0.541034771 -0.51548359
+[169,]  0.792480615  1.111823458 -0.087410649 -0.471304848 -1.46894677
+[170,] -1.308490289 -0.820921717 -1.060340478 -0.848828375  0.61581232
+[171,] -0.151371781 -1.755296255 -2.178401224 -1.133293893 -0.73148664
+[172,] -1.440949271 -1.701461336  0.086620787 -0.574783622 -0.96759066
+[173,] -0.602659336  0.088764382 -1.505800731 -1.165425847 -0.71480221
+[174,]  1.275259704 -0.410086120  0.494580410 -2.991666233 -1.27793672
+[175,] -1.404478046 -0.271241519  0.442854733 -0.222198583 -0.71844124
+[176,] -0.656202533  1.203821570  0.978017687  0.126331498 -1.96978752
+[177,] -0.394150009 -0.161910841  2.176312978  0.695232617  0.89852498
+[178,]  0.942635640  0.627373149  1.433906899 -0.365531957  0.60603188
+[179,] -0.023229999  1.377273430 -0.409007667  1.061813530 -0.29478037
+[180,]  0.365704922  1.211613739 -1.923486162  0.212759987  0.96275639
+[181,] -0.005420862 -0.765759383 -1.517079711  0.902219156 -0.34235656
+[182,]  0.024961781  0.098786009 -0.242548348  0.230247435  2.58670863
+[183,]  0.827409379 -0.019279260  1.645100501 -0.517327835  1.97867114
+[184,]  0.446528306 -0.641671765  0.183926490  0.194955794  0.61934460
+[185,] -0.852794309 -0.150650614 -1.175556623 -0.749290811 -0.16935739
+[186,]  0.545053341 -0.164000579 -0.705192833 -2.243859141 -0.09017822
+[187,] -1.237547900  0.639970678 -0.071693146  0.802596589  0.36885061
+[188,] -0.400597906 -0.490175656  1.285472941  0.566619402 -0.76045074
+[189,] -0.346030030 -0.031140831  0.468958960 -0.626935003 -0.58954715
+[190,] -0.242598074 -0.643482354  0.637618122  0.729482578 -2.59565491
+[191,]  1.906927330  1.295421628 -0.473359922  0.009433931 -0.45087521
+[192,]  0.247556013  0.380624945  0.511373051 -0.303734068 -0.35216521
+[193,]  0.109182478 -1.095266046 -1.117244679  0.260695357  0.63022764
+[194,] -0.428068355  0.957493744  1.147709215 -1.806721502  0.20508136
+[195,] -2.391696093  1.006982896  0.469035946 -1.029263987 -1.23612823
+[196,] -2.210774865 -1.403493412  0.556772208 -0.600485513 -2.42048578
+[197,] -0.722601932 -0.414053540  0.988636770 -0.610321642  0.58772892
+[198,] -2.938590715 -0.559749691  0.078615069  0.010633188 -2.36841490
+[199,] -0.985951916  0.215394351 -0.119048423  0.779733910 -2.98799845
+[200,]  0.447242609  0.404155027  0.719959458 -0.442525233 -1.78159592</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">0</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -233.1697</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>BIC.Alpha2.Beta <span class="op">&lt;-</span> matrix(<span class="dv">0</span>, ncol <span class="op">=</span> <span class="dv">15</span>, nrow <span class="op">=</span> <span class="dv">15</span>)</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b1 <span class="kw">in</span> <span class="dv">0</span>:<span class="dv">14</span>)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(b2 <span class="kw">in</span> <span class="dv">0</span>:<span class="dv">14</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>        BIC.Alpha2.Beta[b1 <span class="op">+</span> <span class="dv">1</span>, b2 <span class="op">+</span> <span class="dv">1</span>] <span class="op">&lt;-</span> BIC(GNARfit(vts <span class="op">=</span> vswindts,</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>                    net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(b1, b2)))</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>contour(<span class="dv">0</span>:<span class="dv">14</span>, <span class="dv">0</span>:<span class="dv">14</span>, log(<span class="dv">251</span> <span class="op">+</span> BIC.Alpha2.Beta), xlab <span class="op">=</span> <span class="st">"Lag 1 Neighbour Order"</span>, ylab <span class="op">=</span> <span class="st">"Lag 2 Neighbour Order"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Exception ignored from cffi callback &lt;function _processevents at 0x7f1829767f70&gt;:
+Traceback (most recent call last):
+  File "/home/csy/anaconda3/envs/csy/lib/python3.8/site-packages/rpy2/rinterface_lib/callbacks.py", line 277, in _processevents
+    try:
+KeyboardInterrupt: 
+Exception ignored from cffi callback &lt;function _processevents at 0x7f1829767f70&gt;:
+Traceback (most recent call last):
+  File "/home/csy/anaconda3/envs/csy/lib/python3.8/site-packages/rpy2/rinterface_lib/callbacks.py", line 277, in _processevents
+    try:
+KeyboardInterrupt: 
+Exception ignored from cffi callback &lt;function _processevents at 0x7f1829767f70&gt;:
+Traceback (most recent call last):
+  File "/home/csy/anaconda3/envs/csy/lib/python3.8/site-packages/rpy2/rinterface_lib/callbacks.py", line 277, in _processevents
+    try:
+KeyboardInterrupt: </code></pre>
+</div>
+</div>
+<ul>
+<li>a set of <code>GNAR(2,[b1,b2])</code> models with b1, b2 ranging from zero to 14</li>
+<li>Contour plot of BIC values for the two-lag autoregressive model incorporating b1-stage and b2-stage neighbours at time lags one and two. Values shown are log(251 + BIC) to display clearer contours.</li>
+</ul>
+<p><em>이해 덜 됨..</em></p>
+<ul>
+<li>increasing the lag two neighbour sets beyond first stage neighbours would appear to increase the BIC for those lag one neighbour stages greater than five</li>
+</ul>
+<p><em>chatGPT</em></p>
+<p>이 문장을 조금 더 자세히 설명하면, BIC(Bayesian Information Criterion)는 모델을 선택할 때 사용하는 지표로서, 우리가 선택한 모델이 얼마나 적합한지를 측정합니다. 이 문장에서는, 이웃 집합의 대기 시간이 증가할수록 BIC 값이 증가할 것이라고 언급하고 있습니다. 이는 우리가 선택한 모델이 적합하지 않을 가능성이 있다는 의미입니다. 그래프를 보고 있을 때, 수평 윤곽선은 BIC 값이 0인 스테이지를 의미합니다. 이는 우리가 선택한 모델이 완벽하게 적합한다는 의미입니다.</p>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>goodmod <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">5</span>, <span class="dv">1</span>))</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>goodmod</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model: 
+GNAR(2,[5,1]) 
+
+Call:
+lm(formula = yvec ~ dmat + 0)
+
+Coefficients:
+ dmatalpha1  dmatbeta1.1  dmatbeta1.2  dmatbeta1.3  dmatbeta1.4  dmatbeta1.5  
+    0.56911      0.10932      0.03680      0.02332      0.02937      0.04709  
+ dmatalpha2  dmatbeta2.1  
+    0.23424     -0.04872  
+</code></pre>
+</div>
+</div>
+</section>
+<section id="constructing-a-network-to-aid-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-a-network-to-aid-prediction">3.3. Constructing a network to aid prediction</h2>
+<p>We propose a network construction method that uses prediction error, but note here that our scope is <strong>not to estimate an underlying network</strong>, but merely to find a structure that is useful in the task of prediction.</p>
+<p>we use a prediction error measure, understood as the sum of squared differences between the observations and the estimates:</p>
+<p><span class="math display">\[\sum^N_{i=1} (X_{i,t} - \hat{X}_{i,t})^2\]</span></p>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">&lt;-</span> predict(GNARfit(vts <span class="op">=</span> fiveVTS[<span class="dv">1</span>:<span class="dv">199</span>,], net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>prediction</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time Series:
+Start = 1 
+End = 1 
+Frequency = 1 
+    Series 1  Series 2  Series 3  Series 4   Series 5
+1 -0.6427718 0.2060671 0.2525534 0.1228404 -0.8231921</code></pre>
+</div>
+</div>
+</section>
+<section id="oecd-gdp-network-structure-aids-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="oecd-gdp-network-structure-aids-prediction">4. OECD GDP: Network structure aids prediction</h2>
+<p>GOP growth rate time series</p>
+<ul>
+<li><p>35 countries from the OECD website</p></li>
+<li><p>time series : 1961 - 2013</p></li>
+<li><p>T = 52</p></li>
+<li><p>Nodes = 35</p></li>
+<li><p>In this data set 20.8% (379 out of 1820) of the observations were missing due to some nodes not being included from the start.</p></li>
+<li><p>we do not uese covariate information, so C=1</p></li>
+</ul>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"fields"</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), nrow <span class="op">=</span> <span class="dv">1</span>, ncol <span class="op">=</span> <span class="dv">2</span>), widths <span class="op">=</span> c(<span class="fl">4.5</span>, <span class="dv">1</span>))</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>image(t(<span class="bu">apply</span>(gdpVTS, <span class="dv">1</span>, rev)), xaxt <span class="op">=</span> <span class="st">"n"</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, col <span class="op">=</span> gray.colors(<span class="dv">14</span>), xlab <span class="op">=</span> <span class="st">"Year"</span>, ylab <span class="op">=</span> <span class="st">"Country"</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>axis(side <span class="op">=</span> <span class="dv">1</span>, at <span class="op">=</span> seq(<span class="im">from</span> <span class="op">=</span> <span class="dv">0</span>, to <span class="op">=</span> <span class="dv">1</span>, length <span class="op">=</span> <span class="dv">52</span>), labels <span class="op">=</span> FALSE, col.ticks <span class="op">=</span> <span class="st">"grey"</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>axis(side <span class="op">=</span> <span class="dv">1</span>, at <span class="op">=</span> seq(<span class="im">from</span> <span class="op">=</span> <span class="dv">0</span>, to <span class="op">=</span> <span class="dv">1</span>, length <span class="op">=</span> <span class="dv">52</span>)[<span class="dv">5</span><span class="op">*</span>(<span class="dv">1</span>:<span class="dv">11</span>)], labels <span class="op">=</span> (<span class="dv">1</span>:<span class="dv">52</span>)[<span class="dv">5</span><span class="op">*</span>(<span class="dv">1</span>:<span class="dv">11</span>)])</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>axis(side <span class="op">=</span> <span class="dv">2</span>, at <span class="op">=</span> seq(<span class="im">from</span> <span class="op">=</span> <span class="dv">1</span>, to <span class="op">=</span> <span class="dv">0</span>, length <span class="op">=</span> <span class="dv">35</span>), labels <span class="op">=</span> colnames(gdpVTS), las <span class="op">=</span> <span class="dv">1</span>, cex <span class="op">=</span> <span class="fl">0.8</span>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>layout(matrix(<span class="dv">1</span>))</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>image.plot(zlim <span class="op">=</span> <span class="bu">range</span>(gdpVTS, na.rm <span class="op">=</span> TRUE), legend.only <span class="op">=</span> TRUE, col <span class="op">=</span> gray.colors(<span class="dv">14</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>R[write to console]: Loading required package: spam
+
+R[write to console]: Spam version 2.8-0 (2022-01-05) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+R[write to console]: 
+Attaching package: ‘spam’
+
+
+R[write to console]: The following objects are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+
+R[write to console]: Loading required package: viridis
+
+R[write to console]: Loading required package: viridisLite
+
+R[write to console]: 
+Try help(fields) to get started.
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-44-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Heat plot(grey scale) of the differenced time series,</p>
+<ul>
+<li>white space indicates missing time series observations</li>
+</ul>
+</section>
+<section id="finding-a-network-to-aid-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="finding-a-network-to-aid-prediction">4.1. Finding a network to aid prediction</h2>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>net1 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">1</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>net2 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">2</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">2</span>, <span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>par(mar<span class="op">=</span>c(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>plot(net1, vertex.label <span class="op">=</span> colnames(gdpVTS), vertex.size <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>plot(net2, vertex.label <span class="op">=</span> colnames(gdpVTS), vertex.size <span class="op">=</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<ul>
+<li><p>Erdos-Renyi random graphs xonstructed from the first two elements of the <code>seed.nos</code> variable with 35 nodes and connection probability 0.15.</p></li>
+<li><p>자기회귀 모델인 GNAR 모델을 예측에 사용할 때, 어떤 네트워크가 가장 적합한지 조사해야 함.</p></li>
+<li><p>이때 각 노드의 자기 상관 함수를 이용한 초기 분석 결과, 2차 자기회귀 구성 요소가 충분할 것으로 예상되어 p = 2까지의 GNAR 모델을 시험함.</p></li>
+<li><p>각 시간 지연에서 최대 2개의 이웃 집합을 포함함.</p></li>
+<li><p>이에 따라 아래와 같은 GNAR 모델이 시험됨.</p>
+<ul>
+<li>GNAR(1, [0]), GNAR(1, [1]), GNAR(2, [0, 0]), GNAR(2, [1, 0]), GNAR(2, [1, 1]), GNAR(2, [2, 0]), GNAR(2, [2, 1]), 그리고 GNAR(2, [2, 2])가 시험되며, 각각 individual-<span class="math inline">\(\alpha\)</span>와 global-<span class="math inline">\(\alpha\)</span> GNAR 모델로 적합함.</li>
+<li>총 16개의 모델이 생성됨.</li>
+<li>이 중에서 전체 GDP 예측에 사용할 GNAR 모델을 선택할 것.</li>
+<li>연결 확률이 0.15인 10,000개의 임의의 양방향 네트워크를 생성하고, 위에서 언급한 GNAR 모델을 이용해 예측할 것.</li>
+<li>그래서 이 예제는 상당한 계산 시간이 필요(데스크탑 PC에서 약 90분).</li>
+<li>이를 위해 아래 코드에는 일부 분석만 포함.</li>
+<li>계산 상의 이유로, 우선 각 노드에서 표준 편차로 나눠서 잔차가 각 노드에서 동일한 분산을 가지게 함.</li>
+<li>seedSim 함수는 예측값과 원래 값의 제곱 차이의 합을 출력하고, 이를 예측 정확도의 측정 기준으로 사용</li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>gdpVTSn <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTS, <span class="dv">2</span>, function(x){x <span class="op">/</span> sd(x[<span class="dv">1</span>:<span class="dv">50</span>], na.rm <span class="op">=</span> TRUE)})</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">&lt;-</span> c(rep(<span class="dv">1</span>, <span class="dv">2</span>), rep(<span class="dv">2</span>, <span class="dv">6</span>))</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>betas <span class="op">&lt;-</span> <span class="bu">list</span>(c(<span class="dv">0</span>), c(<span class="dv">1</span>), c(<span class="dv">0</span>, <span class="dv">0</span>), c(<span class="dv">1</span>, <span class="dv">0</span>), c(<span class="dv">1</span>, <span class="dv">1</span>), c(<span class="dv">2</span>, <span class="dv">0</span>), c(<span class="dv">2</span>, <span class="dv">1</span>), c(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>seedSim <span class="op">&lt;-</span> function(seedNo, modelNo, globalalpha){</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>    net1 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seedNo, nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>    gdpPred <span class="op">&lt;-</span> predict(GNARfit(vts <span class="op">=</span> gdpVTSn[<span class="dv">1</span>:<span class="dv">50</span>, ], net <span class="op">=</span> net1,</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>                               alphaOrder <span class="op">=</span> alphas[modelNo], betaOrder <span class="op">=</span> betas[[modelNo]],</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                               globalalpha <span class="op">=</span> globalalpha))</span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="bu">sum</span>((gdpPred <span class="op">-</span> gdpVTSn[<span class="dv">51</span>, ])<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>seedSim(seedNo <span class="op">=</span> seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23.36913</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>seedSim(seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">3</span>, globalalpha <span class="op">=</span> TRUE)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11.50739</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>seedSim(seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">3</span>, globalalpha <span class="op">=</span> FALSE)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18.96766</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-01-05-GNAR_files/figure-html/433688fa-9944-49b8-a0d4-a03ccbfa7453-1-505b0599-3887-46b8-aca5-d82dfa177e82.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>10,000개의 임의의 네트워크와 16개의 모델로부터 시뮬레이션한 예측 오류의 박스 그래프</li>
+<li>(계산 시간이 길어(90분) 코드는 생략).</li>
+<li>일반적으로 global-α 모델은 더 낮은 예측 오류를 일으킴.</li>
+<li>그래서 이 버전의 GNAR 모델을 사용할 것.</li>
+<li>그림 9에서 첫 번째 모델인 GNAR(1, [0])과 세 번째 모델인 GNAR(2, [0, 0])의 경우, “박스 그래프”는 인접한 매개변수가 적합되지 않아 결과가 전부 동일해 짧은 수평선으로 표시됨.</li>
+<li>다른 global-α 모델들은 이 안에 포함되어 있기 때문에, global-α GNAR(2, [2, 2])의 예측 오류가 최소가 되는 임의의 그래프를 선택할 것.</li>
+<li>이는 seed.nos[921]에서 생성된 네트워크가 선택되게 됩니다.</li>
+</ul>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>net921 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">921</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>plot(net921, vertex.label <span class="op">=</span> colnames(gdpVTS), vertex.size <span class="op">=</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-01-05-GNAR_files/figure-html/cell-51-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Randomly generated un-weighted and un-directed graph over the OECD ountries that minimises the prediction error at t = 51 using GNAR(2, [2, 2]).</p>
+<ul>
+<li>seed.nos[921]에서 생성된 네트워크</li>
+<li>네트워크에는 전부 2개 이상의 이웃을 가지고 있는 countries들이 있고, 총 97개의 edges이 있음.</li>
+<li>이 “921” 네트워크는 GDP 예측을 위해 생성되었기 때문에, 찾은 네트워크에 인식 가능한 구조가 있지 않을 것이라고 예상할 수 있음</li>
+<li>그러나 미국, 멕시코, 캐나다는 각각 8개, 8개, 6개의 edge을 가지고 있어 매우 잘 연결되어 있음.</li>
+<li>스웨덴과 칠레도 잘 연결되어 있으며, 각각 8개와 7개의 edge을 가지고 있습니다.</li>
+<li>예측 성능이 유사한 적은 개수의 edge를 가진 네트워크를 찾기 위해 테스트 될 수 있지만, 여기서는 전체 선택된 네트워크를 그대로 사용.</li>
+<li>이 네트워크를 사용하면 BIC를 이용해 최적의 GNAR 순서를 선택할 수 있음.</li>
+</ul>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">&lt;-</span> rep(NA, <span class="dv">8</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">8</span>){</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    res[i] <span class="op">&lt;-</span> BIC(GNARfit(gdpVTSn[<span class="dv">1</span>:<span class="dv">50</span>, ],</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>                          net <span class="op">=</span> seedToNet(seed.nos[<span class="dv">921</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>),</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>                          alphaOrder <span class="op">=</span> alphas[i], betaOrder <span class="op">=</span> betas[[i]]))}</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>order(res)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6 3 4 7 8 5 1 2</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>sort(res)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -64.44811 -64.32155 -64.18751 -64.12683 -64.09656 -63.86919 -60.67858
+[8] -60.54207</code></pre>
+</div>
+</div>
+</section>
+<section id="results-and-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-comparisons">4.2. Results and comparisons</h2>
+<ul>
+<li>이전 섹션의 모델을 사용해 t=52일 때의 값을 예측</li>
+<li>이 예측 오류를 표준 AR과 VAR 모델을 사용해 찾은 예측 오류와 비교</li>
+<li>GNAR 예측은 선택된 네트워크(seed.nos[921]에 해당)를 가진 GNAR(2, [2, 0]) 모델을 t=51까지의 데이터에 적합시키고, t=52일 때의 값을 예측</li>
+<li>우선 series를 정규화한 다음, 모델 적합으로부터 SSE를 계산합니다.</li>
+</ul>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>gdpVTSn2 <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTS, <span class="dv">2</span>, function(x){x <span class="op">/</span> sd(x[<span class="dv">1</span>:<span class="dv">51</span>], na.rm <span class="op">=</span> TRUE)})</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>gdpFit <span class="op">&lt;-</span> GNARfit(gdpVTSn2[<span class="dv">1</span>:<span class="dv">51</span>,], net <span class="op">=</span> net921, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>summary(gdpFit)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = yvec2 ~ dmat2 + 0)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4806 -0.5491 -0.0121  0.5013  3.1208 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+dmat2alpha1  -0.41693    0.03154 -13.221  &lt; 2e-16 ***
+dmat2beta1.1 -0.12662    0.05464  -2.317   0.0206 *  
+dmat2beta1.2  0.28044    0.06233   4.500  7.4e-06 ***
+dmat2alpha2  -0.33282    0.02548 -13.064  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.8926 on 1332 degrees of freedom
+  (23 observations deleted due to missingness)
+Multiple R-squared:  0.1859,    Adjusted R-squared:  0.1834 
+F-statistic: 76.02 on 4 and 1332 DF,  p-value: &lt; 2.2e-16
+
+GNAR BIC: -62.86003</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>((predict(gdpFit) <span class="op">-</span> gdpVTSn2[<span class="dv">52</span>, ])<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.737203</code></pre>
+</div>
+</div>
+<p>이 GNAR 모델의 적합된 매개변수는 <span class="math inline">\(\alpha^1 = - 0.42, \beta^1,1 = - 0.13, \beta^1,2 = 0.28\)</span>, 그리고 <span class="math inline">\(\alpha^2 = - 0.33\)</span>입니다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: right;">parameters</th>
+<th style="text-align: right;">prediction error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GNAR(2,[2,0])</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Individual AR(2)</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VAR(1)</td>
+<td style="text-align: right;">199</td>
+<td style="text-align: right;">26.2</td>
+</tr>
+</tbody>
+</table>
+<p>Estimated prediction error of differenced real GDP change at t = 52 for all 35 countries.</p>
+<p>우리의 방법과 CRAN forecast 패키지의 버전 8.0에서의 forecast.ar()과 auto.arima() 함수를 사용해 각 노드별로 AR 모델을 적합한 결과를 비교</p>
+<ul>
+<li>섹션 4.1의 자기상관 분석을 고려해 각각 35개의 개별 모델의 최대 AR 순서를 p=2로 설정</li>
+</ul>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"forecast"</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>arforecast <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTSn2[<span class="dv">1</span>:<span class="dv">51</span>, ], <span class="dv">2</span>, function(x){</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>            forecast(auto.arima(x[<span class="op">!</span><span class="kw">is</span>.na(x)], d<span class="op">=</span> ,D<span class="op">=</span><span class="dv">0</span>,<span class="bu">max</span>.p <span class="op">=</span> <span class="dv">2</span>,<span class="bu">max</span>.q<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>                                <span class="bu">max</span>.P<span class="op">=</span><span class="dv">0</span>,<span class="bu">max</span>.Q <span class="op">=</span> <span class="dv">0</span>,stationary <span class="op">=</span> TRUE, seasonal <span class="op">=</span> FALSE), ic <span class="op">=</span> <span class="st">"bic"</span>,</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>                     allowmean <span class="op">=</span> FALSE, allowdraft <span class="op">=</span> FALSE, trace <span class="op">=</span> FALSE, h<span class="op">=</span><span class="dv">1</span>)$mean</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>((arforecast <span class="op">-</span> gdpVTSn2[<span class="dv">52</span>, ])<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>R[write to console]: Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo 
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.8974</code></pre>
+</div>
+</div>
+<p>We fit the model using the VAR function and then use the restrict function to reduce dimensionality further, by setting to zero any coefficient whose associated absolute t-statistic value is less than two.</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"vars"</span>)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span> <span class="op">&lt;-</span> gdpVTSn2</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span>[<span class="kw">is</span>.na(gdpVTSn2<span class="fl">.0</span>)] <span class="op">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>varforecast <span class="op">&lt;-</span> predict(restrict(VAR(gdpVTSn2<span class="fl">.0</span>[<span class="dv">1</span>:<span class="dv">51</span>, ], p <span class="op">=</span> <span class="dv">1</span>, <span class="bu">type</span> <span class="op">=</span> <span class="st">"none"</span>)), n.ahead <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
+</div>
+<p>compute the prediction error</p>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>getfcst <span class="op">&lt;-</span> function(x){<span class="cf">return</span>(x[<span class="dv">1</span>])}</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>varforecastpt <span class="op">&lt;-</span> unlist(lapply(varforecast$fcst, getfcst))</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>((varforecastpt <span class="op">-</span> gdpVTSn2<span class="fl">.0</span>[<span class="dv">52</span>, ])<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26.19805</code></pre>
+</div>
+</div>
+<p>GNAR 모델은 AR과 VAR 결과보다 적은 예측 오류를 제공합니다. 이는 AR과 비교했을 때 29%가 줄어들고, VAR과 비교했을 때 78%가 줄어듭니다.</p>
+<p>위 절차를 반복해 2단계 앞으로의 예측을 기반으로 분석을 수행합니다.</p>
+<p>이 경우 다른 네트워크가 GNAR(2,[2,2]) 모델의 예측 오류를 최소화합니다.</p>
+<p>그러나 BIC 단계에서 GNAR(2,[0,0]) 모델이 최적으로 적합된 것을 식별하였고, 이는 네트워크 회귀 매개변수를 포함하지 않는 모델입니다.</p>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"vars"</span>)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span> <span class="op">&lt;-</span> gdpVTSn2</span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span>[<span class="kw">is</span>.na(gdpVTSn2<span class="fl">.0</span>)] <span class="op">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>varforecast <span class="op">&lt;-</span> predict(restrict(VAR(gdpVTSn2<span class="fl">.0</span>[<span class="dv">1</span>:<span class="dv">51</span>, ], p <span class="op">=</span> <span class="dv">1</span>, <span class="bu">type</span> <span class="op">=</span> <span class="st">"none"</span>)), n.ahead <span class="op">=</span> <span class="dv">40</span>)</span></code></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

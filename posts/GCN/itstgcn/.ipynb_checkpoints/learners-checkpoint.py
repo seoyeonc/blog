@@ -96,7 +96,7 @@ class StgcnLearner:
         for e in range(epoch):
             for t, snapshot in enumerate(self.train_dataset):
                 yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
+                cost = torch.mean((yt_hat.reshape(-1)-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()
@@ -131,7 +131,7 @@ class ITStgcnLearner(StgcnLearner):
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
             for t, snapshot in enumerate(train_dataset_temp):
                 yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
+                cost = torch.mean((yt_hat.reshape(-1)-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()

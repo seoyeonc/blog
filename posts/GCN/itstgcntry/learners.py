@@ -90,7 +90,6 @@ class RecurrentGCN(torch.nn.Module):
         h = self.linear(h)
         return h
     
-class StgcnLearner:
     def __init__(self,train_dataset,dataset_name = None):
         self.train_dataset = train_dataset
         self.lags = torch.tensor(train_dataset.features).shape[-1]

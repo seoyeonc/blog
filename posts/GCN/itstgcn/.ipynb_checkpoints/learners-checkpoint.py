@@ -7,6 +7,7 @@ import torch
 import torch.nn.functional as F
 #import torch_geometric_temporal
 from torch_geometric_temporal.nn.recurrent import GConvGRU
+from torch_geometric_temporal.nn.recurrent import DCRNN
 
 # utils
 import copy
@@ -66,9 +67,9 @@ def update_from_freq_domain(signal, missing_index):
     return signal
 
 
-class RecurrentGCN(torch.nn.Module):
+class RecurrentGCN_GConvGRU(torch.nn.Module):
     def __init__(self, node_features, filters):
-        super(RecurrentGCN, self).__init__()
+        super(RecurrentGCN_GConvGRU, self).__init__()
         self.recurrent = GConvGRU(node_features, filters, 2)
         self.linear = torch.nn.Linear(filters, 1)
 
@@ -77,6 +78,22 @@ class RecurrentGCN(torch.nn.Module):
         h = F.relu(h)
         h = self.linear(h)
         return h
+
+
+
+    
+class RecurrentGCN_DCRNN(torch.nn.Module):
+    def __init__(self, node_features):
+        super(RecurrentGCN_DCRNN, self).__init__()
+        self.recurrent = DCRNN(node_features, 32, 1)
+        self.linear = torch.nn.Linear(32, 1)
+
+    def forward(self, x, edge_index, edge_weight):
+        h = self.recurrent(x, edge_index, edge_weight)
+        h = F.relu(h)
+        h = self.linear(h)
+        return h  
+    
     
 class StgcnLearner:
     def __init__(self,train_dataset,dataset_name = None):
@@ -89,14 +106,17 @@ class StgcnLearner:
         self.mtype = getattr(self.train_dataset,'mtype',None)
         self.interpolation_method = getattr(self.train_dataset,'interpolation_method',None)
         self.method = 'STGCN'
-    def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+    def learn(self,filters=32,epoch=50,RecurrentGCN='GConvGRU'):
+        if RecurrentGCN == 'GConvGRU':
+            self.model = RecurrentGCN_GConvGRU(node_features=self.lags, filters=filters)
+        elif RecurrentGCN == 'DCRNN':
+            self.model = RecurrentGCN_DCRNN(node_features=self.lags)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
         for e in range(epoch):
             for t, snapshot in enumerate(self.train_dataset):
                 yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
-                cost = torch.mean((yt_hat.reshape(-1)-snapshot.y)**2)
+                cost = torch.mean((yt_hat-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()
@@ -114,8 +134,11 @@ class ITStgcnLearner(StgcnLearner):
     def __init__(self,train_dataset,dataset_name = None):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
-    def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+    def learn(self,filters=32,epoch=50,RecurrentGCN='GConvGRU'):
+        if RecurrentGCN == 'GConvGRU':
+            self.model = RecurrentGCN_GConvGRU(node_features=self.lags, filters=filters)
+        elif RecurrentGCN == 'DCRNN':
+            self.model = RecurrentGCN_DCRNN(node_features=self.lags)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
         train_dataset_temp = copy.copy(self.train_dataset)
@@ -131,7 +154,7 @@ class ITStgcnLearner(StgcnLearner):
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
             for t, snapshot in enumerate(train_dataset_temp):
                 yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
-                cost = torch.mean((yt_hat.reshape(-1)-snapshot.y)**2)
+                cost = torch.mean((yt_hat-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()

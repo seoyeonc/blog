@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-03-17">
+
+<title>Seoyeon’s Blog for study - ITSTGCN-Tutorial</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">ITSTGCN-Tutorial</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">ITSTGCN-Tutorial</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">ST-GCN</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 17, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-13-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN DCRNN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-05-ITSTGCN_LOADER.html" class="sidebar-item-text sidebar-link">ITSTGCN LOADERS Version</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link active">ITSTGCN-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-simulation_table_reshape.html" class="sidebar-item-text sidebar-link">Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-Keras_st.html" class="sidebar-item-text sidebar-link">STGCN on Keras</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Quarto tip</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Quarto_tip/2023-01-02-quarto_tips.html" class="sidebar-item-text sidebar-link">quarto blog tips</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Study/index.html" class="sidebar-item-text sidebar-link">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html" class="sidebar-item-text sidebar-link">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.html" class="sidebar-item-text sidebar-link">Chap 12.2: Weakly Stationary Graph Processes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-10-EbayesThreshold.html" class="sidebar-item-text sidebar-link">EbayesThresh: R Programs for Empirical Bayes Thresholding, Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link">GCRN Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-04-03-(5주차) 4월2일.html" class="sidebar-item-text sidebar-link">Introduction to Python 5wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-23-lebesque_decompposition_therem.html" class="sidebar-item-text sidebar-link">Lebesgue’s decomposition theorem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-04-nomalized graph laplacian.html" class="sidebar-item-text sidebar-link">Nomalized Graph Laplacian</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-STGCN_Existing_Method_Review.html" class="sidebar-item-text sidebar-link">STGCN Existing Method Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-16-stgcn_paper_review_1.html" class="sidebar-item-text sidebar-link">STGCN papers review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
+  <li><a href="#예제1-vanilla-stgcn" id="toc-예제1-vanilla-stgcn" class="nav-link" data-scroll-target="#예제1-vanilla-stgcn">예제1: vanilla STGCN</a></li>
+  <li><a href="#예제2-padding-missing-values" id="toc-예제2-padding-missing-values" class="nav-link" data-scroll-target="#예제2-padding-missing-values">예제2: padding missing values</a></li>
+  <li><a href="#예제3-vanilla-stgcn-with-random-missing" id="toc-예제3-vanilla-stgcn-with-random-missing" class="nav-link" data-scroll-target="#예제3-vanilla-stgcn-with-random-missing">예제3: vanilla STGCN with random missing</a></li>
+  <li><a href="#예제4-vanilla-stgcn-with-block-missing" id="toc-예제4-vanilla-stgcn-with-block-missing" class="nav-link" data-scroll-target="#예제4-vanilla-stgcn-with-block-missing">예제4: vanilla STGCN with block missing</a></li>
+  <li><a href="#예제5-threshold-example-random" id="toc-예제5-threshold-example-random" class="nav-link" data-scroll-target="#예제5-threshold-example-random">예제5: threshold example (random)</a></li>
+  <li><a href="#예제6-threshold-example-block" id="toc-예제6-threshold-example-block" class="nav-link" data-scroll-target="#예제6-threshold-example-block">예제6: threshold example (block)</a></li>
+  <li><a href="#예제7-iterative-thresholded-stgcn-it-stgcn-with-random-missing" id="toc-예제7-iterative-thresholded-stgcn-it-stgcn-with-random-missing" class="nav-link" data-scroll-target="#예제7-iterative-thresholded-stgcn-it-stgcn-with-random-missing">예제7: iterative thresholded STGCN (IT-STGCN) with random missing</a></li>
+  <li><a href="#예제8-iterative-thresholded-stgcn-it-stgcn-with-block-missing" id="toc-예제8-iterative-thresholded-stgcn-it-stgcn-with-block-missing" class="nav-link" data-scroll-target="#예제8-iterative-thresholded-stgcn-it-stgcn-with-block-missing">예제8: iterative thresholded STGCN (IT-STGCN) with block missing</a></li>
+  <li><a href="#예제9-gnar-random-missing" id="toc-예제9-gnar-random-missing" class="nav-link" data-scroll-target="#예제9-gnar-random-missing">예제9: GNAR (random missing)</a></li>
+  <li><a href="#예제10-gnar-block-missing" id="toc-예제10-gnar-block-missing" class="nav-link" data-scroll-target="#예제10-gnar-block-missing">예제10: GNAR (block missing)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>edit</p>
+</blockquote>
+<section id="import" class="level1">
+<h1>import</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span></code></pre></div>
+</div>
+</section>
+<section id="예제1-vanilla-stgcn" class="level1">
+<h1>예제1: vanilla STGCN</h1>
+<p><code>-</code> 데이터</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.utils.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.StgcnLearner(train_dataset,dataset_name<span class="op">=</span><span class="st">'five_nodes'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/Dropbox/blog/posts/GCN/itstgcn/learners.py:84: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180588308/work/torch/csrc/utils/tensor_new.cpp:201.)
+  self.lags = torch.tensor(train_dataset.features).shape[-1]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">4</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset) </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset,test_dataset)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제2-padding-missing-values" class="level1">
+<h1>예제2: padding missing values</h1>
+<p><code>-</code> 데이터</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.utils.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<p><code>-</code> 임의로 결측치 발생</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> itstgcn.rand_mindex(train_dataset,mrate<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex<span class="op">=</span>mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 적절한 method로 결측치를 채움 (default 는 linear)</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,torch.tensor(train_dataset_padded.targets),<span class="st">'--x'</span>,color<span class="op">=</span><span class="st">'C1'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>다른 method로 결측치를 채울수도 있음. 사용할 수 있는 방법들은 아래에 정리되어 있음</p>
+<ul>
+<li>ref: <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.interpolate.html" class="uri">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.interpolate.html</a></li>
+</ul>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss,interpolation_method<span class="op">=</span><span class="st">'nearest'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,torch.tensor(train_dataset_padded.targets),<span class="st">'--x'</span>,color<span class="op">=</span><span class="st">'C1'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss,interpolation_method<span class="op">=</span><span class="st">'quadratic'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,torch.tensor(train_dataset_padded.targets),<span class="st">'--x'</span>,color<span class="op">=</span><span class="st">'C1'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss,interpolation_method<span class="op">=</span><span class="st">'cubic'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.utils.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>itstgcn.utils.plot_add(fig,torch.tensor(train_dataset_padded.targets),<span class="st">'--x'</span>,color<span class="op">=</span><span class="st">'C1'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> 블락으로 결측치 발생</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),[],[]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.utils.plot(torch.tensor(train_dataset_miss.targets),<span class="st">'o'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fig </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제3-vanilla-stgcn-with-random-missing" class="level1">
+<h1>예제3: vanilla STGCN with random missing</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.utils.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> itstgcn.rand_mindex(train_dataset,mrate<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.learners.StgcnLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">4</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">5</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제4-vanilla-stgcn-with-block-missing" class="level1">
+<h1>예제4: vanilla STGCN with block missing</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.utils.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),[],[]]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.StgcnLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">4</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">5</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제5-threshold-example-random" class="level1">
+<h1>예제5: threshold example (random)</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.utils.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<p><code>-</code> 결측치 발생 및 패딩</p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span>itstgcn.rand_mindex(train_dataset,mrate<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>f_miss,_ <span class="op">=</span> itstgcn.convert_train_dataset(train_dataset_miss)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>f_padded,_ <span class="op">=</span> itstgcn.convert_train_dataset(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.utils.plot(f_miss,<span class="st">'o'</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>itstgcn.utils.plot_add(fig,f_padded,<span class="st">'--x'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> update by frequency thresholding</p>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(f_miss,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,f_padded,<span class="st">'--x'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>f_updated <span class="op">=</span> itstgcn.update_from_freq_domain(f_padded,train_dataset_padded.mindex)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,f_updated,<span class="st">'-'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제6-threshold-example-block" class="level1">
+<h1>예제6: threshold example (block)</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<p><code>-</code> 결측치 발생 및 패딩</p>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span>[<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),[],[]]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>f_miss,_ <span class="op">=</span> itstgcn.convert_train_dataset(train_dataset_miss)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>f_padded,_ <span class="op">=</span> itstgcn.convert_train_dataset(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(f_miss,<span class="st">'o'</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,f_padded,<span class="st">'--x'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><code>-</code> update by frequency thresholding</p>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> itstgcn.plot(f_miss,<span class="st">'o'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,f_padded,<span class="st">'--x'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>f_updated <span class="op">=</span> itstgcn.update_from_freq_domain(f_padded,train_dataset_padded.mindex)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>itstgcn.plot_add(fig,f_updated,<span class="st">'-'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-51-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제7-iterative-thresholded-stgcn-it-stgcn-with-random-missing" class="level1">
+<h1>예제7: iterative thresholded STGCN (IT-STGCN) with random missing</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> itstgcn.rand_mindex(train_dataset,mrate<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.ITStgcnLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">4</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)['yhat'].shape</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="60">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-59-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제8-iterative-thresholded-stgcn-it-stgcn-with-block-missing" class="level1">
+<h1>예제8: iterative thresholded STGCN (IT-STGCN) with block missing</h1>
+<p><code>-</code> data</p>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),[],[]]</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> 학습</p>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.ITStgcnLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">4</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5/5</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)['yhat'].shape</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제9-gnar-random-missing" class="level1">
+<h1>예제9: GNAR (random missing)</h1>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span>itstgcn.rand_mindex(train_dataset,mrate<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> <sub>학습</sub></p>
+<div class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.GNARLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="77">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-76-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="예제10-gnar-block-missing" class="level1">
+<h1>예제10: GNAR (block missing)</h1>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>_data <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>_edges <span class="op">=</span> torch.tensor(_data[<span class="st">'edges'</span>]).nonzero().tolist()</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>_FX <span class="op">=</span> _data[<span class="st">'f'</span>].tolist()</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>_node_ids <span class="op">=</span> {<span class="st">'node1'</span>:<span class="dv">0</span>, <span class="st">'node2'</span>:<span class="dv">1</span>, <span class="st">'node3'</span>:<span class="dv">2</span>, <span class="st">'node4'</span>:<span class="dv">3</span>, <span class="st">'node5'</span>:<span class="dv">4</span>} </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {<span class="st">'edges'</span>:_edges, <span class="st">'node_ids'</span>:_node_ids, <span class="st">'FX'</span>:_FX}</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> itstgcn.DatasetLoader(data_dict)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> itstgcn.temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>mindex<span class="op">=</span>[<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">100</span>)),[],<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">50</span>,<span class="dv">80</span>)),[],[]]</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>train_dataset_miss <span class="op">=</span> itstgcn.miss(train_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>train_dataset_padded <span class="op">=</span> itstgcn.padding(train_dataset_miss) <span class="co"># padding(train_dataset_miss,method='linear'와 같음)</span></span></code></pre></div>
+</div>
+<p><code>-</code> <sub>학습</sub></p>
+<div class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.GNARLearner(train_dataset_padded)</span></code></pre></div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed</code></pre>
+</div>
+</div>
+<p><code>-</code> 적합값</p>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(train_dataset_padded) </span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co">#lrnr(test_dataset)</span></span></code></pre></div>
+</div>
+<ul>
+<li>실행하면 X,y,yhat 출력</li>
+</ul>
+<p><code>-</code> 모형 평가 및 시각화</p>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> itstgcn.Evaluator(lrnr,train_dataset_padded,test_dataset)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>WARNING: diagonal entries present in original matrix, these will be removed
+WARNING: diagonal entries present in original matrix, these will be removed</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> evtor.plot(<span class="st">'--.'</span>,h<span class="op">=</span><span class="dv">5</span>,max_node<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'complete data'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># max_nodes 는 1보다 커야함</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">12</span>)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="86">
+<p><img src="2023-03-17-ITSTGCN-Tutorial_files/figure-html/cell-84-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

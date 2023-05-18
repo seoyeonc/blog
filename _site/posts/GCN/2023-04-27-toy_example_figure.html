@@ -298,6 +298,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-20-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
   </div>
 </li>
@@ -308,12 +313,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  <a href="../../posts/GCN/2023-05-13-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-13-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN DCRNN</a>
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -363,6 +368,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
   </div>
 </li>
@@ -399,11 +409,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-05-17-Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-Keras_st.html" class="sidebar-item-text sidebar-link">STGCN on Keras</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -576,6 +581,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">import</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#gconvgru" id="toc-gconvgru" class="nav-link" data-scroll-target="#gconvgru">GConvGRU</a></li>
+  <li><a href="#dcrnn" id="toc-dcrnn" class="nav-link" data-scroll-target="#dcrnn">DCRNN</a></li>
+  <li><a href="#gconvlstm" id="toc-gconvlstm" class="nav-link" data-scroll-target="#gconvlstm">GConvLSTM</a></li>
+  <li><a href="#mpnnlstm" id="toc-mpnnlstm" class="nav-link" data-scroll-target="#mpnnlstm">MPNNLSTM</a></li>
+  <li><a href="#tgcn" id="toc-tgcn" class="nav-link" data-scroll-target="#tgcn">TGCN</a></li>
   </ul>
 </nav>
     </div>
@@ -590,18 +600,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Eval_csy:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,learner,train_dataset):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learner <span class="op">=</span> learner</span>
@@ -617,11 +627,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat_tr <span class="op">=</span> rslt_tr[<span class="st">'yhat'</span>]</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat_tr <span class="op">=</span> torch.concat([<span class="va">self</span>.train_dataset[<span class="dv">0</span>].x.T,<span class="va">self</span>.yhat_tr],axis<span class="op">=</span><span class="dv">0</span>).<span class="bu">float</span>()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data(fname):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname, <span class="st">'rb'</span>) <span class="im">as</span> outfile:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        data_dict <span class="op">=</span> pickle.load(outfile)</span>
@@ -631,13 +641,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(fname,<span class="st">'wb'</span>) <span class="im">as</span> outfile:</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        pickle.dump(data_dict,outfile)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
 </div>
 </section>
 <section id="example" class="level1">
 <h1>Example</h1>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">200</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(T)<span class="op">/</span>T <span class="op">*</span> <span class="dv">10</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.1</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.2</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>np.sin(<span class="dv">8</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.2</span><span class="op">*</span>np.sin(<span class="dv">16</span><span class="op">*</span>t)</span>
@@ -671,56 +681,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_dict1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example1.pkl'</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> itstgcn.DatasetLoader(data_dict1)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dataset05031 <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex05031 = itstgcn.rand_mindex(dataset05031,mrate=0)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset_miss05031 = itstgcn.miss(dataset05031,mindex05031,mtype='rand')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [random.sample(<span class="bu">range</span>(<span class="dv">0</span>, T), <span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.5</span>)),[np.array(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>,<span class="dv">120</span>)))]]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dataset_miss05031 <span class="op">=</span> itstgcn.miss(dataset05031,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/csy/Dropbox/blog/posts/GCN/itstgcn/utils.py:71: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1682343998658/work/torch/csrc/utils/tensor_new.cpp:245.)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dataset_padded_cubic05031 <span class="op">=</span> itstgcn.padding(dataset_miss05031,imputation_method<span class="op">=</span><span class="st">'cubic'</span>)</span></code></pre></div>
 </div>
-<p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="14">
+</section>
+<section id="gconvgru" class="level1">
+<h1>GConvGRU</h1>
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>lrnr05031 <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'GConvGRU'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>50/50</code></pre>
 </div>
-</div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example_true1.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example_true1.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'GConvGRU'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>50/50</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>evtor05032 <span class="op">=</span> Eval_csy(lrnr05032,dataset_padded_cubic05031)</span></code></pre></div>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2), (ax3, aRecurrentGCN<span class="op">=</span>)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.suptitle('Figure 1')</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax1.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--.'</span>,color<span class="op">=</span><span class="st">'C1'</span>)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax1.plot(evtor05031.f_tr[:,<span class="dv">0</span>],<span class="st">'--.'</span>,color<span class="op">=</span><span class="st">'C2'</span>)</span>
@@ -741,7 +753,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> fig.get_axes():</span>
 <span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    ax.label_outer()</span></code></pre></div>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
@@ -774,7 +786,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
@@ -803,6 +815,379 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dcrnn" class="level1">
+<h1>DCRNN</h1>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lrnr05031 <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'DCRNN'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example_true1.csv'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'DCRNN'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>evtor05032 <span class="op">=</span> Eval_csy(lrnr05032,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 1)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'x'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">55</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">100</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">150</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">185</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 2)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'y'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">120</span>, <span class="fl">0.01</span>,<span class="st">'s'</span>, markersize<span class="op">=</span><span class="dv">110</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="gconvlstm" class="level1">
+<h1>GConvLSTM</h1>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lrnr05031 <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'GConvLSTM'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example_true1.csv'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'GConvLSTM'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>evtor05032 <span class="op">=</span> Eval_csy(lrnr05032,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 1)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'x'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">55</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">100</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">150</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">185</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 2)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'y'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">120</span>, <span class="fl">0.01</span>,<span class="st">'s'</span>, markersize<span class="op">=</span><span class="dv">110</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="mpnnlstm" class="level1">
+<h1>MPNNLSTM</h1>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>lrnr05031 <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'MPNNLSTM'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/toy_example_true1.csv'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'MPNNLSTM'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>evtor05032 <span class="op">=</span> Eval_csy(lrnr05032,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 1)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'x'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">55</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">100</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">150</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">185</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-49-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 2)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'y'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">120</span>, <span class="fl">0.01</span>,<span class="st">'s'</span>, markersize<span class="op">=</span><span class="dv">110</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="tgcn" class="level1">
+<h1>TGCN</h1>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>lrnr05031 <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>lrnr05031.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'TGCN'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>evtor05031 <span class="op">=</span> Eval_csy(lrnr05031,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>lrnr05032 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>lrnr05032.learn(filters<span class="op">=</span><span class="dv">8</span>,epoch<span class="op">=</span><span class="dv">50</span>,RecurrentGCN<span class="op">=</span><span class="st">'TGCN'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>50/50</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>evtor05032 <span class="op">=</span> Eval_csy(lrnr05032,dataset_padded_cubic05031)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 1)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'x'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb68-13"><a href="#cb68-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-14"><a href="#cb68-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-15"><a href="#cb68-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb68-16"><a href="#cb68-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb68-17"><a href="#cb68-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb68-18"><a href="#cb68-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-19"><a href="#cb68-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-20"><a href="#cb68-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb68-21"><a href="#cb68-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb68-22"><a href="#cb68-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb68-23"><a href="#cb68-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">55</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">100</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb68-24"><a href="#cb68-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">150</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb68-25"><a href="#cb68-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">185</span>, <span class="dv">0</span>, <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">80</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb68-26"><a href="#cb68-26" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb68-27"><a href="#cb68-27" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb68-28"><a href="#cb68-28" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-57-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 2)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df1[<span class="st">'y'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(dataset_miss05031.features).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Missing'</span>)</span>
+<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor05032.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Imputation'</span>)</span>
+<span id="cb69-17"><a href="#cb69-17" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb69-18"><a href="#cb69-18" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-19"><a href="#cb69-19" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05031.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb69-22"><a href="#cb69-22" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor05032.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb69-23"><a href="#cb69-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(<span class="dv">120</span>, <span class="fl">0.01</span>,<span class="st">'s'</span>, markersize<span class="op">=</span><span class="dv">110</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb69-24"><a href="#cb69-24" aria-hidden="true" tabindex="-1"></a>    ax4.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb69-25"><a href="#cb69-25" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb69-26"><a href="#cb69-26" aria-hidden="true" tabindex="-1"></a>    ax4.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-58-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 

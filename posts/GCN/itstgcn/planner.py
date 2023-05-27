@@ -11,14 +11,13 @@ from .missing import *
 class PLNR():
     def __init__(self,plans,loader,dataset_name=None,simulation_results=None):
         self.plans = plans
-        col = ['dataset', 'method','RecurrentGCN', 'mrate', 'mtype', 'lags', 'nof_filters', 'inter_method', 'epoch', 'mse','calculation_time']
+        col = ['dataset', 'method', 'mrate', 'mtype', 'lags', 'nof_filters', 'inter_method', 'epoch', 'mse','calculation_time']
         self.loader = loader
         self.dataset_name = dataset_name
         self.simulation_results = pd.DataFrame(columns=col) if simulation_results is None else simulation_results 
-    def record(self,method,RecurrentGCN,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time):
+    def record(self,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time):
         dct = {'dataset': self.dataset_name,
                'method': method,
-               'RecurrentGCN' : RecurrentGCN,
                'mrate': mrate,
                'mtype': mtype, 
                'lags': lags,
@@ -42,7 +41,6 @@ class PLNR_STGCN_RAND(PLNR):
         for _ in range(self.plans['max_iteration']):  
             product_iterator = itertools.product(
                 self.plans['method'], 
-                self.plans['RecurrentGCN'], 
                 self.plans['mrate'], 
                 self.plans['lags'], 
                 self.plans['nof_filters'], 
@@ -50,7 +48,7 @@ class PLNR_STGCN_RAND(PLNR):
                 self.plans['epoch']
             )
             for prod_iter in product_iterator:
-                method,RecurrentGCN,mrate,lags,nof_filters,inter_method,epoch = prod_iter
+                method,mrate,lags,nof_filters,inter_method,epoch = prod_iter
                 self.dataset = self.loader.get_dataset(lags=lags)
                 train_dataset, test_dataset = torch_geometric_temporal.signal.temporal_signal_split(self.dataset, train_ratio=0.8)
                 if mrate > 0: 
@@ -65,13 +63,13 @@ class PLNR_STGCN_RAND(PLNR):
                 elif method == 'IT-STGCN':
                     lrnr = ITStgcnLearner(train_dataset,dataset_name=self.dataset_name)
                 t1 = time.time()
-                lrnr.learn(filters=nof_filters,epoch=epoch,RecurrentGCN=RecurrentGCN)
+                lrnr.learn(filters=nof_filters,epoch=epoch)
                 t2 = time.time()
                 evtor = Evaluator(lrnr,train_dataset,test_dataset)
                 evtor.calculate_mse()
                 mse = evtor.mse['test']['total']
                 calculation_time = t2-t1
-                self.record(method,RecurrentGCN,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time)
+                self.record(method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time)
             print('{}/{} is done'.format(_+1,self.plans['max_iteration']))
         self.save()
 
@@ -80,7 +78,6 @@ class PLNR_STGCN_MANUAL(PLNR):
         for _ in range(self.plans['max_iteration']):
             product_iterator = itertools.product(
                 self.plans['method'], 
-                self.plans['RecurrentGCN'], 
                 self.plans['mindex'],
                 self.plans['lags'],
                 self.plans['nof_filters'],
@@ -88,7 +85,7 @@ class PLNR_STGCN_MANUAL(PLNR):
                 self.plans['epoch']
             )
             for prod_iter in product_iterator:
-                method,RecurrentGCN,mrate,lags,nof_filters,inter_method,epoch = prod_iter
+                method,mrate,lags,nof_filters,inter_method,epoch = prod_iter
                 self.dataset = self.loader.get_dataset(lags=lags)
                 train_dataset, test_dataset = torch_geometric_temporal.signal.temporal_signal_split(self.dataset, train_ratio=0.8)
                 mtype = mtype
@@ -98,14 +95,14 @@ class PLNR_STGCN_MANUAL(PLNR):
                 elif method == 'IT-STGCN':
                     lrnr = ITStgcnLearner(train_dataset,dataset_name=self.dataset_name)
                 t1 = time.time()
-                lrnr.learn(filters=nof_filters,epoch=epoch,RecurrentGCN=RecurrentGCN)
+                lrnr.learn(filters=nof_filters,epoch=epoch)
                 t2 = time.time()
                 evtor = Evaluator(lrnr,train_dataset,test_dataset)
                 evtor.calculate_mse()
                 mse = evtor.mse['test']['total']
                 mrate= lrnr.mrate_total
                 calculation_time = t2-t1
-                self.record(method,RecurrentGCN,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time)
+                self.record(method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time)
             print('{}/{} is done'.format(_+1,self.plans['max_iteration']))
         self.save()
         

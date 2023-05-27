@@ -70,7 +70,7 @@ def trim(f,edge_index,edge_weight):
     Psi = make_Psi(T,N,edge_index,edge_weight) # TN*TN matrix
     fbar = Psi.T @ f.reshape(-1,1) # TN*TN X TN*1 matrix = TN*1 matrix
     fbar_threshed = np.stack([ebayesthresh(FloatVector(fbar.reshape(-1,N)[:,i])) for i in range(N)],axis=1)
-    fhat_flatten = Psi.T @ fbar_threshed.reshape(-1,1) # inverse dft 
+    fhat_flatten = Psi @ fbar_threshed.reshape(-1,1) # inverse dft 
     fhat = fhat_flatten.reshape(-1,N)
     return fhat
 
@@ -115,7 +115,7 @@ class StgcnLearner:
         self.model.train()
         for e in range(epoch):
             for t, snapshot in enumerate(self.train_dataset):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
+                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
                 cost = torch.mean((yt_hat-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()
@@ -150,7 +150,7 @@ class ITStgcnLearner(StgcnLearner):
             }
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
             for t, snapshot in enumerate(train_dataset_temp):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
+                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
                 cost = torch.mean((yt_hat-snapshot.y)**2)
                 cost.backward()
                 self.optimizer.step()

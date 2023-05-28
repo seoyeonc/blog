@@ -259,6 +259,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
   </div>
 </li>
@@ -309,7 +314,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-13-Other Method (SEOYEON CHOI's conflicted copy 2023-05-27).html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -404,12 +419,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-simulation_table_reshape.html" class="sidebar-item-text sidebar-link">Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -524,6 +539,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-21-Graph Attention Networks (GATs).html" class="sidebar-item-text sidebar-link">Graph Attention Networks (GATs)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
   </div>
 </li>
@@ -549,6 +569,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-20-RGNN_pyg_official.html" class="sidebar-item-text sidebar-link">Recurrent Graph Neural Network</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
   </div>
 </li>
@@ -567,6 +592,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-24-Attention is all you need.html" class="sidebar-item-text sidebar-link">Transformers</a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -580,7 +610,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#result" id="toc-result" class="nav-link active" data-scroll-target="#result">Result</a></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link active" data-scroll-target="#figure">Figure</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">Theory</a>
+  <ul class="collapse">
+  <li><a href="#self-consistency-how-does-it-work" id="toc-self-consistency-how-does-it-work" class="nav-link" data-scroll-target="#self-consistency-how-does-it-work">2 Self Consistency: How Does It Work?</a>
+  <ul class="collapse">
+  <li><a href="#self-consistency-an-intuitive-principle" id="toc-self-consistency-an-intuitive-principle" class="nav-link" data-scroll-target="#self-consistency-an-intuitive-principle">2.1 Self-consistency: An Intuitive Principle</a></li>
+  <li><a href="#a-selfconsistent-regression-estimator" id="toc-a-selfconsistent-regression-estimator" class="nav-link" data-scroll-target="#a-selfconsistent-regression-estimator">2.2 A Self–consistent Regression Estimator</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -613,6 +652,8 @@ Tip
 <li>2 Self Consistency: How Does It Work? 2.1 Self-consistency: An Intuitive Principle</li>
 </ul></li>
 </ul>
+<section id="figure" class="level1">
+<h1>Figure</h1>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -953,40 +994,96 @@ Tip
 <p><img src="2023-05-18-Self Consistency toy ex_files/figure-html/cell-66-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
 <section id="result" class="level1">
 <h1>Result</h1>
-<div class="cell" data-execution_count="108">
+<div class="cell" data-execution_count="207">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
 <span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_miss,<span class="st">'.'</span>)</span>
-<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y,<span class="st">'--'</span>,label<span class="op">=</span><span class="st">'Incomplete Data'</span>)</span>
-<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_true,label<span class="op">=</span><span class="st">'True'</span>)</span>
-<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C4'</span>)</span>
-<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_zero[miss_num],<span class="st">'*'</span>)</span>
-<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_one[miss_num],<span class="st">'*'</span>)</span>
-<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_two[miss_num],<span class="st">'*'</span>)</span>
-<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_tre[miss_num],<span class="st">'*'</span>)</span>
-<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fth[miss_num],<span class="st">'*'</span>)</span>
-<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fif[miss_num],<span class="st">'o'</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_miss,<span class="st">'o'</span>)</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y,<span class="st">'--'</span>,label<span class="op">=</span><span class="st">'Incomplete Data'</span>,color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_true,label<span class="op">=</span><span class="st">'True'</span>,color<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_zero[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_one[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_two[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_tre[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fth[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fif[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
 <span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'upper left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>], y_miss_impu[miss_num], <span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">30</span>, markerfacecolor<span class="op">=</span><span class="st">'none'</span>, markeredgecolor<span class="op">=</span><span class="st">'red'</span>,markeredgewidth<span class="op">=</span><span class="dv">1</span>,color<span class="op">=</span><span class="st">'C4'</span>)</span>
-<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'1st value'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu[miss_num][<span class="dv">0</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'1st value'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu[miss_num][<span class="dv">1</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'1st value'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">2</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu[miss_num][<span class="dv">2</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'5th iteration'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu_fif[miss_num][<span class="dv">0</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'5th iteration'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu_fif[miss_num][<span class="dv">1</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'5th iteration'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">2</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu_fif[miss_num][<span class="dv">2</span>]),fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a>    ax.arrow(miss_num[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.4</span>, y_miss_impu[miss_num][<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.6</span>, <span class="dv">0</span>, y_miss_impu_fif[miss_num][<span class="dv">0</span>]<span class="op">-</span><span class="fl">1.5</span>,linestyle<span class="op">=</span> <span class="st">'dashed'</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.3</span>, fc<span class="op">=</span><span class="st">'black'</span>,ec<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a>    ax.arrow(miss_num[<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.4</span>, y_miss_impu[miss_num][<span class="dv">1</span>]<span class="op">+</span><span class="fl">0.6</span>, <span class="dv">0</span>, y_miss_impu_fif[miss_num][<span class="dv">1</span>]<span class="op">-</span><span class="fl">1.5</span>,linestyle<span class="op">=</span> <span class="st">'dashed'</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.3</span>, fc<span class="op">=</span><span class="st">'black'</span>,ec<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a>    ax.arrow(miss_num[<span class="dv">2</span>]<span class="op">+</span><span class="fl">0.4</span>, y_miss_impu[miss_num][<span class="dv">2</span>]<span class="op">+</span><span class="fl">0.6</span>, <span class="dv">0</span>, y_miss_impu_fif[miss_num][<span class="dv">2</span>]<span class="op">-</span><span class="fl">1.5</span>,linestyle<span class="op">=</span> <span class="st">'dashed'</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.3</span>, fc<span class="op">=</span><span class="st">'black'</span>,ec<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.plot(miss_num, y_miss_impu[miss_num], 'o', markersize=30, markerfacecolor='none', markeredgecolor='red',markeredgewidth=1,color='C4')</span></span>
+<span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-05-18-Self Consistency toy ex_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
+<section id="theory" class="level1">
+<h1>Theory</h1>
+<section id="self-consistency-how-does-it-work" class="level2">
+<h2 class="anchored" data-anchor-id="self-consistency-how-does-it-work">2 Self Consistency: How Does It Work?</h2>
+<section id="self-consistency-an-intuitive-principle" class="level3">
+<h3 class="anchored" data-anchor-id="self-consistency-an-intuitive-principle">2.1 Self-consistency: An Intuitive Principle</h3>
+<p>책에서의 가정</p>
+<ul>
+<li><span class="math inline">\(x = 0,1,2,3,\dots,16\)</span>으로 fixed 되어 있음.</li>
+<li><span class="math inline">\(y_0,\dots, y_{13}\)</span>까지의 값을 알고 있는데 <span class="math inline">\(y_{14},y_{15},y_{16}\)</span>의 값은 모른다.</li>
+</ul>
+<p><span class="math inline">\(y_i=\beta x_i + \epsilon_i, i=1,\dots,n, \epsilon_i \sim \text{i.i.d.}F(0,\sigma^2)\)</span></p>
+<ul>
+<li><span class="math inline">\(\beta\)</span>의 최소제곱추정치</li>
+</ul>
+<p><span class="math inline">\(\hat{\beta}_n = \hat{\beta}_n(y_1 ,\dots,y_n) = \frac{\sum^n_{i=1} y_i x_i}{\sum^n_{i=1} x_i^2}\)</span></p>
+<ul>
+<li>단, <span class="math inline">\(m&lt;n\)</span> 이고, <span class="math inline">\(\sum ^n_{m+1} x_i^2 &gt; 0\)</span> 일 때,</li>
+</ul>
+<p><span class="math inline">\(E(\hat{\beta}_n|y_a, \dots,y_m,;\beta = \hat{\beta}_m) = \hat{\beta}_m\)</span></p>
+<p>the least-squares estimator has a (Martingale-like property)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and reaches a perfect equilibrium in its projective properties</p>
+<p>참고;(위키백과)[https://ko.wikipedia.org/wiki/%EB%A7%88%ED%8C%85%EA%B2%8C%EC%9D%BC]</p>
+<ol type="1">
+<li><span class="math inline">\(\beta_n\)</span>을 구한다.</li>
+<li><span class="math inline">\(\beta_n \times x\)</span> 를 구한다.</li>
+<li>missing 값이 있는 index만 대체한다.</li>
+<li>다시 <span class="math inline">\(\beta_n\)</span>을 구한다.</li>
+<li>.. 반복</li>
+</ol>
+<p><span class="math inline">\(\beta\)</span>의 선형성 때문에 가능한 이론</p>
+<p>아래 계산하면 맞아야 함</p>
+<p><span class="math inline">\(\hat{\beta}_n = \frac{\sum_{i=1}^m y_i x_i + \hat{\beta}_m \sum_{i=m+1}^n x_i^2}{\sum_{i=1}^n x_i^2}\)</span></p>
+</section>
+<section id="a-selfconsistent-regression-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="a-selfconsistent-regression-estimator">2.2 A Self–consistent Regression Estimator</h3>
+<p>목적은 최적의 <span class="math inline">\(\hat{f}_{com}\)</span> 찾는 것, 일단 이 paper는 웨이블릿에 중점을 두고 비모수, 준모수 회귀로 확장 가능 누적 분포 함수 CDF 찾는 것이 목적</p>
 
 
 </section>
+</section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>확률 과정 중 과거의 정보를 알고 있다면 미래의 기댓값이 현재값과 동일한 과정<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

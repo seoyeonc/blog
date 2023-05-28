@@ -31,6 +31,7 @@ import itertools
 #igraph = importr('igraph') # import igraph 
 #ebayesthresh = importr('EbayesThresh').ebayesthresh
 
+from torch_geometric_temporal.dataset import *
 
 temporal_signal_split = torch_geometric_temporal.signal.temporal_signal_split
 

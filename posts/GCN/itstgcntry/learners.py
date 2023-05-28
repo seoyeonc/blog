@@ -91,14 +91,13 @@ class StgcnLearner:
         self.interpolation_method = getattr(self.train_dataset,'interpolation_method',None)
         self.method = 'STGCN'
     # def learn(self,model,filters=32,epoch=50):
-    def learn(self,model,iter_op,epoch=50):
+    def learn(self,model,epoch=50):
         self.model = model
         # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
-        self.iter_op = iter_op
         for e in range(epoch):
-            self.iter_op.do_iter(self.model,self.optimizer)
+            self.model.iter.do_iter(self.train_dataset, self.model,self.optimizer)
             # for t, snapshot in enumerate(self.train_dataset):
             #     yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
             #     cost = torch.mean((yt_hat-snapshot.y)**2)
@@ -112,20 +111,25 @@ class StgcnLearner:
     def __call__(self,dataset):
         X = torch.tensor(dataset.features).float()
         y = torch.tensor(dataset.targets).float()
-        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        if self.model.num_model == 1:
+            yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        elif self.model.num_model == 2:
+            yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.model.iter.h, self.model.iter.c)[0] for snapshot in dataset]).detach().squeeze().float()
+        elif self.model.num_model == 3:
+            yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.model.iter.hidden_state)[0] for snapshot in dataset]).detach().squeeze().float()
+            
         return {'X':X, 'y':y, 'yhat':yhat} 
 
 class ITStgcnLearner(StgcnLearner):
     def __init__(self,train_dataset,dataset_name = None):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
-    def learn(self, model, iter_op, epoch=50):
+    def learn(self, model, epoch=50):
     # def learn(self,filters=32,epoch=50):
         self.model = model
         # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
-        self.iter_op = iter_op
         train_dataset_temp = copy.copy(self.train_dataset)
         for e in range(epoch):
             f,lags = convert_train_dataset(train_dataset_temp)
@@ -137,7 +141,7 @@ class ITStgcnLearner(StgcnLearner):
                 'FX':f
             }
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags) 
-            self.iter_op.do_iter(self.model,self.optimizer)
+            self.model.iter.do_iter(train_dataset_temp,self.model,self.optimizer)
             # for t, snapshot in enumerate(train_dataset_temp):
             #     yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)
             #     cost = torch.mean((yt_hat-snapshot.y)**2)

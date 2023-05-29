@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-02-05">
+
+<title>Seoyeon’s Blog for study - Chap 12.2 ~ 3: Power Spectral Density and its Estimators</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Power Spectral Density and its Estimators</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 5, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-20-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-13-Other Method (SEOYEON CHOI's conflicted copy 2023-05-27).html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-13-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-05-ITSTGCN_LOADER.html" class="sidebar-item-text sidebar-link">ITSTGCN LOADERS Version</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Quarto tip</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Quarto_tip/2023-01-02-quarto_tips.html" class="sidebar-item-text sidebar-link">quarto blog tips</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Study/index.html" class="sidebar-item-text sidebar-link">Study</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html" class="sidebar-item-text sidebar-link active">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.html" class="sidebar-item-text sidebar-link">Chap 12.2: Weakly Stationary Graph Processes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-10-EbayesThreshold.html" class="sidebar-item-text sidebar-link">EbayesThresh: R Programs for Empirical Bayes Thresholding, Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-GCRN_riview.html" class="sidebar-item-text sidebar-link">GCRN Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-21-Graph Attention Networks (GATs).html" class="sidebar-item-text sidebar-link">Graph Attention Networks (GATs)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-04-03-(5주차) 4월2일.html" class="sidebar-item-text sidebar-link">Introduction to Python 5wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-23-lebesque_decompposition_therem.html" class="sidebar-item-text sidebar-link">Lebesgue’s decomposition theorem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-04-nomalized graph laplacian.html" class="sidebar-item-text sidebar-link">Nomalized Graph Laplacian</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-20-RGNN_pyg_official.html" class="sidebar-item-text sidebar-link">Recurrent Graph Neural Network</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-STGCN_Existing_Method_Review.html" class="sidebar-item-text sidebar-link">STGCN Existing Method Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-16-stgcn_paper_review_1.html" class="sidebar-item-text sidebar-link">STGCN papers review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#p-표현식" id="toc-p-표현식" class="nav-link active" data-scroll-target="#p-표현식"><span class="math inline">\(p\)</span> 표현식</a></li>
+  <li><a href="#property-12.1" id="toc-property-12.1" class="nav-link" data-scroll-target="#property-12.1">Property 12.1</a>
+  <ul class="collapse">
+  <li><a href="#sums-of-continuous-random-variables" id="toc-sums-of-continuous-random-variables" class="nav-link" data-scroll-target="#sums-of-continuous-random-variables">Sums of Continuous Random Variables</a></li>
+  <li><a href="#convolution-theorem" id="toc-convolution-theorem" class="nav-link" data-scroll-target="#convolution-theorem">Convolution Theorem</a></li>
+  </ul></li>
+  <li><a href="#r의-개념" id="toc-r의-개념" class="nav-link" data-scroll-target="#r의-개념"><span class="math inline">\(R\)</span>의 개념</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>Chap 12.2 ~ 3: Power Spectral Density and its Estimators</p>
+</blockquote>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">Plots</span>, <span class="bu">FFTW</span>, <span class="bu">Statistics</span>, <span class="bu">Distributions</span></span></code></pre></div>
+</div>
+<p><span class="math inline">\(\star\)</span> 정상시계열은 유한차수의 ARMA로 근사할 수 있다.</p>
+<ul>
+<li>이를 위해 SACF 또는 SPACF 이용하여 적절한 모형의 형태를 선택하면 됨.</li>
+<li>이론적 SPACF, PACF 모델 모형을 알아야 함.</li>
+</ul>
+<p><span class="math inline">\(C_x = E(XX^\top)\)</span>에 ACF모든 정보가 함유되어 있고, 이 떄 <span class="math inline">\(X\)</span>는 확률벡터이다.</p>
+<p><span class="math inline">\(XX^\top = \begin{bmatrix} X_t X_t &amp; X_t X_{t-1} &amp; \dots \\ X_{t-1} X_t &amp; X_{t-1} X_{t-1} &amp; \dots \\ \dots &amp; \dots &amp; \dots \end{bmatrix}\)</span></p>
+<p>또한 이 <span class="math inline">\(C_x\)</span>는 <span class="math inline">\(C_x = Vdiag(p)V^{H}\)</span>로 분해 가능 <span class="math inline">\(\to\)</span> 양정치 행렬, 고유분해 가능</p>
+<ul>
+<li><span class="math inline">\(V\)</span>와 <span class="math inline">\(p\)</span>가 <span class="math inline">\(C_x\)</span>의 정보 함유</li>
+<li><span class="math inline">\(C_x\)</span>가 정상시계열 일때, 이 <span class="math inline">\(V=B\)</span> 근데 <span class="math inline">\(B \to x_n = Bx_{n-1}\)</span></li>
+<li>따라서 <span class="math inline">\(p\)</span>가 중요 정보 가지고 있음 <span class="math inline">\(\to\)</span> power spectral Density, PSD</li>
+</ul>
+<p>Spectral analysis <span class="math inline">\(C_x\)</span>에서 <span class="math inline">\(p\)</span>를 특정한 뒤 <span class="math inline">\(p\)</span>에서 <span class="math inline">\(C_x\)</span> 해석하는 방법론</p>
+<p><span class="math inline">\(p = E((V^{H}X))^2\)</span></p>
+<ol type="1">
+<li><span class="math inline">\(B\)</span>의 고유벡터 행렬 <span class="math inline">\(V\)</span>를 구하고, <span class="math inline">\(V^{H}x\)</span> 계선</li>
+<li>계산 결과를 요소 별로 제곱하여 <span class="math inline">\(p\)</span>를 구함.</li>
+</ol>
+<p><span class="math inline">\(\to V^{H}_X = DFT\times X\)</span>이므로</p>
+<ol type="1">
+<li><span class="math inline">\(X\)</span>를 퓨리에 변환하여 <span class="math inline">\(\tilde{x} = DFT X\)</span>계산</li>
+<li><span class="math inline">\(\tilde{x}\)</span>를 원소별로 제곱하여 <span class="math inline">\(p\)</span>를 얻는다.</li>
+</ol>
+<ul>
+<li>임의의 시계열을 퓨리에변환한 뒤 제곱하면 <span class="math inline">\(p\)</span>를 얻을 수 있다.</li>
+</ul>
+<p><span class="math inline">\(DFT: \sin, \cos\)</span> 주기의 조합으로 모든 시계열 설명 가능</p>
+<p><span class="math inline">\(\star\)</span> graph shift operator, GSO, <span class="math inline">\(S = V\Lambda V^{H}\)</span></p>
+<p><span class="math inline">\(\tilde{x} = GFT{x} = V^Hx\)</span></p>
+<ul>
+<li><span class="math inline">\(\tilde{x} : x\)</span>의 frequency representation</li>
+</ul>
+<section id="p-표현식" class="level2">
+<h2 class="anchored" data-anchor-id="p-표현식"><span class="math inline">\(p\)</span> 표현식</h2>
+<ol type="1">
+<li><span class="math inline">\(C_x = Vdiag(p)V^H \sim diag(V^HC_xV), C_x = E(XX^H) \sim \frac{1}{R}\sum^R_{r=1} x_i x_r^H\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\hat{p}_{cg} = diag(V^H \hat{C}_x V) := diag[V^H[\frac{1}{R}\sum^R_{r=1} x_r x_r^H] V]\)</span></li>
+<li><span class="math inline">\(\hat{p}_{cg} = diag(V^H \hat{C}_x V) = diag[V^H x_r x_r^H V]\)</span>
+<ul>
+<li>어차피 대각선 원소에 정보가 있어서 대각 행렬로 산출되지 않았을때, 대각 행렬이 아닌 원소 버려도 영향없음</li>
+</ul></li>
+</ul>
+<ol start="2" type="1">
+<li><span class="math inline">\(p=E[(V^Hx)^2] \sim p=E[(V^Hx)^2] \sim \frac{1}{R}\sum^R_{i=1}|V^Hx_r|^2\)</span></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\hat{p}_{pg} = \frac{1}{R}\sum^R_{r=1} |V^H x_r |^2\)</span></li>
+<li><span class="math inline">\(\hat{p}_{cg} = |V^H x_r |^2\)</span>
+<ul>
+<li>퓨리에 변환에서 <span class="math inline">\(\tilde{x} = V^H x\)</span> 결과에 절대값 취하고 제곱한 것과 같다.</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li><span class="math inline">\(C_x = \sum^N_{i=1} p_ivec(v_i,V^H_i) = G_{np}P \sim C_x = V diag(p)V^H, \hat{C}_x G_{np}p\)</span></li>
+</ol>
+<ul>
+<li>3의 <span class="math inline">\(p\)</span>가 회귀에서 <span class="math inline">\(\beta\)</span> 역할, <span class="math inline">\(G_{np}\)</span> 회귀에서 설명변수 역할.</li>
+<li><span class="math inline">\(G_{np} V^* \otimes V\)</span>, 크로네커 곱 <span class="math inline">\(\begin{pmatrix}A &amp; C \\ B &amp; D \end{pmatrix}\begin{pmatrix}A &amp; B &amp; C \\ D &amp; E &amp; F \\G &amp; H &amp; I \end{pmatrix}\begin{pmatrix} AA &amp; AB &amp; AC &amp; BA &amp; BB &amp; BC &amp;\dots \\ \dots\end{pmatrix}\)</span></li>
+</ul>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">4</span> <span class="fl">5</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vec</span>(A)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>4-element Vector{Int64}:
+ 1
+ 4
+ 3
+ 5</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fl">4</span> <span class="fl">5</span> <span class="fl">6</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">7</span> <span class="fl">8</span> <span class="fl">9</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>3×3 Matrix{Int64}:
+ 1  2  3
+ 4  5  6
+ 7  8  9</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kron</span>(A,B) <span class="co"># 크로네커 곱  kronecker product</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>4×4 Matrix{Int64}:
+  0   5   0  10
+  6   7  12  14
+  0  15   0  20
+ 18  21  24  28</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [<span class="fl">2</span> <span class="fl">4</span> <span class="fl">6</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2</span> <span class="fl">5</span> <span class="fl">7</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>2×3 Matrix{Int64}:
+ 2  4  6
+ 2  5  7</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hcat</span>([<span class="fu">kron</span>(C[<span class="op">:</span>,i],D[<span class="op">:</span>,i]) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">size</span>(C)[<span class="fl">2</span>]]<span class="op">...</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>2×3 Matrix{Int64}:
+ 2   8  18
+ 2  10  21</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>columnwise_kron <span class="op">=</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>(C,D) <span class="op">-&gt;</span> <span class="fu">hcat</span>([<span class="fu">kron</span>(C[<span class="op">:</span>,i],D[<span class="op">:</span>,i]) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">size</span>(C)[<span class="fl">2</span>]]<span class="op">...</span>) <span class="co"># column-wise kronecker product</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>#11 (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">columnwise_kron</span>(C,D)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>2×3 Matrix{Int64}:
+ 2   8  18
+ 2  10  21</code></pre>
+</div>
+</div>
+</section>
+<section id="property-12.1" class="level2">
+<h2 class="anchored" data-anchor-id="property-12.1">Property 12.1</h2>
+<p><span class="math inline">\(f_T = f_x * f_y \to M_T = M_x \bullet M_y\)</span></p>
+<p>마치 <span class="math inline">\(f_x\)</span>를 <span class="math inline">\(M_x\)</span>로 바꾸고 <span class="math inline">\(f_Y\)</span>를 <span class="math inline">\(M_Y\)</span>로 바꾸고 <span class="math inline">\(f_T\)</span>를 <span class="math inline">\(M_T\)</span>로 바꾸고 <span class="math inline">\(*\)</span>연산은 <span class="math inline">\(\bullet\)</span> 연산으로 바꾸면 되는듯이 보이고, 실제로 그렇다.</p>
+<p><span class="math inline">\(Hx = h * x \to Hx = \tilde{h} \bullet \tilde{x}\)</span></p>
+<p>time domain 에서 convolution 연산은 freq-domain 에서 * 연산과 같음</p>
+<p>예시: X의 pdf 와 Y의 pdf를 각각 f,g 라고 하자. 그리고 mgf 를 각각 F,G 라고 하자.</p>
+<p>time domain: X+Y의 pdf는 conv(f,g)</p>
+<p>freq domain: X+Y의 mgf는 F*G</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/62d54c47-7613-4e29-80f7-b40ed5b10642-1-f4d5242d-c497-455d-af5a-870bcb834b65.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/46b342eb-d82a-46d4-a36d-ba49fc45b482-1-18441b02-cf54-4e31-b2fa-84b7de0281fd.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>https://dlsun.github.io/probability/sums-continuous.html</p>
+<section id="sums-of-continuous-random-variables" class="level3">
+<h3 class="anchored" data-anchor-id="sums-of-continuous-random-variables">Sums of Continuous Random Variables</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/4e4ed954-6a15-4ca6-bc69-8989e7ffb5af-1-33355a95-3a21-46a5-994c-7f89e752ae0b.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>https://en.wikipedia.org/wiki/Convolution_theorem</p>
+</section>
+<section id="convolution-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="convolution-theorem">Convolution Theorem</h3>
+<p>In mathematics, the convolution theorem states that under suitable conditions the Fourier transform of a convolution of two functions (or signals) is the pointwise product of their Fourier transforms. More generally, convolution in one domain (e.g., time domain) equals point-wise multiplication in the other domain (e.g., frequency domain). Other versions of the convolution theorem are applicable to various Fourier-related transforms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/5bcda3df-da09-4e64-b1f1-6b60c97033c6-1-83e0136f-88c6-420d-97ae-1a0e45a619e8.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p>https://faculty.math.illinois.edu/~hildebr/370/370mgfproblems.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/f596eabe-8eb4-469b-a66d-6750076db003-1-a3a43264-a7de-492d-96fe-0271dc899f39.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="r의-개념" class="level2">
+<h2 class="anchored" data-anchor-id="r의-개념"><span class="math inline">\(R\)</span>의 개념</h2>
+<p>확률변수</p>
+<p>예) 동전 던지기를 한다고 했을때 사건, event <span class="math inline">\(\to\)</span> H 앞, T 뒤</p>
+<p>확률벡터</p>
+<p>예) 동전 던지기를 두 번 했을 떄, 나올 수 있는 집합,</p>
+<ul>
+<li><span class="math inline">\(HH\)</span></li>
+<li><span class="math inline">\(HT\)</span></li>
+<li><span class="math inline">\(TH\)</span></li>
+<li><span class="math inline">\(TT\)</span></li>
+</ul>
+<p>동전을 100회 던질때, 이떄 각 사건은 독립.</p>
+<p><span class="math inline">\(X = \{ X_1, X_2, \dots, X_{100}\}\)</span></p>
+<p><span class="math inline">\(E(X_{77}) = 0.5\)</span>일 것이다.</p>
+<p>이게 정말 <span class="math inline">\(0.5\)</span>인지 시뮬레이션으로 확인해본다면,</p>
+<ol type="1">
+<li>100회의 평균을 제시하는 방법(R=1)</li>
+<li>simulation을 N번 하여 그 중 77번째의 값을 평균내는 방법(R=N)</li>
+</ol>
+<p>이 있는데, 2번의 방법은 현실적으로 불가능. 따라서 1번을 제시하는 경우가 많다.</p>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    N<span class="op">=</span><span class="fl">100</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span><span class="fl">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    X<span class="op">=</span><span class="fu">rand</span>(<span class="fu">Binomial</span>(n,p),N)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">    mean: </span><span class="sc">$</span>(n<span class="op">*</span>p)<span class="st">,simulation: </span><span class="sc">$</span>(<span class="fu">mean</span>(X))<span class="st">"""</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>"mean: 0.5,simulation: 0.49"</code></pre>
+</div>
+</div>
+<p><code>-</code> 1번의 방법</p>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(<span class="fu">rand</span>(<span class="fu">Bernoulli</span>(<span class="fl">0.5</span>),<span class="fl">10000</span>),bins<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">0.01</span><span class="op">:</span><span class="fl">1.01</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/cell-11-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023-02-05-ch12_2_3_Power Spectral Density and its Estimators_files/figure-html/187db07a-946f-4f0d-b902-7042587a3861-1-cfc8551b-8792-424a-99e4-9054b3b9932e.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">image.png</figcaption><p></p>
+</figure>
+</div>
+<p><span class="math inline">\(R\)</span> = 1</p>
+<ul>
+<li>실제로, 한 관측치에서 시계열 하나만 갖을 수 있고, 여러개의 시계열을 가진다는 것은 비현실적이다.</li>
+<li>책에서 돌린 <span class="math inline">\(R=100\)</span>의 개념은 시뮬레이션으로서 가능,
+<ul>
+<li>왼쪽 위 사진: <span class="math inline">\(R=1\)</span>때 분산이 크고, <span class="math inline">\(R=100\)</span>일때 TRUE값이 잘 맞음</li>
+<li>왼쪽 아래 사진: <span class="math inline">\(R=1\)</span>일때 분산이 작아지고, R=100일때 TRUE값과 편차bias가 생겼다.</li>
+<li>현실적으로 <span class="math inline">\(R=1\)</span>만 얻어지기 때문에 위(periodogram)보다 아래(Win. Period) 방법을 쓰는 것이 더 낫다고 저자는 제안함</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(\star R=1000\)</span> 일때도 동일하다고 말하기 위해서 <code>정상</code>의 개념이 필요하다, 정상성을 띄고 있어야 시계열을 많이 가지고 있어도 일정하다고 말할 수 있기 때문</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

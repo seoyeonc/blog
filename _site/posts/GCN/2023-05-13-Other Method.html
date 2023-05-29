@@ -591,11 +591,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/Study/2023-05-24-Attention is all you need.html" class="sidebar-item-text sidebar-link">Transformers</a>
-  </div>
-</li>
       </ul>
   </li>
       </ul>
@@ -807,7 +802,7 @@ All results are stored in ./simulation_results/2023-05-19_00-44-25.csv</code></p
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader1,dataset_name<span class="op">=</span><span class="st">'chickenpox'</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [[] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1068</span>)] <span class="co"># wikimath</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> random.sample(<span class="bu">range</span>(<span class="dv">570</span>), <span class="dv">150</span>)</span>

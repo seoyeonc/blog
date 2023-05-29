@@ -91,10 +91,10 @@ class StgcnLearner:
         self.interpolation_method = getattr(self.train_dataset,'interpolation_method',None)
         self.method = 'STGCN'
     # def learn(self,model,filters=32,epoch=50):
-    def learn(self,model,epoch=50):
+    def learn(self,model,lr=0.01,epoch=50):
         self.model = model
         # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=lr)
         self.model.train()
         for e in range(epoch):
             self.model.iter.do_iter(self.train_dataset, self.model,self.optimizer)
@@ -124,11 +124,11 @@ class ITStgcnLearner(StgcnLearner):
     def __init__(self,train_dataset,dataset_name = None):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
-    def learn(self, model, epoch=50):
+    def learn(self, model, lr=0.01,epoch=50):
     # def learn(self,filters=32,epoch=50):
         self.model = model
         # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
+        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=lr)
         self.model.train()
         train_dataset_temp = copy.copy(self.train_dataset)
         for e in range(epoch):

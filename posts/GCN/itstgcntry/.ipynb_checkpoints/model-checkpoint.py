@@ -5,15 +5,7 @@ import torch
 import torch.nn.functional as F
 
 # return h
-from torch_geometric_temporal.nn.recurrent import GConvGRU
-from torch_geometric_temporal.nn.recurrent import DCRNN
-from torch_geometric_temporal.nn.recurrent import EvolveGCNH
-from torch_geometric_temporal.nn.recurrent import EvolveGCNO
-from torch_geometric_temporal.nn.recurrent import GCLSTM
-from torch_geometric_temporal.nn.recurrent import GConvLSTM
-from torch_geometric_temporal.nn.recurrent import LRGCN
-from torch_geometric_temporal.nn.recurrent import MPNNLSTM
-from torch_geometric_temporal.nn.recurrent import TGCN
+from torch_geometric_temporal.nn.recurrent import *
 
 from .utils import convert_train_dataset
 

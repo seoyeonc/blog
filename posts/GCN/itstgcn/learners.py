@@ -65,7 +65,6 @@ def update_from_freq_domain(signal, missing_index):
             pass 
     return signal
 
-
 class RecurrentGCN(torch.nn.Module):
     def __init__(self, node_features, filters):
         super(RecurrentGCN, self).__init__()

@@ -6,7 +6,9 @@ import pandas as pd
 import torch
 import torch.nn.functional as F
 #import torch_geometric_temporal
-from torch_geometric_temporal.nn.recurrent import GConvGRU
+# from torch_geometric_temporal.nn.recurrent import GConvGRU
+from torch_geometric_temporal.nn.recurrent import GConvLSTM
+
 
 # utils
 import copy
@@ -113,8 +115,8 @@ class StgcnLearner:
             #     self.optimizer.zero_grad()
             cost = 0
             self.h, self.c = None, None
-            for t, snapshot in enumerate(train_dataset):
-                y_hat, self.h, self.c = model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
+            for t, snapshot in enumerate(self.train_dataset):
+                y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
                 y_hat = y_hat.reshape(-1)
                 cost = cost + torch.mean((y_hat-snapshot.y)**2)
             cost = cost / (t+1)
@@ -159,8 +161,8 @@ class ITStgcnLearner(StgcnLearner):
             #     self.optimizer.zero_grad()
             cost = 0
             self.h, self.c = None, None
-            for t, snapshot in enumerate(train_dataset):
-                y_hat, self.h, self.c = model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
+            for t, snapshot in enumerate(self.train_dataset):
+                y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
                 y_hat = y_hat.reshape(-1)
                 cost = cost + torch.mean((y_hat-snapshot.y)**2)
             cost = cost / (t+1)

@@ -6,7 +6,8 @@ import pandas as pd
 import torch
 import torch.nn.functional as F
 #import torch_geometric_temporal
-from torch_geometric_temporal.nn.recurrent import GConvGRU
+# from torch_geometric_temporal.nn.recurrent import GConvGRU
+from torch_geometric_temporal.nn.recurrent import GConvLSTM
 
 # utils
 import copy
@@ -86,17 +87,29 @@ def update_from_freq_domain(signal, missing_index,edge_index,edge_weight):
     return signal
 
 
+# class RecurrentGCN(torch.nn.Module):
+#     def __init__(self, node_features, filters):
+#         super(RecurrentGCN, self).__init__()
+#         self.recurrent = GConvGRU(node_features, filters, 2)
+#         self.linear = torch.nn.Linear(filters, 1)
+
+#     def forward(self, x, edge_index, edge_weight):
+#         h = self.recurrent(x, edge_index, edge_weight)
+#         h = F.relu(h)
+#         h = self.linear(h)
+#         return h
+
 class RecurrentGCN(torch.nn.Module):
     def __init__(self, node_features, filters):
         super(RecurrentGCN, self).__init__()
-        self.recurrent = GConvGRU(node_features, filters, 2)
+        self.recurrent = GConvLSTM(in_channels = node_features, out_channels = filters, K = 1)
         self.linear = torch.nn.Linear(filters, 1)
 
-    def forward(self, x, edge_index, edge_weight):
-        h = self.recurrent(x, edge_index, edge_weight)
-        h = F.relu(h)
+    def forward(self, x, edge_index, edge_weight, h, c):
+        h_0, c_0 = self.recurrent(x, edge_index, edge_weight, h, c)
+        h = F.relu(h_0)
         h = self.linear(h)
-        return h
+        return h, h_0, c_0
     
 class StgcnLearner:
     def __init__(self,train_dataset,dataset_name = None):
@@ -114,12 +127,22 @@ class StgcnLearner:
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
         for e in range(epoch):
+            # for t, snapshot in enumerate(self.train_dataset):
+            #     yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
+            #     cost = torch.mean((yt_hat-snapshot.y)**2)
+            #     cost.backward()
+            #     self.optimizer.step()
+            #     self.optimizer.zero_grad()
+            cost = 0
+            self.h, self.c = None, None
             for t, snapshot in enumerate(self.train_dataset):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
-                cost.backward()
-                self.optimizer.step()
-                self.optimizer.zero_grad()
+                y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
+                y_hat = y_hat.reshape(-1)
+                cost = cost + torch.mean((y_hat-snapshot.y)**2)
+            cost = cost / (t+1)
+            cost.backward()
+            self.optimizer.step()
+            self.optimizer.zero_grad()
             print('{}/{}'.format(e+1,epoch),end='\r')
         # recording HP
         self.nof_filters = filters
@@ -127,7 +150,8 @@ class StgcnLearner:
     def __call__(self,dataset):
         X = torch.tensor(dataset.features).float()
         y = torch.tensor(dataset.targets).float()
-        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        # yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)[0] for snapshot in dataset]).detach().squeeze().float()
         return {'X':X, 'y':y, 'yhat':yhat} 
 
 class ITStgcnLearner(StgcnLearner):
@@ -150,8 +174,18 @@ class ITStgcnLearner(StgcnLearner):
             }
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
             for t, snapshot in enumerate(train_dataset_temp):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
+                # yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
+                # cost = torch.mean((yt_hat-snapshot.y)**2)
+                # cost.backward()
+                # self.optimizer.step()
+                # self.optimizer.zero_grad()
+                cost = 0
+                self.h, self.c = None, None
+                for t, snapshot in enumerate(self.train_dataset):
+                    y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
+                    y_hat = y_hat.reshape(-1)
+                    cost = cost + torch.mean((y_hat-snapshot.y)**2)
+                cost = cost / (t+1)
                 cost.backward()
                 self.optimizer.step()
                 self.optimizer.zero_grad()

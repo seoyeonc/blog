@@ -82,7 +82,7 @@ def update_from_freq_domain(signal, missing_index):
 class RecurrentGCN(torch.nn.Module):
     def __init__(self, node_features, filters):
         super(RecurrentGCN, self).__init__()
-        self.recurrent = GConvLSTM(in_channels = node_features, out_channels = filters, K = 1)
+        self.recurrent = GConvLSTM(in_channels = node_features, out_channels = filters, K = 2)
         self.linear = torch.nn.Linear(filters, 1)
 
     def forward(self, x, edge_index, edge_weight, h, c):

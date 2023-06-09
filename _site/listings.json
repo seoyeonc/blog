@@ -3,11 +3,11 @@
     "listing": "/index.html",
     "items": [
       "/posts/GODE/Untitled.html",
+      "/posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html",
+      "/posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html",
       "/posts/GCN/2023-06-04-Sparse_matrix.html",
       "/posts/GCN/2023-05-31-Other Method.html",
-      "/posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html",
       "/posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html",
-      "/posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html",
       "/posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html",
       "/posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html",
       "/posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html",

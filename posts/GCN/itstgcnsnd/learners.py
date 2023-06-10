@@ -8,7 +8,7 @@ import torch.nn.functional as F
 #import torch_geometric_temporal
 # from torch_geometric_temporal.nn.recurrent import GConvGRU
 from torch_geometric_temporal.nn.recurrent import GConvLSTM
-from torch_geometric_temporal.nn.recurrent import GCLSTM
+# from torch_geometric_temporal.nn.recurrent import GCLSTM
 
 # utils
 import copy

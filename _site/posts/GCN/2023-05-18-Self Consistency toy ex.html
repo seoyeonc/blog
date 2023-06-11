@@ -329,12 +329,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1012,22 +1012,22 @@ Tip
 </section>
 <section id="result" class="level1">
 <h1>Result</h1>
-<div class="cell" data-execution_count="78">
+<div class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fig.suptitle('Figure',fontsize=40)</span></span>
 <span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_miss,<span class="st">'o'</span>,label<span class="op">=</span><span class="st">'Incomplete Data'</span>,markersize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_miss,<span class="st">'o'</span>,label<span class="op">=</span><span class="st">'Incomplete Data'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y,<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'blue'</span>)</span>
 <span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a>    ax.plot(x,y_true,label<span class="op">=</span><span class="st">'True'</span>,color<span class="op">=</span><span class="st">'black'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_zero[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_one[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_two[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_tre[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fth[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
-<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fif[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>)</span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_zero[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_one[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_two[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_tre[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fth[miss_num],<span class="st">'*'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>    ax.plot(miss_num,y_miss_impu_fif[miss_num],<span class="st">'o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,markersize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'upper left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="st">'1st value'</span>,xy<span class="op">=</span>(miss_num[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.1</span>,y_miss_impu[miss_num][<span class="dv">0</span>]),fontsize<span class="op">=</span><span class="dv">20</span>)</span>
@@ -1043,8 +1043,8 @@ Tip
 <span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.plot(miss_num, y_miss_impu[miss_num], 'o', markersize=30, markerfacecolor='none', markeredgecolor='red',markeredgewidth=1,color='C4')</span></span>
 <span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">30</span>)</span>
-<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb86-33"><a href="#cb86-33" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Self_consistency_Toy.png'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-05-18-Self Consistency toy ex_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>

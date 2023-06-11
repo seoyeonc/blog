@@ -328,12 +328,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -961,7 +961,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="random" class="level2">
 <h2 class="anchored" data-anchor-id="random">random</h2>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
@@ -972,15 +972,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcnsnd.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader2,dataset_name<span class="op">=</span><span class="st">'pedalme'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/home/csy/Dropbox/blog/posts/GCN/itstgcnsnd/utils.py:71: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /opt/conda/conda-bld/pytorch_1682343998658/work/torch/csrc/utils/tensor_new.cpp:245.)
   lags = torch.tensor(train_dataset.features).shape[-1]</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1/30 is done
+2/30 is done
+3/30 is done
+4/30 is done
+5/30 is done
+6/30 is done
+7/30 is done
+8/30 is done
+9/30 is done
+10/30 is done
+11/30 is done
+12/30 is done
+13/30 is done
+14/30 is done
+15/30 is done
+16/30 is done
+17/30 is done
+18/30 is done
+19/30 is done
+20/30 is done
+21/30 is done
+27/30 is done
+28/30 is done
+29/30 is done
+30/30 is done
+All results are stored in ./simulation_results/2023-06-10_15-33-00.csv</code></pre>
+</div>
+</div>
+</section>
+<section id="block" class="level2">
+<h2 class="anchored" data-anchor-id="block">block</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [[] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>)] <span class="co">#pedalme</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">25</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">1</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">3</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">4</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">5</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>,<span class="dv">20</span>))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">7</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">9</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">10</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">11</span>] <span class="op">=</span> another_list</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> my_list</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [[],[],[],list(range(50,150)),[]]  # node 1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [list(range(10,100)),[],list(range(50,80)),[],[]] # node 2</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [list(range(10,100)),[],list(range(50,80)),list(range(50,150)),[]] # node3</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plans_stgcn_block <span class="op">=</span> {</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">4</span>], </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">12</span>], </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'linear'</span>,<span class="st">'nearest'</span>],</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcnsnd.planner.PLNR_STGCN_MANUAL(plans_stgcn_block,loader2,dataset_name<span class="op">=</span><span class="st">'pedalme'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate(mindex<span class="op">=</span>mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1/30 is done
 2/30 is done
@@ -1012,72 +1075,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 28/30 is done
 29/30 is done
 30/30 is done
-All results are stored in ./simulation_results/2023-05-28_10-40-44.csv</code></pre>
-</div>
-</div>
-</section>
-<section id="block" class="level2">
-<h2 class="anchored" data-anchor-id="block">block</h2>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [[] <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>)] <span class="co">#pedalme</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>,<span class="dv">25</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">1</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">3</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">4</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">5</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>another_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">5</span>,<span class="dv">20</span>))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">7</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">9</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">10</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">11</span>] <span class="op">=</span> another_list</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> my_list</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [[],[],[],list(range(50,150)),[]]  # node 1</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [list(range(10,100)),[],list(range(50,80)),[],[]] # node 2</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex= [list(range(10,100)),[],list(range(50,80)),list(range(50,150)),[]] # node3</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plans_stgcn_block <span class="op">=</span> {</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">30</span>, </span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>], </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mindex'</span>: [mindex],</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">4</span>], </span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">12</span>], </span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'linear'</span>,<span class="st">'nearest'</span>],</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcnsnd.planner.PLNR_STGCN_MANUAL(plans_stgcn_block,loader2,dataset_name<span class="op">=</span><span class="st">'pedalme'</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate(mindex<span class="op">=</span>mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1/30 is done
-2/30 is done
-3/30 is done
-7/30 is done
-8/30 is done
-9/30 is done
-10/30 is done
-11/30 is done
-12/30 is done
-13/30 is done
-14/30 is done
-15/30 is done
-16/30 is done
-17/30 is done
-18/30 is done
-19/30 is done
-20/30 is done
-21/30 is done
-22/30 is done
-23/30 is done
-24/30 is done
-25/30 is done
-26/30 is done
-27/30 is done
-28/30 is done
-29/30 is done
-30/30 is done
-All results are stored in ./simulation_results/2023-05-28_11-09-06.csv</code></pre>
+All results are stored in ./simulation_results/2023-06-10_16-06-20.csv</code></pre>
 </div>
 </div>
 <div class="cell">

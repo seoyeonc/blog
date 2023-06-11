@@ -329,12 +329,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -960,30 +960,35 @@ R[write to console]: Loading required package: RColorBrewer
 <p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="256">
+<div class="cell" data-execution_count="358">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>_T <span class="op">=</span> <span class="dv">1000</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="257">
+<div class="cell" data-execution_count="359">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>_t <span class="op">=</span> np.arange(_T)<span class="op">/</span>_T <span class="op">*</span> <span class="dv">10</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="280">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>_t)<span class="op">+</span><span class="dv">2</span><span class="op">*</span>np.random.rand(_T)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>_t)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">8</span><span class="op">*</span>_t)</span></code></pre></div>
+<div class="cell" data-execution_count="379">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> <span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>_t)<span class="op">+</span><span class="dv">2</span><span class="op">*</span>np.random.rand(_T)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">4</span><span class="op">*</span>_t)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">8</span><span class="op">*</span>_t)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.plot(_x)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 <p>Psi</p>
-<div class="cell" data-execution_count="281">
+<div class="cell" data-execution_count="391">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(_x,<span class="st">'k--'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>,lw<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_fst.png'</span>)</span></code></pre></div>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_fst.png'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>fourier transform</p>
-<div class="cell" data-execution_count="303">
+<div class="cell" data-execution_count="393">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax1.plot(itstgcn.make_Psi(_T).T@np.array(_x),'-',color='C1',label='Fourier Transform',lw=3)</span></span>
@@ -996,134 +1001,59 @@ R[write to console]: Loading required package: RColorBrewer
 <p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Ebayesthresh/trim</p>
-<div class="cell" data-execution_count="305">
+<div class="cell" data-execution_count="394">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax1.plot(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T@np.array(_x))),'-',color='C1',label='EbayesThresh',lw=3)</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    ax1.stem(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))),linefmt<span class="op">=</span><span class="st">'C1-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'EbayesThresh'</span>)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax1.plot(itstgcn.make_Psi(_T).T@np.array(_x),'-',color='C1',label='Fourier Transform',lw=3)</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    ax1.stem((itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))[:<span class="dv">100</span>],linefmt<span class="op">=</span><span class="st">'C1-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'Fourier Transform'</span>)</span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'upper right'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_trd.png'</span>)</span></code></pre></div>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_snd_zin.png'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>fhat</p>
-<div class="cell" data-execution_count="284">
+<p>Ebayesthresh/trim</p>
+<div class="cell" data-execution_count="395">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(_x,<span class="st">'k--'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>,lw<span class="op">=</span><span class="dv">3</span>,alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    ax1.plot(itstgcn.make_Psi(_T)<span class="op">@</span>ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))),<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Inverse Fourier Transform'</span>,lw<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax1.plot(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T@np.array(_x))),'-',color='C1',label='EbayesThresh',lw=3)</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    ax1.stem(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))),linefmt<span class="op">=</span><span class="st">'C1-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'EbayesThresh'</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'upper right'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_fth.png'</span>)</span></code></pre></div>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_trd.png'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-42-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="309">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plt.stem?</span></code></pre></div>
+<div class="cell" data-execution_count="396">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax1.plot(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T@np.array(_x))),'-',color='C1',label='EbayesThresh',lw=3)</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    ax1.stem((ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))))[:<span class="dv">100</span>],linefmt<span class="op">=</span><span class="st">'C1-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'EbayesThresh'</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'upper right'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_trd_zoutpng'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">Signature:</span>
-plt<span class="ansi-blue-fg">.</span>stem<span class="ansi-blue-fg">(</span>
-    <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span>
-    linefmt<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    markerfmt<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    basefmt<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    bottom<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">,</span>
-    label<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-    use_line_collection<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&lt;</span>deprecated parameter<span class="ansi-blue-fg">&gt;</span><span class="ansi-blue-fg">,</span>
-    orientation<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">'vertical'</span><span class="ansi-blue-fg">,</span>
-    data<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-blue-fg">)</span>
-<span class="ansi-red-fg">Docstring:</span>
-Create a stem plot.
-A stem plot draws lines perpendicular to a baseline at each location
-*locs* from the baseline to *heads*, and places a marker there. For
-vertical stem plots (the default), the *locs* are *x* positions, and
-the *heads* are *y* values. For horizontal stem plots, the *locs* are
-*y* positions, and the *heads* are *x* values.
-Call signature::
-  stem([locs,] heads, linefmt=None, markerfmt=None, basefmt=None)
-The *locs*-positions are optional. *linefmt* may be provided as
-positional, but all other formats must be provided as keyword
-arguments.
-Parameters
-----------
-locs : array-like, default: (0, 1, ..., len(heads) - 1)
-    For vertical stem plots, the x-positions of the stems.
-    For horizontal stem plots, the y-positions of the stems.
-heads : array-like
-    For vertical stem plots, the y-values of the stem heads.
-    For horizontal stem plots, the x-values of the stem heads.
-linefmt : str, optional
-    A string defining the color and/or linestyle of the vertical lines:
-    =========  =============
-    Character  Line Style
-    =========  =============
-    ``'-'``    solid line
-    ``'--'``   dashed line
-    ``'-.'``   dash-dot line
-    ``':'``    dotted line
-    =========  =============
-    Default: 'C0-', i.e. solid line with the first color of the color
-    cycle.
-    Note: Markers specified through this parameter (e.g. 'x') will be
-    silently ignored (unless using ``use_line_collection=False``).
-    Instead, markers should be specified using *markerfmt*.
-markerfmt : str, optional
-    A string defining the color and/or shape of the markers at the stem
-    heads. If the marker is not given, use the marker 'o', i.e. filled
-    circles. If the color is not given, use the color from *linefmt*.
-basefmt : str, default: 'C3-' ('C2-' in classic mode)
-    A format string defining the properties of the baseline.
-orientation : {'vertical', 'horizontal'}, default: 'vertical'
-    If 'vertical', will produce a plot with stems oriented vertically,
-    If 'horizontal', the stems will be oriented horizontally.
-bottom : float, default: 0
-    The y/x-position of the baseline (depending on orientation).
-label : str, default: None
-    The label to use for the stems in legends.
-use_line_collection : bool, default: True
-    *Deprecated since 3.6*
-    If ``True``, store and plot the stem lines as a
-    `~.collections.LineCollection` instead of individual lines, which
-    significantly increases performance.  If ``False``, defaults to the
-    old behavior of using a list of `.Line2D` objects.
-data : indexable object, optional
-    If given, all parameters also accept a string ``s``, which is
-    interpreted as ``data[s]`` (unless this raises an exception).
-Returns
--------
-`.StemContainer`
-    The container may be treated like a tuple
-    (*markerline*, *stemlines*, *baseline*)
-Notes
------
-.. seealso::
-    The MATLAB function
-    `stem &lt;https://www.mathworks.com/help/matlab/ref/stem.html&gt;`_
-    which inspired this method.
-<span class="ansi-red-fg">File:</span>      ~/anaconda3/envs/temp_csy/lib/python3.8/site-packages/matplotlib/pyplot.py
-<span class="ansi-red-fg">Type:</span>      function
-</pre>
+<p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-</div>
-<div class="cell" data-execution_count="320">
+<p>fhat</p>
+<div class="cell" data-execution_count="397">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    ax1.stem(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x),linefmt<span class="op">=</span><span class="st">'C1-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'Fourier Transform'</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    ax1.stem(ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))),linefmt<span class="op">=</span><span class="st">'C3-'</span>,basefmt<span class="op">=</span><span class="st">'k-'</span>,label<span class="op">=</span><span class="st">'EbayesThresh'</span>)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'upper right'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(_x,<span class="st">'k--'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>,lw<span class="op">=</span><span class="dv">3</span>,alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    ax1.plot(itstgcn.make_Psi(_T)<span class="op">@</span>ebayesthresh(FloatVector(itstgcn.make_Psi(_T).T<span class="op">@</span>np.array(_x))),<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Inverse Fourier Transform'</span>,lw<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">40</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span></code></pre></div>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">40</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylim(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'Ebayes_fth.png'</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+<p><img src="2023-05-20-EbayesThresh toy ex_files/figure-html/cell-44-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 

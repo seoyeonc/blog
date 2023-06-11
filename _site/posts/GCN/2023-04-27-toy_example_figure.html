@@ -328,12 +328,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1464,52 +1464,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-89-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="620">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> itstgcn.DatasetLoader(data_dict1)</span></code></pre></div>
+<div class="cell" data-execution_count="783">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>_data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>_loader <span class="op">=</span> itstgcn.DatasetLoader(_data_dict)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="621">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="784">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>_dataset <span class="op">=</span> _loader.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="622">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = [random.sample(range(0, T), int(T*0.7)),[np.array(list(range(20,35)))]]</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset_miss = itstgcn.miss(dataset,mindex,mtype='block')</span></span></code></pre></div>
+<div class="cell" data-execution_count="827">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [random.sample(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="bu">int</span>(<span class="dv">200</span><span class="op">*</span><span class="fl">0.8</span>)),[np.array(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">40</span>,<span class="dv">100</span>)))]]</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>_dataset_miss <span class="op">=</span> itstgcn.miss(_dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="623">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> itstgcn.rand_mindex(dataset,mrate<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>dataset_miss <span class="op">=</span> itstgcn.miss(dataset,mindex,mtype<span class="op">=</span><span class="st">'rand'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="828">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = itstgcn.rand_mindex(dataset,mrate=0.8)</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset_miss = itstgcn.miss(dataset,mindex,mtype='rand')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="624">
+<div class="cell" data-execution_count="829">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = [[np.array(list(range(181,300)))],[np.array(list(range(20,35)))]]</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset_miss = itstgcn.miss(dataset,mindex,mtype='block')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="625">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>dataset_padded <span class="op">=</span> itstgcn.padding(dataset_miss,interpolation_method<span class="op">=</span><span class="st">'linear'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="830">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>_dataset_padded <span class="op">=</span> itstgcn.padding(_dataset_miss,interpolation_method<span class="op">=</span><span class="st">'linear'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="626">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded)</span></code></pre></div>
+<div class="cell" data-execution_count="831">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>_lrnr <span class="op">=</span> itstgcn.StgcnLearner(_dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="627">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">16</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="832">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>_lrnr.learn(filters<span class="op">=</span><span class="dv">12</span>,epoch<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>5/5</code></pre>
+<pre><code>10/10</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="628">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> Eval_csy(lrnr,dataset_padded)</span></code></pre></div>
+<div class="cell" data-execution_count="833">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>_evtor <span class="op">=</span> Eval_csy(_lrnr,_dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="629">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>lrnr_2 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded)</span></code></pre></div>
+<div class="cell" data-execution_count="834">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>_lrnr_2 <span class="op">=</span> itstgcn.ITStgcnLearner(_dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="630">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>lrnr_2.learn(filters<span class="op">=</span><span class="dv">16</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="835">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>_lrnr_2.learn(filters<span class="op">=</span><span class="dv">12</span>,epoch<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>5/5</code></pre>
+<pre><code>10/10</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="631">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>evtor_2 <span class="op">=</span> Eval_csy(lrnr_2,dataset_padded)</span></code></pre></div>
+<div class="cell" data-execution_count="836">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>_evtor_2 <span class="op">=</span> Eval_csy(_lrnr_2,_dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="632">
+<div class="cell" data-execution_count="837">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
@@ -1520,21 +1521,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-10"><a href="#cb112-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(data1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.cat([torch.tensor(data1[<span class="st">'x'</span>][:<span class="dv">4</span>]),torch.tensor(dataset_miss.targets).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">0</span>]],dim<span class="op">=</span><span class="dv">0</span>),<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>)</span>
+<span id="cb112-11"><a href="#cb112-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(_dataset.features)[:,<span class="dv">0</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb112-12"><a href="#cb112-12" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.cat([torch.tensor(_dataset.features)[:<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>],torch.tensor(_dataset_miss.targets).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:,<span class="dv">0</span>]],dim<span class="op">=</span><span class="dv">0</span>),<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>)</span>
 <span id="cb112-13"><a href="#cb112-13" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-16"><a href="#cb112-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>    ax3.plot(data1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor_2.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Interpolation'</span>)</span>
+<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>    ax3.plot(torch.tensor(_dataset.features)[:,<span class="dv">0</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>    ax3.plot(_evtor_2.f_tr[:,<span class="dv">0</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Interpolation'</span>)</span>
 <span id="cb112-19"><a href="#cb112-19" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb112-20"><a href="#cb112-20" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-21"><a href="#cb112-21" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb112-22"><a href="#cb112-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb112-23"><a href="#cb112-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(data1[<span class="st">'x'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb112-24"><a href="#cb112-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
-<span id="cb112-25"><a href="#cb112-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor_2.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb112-23"><a href="#cb112-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(torch.tensor(_dataset.features)[:,<span class="dv">0</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb112-24"><a href="#cb112-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(_evtor.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb112-25"><a href="#cb112-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(_evtor_2.fhat_tr[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
 <span id="cb112-26"><a href="#cb112-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(55, 0, 'o', markersize=100, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>
 <span id="cb112-27"><a href="#cb112-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(150, 0, 'o', markersize=80, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>
 <span id="cb112-28"><a href="#cb112-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(185, 0, 'o', markersize=80, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>
@@ -1546,32 +1547,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-102-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="633">
+<div class="cell" data-execution_count="838">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
 <span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">40</span>,<span class="dv">15</span>))</span>
 <span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="st">'Figure 1(node 2)'</span>,fontsize<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(data1[<span class="st">'y'</span>][:],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>    ax1.plot(torch.tensor(_dataset.features)[:,<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'-'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
 <span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>    ax1.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    ax1.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(data1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.cat([torch.tensor(data1[<span class="st">'x'</span>][:<span class="dv">4</span>]),torch.tensor(dataset_miss.targets).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>)[:,<span class="dv">1</span>]],dim<span class="op">=</span><span class="dv">0</span>),<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>)</span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.tensor(_dataset.features)[:,<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>    ax2.plot(torch.cat([torch.tensor(_dataset.features)[:<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>],torch.tensor(_dataset_miss.targets).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">5</span>)[:,<span class="dv">1</span>]],dim<span class="op">=</span><span class="dv">0</span>),<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,label<span class="op">=</span><span class="st">'Observed Data'</span>)</span>
 <span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a>    ax2.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a>    ax2.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>    ax3.plot(data1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>    ax3.plot(evtor_2.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Interpolation'</span>)</span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>    ax3.plot(torch.tensor(_dataset.features)[:,<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>    ax3.plot(_evtor_2.f_tr[:,<span class="dv">1</span>],<span class="st">'--o'</span>,color<span class="op">=</span><span class="st">'C3'</span>,alpha<span class="op">=</span><span class="fl">0.8</span>,label<span class="op">=</span><span class="st">'Interpolation'</span>)</span>
 <span id="cb113-19"><a href="#cb113-19" aria-hidden="true" tabindex="-1"></a>    ax3.legend(fontsize<span class="op">=</span><span class="dv">20</span>,loc<span class="op">=</span><span class="st">'lower left'</span>,facecolor<span class="op">=</span><span class="st">'white'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb113-20"><a href="#cb113-20" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'y'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-21"><a href="#cb113-21" aria-hidden="true" tabindex="-1"></a>    ax3.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb113-22"><a href="#cb113-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb113-23"><a href="#cb113-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(data1[<span class="st">'y'</span>][:],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
-<span id="cb113-24"><a href="#cb113-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
-<span id="cb113-25"><a href="#cb113-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(evtor_2.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
+<span id="cb113-23"><a href="#cb113-23" aria-hidden="true" tabindex="-1"></a>    ax4.plot(torch.tensor(_dataset.features)[:,<span class="dv">1</span>,<span class="dv">0</span>],<span class="st">'--'</span>,color<span class="op">=</span><span class="st">'C5'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'Complete Data'</span>)</span>
+<span id="cb113-24"><a href="#cb113-24" aria-hidden="true" tabindex="-1"></a>    ax4.plot(_evtor.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'brown'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'STGCN'</span>)</span>
+<span id="cb113-25"><a href="#cb113-25" aria-hidden="true" tabindex="-1"></a>    ax4.plot(_evtor_2.fhat_tr[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'blue'</span>,lw<span class="op">=</span><span class="dv">3</span>,label<span class="op">=</span><span class="st">'ITSTGCN'</span>)</span>
 <span id="cb113-26"><a href="#cb113-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(55, 0, 'o', markersize=100, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>
 <span id="cb113-27"><a href="#cb113-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(150, 0, 'o', markersize=80, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>
 <span id="cb113-28"><a href="#cb113-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax4.plot(185, 0, 'o', markersize=80, markerfacecolor='none', markeredgecolor='red',markeredgewidth=3)</span></span>

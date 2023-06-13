@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 #import torch_geometric_temporal
 # from torch_geometric_temporal.nn.recurrent import GConvGRU
-from torch_geometric_temporal.nn.recurrent import GConvLSTM
+# from torch_geometric_temporal.nn.recurrent import GConvLSTM
 from torch_geometric_temporal.nn.recurrent import GCLSTM
 
 # utils
@@ -100,10 +100,22 @@ def update_from_freq_domain(signal, missing_index,edge_index,edge_weight):
 #         h = self.linear(h)
 #         return h
 
+# class RecurrentGCN(torch.nn.Module):
+#     def __init__(self, node_features, filters):
+#         super(RecurrentGCN, self).__init__()
+#         self.recurrent = GConvLSTM(in_channels = node_features, out_channels = filters, K = 2)
+#         self.linear = torch.nn.Linear(filters, 1)
+
+#     def forward(self, x, edge_index, edge_weight, h, c):
+#         h_0, c_0 = self.recurrent(x, edge_index, edge_weight, h, c)
+#         h = F.relu(h_0)
+#         h = self.linear(h)
+#         return h, h_0, c_0
+
 class RecurrentGCN(torch.nn.Module):
     def __init__(self, node_features, filters):
         super(RecurrentGCN, self).__init__()
-        self.recurrent = GConvLSTM(in_channels = node_features, out_channels = filters, K = 2)
+        self.recurrent = GCLSTM(node_features, filters, 1)
         self.linear = torch.nn.Linear(filters, 1)
 
     def forward(self, x, edge_index, edge_weight, h, c):
@@ -111,7 +123,7 @@ class RecurrentGCN(torch.nn.Module):
         h = F.relu(h_0)
         h = self.linear(h)
         return h, h_0, c_0
-    
+
 class StgcnLearner:
     def __init__(self,train_dataset,dataset_name = None):
         self.train_dataset = train_dataset

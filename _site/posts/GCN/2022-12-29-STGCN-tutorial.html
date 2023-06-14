@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="신록예찬, SEOYEON CHOI">
+<meta name="dcterms.date" content="2022-12-29">
+
+<title>Seoyeon’s Blog for study - [IT-STGCN] STGCN 튜토리얼</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">ST-GCN</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>신록예찬, SEOYEON CHOI </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 29, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link active"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-20-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Boxplot_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-31-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-04-Sparse_matrix.html" class="sidebar-item-text sidebar-link">Sparse matrix</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Quarto_tip/index.html" class="sidebar-item-text sidebar-link">Quarto tip</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Quarto_tip/2023-01-02-quarto_tips.html" class="sidebar-item-text sidebar-link">quarto blog tips</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/Study/index.html" class="sidebar-item-text sidebar-link">Study</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-05-ch12_2_3_Power Spectral Density and its Estimators.html" class="sidebar-item-text sidebar-link">Chap 12.2 ~ 3: Power Spectral Density and its Estimators</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-02-ch12.2_Weakly Stationary Graph Processes.html" class="sidebar-item-text sidebar-link">Chap 12.2: Weakly Stationary Graph Processes</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-02-01-ch8_DFT.html" class="sidebar-item-text sidebar-link">Chap 8.3: Discrete Fourier Transform</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-10-EbayesThreshold.html" class="sidebar-item-text sidebar-link">EbayesThresh: R Programs for Empirical Bayes Thresholding, Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-GCRN_rivew.html" class="sidebar-item-text sidebar-link">GCRN Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-21-Graph Attention Networks (GATs).html" class="sidebar-item-text sidebar-link">Graph Attention Networks (GATs)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-03-28-(4주차) 3월28일.html" class="sidebar-item-text sidebar-link">Introduction to Python 4wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-04-03-(5주차) 4월2일.html" class="sidebar-item-text sidebar-link">Introduction to Python 5wk</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-08-wrting_down_algorithm.html" class="sidebar-item-text sidebar-link">ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-23-lebesque_decompposition_therem.html" class="sidebar-item-text sidebar-link">Lebesgue’s decomposition theorem</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-04-nomalized graph laplacian.html" class="sidebar-item-text sidebar-link">Nomalized Graph Laplacian</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-05-20-RGNN_pyg_official.html" class="sidebar-item-text sidebar-link">Recurrent Graph Neural Network</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-12-.html" class="sidebar-item-text sidebar-link">Self-onsistent estimator</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-04-10-STGCN_Existing_Method_Review.html" class="sidebar-item-text sidebar-link">STGCN Existing Method Review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2023-03-16-stgcn_paper_review_1.html" class="sidebar-item-text sidebar-link">STGCN papers review</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/Study/2022-12-31-Space-study.html" class="sidebar-item-text sidebar-link">Study for Spaces</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-this-doc" id="toc-about-this-doc" class="nav-link active" data-scroll-target="#about-this-doc">About this doc</a></li>
+  <li><a href="#ref" id="toc-ref" class="nav-link" data-scroll-target="#ref">ref</a></li>
+  <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">imports</a></li>
+  <li><a href="#notaions-ofr-stgcn" id="toc-notaions-ofr-stgcn" class="nav-link" data-scroll-target="#notaions-ofr-stgcn">notaions ofr STGCN</a></li>
+  <li><a href="#dataset-dataloaders" id="toc-dataset-dataloaders" class="nav-link" data-scroll-target="#dataset-dataloaders">dataset, dataloaders</a>
+  <ul class="collapse">
+  <li><a href="#pyg-의-data-자료형" id="toc-pyg-의-data-자료형" class="nav-link" data-scroll-target="#pyg-의-data-자료형">PyG 의 Data 자료형</a></li>
+  <li><a href="#pytorch-geometric-temporal-의-자료형" id="toc-pytorch-geometric-temporal-의-자료형" class="nav-link" data-scroll-target="#pytorch-geometric-temporal-의-자료형">PyTorch Geometric Temporal 의 자료형</a></li>
+  </ul></li>
+  <li><a href="#chickenpoxdataset-분석" id="toc-chickenpoxdataset-분석" class="nav-link" data-scroll-target="#chickenpoxdataset-분석">ChickenpoxDataset 분석</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-data" id="toc-summary-of-data" class="nav-link" data-scroll-target="#summary-of-data">summary of data</a></li>
+  <li><a href="#learn" id="toc-learn" class="nav-link" data-scroll-target="#learn">learn</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">visualization</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<blockquote class="blockquote">
+<p>Simulation</p>
+</blockquote>
+<p><a href="https://colab.research.google.com/github/miruetoto/yechan3/blob/main/posts/3_Researches/STGCN/2022-12-29-STGCN-tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt=""></a></p>
+<section id="about-this-doc" class="level1">
+<h1>About this doc</h1>
+<p><code>-</code> 이 문서는 공식홈페이지의 예제와 최서연학생의 블로그 내용을 재구성하여 만듬</p>
+<p><code>-</code> 이 문서의 목표는 아래와 같다.</p>
+<ul>
+<li>STGCN을 사용할 수 있는 데이터의 형태를 탐구한다.</li>
+<li>STGCN을 실습할 코드를 확보한다.</li>
+</ul>
+<p><code>-</code> 코랩에서 실습하기 위해서는 아래를 설치해야한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install torch<span class="op">-</span>geometric</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install torch<span class="op">-</span>geometric<span class="op">-</span>temporal</span></code></pre></div>
+</div>
+</section>
+<section id="ref" class="level1">
+<h1>ref</h1>
+<ul>
+<li><a href="https://pytorch-geometric.readthedocs.io/en/latest/index.html#">PyG 공식홈페이지</a> // <code>torch_geometric</code></li>
+<li><a href="https://pytorch-geometric-temporal.readthedocs.io/en/latest/index.html">PyTorch Geometric Temporal 공식홈페이지</a> // <code>torch_geometric_temporal</code></li>
+<li><a href="https://github.com/seoyeonc/blog/blob/main/posts/GCN/2022-12-21-st-gcn%20Dataset.ipynb">최서연 블로그</a></li>
+</ul>
+<p>참고: <code>torch</code> 를 기반으로 <code>PyG</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>이 만들어 졌고 <code>PyG</code>를 기반으로 <code>PyTorch Geometric Temporal</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>가 만들어짐.</p>
+</section>
+<section id="imports" class="level1">
+<h1>imports</h1>
+<p><code>-</code> 필요한 패키지 임포트</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 일반적인 모듈 </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 파이토치 관련 </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># PyG 관련 </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric.data <span class="im">import</span> Data</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># STGCN 관련 </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric_temporal</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvGRU</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal <span class="im">import</span> temporal_signal_split </span></code></pre></div>
+</div>
+<ul>
+<li><code>tdqm</code>: for문의 진행상태를 확인하기 위한 패키지</li>
+<li><code>networkx</code>: 그래프 시그널 시각화를 위한 모듈</li>
+<li><code>torch</code>: 파이토치 (STGCN은 파이토치 기반으로 만들어짐) 모듈</li>
+<li><code>torch.nn.functional</code>: relu 등의 활성화함수를 불러오기 위한 모듈</li>
+<li><code>Data</code>: 그래프자료를 만들기 위한 클래스</li>
+<li><code>GConvGRU</code>: STGCN layer를 만드는 클래스</li>
+<li><code>temporal_signal_split</code>: STGCN dataset 을 train/test 형태로 분리하는 기능이 있는 “함수”</li>
+</ul>
+<p><code>-</code> STGCN의 학습을 위한 클래스선언</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvGRU(node_features, filters, <span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> F.relu(h)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h</span></code></pre></div>
+</div>
+</section>
+<section id="notaions-ofr-stgcn" class="level1">
+<h1>notaions ofr STGCN</h1>
+<p><code>-</code> 시계열: each <span class="math inline">\(t\)</span> 에 대한 observation이 하나의 값 (혹은 벡터)</p>
+<ul>
+<li>자료: <span class="math inline">\(X(t)\)</span> for <span class="math inline">\(t=1,2,\dots,T\)</span></li>
+</ul>
+<p><code>-</code> STGCN setting에서는 each <span class="math inline">\(t\)</span> 에 대한 observation이 graph</p>
+<ul>
+<li>자료: <span class="math inline">\(X(v,t)\)</span> for <span class="math inline">\(t=1,2,\dots,T\)</span> and <span class="math inline">\(v \in V\)</span></li>
+<li>주의: 이 포스트에서는 <span class="math inline">\(X(v,t)\)</span> 를 <span class="math inline">\(f(v,t)\)</span> 로 표현할 때가 있음</li>
+</ul>
+</section>
+<section id="dataset-dataloaders" class="level1">
+<h1>dataset, dataloaders</h1>
+<section id="pyg-의-data-자료형" class="level2">
+<h2 class="anchored" data-anchor-id="pyg-의-data-자료형">PyG 의 Data 자료형</h2>
+<blockquote class="blockquote">
+<p>ref: <a href="https://pytorch-geometric.readthedocs.io/en/latest/notes/introduction.html#data-handling-of-graphs" class="uri">https://pytorch-geometric.readthedocs.io/en/latest/notes/introduction.html#data-handling-of-graphs</a></p>
+</blockquote>
+<p><code>-</code> 자료는 <a href="https://pytorch-geometric.readthedocs.io/en/latest/notes/introduction.html#data-handling-of-graphs">PyG의 Data 오브젝트</a>를 기반으로 한다.</p>
+<p>(예제) 아래와 같은 그래프자료를 고려하자.</p>
+<p><img src="https://pytorch-geometric.readthedocs.io/en/latest/_images/graph.svg" class="img-fluid"></p>
+<p>이러한 자료형은 아래와 같은 형식으로 저장한다.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>edge_index <span class="op">=</span> torch.tensor([[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                           [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">1</span>]], dtype<span class="op">=</span>torch.<span class="bu">long</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor([[<span class="op">-</span><span class="dv">1</span>], [<span class="dv">0</span>], [<span class="dv">1</span>]], dtype<span class="op">=</span>torch.<span class="bu">float</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> Data(x<span class="op">=</span>x, edge_index<span class="op">=</span>edge_index) <span class="co"># Data는 그래프자료형을 만드는 클래스</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(data)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>torch_geometric.data.data.Data</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data.x</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>tensor([[-1.],
+        [ 0.],
+        [ 1.]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data.edge_index</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>tensor([[0, 1, 1, 2],
+        [1, 0, 2, 1]])</code></pre>
+</div>
+</div>
+</section>
+<section id="pytorch-geometric-temporal-의-자료형" class="level2">
+<h2 class="anchored" data-anchor-id="pytorch-geometric-temporal-의-자료형">PyTorch Geometric Temporal 의 자료형</h2>
+<blockquote class="blockquote">
+<p>ref: <a href="https://pytorch-geometric-temporal.readthedocs.io/en/latest/modules/signal.html#torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal">PyTorch Geometric Temporal Signal</a></p>
+</blockquote>
+<p>아래의 클래스들중 하나를 이용하여 만든다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Temporal Signal Iterators</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.StaticGraphTemporalSignal</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.DynamicGraphTemporalSignal</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.DynamicGraphStaticSignal</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Heterogeneous Temporal Signal Iterators</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.StaticHeteroGraphTemporalSignal</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.DynamicHeteroGraphTemporalSignal</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>torch_geometric_temporal.signal.DynamicHeteroGraphStaticSignal</span></code></pre></div>
+<p>이중 “Heterogeneous Temporal Signal” 은 우리가 관심이 있는 신호가 아니므로 사실상 아래의 3개만 고려하면 된다.</p>
+<ul>
+<li><code>torch_geometric_temporal.signal.StaticGraphTemporalSignal</code></li>
+<li><code>torch_geometric_temporal.signal.DynamicGraphTemporalSignal</code></li>
+<li><code>torch_geometric_temporal.signal.DynamicGraphStaticSignal</code></li>
+</ul>
+<p>여기에서 <code>StaticGraphTemporalSignal</code> 는 시간에 따라서 그래프 구조가 일정한 경우, 즉 <span class="math inline">\({\cal G}_t=\{{\cal V},{\cal E}\}\)</span>와 같은 구조를 의미한다.</p>
+<p><strong>(예제1)</strong> StaticGraphTemporalSignal 를 이용하여 데이터 셋 만들기</p>
+<p><code>-</code> json data <span class="math inline">\(\to\)</span> dict</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/benedekrozemberczki/pytorch_geometric_temporal/master/dataset/chickenpox.json"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> json.loads(urllib.request.urlopen(url).read())</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data_dict 출력이 김</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_dict.keys()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>dict_keys(['edges', 'node_ids', 'FX'])</code></pre>
+</div>
+</div>
+<p><code>-</code> 살펴보기</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>np.array(data_dict[<span class="st">'edges'</span>]).T</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([[ 0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  2,  2,  2,  2,  3,
+         3,  3,  3,  3,  3,  4,  4,  5,  5,  5,  5,  6,  6,  6,  6,  6,
+         6,  6,  7,  7,  7,  7,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,
+        10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12,
+        12, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 15,
+        15, 15, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 18,
+        18, 18, 19, 19, 19, 19],
+       [10,  6, 13,  1,  0,  5, 16,  0, 16,  1, 14, 10,  8,  2,  5,  8,
+        15, 12,  9, 10,  3,  4, 13,  0, 10,  2,  5,  0, 16,  6, 14, 13,
+        11, 18,  7, 17, 11, 18,  3,  2, 15,  8, 10,  9, 13,  3, 12, 10,
+         5,  9,  8,  3, 10,  2, 13,  0,  6, 11,  7, 13, 18,  3,  9, 13,
+        12, 13,  9,  6,  4, 12,  0, 11, 10, 18, 19,  1, 14,  6, 16,  3,
+        15,  8, 16, 14,  1,  0,  6,  7, 19, 17, 18, 14, 18, 17,  7,  6,
+        19, 11, 18, 14, 19, 17]])</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\({\cal E} = \{(0,10),(0,6), \dots, (19,17)\}\)</span></li>
+<li>혹은 <span class="math inline">\({\cal E} = \{(\tt{BACS},\tt{JASZ}), ({\tt BACS},{\tt FEJER}), \dots, (\tt{ZALA},\tt{VAS})\}\)</span></li>
+</ul>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data_dict[<span class="st">'node_ids'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>{'BACS': 0,
+ 'BARANYA': 1,
+ 'BEKES': 2,
+ 'BORSOD': 3,
+ 'BUDAPEST': 4,
+ 'CSONGRAD': 5,
+ 'FEJER': 6,
+ 'GYOR': 7,
+ 'HAJDU': 8,
+ 'HEVES': 9,
+ 'JASZ': 10,
+ 'KOMAROM': 11,
+ 'NOGRAD': 12,
+ 'PEST': 13,
+ 'SOMOGY': 14,
+ 'SZABOLCS': 15,
+ 'TOLNA': 16,
+ 'VAS': 17,
+ 'VESZPREM': 18,
+ 'ZALA': 19}</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\({\cal V}=\{\tt{BACS},\tt{BARANYA} \dots, \tt{ZALA}\}\)</span></li>
+</ul>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>np.array(data_dict[<span class="st">'FX'</span>]), np.array(data_dict[<span class="st">'FX'</span>]).shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(array([[-1.08135724e-03, -7.11136085e-01, -3.22808515e+00, ...,
+          1.09445310e+00, -7.08747750e-01, -1.82280792e+00],
+        [ 2.85705967e-02, -5.98430173e-01, -2.29097341e-01, ...,
+         -1.59220988e+00, -2.24597623e-01,  7.86330575e-01],
+        [ 3.54742090e-01,  1.90511208e-01,  1.61028185e+00, ...,
+          1.38183225e-01, -7.08747750e-01, -5.61724314e-01],
+        ...,
+        [-4.75512620e-01, -1.19952837e+00, -3.89043358e-01, ...,
+         -1.00023329e+00, -1.71429032e+00,  4.70746677e-02],
+        [-2.08645035e-01,  6.03766218e-01,  1.08216835e-02, ...,
+          4.71099041e-02,  2.45684924e+00, -3.44296107e-01],
+        [ 1.21464875e+00,  7.16472130e-01,  1.29038982e+00, ...,
+          4.56939849e-01,  7.43702632e-01,  1.00375878e+00]]),
+ (521, 20))</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\({\bf f}=\begin{bmatrix} {\bf f}_1\\ {\bf f}_2\\ \dots \\ {\bf f}_{521} \end{bmatrix}=\begin{bmatrix} f(t=1,v=\tt{BACS}) &amp; \dots &amp; f(t=1,v=\tt{ZALA}) \\ f(t=2,v=\tt{BACS}) &amp; \dots &amp; f(t=2,v=\tt{ZALA}) \\ \dots &amp; \dots &amp; \dots \\ f(t=521,v=\tt{BACS}) &amp; \dots &amp; f(t=521,v=\tt{ZALA}) \end{bmatrix}\)</span></li>
+</ul>
+<p>즉 data_dict는 아래와 같이 구성되어 있음</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">수학 기호</th>
+<th style="text-align: center;">코드에 저장된 변수</th>
+<th style="text-align: center;">자료형</th>
+<th style="text-align: center;">차원</th>
+<th style="text-align: center;">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\({\cal V}\)</span></td>
+<td style="text-align: center;"><code>data_dict['node_ids']</code></td>
+<td style="text-align: center;">dict</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">20개의 노드에 대한 설명이 있음</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\({\cal E}\)</span></td>
+<td style="text-align: center;"><code>data_dict['edges']</code></td>
+<td style="text-align: center;">list (double list)</td>
+<td style="text-align: center;">(102,2)</td>
+<td style="text-align: center;">노드들에 대한 102개의 연결을 정의함</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\({\bf f}\)</span></td>
+<td style="text-align: center;"><code>data_dict['node_ids']</code></td>
+<td style="text-align: center;">dict</td>
+<td style="text-align: center;">(521,20)</td>
+<td style="text-align: center;"><span class="math inline">\(f(t,v)\)</span> for <span class="math inline">\(v \in {\cal V}\)</span> and <span class="math inline">\(t = 1,\dots, T\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><code>-</code> 주어진 자료를 정리하여 그래프신호 <span class="math inline">\(\big(\{{\cal V},{\cal E},{\bf W}\},{\bf f}\big)\)</span>를 만들면 아래와 같다.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> np.array(data_dict[<span class="st">"edges"</span>]).T</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>edge_weight <span class="op">=</span> np.ones(edges.shape[<span class="dv">1</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.array(data_dict[<span class="st">"FX"</span>])</span></code></pre></div>
+</div>
+<ul>
+<li>여기에서 <code>edges</code>는 <span class="math inline">\({\cal E}\)</span>에 대한 정보를</li>
+<li><code>edges_weight</code>는 <span class="math inline">\({\bf W}\)</span>에 대한 정보를</li>
+<li><code>f</code>는 <span class="math inline">\({\bf f}\)</span>에 대한 정보를 저장한다.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Note: 이때 <span class="math inline">\({\bf W}={\bf E}\)</span> 로 정의한다. (하지만 꼭 이래야 하는건 아니야)</p>
+</blockquote>
+<p><code>-</code> <code>data_dict</code> <span class="math inline">\(\to\)</span> <code>dl</code></p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lags <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [f[i : i <span class="op">+</span> lags, :].T <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(f.shape[<span class="dv">0</span>] <span class="op">-</span> lags)]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> [f[i <span class="op">+</span> lags, :].T <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(f.shape[<span class="dv">0</span>] <span class="op">-</span> lags)]</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>np.array(features).shape, np.array(targets).shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>((517, 20, 4), (517, 20))</code></pre>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">설명변수</th>
+<th style="text-align: center;">반응변수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\({\bf X} = {\tt features} = \begin{bmatrix} {\bf f}_1 &amp; {\bf f}_2 &amp; {\bf f}_3 &amp; {\bf f}_4 \\ {\bf f}_2 &amp; {\bf f}_3 &amp; {\bf f}_4 &amp; {\bf f}_5 \\ \dots &amp; \dots &amp; \dots &amp; \dots \\ {\bf f}_{517} &amp; {\bf f}_{518} &amp; {\bf f}_{519} &amp; {\bf f}_{520} \end{bmatrix}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\({\bf y}= {\tt targets} = \begin{bmatrix} {\bf f}_5 \\ {\bf f}_6 \\ \dots \\ {\bf f}_{521} \end{bmatrix}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>AR 느낌으로 표현하면 AR(4) 임</li>
+</ul>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> torch_geometric_temporal.signal.StaticGraphTemporalSignal(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    edge_index<span class="op">=</span> edges,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    edge_weight <span class="op">=</span> edge_weight,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    features <span class="op">=</span> features,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    targets <span class="op">=</span> targets</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dataset</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>&lt;torch_geometric_temporal.signal.static_graph_temporal_signal.StaticGraphTemporalSignal at 0x7f3423668bd0&gt;</code></pre>
+</div>
+</div>
+<p><code>-</code> 그런데 이 과정을 아래와 같이 할 수도 있음</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PyTorch Geometric Temporal 공식홈페이지에 소개된 코드</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> torch_geometric_temporal.dataset.ChickenpoxDatasetLoader()</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>dataset<span class="op">=</span>loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
+<p><code>-</code> dataset은 <code>dataset[0]</code>, <span class="math inline">\(\dots\)</span> , <code>dataset[516]</code>과 같은 방식으로 각 시점별 자료에 접근가능</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>Data(x=[20, 4], edge_index=[2, 102], edge_attr=[102], y=[20])</code></pre>
+</div>
+</div>
+<p>각 시점에 대한 자료형은 아까 살펴보았던 PyG의 Data 자료형과 같음</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(dataset[<span class="dv">0</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>torch_geometric.data.data.Data</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>].x </span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>tensor([[-1.0814e-03,  2.8571e-02,  3.5474e-01,  2.9544e-01],
+        [-7.1114e-01, -5.9843e-01,  1.9051e-01,  1.0922e+00],
+        [-3.2281e+00, -2.2910e-01,  1.6103e+00, -1.5487e+00],
+        [ 6.4750e-01, -2.2117e+00, -9.6858e-01,  1.1862e+00],
+        [-1.7302e-01, -9.4717e-01,  1.0347e+00, -6.3751e-01],
+        [ 3.6345e-01, -7.5468e-01,  2.9768e-01, -1.6273e-01],
+        [-3.4174e+00,  1.7031e+00, -1.6434e+00,  1.7434e+00],
+        [-1.9641e+00,  5.5208e-01,  1.1811e+00,  6.7002e-01],
+        [-2.2133e+00,  3.0492e+00, -2.3839e+00,  1.8545e+00],
+        [-3.3141e-01,  9.5218e-01, -3.7281e-01, -8.2971e-02],
+        [-1.8380e+00, -5.8728e-01, -3.5514e-02, -7.2298e-02],
+        [-3.4669e-01, -1.9827e-01,  3.9540e-01, -2.4774e-01],
+        [ 1.4219e+00, -1.3266e+00,  5.2338e-01, -1.6374e-01],
+        [-7.7044e-01,  3.2872e-01, -1.0400e+00,  3.4945e-01],
+        [-7.8061e-01, -6.5022e-01,  1.4361e+00, -1.2864e-01],
+        [-1.0993e+00,  1.2732e-01,  5.3621e-01,  1.9023e-01],
+        [ 2.4583e+00, -1.7811e+00,  5.0732e-02, -9.4371e-01],
+        [ 1.0945e+00, -1.5922e+00,  1.3818e-01,  1.1855e+00],
+        [-7.0875e-01, -2.2460e-01, -7.0875e-01,  1.5630e+00],
+        [-1.8228e+00,  7.8633e-01, -5.6172e-01,  1.2647e+00]])</code></pre>
+</div>
+</div>
+<ul>
+<li>이 값들은 <code>features[0]</code>의 값들과 같음. 즉 <span class="math inline">\([{\bf f}_1~ {\bf f}_2~ {\bf f}_3~ {\bf f}_4]\)</span>를 의미함</li>
+</ul>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dataset[<span class="dv">0</span>].y</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>tensor([ 0.7106, -0.0725,  2.6099,  1.7870,  0.8024, -0.2614, -0.8370,  1.9674,
+        -0.4212,  0.1655,  1.2519,  2.3743,  0.7877,  0.4531, -0.1721, -0.0614,
+         1.0452,  0.3203, -1.3791,  0.0036])</code></pre>
+</div>
+</div>
+<ul>
+<li>이 값들은 <code>targets[0]</code>의 값들과 같음. 즉 <span class="math inline">\({\bf f}_5\)</span>를 의미함</li>
+</ul>
+</section>
+</section>
+<section id="chickenpoxdataset-분석" class="level1">
+<h1>ChickenpoxDataset 분석</h1>
+<p>A dataset of county level chicken pox cases in Hungary between 2004 and 2014. We made it public during the development of PyTorch Geometric Temporal. The underlying graph is static - vertices are counties and edges are neighbourhoods. Vertex features are lagged weekly counts of the chickenpox cases (we included 4 lags). The target is the weekly number of cases for the upcoming week (signed integers). Our dataset consist of more than 500 snapshots (weeks).</p>
+<section id="summary-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-data">summary of data</h2>
+<ul>
+<li><span class="math inline">\(T\)</span> = 519</li>
+<li><span class="math inline">\(N\)</span> = 20 # number of nodes</li>
+<li><span class="math inline">\(|{\cal E}|\)</span> = 102 # edges</li>
+<li><span class="math inline">\(f(t,v)\)</span>의 차원? (1,)</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li>시간에 따라서 Number of nodes가 변하는지? False</li>
+<li><span class="math inline">\({\bf X}\)</span>: (20,4)</li>
+<li><span class="math inline">\({\bf y}\)</span>: (20,)</li>
+<li>예제코드적용가능여부: Yes</li>
+</ul>
+<p><code>-</code> Nodes : <code>20</code></p>
+<ul>
+<li>vertices are counties</li>
+</ul>
+<p><code>-</code>Edges : <code>102</code></p>
+<ul>
+<li>edges are neighbourhoods</li>
+</ul>
+<p><code>-</code> Time : <code>519</code></p>
+<ul>
+<li>between 2004 and 2014</li>
+<li>per weeks</li>
+</ul>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> torch_geometric_temporal.dataset.ChickenpoxDatasetLoader()</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.8</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="learn" class="level2">
+<h2 class="anchored" data-anchor-id="learn">learn</h2>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>, filters<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>model.train()</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> tqdm(<span class="bu">range</span>(<span class="dv">50</span>)):</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(train_dataset):</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        yt_hat <span class="op">=</span> model(snapshot.x, snapshot.edge_index, snapshot.edge_attr)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> torch.mean((yt_hat<span class="op">-</span>snapshot.y)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        cost.backward()</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 50/50 [00:57&lt;00:00,  1.15s/it]</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">visualization</h2>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>RecurrentGCN(
+  (recurrent): GConvGRU(
+    (conv_x_z): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_z): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_r): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_r): ChebConv(32, 32, K=2, normalization=sym)
+    (conv_x_h): ChebConv(4, 32, K=2, normalization=sym)
+    (conv_h_h): ChebConv(32, 32, K=2, normalization=sym)
+  )
+  (linear): Linear(in_features=32, out_features=1, bias=True)
+)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>yhat_train <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> train_dataset]).detach().numpy()</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>yhat_test <span class="op">=</span> torch.stack([model(snapshot.x,snapshot.edge_index, snapshot.edge_attr) <span class="cf">for</span> snapshot <span class="kw">in</span> test_dataset]).detach().numpy()</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="bu">list</span>(data_dict[<span class="st">'node_ids'</span>].keys())</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fig,ax <span class="op">=</span> plt.subplots(<span class="dv">20</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">50</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    ax[k].plot(f[:,k],<span class="st">'--'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>,label<span class="op">=</span><span class="st">'observed'</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    ax[k].set_title(<span class="st">'node: </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(V[k]))</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    ax[k].plot(yhat_train[:,k],label<span class="op">=</span><span class="st">'predicted (tr)'</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    ax[k].plot(<span class="bu">range</span>(yhat_train.shape[<span class="dv">0</span>],yhat_train.shape[<span class="dv">0</span>]<span class="op">+</span>yhat_test.shape[<span class="dv">0</span>]),yhat_test[:,k],label<span class="op">=</span><span class="st">'predicted (test)'</span>)</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    ax[k].legend()</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-12-29-STGCN-tutorial_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>일반적인 기하학적 딥러닝을 위한 파이토치 패키지<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>STGCN을 위한 패키지<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

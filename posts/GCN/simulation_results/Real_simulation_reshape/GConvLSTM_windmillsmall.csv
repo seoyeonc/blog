@@ -1,0 +1,9 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+windmillsmall,STGCN,0.7,rand,8,16,linear,50,1.4747520685195925,6081.530960559845
+windmillsmall,IT-STGCN,0.7,rand,8,16,linear,50,1.117027759552002,30600.46528816223
+windmillsmall,STGCN,0.7,rand,8,16,linear,50,1.5705970525741575,6189.605512857437
+windmillsmall,IT-STGCN,0.7,rand,8,16,linear,50,1.2026646137237549,31607.60653090477
+windmillsmall,STGCN,0.7,rand,8,16,linear,50,1.6259145736694336,6130.966603040695
+windmillsmall,IT-STGCN,0.7,rand,8,16,linear,50,1.142159342765808,30735.604575395584
+windmillsmall,STGCN,0.7,rand,8,16,linear,50,1.6259145736694336,6130.966603040695
+windmillsmall,IT-STGCN,0.7,rand,8,16,linear,50,1.142159342765808,30735.604575395584

@@ -24,6 +24,9 @@ Hi, there ;)
 드랍박스 상태
 - dropbox status
 
+드롭박스 시작
+- dropbox start
+
 terminal check
 
 - top

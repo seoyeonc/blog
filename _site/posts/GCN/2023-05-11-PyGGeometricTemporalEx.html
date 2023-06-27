@@ -318,6 +318,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
   </div>
 </li>
@@ -567,7 +577,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#lightning설치-안-됨" id="toc-lightning설치-안-됨" class="nav-link" data-scroll-target="#lightning설치-안-됨">Lightning(설치 안 됨)</a></li>
   <li><a href="#lrgcndone" id="toc-lrgcndone" class="nav-link" data-scroll-target="#lrgcndone">LRGCN(Done)</a></li>
   <li><a href="#mpnnlstm" id="toc-mpnnlstm" class="nav-link" data-scroll-target="#mpnnlstm">MPNNLSTM</a></li>
-  <li><a href="#tgcn" id="toc-tgcn" class="nav-link" data-scroll-target="#tgcn">TGCN</a></li>
+  <li><a href="#tgcndone" id="toc-tgcndone" class="nav-link" data-scroll-target="#tgcndone">TGCN(Done)</a></li>
   </ul>
 </nav>
     </div>
@@ -1313,7 +1323,7 @@ Args:
 </section>
 <section id="dygrencoder" class="level1">
 <h1>DYGRENCODER</h1>
-<div class="cell" data-execution_count="143">
+<div class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>DyGrEncoder?</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div class="ansi-escaped-output">
@@ -1344,14 +1354,14 @@ Args:
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="60">
+<div class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
 <span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tqdm(iterable):</span>
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> iterable</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="61">
+<div class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch.nn.functional as F</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> DyGrEncoder</span>
@@ -1365,7 +1375,7 @@ Args:
 <span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="62">
+<div class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features):</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -1378,7 +1388,7 @@ Args:
 <span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
 <span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h, h_0, c_0</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="63">
+<div class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features <span class="op">=</span> <span class="dv">4</span>)</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -1401,10 +1411,10 @@ Args:
 <span id="cb69-20"><a href="#cb69-20" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span>
 <span id="cb69-21"><a href="#cb69-21" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 200/200 [00:17&lt;00:00, 11.24it/s]</code></pre>
+<pre><code>100%|██████████| 200/200 [00:20&lt;00:00,  9.58it/s]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="64">
+<div class="cell" data-tags="[]" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>h, c <span class="op">=</span> <span class="va">None</span>, <span class="va">None</span></span>
@@ -1420,16 +1430,16 @@ Args:
 <span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> cost.item()</span>
 <span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.3797</code></pre>
+<pre><code>MSE: 0.4587</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="65">
+<div class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="66">
+<div class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="67">
+<div class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2314,7 +2324,7 @@ Args:
 </section>
 <section id="mpnnlstm" class="level1">
 <h1>MPNNLSTM</h1>
-<div class="cell" data-execution_count="149">
+<div class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>MPNNLSTM?</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div class="ansi-escaped-output">
@@ -2343,14 +2353,14 @@ Args:
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="121">
+<div class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
 <span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
 <span id="cb139-4"><a href="#cb139-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> tqdm(iterable):</span>
 <span id="cb139-5"><a href="#cb139-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> iterable</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="122">
+<div class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
 <span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch.nn.functional as F</span></span>
 <span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> MPNNLSTM</span>
@@ -2364,10 +2374,10 @@ Args:
 <span id="cb140-11"><a href="#cb140-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb140-12"><a href="#cb140-12" aria-hidden="true" tabindex="-1"></a>train_dataset, test_dataset <span class="op">=</span> temporal_signal_split(dataset, train_ratio<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="123">
+<div class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>num_nodes<span class="op">=</span><span class="dv">2</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="124">
+<div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
 <span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features):</span>
 <span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -2380,10 +2390,10 @@ Args:
 <span id="cb142-10"><a href="#cb142-10" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
 <span id="cb142-11"><a href="#cb142-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="125">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features <span class="op">=</span> <span class="dv">4</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="126">
+<div class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
 <span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a>model.train()</span>
@@ -2402,10 +2412,10 @@ Args:
 <span id="cb144-16"><a href="#cb144-16" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span>
 <span id="cb144-17"><a href="#cb144-17" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 50/50 [01:08&lt;00:00,  1.38s/it]</code></pre>
+<pre><code>100%|██████████| 50/50 [00:57&lt;00:00,  1.14s/it]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="127">
+<div class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2419,16 +2429,16 @@ Args:
 <span id="cb146-11"><a href="#cb146-11" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> cost.item()</span>
 <span id="cb146-12"><a href="#cb146-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MSE: </span><span class="sc">{:.4f}</span><span class="st">"</span>.<span class="bu">format</span>(cost))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MSE: 0.7127</code></pre>
+<pre><code>MSE: 0.3623</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="128">
+<div class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="129">
+<div class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb149"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="130">
+<div class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2458,8 +2468,8 @@ Args:
 </div>
 </div>
 </section>
-<section id="tgcn" class="level1">
-<h1>TGCN</h1>
+<section id="tgcndone" class="level1">
+<h1>TGCN(Done)</h1>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb151"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>TGCN?</span></code></pre></div>
 <div class="cell-output cell-output-display">

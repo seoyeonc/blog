@@ -321,6 +321,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation Tables_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
   </div>
 </li>
@@ -610,36 +620,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="103">
+<div class="cell" data-execution_count="150">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="104">
+<div class="cell" data-execution_count="151">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="105">
+<div class="cell" data-execution_count="152">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="106">
+<div class="cell" data-execution_count="153">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="107">
+<div class="cell" data-execution_count="154">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="108">
+<div class="cell" data-execution_count="155">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="109">
+<div class="cell" data-execution_count="156">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="110">
+<div class="cell" data-execution_count="157">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="111">
+<div class="cell" data-execution_count="158">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="112">
+<div class="cell" data-execution_count="159">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="112">
+<div class="cell-output cell-output-display" data-execution_count="159">
 
 <div>
 
@@ -805,17 +815,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>2088 rows × 10 columns</p>
+<p>2092 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="113">
+<div class="cell" data-execution_count="160">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="114">
+<div class="cell" data-execution_count="161">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data_pedal2,data_wiki_GSO])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="115">
+<div class="cell" data-execution_count="162">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU_pedal_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 </section>
@@ -823,11 +833,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Fivenodes</h1>
 <section id="baseline" class="level2">
 <h2 class="anchored" data-anchor-id="baseline">Baseline</h2>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="129">
 
 <div>
 
@@ -867,11 +877,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random" class="level2">
 <h2 class="anchored" data-anchor-id="random">Random</h2>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"nof_filters==12"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="130">
 
 <div>
 
@@ -932,11 +942,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block" class="level2">
 <h2 class="anchored" data-anchor-id="block">Block</h2>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="131">
 
 <div>
 
@@ -979,11 +989,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>ChickenpoxDatasetLoader(lags=4)</h1>
 <section id="baseline-1" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-1">Baseline</h2>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="132">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"nof_filters==16"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="132">
 
 <div>
 
@@ -1020,11 +1030,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-1" class="level2">
 <h2 class="anchored" data-anchor-id="random-1">Random</h2>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="133">
 
 <div>
 
@@ -1085,11 +1095,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-1" class="level2">
 <h2 class="anchored" data-anchor-id="block-1">Block</h2>
-<div class="cell" data-execution_count="51">
+<div class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display" data-execution_count="134">
 
 <div>
 
@@ -1153,11 +1163,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>PedalMeDatasetLoader (lags=4)</h1>
 <section id="baseline-2" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-2">Baseline</h2>
-<div class="cell" data-execution_count="52">
+<div class="cell" data-execution_count="135">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="135">
 
 <div>
 
@@ -1197,11 +1207,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-2" class="level2">
 <h2 class="anchored" data-anchor-id="random-2">Random</h2>
-<div class="cell" data-execution_count="53">
+<div class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
+<div class="cell-output cell-output-display" data-execution_count="136">
 
 <div>
 
@@ -1298,11 +1308,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-2" class="level2">
 <h2 class="anchored" data-anchor-id="block-2">Block</h2>
-<div class="cell" data-execution_count="54">
+<div class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="54">
+<div class="cell-output cell-output-display" data-execution_count="137">
 
 <div>
 
@@ -1363,11 +1373,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="w_st" class="level2">
 <h2 class="anchored" data-anchor-id="w_st">W_st</h2>
-<div class="cell" data-execution_count="55">
+<div class="cell" data-execution_count="138">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_pedal2.query(<span class="st">"mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>         data_pedal2.query(<span class="st">"mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="55">
+<div class="cell-output cell-output-display" data-execution_count="138">
 
 <div>
 
@@ -1461,11 +1471,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="56">
+<div class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_pedal2.query(<span class="st">"mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>         data_pedal2.query(<span class="st">"mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="139">
 
 <div>
 
@@ -1529,11 +1539,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WikiMathsDatasetLoader (lags=8)</h1>
 <section id="baseline-3" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-3">Baseline</h2>
-<div class="cell" data-execution_count="57">
+<div class="cell" data-execution_count="140">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="57">
+<div class="cell-output cell-output-display" data-execution_count="140">
 
 <div>
 
@@ -1573,11 +1583,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-3" class="level2">
 <h2 class="anchored" data-anchor-id="random-3">Random</h2>
-<div class="cell" data-execution_count="58">
+<div class="cell" data-execution_count="141">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="58">
+<div class="cell-output cell-output-display" data-execution_count="141">
 
 <div>
 
@@ -1633,11 +1643,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-3" class="level2">
 <h2 class="anchored" data-anchor-id="block-3">Block</h2>
-<div class="cell" data-execution_count="59">
+<div class="cell" data-execution_count="142">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="142">
 
 <div>
 
@@ -1693,11 +1703,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="missing-values-on-the-same-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values-on-the-same-nodes">missing values on the same nodes</h2>
-<div class="cell" data-execution_count="60">
+<div class="cell" data-execution_count="143">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="143">
 
 <div>
 
@@ -1740,11 +1750,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WindmillOutputSmallDatasetLoader (lags=8)</h1>
 <section id="baseline-4" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-4">Baseline</h2>
-<div class="cell" data-execution_count="93">
+<div class="cell" data-execution_count="163">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="93">
+<div class="cell-output cell-output-display" data-execution_count="163">
 
 <div>
 
@@ -1781,11 +1791,195 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">Random</h2>
-<div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="94">
+<div class="cell" data-execution_count="164">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).reset_index()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="164">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>index</th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.639786</td>
+      <td>4142.791872</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>9</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.217917</td>
+      <td>34130.411566</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.733121</td>
+      <td>4349.497847</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>13</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.133768</td>
+      <td>33006.879024</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.601861</td>
+      <td>4117.736991</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>119</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.208862</td>
+      <td>32673.542295</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>122</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.672831</td>
+      <td>4024.534826</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>123</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.205380</td>
+      <td>28200.751033</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>126</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.632454</td>
+      <td>4247.502321</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>127</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.7</td>
+      <td>rand</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.182957</td>
+      <td>39258.379833</td>
+    </tr>
+  </tbody>
+</table>
+<p>62 rows × 11 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="165">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="165">
 
 <div>
 
@@ -1806,16 +2000,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.7</td>
       <td>8</td>
       <td>IT-STGCN</td>
-      <td>1.193</td>
-      <td>0.041</td>
+      <td>1.194</td>
+      <td>0.042</td>
     </tr>
     <tr>
       <th>1</th>
       <td>0.7</td>
       <td>8</td>
       <td>STGCN</td>
-      <td>1.660</td>
-      <td>0.071</td>
+      <td>1.662</td>
+      <td>0.073</td>
     </tr>
   </tbody>
 </table>
@@ -1825,11 +2019,712 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-4" class="level2">
 <h2 class="anchored" data-anchor-id="block-4">Block</h2>
-<div class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="95">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).reset_index()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="166">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>index</th>
+      <th>dataset</th>
+      <th>method</th>
+      <th>mrate</th>
+      <th>mtype</th>
+      <th>lags</th>
+      <th>nof_filters</th>
+      <th>inter_method</th>
+      <th>epoch</th>
+      <th>mse</th>
+      <th>calculation_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>120</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.011173</td>
+      <td>4186.271928</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>121</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.015996</td>
+      <td>30426.787585</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>124</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.003777</td>
+      <td>4163.477105</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>125</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008554</td>
+      <td>35505.388252</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>128</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007140</td>
+      <td>4341.275264</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>129</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>0.999393</td>
+      <td>37842.089439</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>130</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008130</td>
+      <td>4019.425580</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>131</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007154</td>
+      <td>33481.096587</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>132</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.001680</td>
+      <td>3196.550570</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>133</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.017793</td>
+      <td>21225.880962</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>134</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.009946</td>
+      <td>3217.731181</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>135</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.006469</td>
+      <td>22590.231175</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>136</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.006911</td>
+      <td>4122.139986</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>137</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.006911</td>
+      <td>31003.411002</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>138</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008970</td>
+      <td>4120.035429</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>139</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007550</td>
+      <td>30758.373535</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>140</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.011992</td>
+      <td>4105.820731</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>141</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.003163</td>
+      <td>31181.305546</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>142</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.011058</td>
+      <td>4200.919315</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>143</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.006836</td>
+      <td>30340.990110</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>144</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.000700</td>
+      <td>4211.286793</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>145</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.010848</td>
+      <td>27795.117709</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>146</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.022252</td>
+      <td>3485.203112</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>147</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008914</td>
+      <td>28576.347170</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>148</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.010154</td>
+      <td>3849.964254</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>149</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.009511</td>
+      <td>32093.188944</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>150</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.018133</td>
+      <td>3860.597157</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>151</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>0.996761</td>
+      <td>30803.525869</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>152</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>0.999824</td>
+      <td>3971.087632</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>153</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.004802</td>
+      <td>31348.973115</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>154</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007835</td>
+      <td>4022.586673</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>155</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.002686</td>
+      <td>34100.691169</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>156</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.004659</td>
+      <td>4162.961829</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>157</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.003709</td>
+      <td>29722.048990</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>158</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.011337</td>
+      <td>4077.099521</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>159</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.000700</td>
+      <td>24092.099175</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>160</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.005049</td>
+      <td>3998.083478</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>161</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008390</td>
+      <td>24199.556252</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>162</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.001029</td>
+      <td>4006.824719</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>163</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.008606</td>
+      <td>27513.894079</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>164</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.004672</td>
+      <td>4130.705499</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>165</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.012547</td>
+      <td>31634.375919</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>166</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007699</td>
+      <td>4122.510187</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>167</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.005711</td>
+      <td>31649.163356</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>168</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.018735</td>
+      <td>4156.541561</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>169</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.006286</td>
+      <td>31542.585428</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>170</td>
+      <td>windmillsmall</td>
+      <td>STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>0.997657</td>
+      <td>4080.055253</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>171</td>
+      <td>windmillsmall</td>
+      <td>IT-STGCN</td>
+      <td>0.081291</td>
+      <td>block</td>
+      <td>8</td>
+      <td>12</td>
+      <td>linear</td>
+      <td>50</td>
+      <td>1.007638</td>
+      <td>31645.240758</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="146">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="146">
 
 <div>
 
@@ -1850,7 +2745,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.081</td>
       <td>8</td>
       <td>IT-STGCN</td>
-      <td>1.012</td>
+      <td>1.007</td>
       <td>0.005</td>
     </tr>
     <tr>
@@ -1858,8 +2753,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.081</td>
       <td>8</td>
       <td>STGCN</td>
-      <td>1.007</td>
-      <td>0.005</td>
+      <td>1.009</td>
+      <td>0.006</td>
     </tr>
   </tbody>
 </table>
@@ -1873,9 +2768,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="baseline-5" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-5">Baseline</h2>
 <div class="cell" data-execution_count="65">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="65">
 
 <div>
@@ -1914,9 +2809,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="random-5" class="level2">
 <h2 class="anchored" data-anchor-id="random-5">Random</h2>
 <div class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 
 <div>
@@ -1961,9 +2856,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="block-5" class="level2">
 <h2 class="anchored" data-anchor-id="block-5">Block</h2>
 <div class="cell" data-execution_count="67">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
 
 <div>

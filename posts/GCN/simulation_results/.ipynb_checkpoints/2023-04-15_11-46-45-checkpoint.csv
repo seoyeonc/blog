@@ -1,0 +1,5 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+windmilsmall,STGCN,0.5,rand,8,12,linear,1,1.2870405912399292,72.60557413101196
+windmilsmall,STGCN,0.5,rand,8,12,cubic,1,1.954025387763977,72.80451679229736
+windmilsmall,IT-STGCN,0.5,rand,8,12,linear,1,1.1109510660171509,266.89895367622375
+windmilsmall,IT-STGCN,0.5,rand,8,12,cubic,1,1.314661979675293,270.1441276073456

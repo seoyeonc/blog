@@ -13,7 +13,8 @@ import torch.nn.functional as F
 # from torch_geometric_temporal.nn.recurrent import LRGCN
 # from torch_geometric_temporal.nn.recurrent import TGCN
 # from torch_geometric_temporal.nn.recurrent import EvolveGCNO
-from torch_geometric_temporal.nn.recurrent import DyGrEncoder
+# from torch_geometric_temporal.nn.recurrent import DyGrEncoder
+from torch_geometric_temporal.nn.recurrent import EvolveGCNH
 
 
 # utils
@@ -178,17 +179,29 @@ def update_from_freq_domain(signal, missing_index,edge_index,edge_weight):
 #         h = self.linear(h)
 #         return h
     
-class RecurrentGCN(torch.nn.Module):
-    def __init__(self, node_features, filters):
-        super(RecurrentGCN, self).__init__()
-        self.recurrent = DyGrEncoder(conv_out_channels=node_features, conv_num_layers=1, conv_aggr="mean", lstm_out_channels=filters, lstm_num_layers=1)
-        self.linear = torch.nn.Linear(filters, 1)
+# class RecurrentGCN(torch.nn.Module):
+#     def __init__(self, node_features, filters):
+#         super(RecurrentGCN, self).__init__()
+#         self.recurrent = DyGrEncoder(conv_out_channels=node_features, conv_num_layers=1, conv_aggr="mean", lstm_out_channels=filters, lstm_num_layers=1)
+#         self.linear = torch.nn.Linear(filters, 1)
 
-    def forward(self, x, edge_index, edge_weight, h_0, c_0):
-        h, h_0, c_0 = self.recurrent(x, edge_index, edge_weight, h_0, c_0)
+#     def forward(self, x, edge_index, edge_weight, h_0, c_0):
+#         h, h_0, c_0 = self.recurrent(x, edge_index, edge_weight, h_0, c_0)
+#         h = F.relu(h)
+#         h = self.linear(h)
+#         return h, h_0, c_0
+
+class RecurrentGCN(torch.nn.Module):
+    def __init__(self, num_of_nodes, node_features, filters):
+        super(RecurrentGCN, self).__init__()
+        self.recurrent = EvolveGCNH(num_of_nodes, node_features)
+        self.linear = torch.nn.Linear(node_features, 1)
+
+    def forward(self, x, edge_index, edge_weight):
+        h = self.recurrent(x, edge_index, edge_weight)
         h = F.relu(h)
         h = self.linear(h)
-        return h, h_0, c_0
+        return h
     
     
 class StgcnLearner:
@@ -202,16 +215,18 @@ class StgcnLearner:
         self.mtype = getattr(self.train_dataset,'mtype',None)
         self.interpolation_method = getattr(self.train_dataset,'interpolation_method',None)
         self.method = 'STGCN'
+        self.N = np.array(train_dataset.features).shape[1]
+        
     def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+        # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+        self.model = RecurrentGCN(num_of_nodes=self.N,node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
         for e in range(epoch):
+            
             cost = 0
-            self.h, self.c = None, None
             for t, snapshot in enumerate(self.train_dataset):
-                y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
-                y_hat = y_hat.reshape(-1)
+                y_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
                 cost = cost + torch.mean((y_hat-snapshot.y)**2)
             cost = cost / (t+1)
             cost.backward()
@@ -224,8 +239,8 @@ class StgcnLearner:
     def __call__(self,dataset):
         X = torch.tensor(dataset.features).float()
         y = torch.tensor(dataset.targets).float()
-        # yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
-        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)[0] for snapshot in dataset]).detach().squeeze().float()
+        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
+        # yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)[0] for snapshot in dataset]).detach().squeeze().float()
         # yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr,self.hidden_state)[0] for snapshot in dataset]).detach().squeeze().float()
         return {'X':X, 'y':y, 'yhat':yhat} 
 
@@ -234,7 +249,8 @@ class ITStgcnLearner(StgcnLearner):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
     def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+        # self.model = RecurrentGCN(node_features=self.lags, filters=filters)
+        self.model = RecurrentGCN(num_of_nodes=self.N,node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
         self.model.train()
         train_dataset_temp = copy.copy(self.train_dataset)
@@ -249,10 +265,8 @@ class ITStgcnLearner(StgcnLearner):
             }
             train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
             cost = 0
-            self.h, self.c = None, None
             for t, snapshot in enumerate(train_dataset_temp):
-                y_hat, self.h, self.c = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, self.h, self.c)
-                y_hat = y_hat.reshape(-1)
+                y_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
                 cost = cost + torch.mean((y_hat-snapshot.y)**2)
             cost = cost / (t+1)
             cost.backward()

@@ -2461,11 +2461,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="시도-10-noise-50" class="level1">
 <h1>시도 10 noise 50%</h1>
-<div class="cell" data-execution_count="3588">
+<div class="cell" data-execution_count="898">
 <div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">500</span></span>
 <span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(T)<span class="op">/</span>T <span class="op">*</span> <span class="dv">5</span></span>
 <span id="cb211-3"><a href="#cb211-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-4"><a href="#cb211-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.5</span><span class="op">*</span>np.random.rand(T)<span class="op">+</span>np.sin(<span class="dv">4</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">8</span><span class="op">*</span>t)</span>
+<span id="cb211-4"><a href="#cb211-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">2</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>np.random.rand(T)<span class="op">+</span>np.sin(<span class="dv">4</span><span class="op">*</span>t)<span class="op">+</span><span class="fl">1.5</span><span class="op">*</span>np.sin(<span class="dv">8</span><span class="op">*</span>t)</span>
 <span id="cb211-5"><a href="#cb211-5" aria-hidden="true" tabindex="-1"></a>eps_x  <span class="op">=</span> np.random.normal(size<span class="op">=</span>T)<span class="op">*</span><span class="dv">0</span></span>
 <span id="cb211-6"><a href="#cb211-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()</span>
 <span id="cb211-7"><a href="#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,T):</span>
@@ -2494,48 +2494,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-189-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="3589">
+<div class="cell" data-execution_count="899">
 <div class="sourceCode cell-code" id="cb212"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb212-1"><a href="#cb212-1" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> itstgcn.DatasetLoader(data_dict1)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3590">
+<div class="cell" data-execution_count="900">
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3591">
+<div class="cell" data-execution_count="901">
 <div class="sourceCode cell-code" id="cb214"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb214-1"><a href="#cb214-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [random.sample(<span class="bu">range</span>(<span class="dv">0</span>, T), <span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.7</span>)),[np.array(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">40</span>,<span class="dv">85</span>)))]]</span>
 <span id="cb214-2"><a href="#cb214-2" aria-hidden="true" tabindex="-1"></a>dataset_miss <span class="op">=</span> itstgcn.miss(dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3592">
+<div class="cell" data-execution_count="902">
 <div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mindex = [[np.array(list(range(181,300)))],[np.array(list(range(20,35)))]]</span></span>
 <span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset_miss = itstgcn.miss(dataset,mindex,mtype='block')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3593">
+<div class="cell" data-execution_count="903">
 <div class="sourceCode cell-code" id="cb216"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb216-1"><a href="#cb216-1" aria-hidden="true" tabindex="-1"></a>dataset_padded <span class="op">=</span> itstgcn.padding(dataset_miss,interpolation_method<span class="op">=</span><span class="st">'linear'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3594">
+<div class="cell" data-execution_count="904">
 <div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcn.StgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3602">
+<div class="cell" data-execution_count="905">
 <div class="sourceCode cell-code" id="cb218"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb218-1"><a href="#cb218-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">12</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="3603">
+<div class="cell" data-execution_count="906">
 <div class="sourceCode cell-code" id="cb220"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb220-1"><a href="#cb220-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> Eval_csy(lrnr,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3604">
+<div class="cell" data-execution_count="907">
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>lrnr_2 <span class="op">=</span> itstgcn.ITStgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3605">
+<div class="cell" data-execution_count="908">
 <div class="sourceCode cell-code" id="cb222"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb222-1"><a href="#cb222-1" aria-hidden="true" tabindex="-1"></a>lrnr_2.learn(filters<span class="op">=</span><span class="dv">12</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="3606">
+<div class="cell" data-execution_count="909">
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>evtor_2 <span class="op">=</span> Eval_csy(lrnr_2,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3607">
+<div class="cell" data-execution_count="910">
 <div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb225-2"><a href="#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb225-3"><a href="#cb225-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>
@@ -2572,7 +2572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-04-27-toy_example_figure_files/figure-html/cell-201-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="3608">
+<div class="cell" data-execution_count="911">
 <div class="sourceCode cell-code" id="cb226"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb226-1"><a href="#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb226-2"><a href="#cb226-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.rcParams['font.family'] = 'xkcd'</span></span>
 <span id="cb226-3"><a href="#cb226-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plt.xkcd(scale=0,length=200)</span></span>

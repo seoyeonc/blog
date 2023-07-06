@@ -637,141 +637,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Conf_matrx:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,original,compare,tab):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.original <span class="op">=</span> original</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.compare <span class="op">=</span> compare</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tab <span class="op">=</span> tab</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> conf(<span class="va">self</span>,name):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conf_matrix <span class="op">=</span> confusion_matrix(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        ax.matshow(<span class="va">self</span>.conf_matrix, cmap<span class="op">=</span>plt.cm.Oranges, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.conf_matrix.shape[<span class="dv">0</span>]):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.conf_matrix.shape[<span class="dv">1</span>]):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                ax.text(x<span class="op">=</span>j, y<span class="op">=</span>i,s<span class="op">=</span><span class="va">self</span>.conf_matrix[i, j], va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, size<span class="op">=</span><span class="st">'xx-large'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Predictions'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Actuals'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Confusion Matrix'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.acc <span class="op">=</span> accuracy_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pre <span class="op">=</span> precision_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rec <span class="op">=</span> recall_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.f1 <span class="op">=</span> f1_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.acc)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Precision: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.pre)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Recall: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.rec)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'F1 Score: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.f1)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tab <span class="op">=</span> <span class="va">self</span>.tab.append(pd.DataFrame({<span class="st">"Accuracy"</span>:[<span class="va">self</span>.acc],<span class="st">"Precision"</span>:[<span class="va">self</span>.pre],<span class="st">"Recall"</span>:[<span class="va">self</span>.rec],<span class="st">"F1"</span>:[<span class="va">self</span>.f1]},index <span class="op">=</span> [name]))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="203">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">1</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> rnorm(<span class="dv">1000</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> sample(c(runif(<span class="dv">25</span>,<span class="op">-</span><span class="dv">7</span>,<span class="op">-</span><span class="dv">5</span>), runif(<span class="dv">25</span>,<span class="dv">5</span>,<span class="dv">7</span>), rep(<span class="dv">0</span>,<span class="dv">950</span>)))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier <span class="op">=</span> which(signal<span class="op">!=</span><span class="dv">0</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier_bool <span class="op">=</span> signal<span class="op">!=</span><span class="dv">0</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>signal<span class="op">+</span>epsilon</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plot(<span class="dv">1</span>:<span class="dv">1000</span>,x)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>points(index_of_trueoutlier,x[index_of_trueoutlier],col<span class="op">=</span><span class="dv">2</span>,cex<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> rnorm(<span class="dv">1000</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>signal <span class="op">=</span> sample(c(runif(<span class="dv">25</span>,<span class="op">-</span><span class="dv">7</span>,<span class="op">-</span><span class="dv">5</span>), runif(<span class="dv">25</span>,<span class="dv">5</span>,<span class="dv">7</span>), rep(<span class="dv">0</span>,<span class="dv">950</span>)))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier <span class="op">=</span> which(signal<span class="op">!=</span><span class="dv">0</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier_bool <span class="op">=</span> signal<span class="op">!=</span><span class="dv">0</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span>signal<span class="op">+</span>epsilon</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plot(<span class="dv">1</span>:<span class="dv">1000</span>,x)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>points(index_of_trueoutlier,x[index_of_trueoutlier],col<span class="op">=</span><span class="dv">2</span>,cex<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>%%R set.seed(1) epsilon = rnorm(1000) signal = sample(c(runif(25,-7,-2.5), runif(25,2.5,7), rep(0,950))) index_of_trueoutlier = which(signal!=0) index_of_trueoutlier_bool = signal!=0</p>
 <p>x=signal+epsilon plot(1:1000,x) points(index_of_trueoutlier,x[index_of_trueoutlier],col=2,cex=4)</p>
-<div class="cell" data-execution_count="204">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o x</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier_bool</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o signal</span></code></pre></div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o x</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o index_of_trueoutlier_bool</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>R <span class="op">-</span>o signal</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="205">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier_bool<span class="op">=</span>np.array(index_of_trueoutlier_bool,dtype<span class="op">=</span>np.bool8)</span></code></pre></div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>index_of_trueoutlier_bool<span class="op">=</span>np.array(index_of_trueoutlier_bool,dtype<span class="op">=</span>np.bool8)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="206">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span></code></pre></div>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="207">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>xhat <span class="op">=</span> np.array(ebayesthresh(FloatVector(x)))</span></code></pre></div>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xhat <span class="op">=</span> np.array(ebayesthresh(FloatVector(x)))</span></code></pre></div>
 </div>
 <section id="linear1" class="level2">
 <h2 class="anchored" data-anchor-id="linear1">Linear(1)</h2>
-<div class="cell" data-execution_count="208">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1000</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>_y1 <span class="op">=</span> <span class="dv">5</span><span class="op">*</span>_x</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>_y <span class="op">=</span> _y1 <span class="op">+</span> x <span class="co"># x is epsilon</span></span></code></pre></div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1000</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>_y1 <span class="op">=</span> <span class="dv">5</span><span class="op">*</span>_x</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>_y <span class="op">=</span> _y1 <span class="op">+</span> x <span class="co"># x is epsilon</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="209">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df1<span class="op">=</span>pd.DataFrame({<span class="st">'x'</span>:_x, <span class="st">'y'</span>:_y, <span class="st">'y1'</span>:_y1})</span></code></pre></div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df1<span class="op">=</span>pd.DataFrame({<span class="st">'x'</span>:_x, <span class="st">'y'</span>:_y, <span class="st">'y1'</span>:_y1})</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="210">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>w<span class="op">=</span>np.zeros((<span class="dv">1000</span>,<span class="dv">1000</span>))</span></code></pre></div>
+<div class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>w<span class="op">=</span>np.zeros((<span class="dv">1000</span>,<span class="dv">1000</span>))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="211">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">==</span>j :</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            w[i,j] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">&lt;=</span> <span class="dv">1</span> : </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            w[i,j] <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">==</span>j :</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            w[i,j] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">&lt;=</span> <span class="dv">1</span> : </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            w[i,j] <span class="op">=</span> <span class="dv">1</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="271">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SIMUL:</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> df.y.to_numpy()</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y1 <span class="op">=</span> df.y1.to_numpy()</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> df.x.to_numpy()</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.y)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> w</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)      </span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>,ref<span class="op">=</span><span class="dv">20</span>,ymin<span class="op">=-</span><span class="dv">5</span>,ymax<span class="op">=</span><span class="dv">20</span>,cuts<span class="op">=</span><span class="dv">0</span>,cutf<span class="op">=</span><span class="dv">995</span>): <span class="co"># fit with ebayesthresh</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ybar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.y <span class="co"># fbar := graph fourier transform of f</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.ybar<span class="op">**</span><span class="dv">2</span> </span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.ybar<span class="op">**</span><span class="dv">2</span>),sd<span class="op">=</span>sd))</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ybar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.ybar,<span class="dv">0</span>)</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.ybar_threshed</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(yHat <span class="op">=</span> <span class="va">self</span>.yhat)</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.y<span class="op">-</span> <span class="va">self</span>.df.yHat)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.differ<span class="op">=</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat)<span class="op">-</span>np.<span class="bu">min</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat)))<span class="op">/</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat))<span class="op">-</span>np.<span class="bu">min</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat))) <span class="co">#color 표현은 위핸 표준화</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(differ <span class="op">=</span> <span class="va">self</span>.differ)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.x,<span class="va">self</span>.y,color<span class="op">=</span><span class="st">'gray'</span>,s<span class="op">=</span><span class="dv">50</span>,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.x[index_of_trueoutlier_bool],<span class="va">self</span>.y[index_of_trueoutlier_bool],color<span class="op">=</span><span class="st">'red'</span>,s<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>        ax.plot(<span class="va">self</span>.x[cuts:cutf],<span class="va">self</span>.yhat[cuts:cutf], <span class="st">'--k'</span>,lw<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.df.query(<span class="st">'Residual**2&gt;@ref'</span>)[<span class="st">'x'</span>],<span class="va">self</span>.df.query(<span class="st">'Residual**2&gt;@ref'</span>)[<span class="st">'y'</span>],color<span class="op">=</span><span class="st">'red'</span>,s<span class="op">=</span><span class="dv">550</span>,facecolors<span class="op">=</span><span class="st">'none'</span>, edgecolors<span class="op">=</span><span class="st">'r'</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>        fig.tight_layout()</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>        fig.savefig(<span class="st">'fig1.eps'</span>,<span class="bu">format</span><span class="op">=</span><span class="st">'eps'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SIMUL:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> df.y.to_numpy()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y1 <span class="op">=</span> df.y1.to_numpy()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> df.x.to_numpy()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.y)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> w</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)      </span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>,ref<span class="op">=</span><span class="dv">20</span>,ymin<span class="op">=-</span><span class="dv">5</span>,ymax<span class="op">=</span><span class="dv">20</span>,cuts<span class="op">=</span><span class="dv">0</span>,cutf<span class="op">=</span><span class="dv">995</span>): <span class="co"># fit with ebayesthresh</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ybar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.y <span class="co"># fbar := graph fourier transform of f</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.ybar<span class="op">**</span><span class="dv">2</span> </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.ybar<span class="op">**</span><span class="dv">2</span>),sd<span class="op">=</span>sd))</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ybar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.ybar,<span class="dv">0</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.ybar_threshed</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(yHat <span class="op">=</span> <span class="va">self</span>.yhat)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.y<span class="op">-</span> <span class="va">self</span>.df.yHat)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.differ<span class="op">=</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat)<span class="op">-</span>np.<span class="bu">min</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat)))<span class="op">/</span>(np.<span class="bu">max</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat))<span class="op">-</span>np.<span class="bu">min</span>(np.<span class="bu">abs</span>(<span class="va">self</span>.y<span class="op">-</span><span class="va">self</span>.yhat))) <span class="co">#color 표현은 위핸 표준화</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(differ <span class="op">=</span> <span class="va">self</span>.differ)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>        fig,ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.x,<span class="va">self</span>.y,color<span class="op">=</span><span class="st">'gray'</span>,s<span class="op">=</span><span class="dv">50</span>,alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.x[index_of_trueoutlier_bool],<span class="va">self</span>.y[index_of_trueoutlier_bool],color<span class="op">=</span><span class="st">'red'</span>,s<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>        ax.plot(<span class="va">self</span>.x[cuts:cutf],<span class="va">self</span>.yhat[cuts:cutf], <span class="st">'--k'</span>,lw<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>        ax.scatter(<span class="va">self</span>.df.query(<span class="st">'Residual**2&gt;@ref'</span>)[<span class="st">'x'</span>],<span class="va">self</span>.df.query(<span class="st">'Residual**2&gt;@ref'</span>)[<span class="st">'y'</span>],color<span class="op">=</span><span class="st">'red'</span>,s<span class="op">=</span><span class="dv">550</span>,facecolors<span class="op">=</span><span class="st">'none'</span>, edgecolors<span class="op">=</span><span class="st">'r'</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>        fig.tight_layout()</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>        fig.savefig(<span class="st">'fig1.eps'</span>,<span class="bu">format</span><span class="op">=</span><span class="st">'eps'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="272">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>_simul <span class="op">=</span> SIMUL(df1)</span></code></pre></div>
+<div class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_simul <span class="op">=</span> SIMUL(df1)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="273">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_simul.fit(sd<span class="op">=</span><span class="dv">20</span>,ref<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>_simul.fit(sd<span class="op">=</span><span class="dv">20</span>,ref<span class="op">=</span><span class="fl">9.8</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The PostScript backend does not support transparency; partially transparent artists will be rendered opaque.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="278">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>outlier_simul_one <span class="op">=</span> (_simul.df[<span class="st">'Residual'</span>]<span class="op">**</span><span class="dv">2</span>).tolist()</span></code></pre></div>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>outlier_simul_one <span class="op">=</span> (_simul.df[<span class="st">'Residual'</span>]<span class="op">**</span><span class="dv">2</span>).tolist()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="279">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>outlier_simul_one <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="op">-</span><span class="dv">1</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">20</span> <span class="cf">else</span> <span class="dv">1</span>,outlier_simul_one))</span></code></pre></div>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>outlier_simul_one <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="op">-</span><span class="dv">1</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="fl">9.8</span> <span class="cf">else</span> <span class="dv">1</span>,outlier_simul_one))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="280">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tab_linear <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">"Accuracy"</span>,<span class="st">"Precision"</span>,<span class="st">"Recall"</span>,<span class="st">"F1"</span>])</span></code></pre></div>
+<div class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tab_linear <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">"Accuracy"</span>,<span class="st">"Precision"</span>,<span class="st">"Recall"</span>,<span class="st">"F1"</span>])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="281">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>_signal <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="op">-</span><span class="dv">1</span> <span class="cf">if</span> x<span class="op">!=</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span>,signal))</span></code></pre></div>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_signal <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="op">-</span><span class="dv">1</span> <span class="cf">if</span> x<span class="op">!=</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span>,signal))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="282">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>_conf <span class="op">=</span> Conf_matrx(_signal,outlier_simul_one,tab_linear)</span></code></pre></div>
+<div class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>_conf <span class="op">=</span> Conf_matrx(_signal,outlier_simul_one,tab_linear)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="283">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span></code></pre></div>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="284">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score, f1_score, accuracy_score</span></code></pre></div>
+<div class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score, f1_score, accuracy_score</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="285">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>_conf.conf(<span class="st">"GODE"</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>_conf.conf(<span class="st">"GODE"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+<p><img src="2023-06-27-Linear_graph_code_for_paper_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Accuracy: 0.995
-Precision: 0.995
-Recall: 1.000
-F1 Score: 0.997</code></pre>
+<pre><code>Accuracy: 0.998
+Precision: 0.999
+Recall: 0.999
+F1 Score: 0.999</code></pre>
 </div>
 </div>
 <hr>
@@ -782,37 +813,6 @@ F1 Score: 0.997</code></pre>
 <hr>
 <hr>
 <hr>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Conf_matrx:</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,original,compare,tab):</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.original <span class="op">=</span> original</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.compare <span class="op">=</span> compare</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tab <span class="op">=</span> tab</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> conf(<span class="va">self</span>,name):</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.conf_matrix <span class="op">=</span> confusion_matrix(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        ax.matshow(<span class="va">self</span>.conf_matrix, cmap<span class="op">=</span>plt.cm.Oranges, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.conf_matrix.shape[<span class="dv">0</span>]):</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.conf_matrix.shape[<span class="dv">1</span>]):</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>                ax.text(x<span class="op">=</span>j, y<span class="op">=</span>i,s<span class="op">=</span><span class="va">self</span>.conf_matrix[i, j], va<span class="op">=</span><span class="st">'center'</span>, ha<span class="op">=</span><span class="st">'center'</span>, size<span class="op">=</span><span class="st">'xx-large'</span>)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Predictions'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Actuals'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="st">'Confusion Matrix'</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.acc <span class="op">=</span> accuracy_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pre <span class="op">=</span> precision_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rec <span class="op">=</span> recall_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.f1 <span class="op">=</span> f1_score(<span class="va">self</span>.original, <span class="va">self</span>.compare)</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Accuracy: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.acc)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Precision: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.pre)</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Recall: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.rec)</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'F1 Score: </span><span class="sc">%.3f</span><span class="st">'</span> <span class="op">%</span> <span class="va">self</span>.f1)</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.tab <span class="op">=</span> <span class="va">self</span>.tab.append(pd.DataFrame({<span class="st">"Accuracy"</span>:[<span class="va">self</span>.acc],<span class="st">"Precision"</span>:[<span class="va">self</span>.pre],<span class="st">"Recall"</span>:[<span class="va">self</span>.rec],<span class="st">"F1"</span>:[<span class="va">self</span>.f1]},index <span class="op">=</span> [name]))</span></code></pre></div>
-</div>
 <div class="cell" data-tags="[]">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Linear(2)</span></span></code></pre></div>
 </div>
@@ -850,12 +850,12 @@ F1 Score: 0.997</code></pre>
 <div class="cell" data-tags="[]">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">## SIN</span></span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>_x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1000</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>_y1 <span class="op">=</span>  <span class="dv">3</span><span class="op">*</span>np.sin(_x) <span class="op">+</span> <span class="dv">1</span><span class="op">*</span>np.sin(_x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>np.sin(<span class="dv">5</span><span class="op">*</span>_x) </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>_y <span class="op">=</span> _y1 <span class="op">+</span> x <span class="co"># x is epsilon</span></span></code></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df5<span class="op">=</span>pd.DataFrame({<span class="st">'x'</span>:_x, <span class="st">'y'</span>:_y, <span class="st">'y1'</span>:_y1})</span></code></pre></div>
 </div>
 <div class="cell">

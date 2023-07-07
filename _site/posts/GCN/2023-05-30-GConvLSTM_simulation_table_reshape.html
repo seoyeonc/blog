@@ -665,36 +665,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="80">
+<div class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="81">
+<div class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="82">
+<div class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="83">
+<div class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="84">
+<div class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="85">
+<div class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="86">
+<div class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="87">
+<div class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="88">
+<div class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="89">
+<div class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="89">
+<div class="cell-output cell-output-display" data-execution_count="102">
 
 <div>
 
@@ -860,17 +860,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>1792 rows × 10 columns</p>
+<p>1804 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="90">
+<div class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvLSTM.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="91">
+<div class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data_pedal2,data_wiki_GSO])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="92">
+<div class="cell" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvLSTM_pedal_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 </section>
@@ -1836,11 +1836,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WindmillOutputSmallDatasetLoader (lags=8)</h1>
 <section id="baseline-4" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-4">Baseline</h2>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="106">
 
 <div>
 
@@ -1848,13 +1848,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <thead>
     <tr>
       <th></th>
-      <th>mean</th>
       <th>lags</th>
       <th>method</th>
+      <th>mean</th>
       <th>std</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>8</td>
+      <td>IT-STGCN</td>
+      <td>1.019</td>
+      <td>0.035</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>STGCN</td>
+      <td>1.038</td>
+      <td>0.080</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1863,11 +1877,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">Random</h2>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="107">
 
 <div>
 
@@ -1875,14 +1889,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <thead>
     <tr>
       <th></th>
-      <th>mean</th>
       <th>mrate</th>
       <th>lags</th>
       <th>method</th>
+      <th>mean</th>
       <th>std</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.7</td>
+      <td>8</td>
+      <td>IT-STGCN</td>
+      <td>1.142</td>
+      <td>0.021</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.7</td>
+      <td>8</td>
+      <td>STGCN</td>
+      <td>1.600</td>
+      <td>0.056</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1891,11 +1921,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-4" class="level2">
 <h2 class="anchored" data-anchor-id="block-4">Block</h2>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="108">
 
 <div>
 
@@ -1903,14 +1933,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <thead>
     <tr>
       <th></th>
-      <th>mean</th>
       <th>mrate</th>
       <th>lags</th>
       <th>method</th>
+      <th>mean</th>
       <th>std</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.081</td>
+      <td>8</td>
+      <td>IT-STGCN</td>
+      <td>0.999</td>
+      <td>0.027</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.081</td>
+      <td>8</td>
+      <td>STGCN</td>
+      <td>0.988</td>
+      <td>0.007</td>
+    </tr>
   </tbody>
 </table>
 </div>

@@ -534,6 +534,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -602,6 +607,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/STOCK/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/STOCK/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
   </div>
 </li>
       </ul>
@@ -691,126 +701,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <section id="import" class="level1">
 <h1>Import</h1>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
 <ul>
 <li>GConvGRU</li>
 </ul>
-<div class="cell" data-execution_count="68">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_GConvGRU <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GConvGRU <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="69">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_GConvGRU[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GConvGRU'</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GConvGRU[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GConvGRU'</span></span></code></pre></div>
 </div>
 <ul>
 <li>GConvLSTM</li>
 </ul>
-<div class="cell" data-execution_count="70">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_GConvLSTM <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvLSTM.csv'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GConvLSTM <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvLSTM_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="71">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_GConvLSTM[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GConvLSTM'</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GConvLSTM[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GConvLSTM'</span></span></code></pre></div>
 </div>
 <ul>
 <li>GCLSTM</li>
 </ul>
-<div class="cell" data-execution_count="72">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_GCLSTM <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GCLSTM.csv'</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GCLSTM <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GCLSTM_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="73">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_GCLSTM[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GCLSTM'</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_GCLSTM[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'GCLSTM'</span></span></code></pre></div>
 </div>
 <ul>
 <li>DCRNN</li>
 </ul>
-<div class="cell" data-execution_count="146">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_DCRNN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_DCRNN.csv'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_DCRNN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_DCRNN_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="147">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_DCRNN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'DCRNN'</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_DCRNN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'DCRNN'</span></span></code></pre></div>
 </div>
 <ul>
 <li>LRGCN</li>
 </ul>
-<div class="cell" data-execution_count="148">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_LRGCN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_LRGCN.csv'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_LRGCN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_LRGCN_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="149">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_LRGCN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'LRGCN'</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_LRGCN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'LRGCN'</span></span></code></pre></div>
 </div>
 <ul>
 <li>TGCN</li>
 </ul>
-<div class="cell" data-execution_count="150">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_TGCN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_TGCN.csv'</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_TGCN <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_TGCN_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="151">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_TGCN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'TGCN'</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_TGCN[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'TGCN'</span></span></code></pre></div>
 </div>
 <ul>
 <li>EvolveGCNO</li>
 </ul>
-<div class="cell" data-execution_count="152">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_EvolveGCNO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNO.csv'</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_EvolveGCNO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNO_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="153">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_EvolveGCNO[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'EvolveGCNO'</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_EvolveGCNO[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'EvolveGCNO'</span></span></code></pre></div>
 </div>
 <ul>
 <li>DYGRENCODER</li>
 </ul>
-<div class="cell" data-execution_count="154">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_DYGRENCODER <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_DYGRENCODER.csv'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_DYGRENCODER <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_DYGRENCODER_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="155">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_DYGRENCODER[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'DyGrEncoder'</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_DYGRENCODER[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'DyGrEncoder'</span></span></code></pre></div>
 </div>
 <ul>
 <li>EvolveGCNH</li>
 </ul>
-<div class="cell" data-execution_count="156">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_EvolveGCNH <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNH.csv'</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_EvolveGCNH <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNH_pedal_wiki_GSO.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="157">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_EvolveGCNH[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'EvolveGCNH'</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO_EvolveGCNH[<span class="st">'model'</span>]<span class="op">=</span><span class="st">'EvolveGCNH'</span></span></code></pre></div>
 </div>
 <ul>
 <li>all</li>
 </ul>
-<div class="cell" data-execution_count="158">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df_GConvGRU, df_GConvLSTM, df_GCLSTM, df_DCRNN, df_LRGCN, df_TGCN, df_EvolveGCNO, df_DYGRENCODER, df_EvolveGCNH]).reset_index().iloc[:,<span class="dv">1</span>:]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="159">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="159">
+<div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
 
@@ -917,7 +927,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>...</td>
     </tr>
     <tr>
-      <th>15923</th>
+      <th>15953</th>
       <td>monte</td>
       <td>IT-STGCN</td>
       <td>0.149142</td>
@@ -931,7 +941,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>EvolveGCNH</td>
     </tr>
     <tr>
-      <th>15924</th>
+      <th>15954</th>
       <td>monte</td>
       <td>STGCN</td>
       <td>0.149142</td>
@@ -945,7 +955,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>EvolveGCNH</td>
     </tr>
     <tr>
-      <th>15925</th>
+      <th>15955</th>
       <td>monte</td>
       <td>IT-STGCN</td>
       <td>0.149142</td>
@@ -959,7 +969,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>EvolveGCNH</td>
     </tr>
     <tr>
-      <th>15926</th>
+      <th>15956</th>
       <td>monte</td>
       <td>STGCN</td>
       <td>0.149142</td>
@@ -973,7 +983,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>EvolveGCNH</td>
     </tr>
     <tr>
-      <th>15927</th>
+      <th>15957</th>
       <td>monte</td>
       <td>IT-STGCN</td>
       <td>0.149142</td>
@@ -988,16 +998,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>15928 rows × 11 columns</p>
+<p>15958 rows × 11 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="160">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.concat([pedal_wiki_GSO_GConvGRU,pedal_wiki_GSO_GConvLSTM,pedal_wiki_GSO_GCLSTM,pedal_wiki_GSO_DCRNN,pedal_wiki_GSO_LRGCN,pedal_wiki_GSO_TGCN,pedal_wiki_GSO_EvolveGCNO,pedal_wiki_GSO_DYGRENCODER,pedal_wiki_GSO_EvolveGCNH])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="161">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="161">
+<div class="cell-output cell-output-display" data-execution_count="23">
 
 <div>
 
@@ -1184,11 +1194,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>fivenode</h1>
 <section id="baseline" class="level2">
 <h2 class="anchored" data-anchor-id="baseline">Baseline</h2>
-<div class="cell" data-execution_count="162">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="162">
+<div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
 
@@ -1394,11 +1404,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random" class="level2">
 <h2 class="anchored" data-anchor-id="random">Random</h2>
-<div class="cell" data-execution_count="163">
+<div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"mrate==0.7 and inter_method=='linear'"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="163">
+<div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
 
@@ -1639,11 +1649,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="165">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'epoch'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"mrate==0.8"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="165">
+<div class="cell-output cell-output-display" data-execution_count="26">
 
 <div>
 
@@ -2103,11 +2113,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block" class="level2">
 <h2 class="anchored" data-anchor-id="block">Block</h2>
-<div class="cell" data-execution_count="166">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'epoch'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>,<span class="st">'epoch'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="166">
+<div class="cell-output cell-output-display" data-execution_count="27">
 
 <div>
 
@@ -2533,11 +2543,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>ChickenpoxDatasetLoader(lags=4)</h1>
 <section id="baseline-1" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-1">Baseline</h2>
-<div class="cell" data-execution_count="94">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="94">
+<div class="cell-output cell-output-display" data-execution_count="28">
 
 <div>
 
@@ -2571,7 +2581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>12</td>
       <td>IT-STGCN</td>
       <td>0.910</td>
@@ -2579,7 +2589,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>12</td>
       <td>STGCN</td>
       <td>0.902</td>
@@ -2705,11 +2715,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-1" class="level2">
 <h2 class="anchored" data-anchor-id="random-1">Random</h2>
-<div class="cell" data-execution_count="131">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"mrate==0.3"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="131">
+<div class="cell-output cell-output-display" data-execution_count="29">
 
 <div>
 
@@ -2749,7 +2759,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>linear</td>
       <td>12</td>
@@ -2759,7 +2769,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>5</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>linear</td>
       <td>12</td>
@@ -2912,11 +2922,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="132">
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"mrate!=0.3"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="132">
+<div class="cell-output cell-output-display" data-execution_count="30">
 
 <div>
 
@@ -2956,7 +2966,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>6</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>linear</td>
       <td>12</td>
@@ -2966,7 +2976,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>7</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>linear</td>
       <td>12</td>
@@ -3122,11 +3132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-1" class="level2">
 <h2 class="anchored" data-anchor-id="block-1">Block</h2>
-<div class="cell" data-execution_count="96">
+<div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="96">
+<div class="cell-output cell-output-display" data-execution_count="31">
 
 <div>
 
@@ -3186,7 +3196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>linear</td>
       <td>0.28777</td>
       <td>12</td>
@@ -3196,7 +3206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>5</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>linear</td>
       <td>0.28777</td>
       <td>12</td>
@@ -3206,7 +3216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>6</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>nearest</td>
       <td>0.28777</td>
       <td>12</td>
@@ -3216,7 +3226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>7</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>nearest</td>
       <td>0.28777</td>
       <td>12</td>
@@ -3515,11 +3525,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>PedalMeDatasetLoader (lags=4)</h1>
 <section id="baseline-2" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-2">Baseline</h2>
-<div class="cell" data-execution_count="98">
+<div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="98">
+<div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
 
@@ -3556,7 +3566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>4</td>
       <td>12</td>
       <td>IT-STGCN</td>
@@ -3565,7 +3575,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>4</td>
       <td>12</td>
       <td>STGCN</td>
@@ -3706,11 +3716,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-2" class="level2">
 <h2 class="anchored" data-anchor-id="random-2">Random</h2>
-<div class="cell" data-execution_count="100">
+<div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="100">
+<div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
 
@@ -3847,11 +3857,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-2" class="level2">
 <h2 class="anchored" data-anchor-id="block-2">Block</h2>
-<div class="cell" data-execution_count="101">
+<div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="101">
+<div class="cell-output cell-output-display" data-execution_count="34">
 
 <div>
 
@@ -3911,7 +3921,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>linear</td>
@@ -3921,7 +3931,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>5</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>linear</td>
@@ -3931,7 +3941,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>6</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>nearest</td>
@@ -3941,7 +3951,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>7</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>nearest</td>
@@ -4237,11 +4247,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="w_st" class="level2">
 <h2 class="anchored" data-anchor-id="w_st">W_st</h2>
-<div class="cell" data-execution_count="116">
+<div class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df2.query(<span class="st">"dataset == 'pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>         df2.query(<span class="st">"dataset == 'pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4 and mrate==0.3"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="116">
+<div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
 
@@ -4301,7 +4311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>8</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>4</td>
       <td>linear</td>
@@ -4311,7 +4321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>9</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>4</td>
       <td>linear</td>
@@ -4321,7 +4331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>10</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>4</td>
       <td>nearest</td>
@@ -4331,7 +4341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>11</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>4</td>
       <td>nearest</td>
@@ -4624,11 +4634,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="117">
+<div class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df2.query(<span class="st">"dataset == 'pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>         df2.query(<span class="st">"dataset == 'pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4 and mrate == 0.6"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="117">
+<div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
 
@@ -4688,7 +4698,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>12</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.6</td>
       <td>4</td>
       <td>linear</td>
@@ -4698,7 +4708,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>13</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.6</td>
       <td>4</td>
       <td>linear</td>
@@ -4708,7 +4718,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>14</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.6</td>
       <td>4</td>
       <td>nearest</td>
@@ -4718,7 +4728,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>15</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.6</td>
       <td>4</td>
       <td>nearest</td>
@@ -5011,11 +5021,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="118">
+<div class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df2.query(<span class="st">"dataset == 'pedalme' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>         df2.query(<span class="st">"dataset == 'pedalme' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="118">
+<div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
 
@@ -5075,7 +5085,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>linear</td>
@@ -5085,7 +5095,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>5</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>linear</td>
@@ -5095,7 +5105,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>6</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>nearest</td>
@@ -5105,7 +5115,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>7</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.286</td>
       <td>4</td>
       <td>nearest</td>
@@ -5404,11 +5414,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WikiMathsDatasetLoader (lags=8)</h1>
 <section id="baseline-3" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-3">Baseline</h2>
-<div class="cell" data-execution_count="110">
+<div class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="110">
+<div class="cell-output cell-output-display" data-execution_count="38">
 
 <div>
 
@@ -5445,7 +5455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>8</td>
       <td>12</td>
       <td>IT-STGCN</td>
@@ -5454,7 +5464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>8</td>
       <td>12</td>
       <td>STGCN</td>
@@ -5595,11 +5605,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-3" class="level2">
 <h2 class="anchored" data-anchor-id="random-3">Random</h2>
-<div class="cell" data-execution_count="112">
+<div class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="112">
+<div class="cell-output cell-output-display" data-execution_count="39">
 
 <div>
 
@@ -5654,7 +5664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>4</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>8</td>
       <td>IT-STGCN</td>
@@ -5663,7 +5673,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>5</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.3</td>
       <td>8</td>
       <td>STGCN</td>
@@ -5672,7 +5682,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>6</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>8</td>
       <td>IT-STGCN</td>
@@ -5681,7 +5691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>7</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>8</td>
       <td>STGCN</td>
@@ -5948,11 +5958,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-3" class="level2">
 <h2 class="anchored" data-anchor-id="block-3">Block</h2>
-<div class="cell" data-execution_count="113">
+<div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="113">
+<div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
 
@@ -5989,7 +5999,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.119837</td>
       <td>8</td>
       <td>IT-STGCN</td>
@@ -5998,7 +6008,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.119837</td>
       <td>8</td>
       <td>STGCN</td>
@@ -6157,11 +6167,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="missing-values-on-the-same-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values-on-the-same-nodes">missing values on the same nodes</h2>
-<div class="cell" data-execution_count="119">
+<div class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df2.query(<span class="st">"dataset=='wikimath'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>        df2.query(<span class="st">"dataset=='wikimath'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="119">
+<div class="cell-output cell-output-display" data-execution_count="41">
 
 <div>
 
@@ -6198,7 +6208,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.512</td>
       <td>8</td>
       <td>IT-STGCN</td>
@@ -6207,7 +6217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.512</td>
       <td>8</td>
       <td>STGCN</td>
@@ -6369,11 +6379,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Windmillsmall(lags=8)</h1>
 <section id="baseline-4" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-4">Baseline</h2>
-<div class="cell" data-execution_count="121">
+<div class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="121">
+<div class="cell-output cell-output-display" data-execution_count="42">
 
 <div>
 
@@ -6410,16 +6420,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>GConvLSTM</td>
       <td>8</td>
       <td>IT-STGCN</td>
-      <td>1.019</td>
-      <td>0.040</td>
+      <td>1.015</td>
+      <td>0.030</td>
     </tr>
     <tr>
       <th>3</th>
       <td>GConvLSTM</td>
       <td>8</td>
       <td>STGCN</td>
-      <td>1.035</td>
-      <td>0.088</td>
+      <td>1.031</td>
+      <td>0.069</td>
     </tr>
   </tbody>
 </table>
@@ -6429,11 +6439,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">Random</h2>
-<div class="cell" data-execution_count="122">
+<div class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="122">
+<div class="cell-output cell-output-display" data-execution_count="43">
 
 <div>
 
@@ -6494,11 +6504,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-4" class="level2">
 <h2 class="anchored" data-anchor-id="block-4">Block</h2>
-<div class="cell" data-execution_count="123">
+<div class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="123">
+<div class="cell-output cell-output-display" data-execution_count="44">
 
 <div>
 
@@ -6539,8 +6549,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.081</td>
       <td>8</td>
       <td>IT-STGCN</td>
-      <td>0.993</td>
-      <td>0.012</td>
+      <td>0.999</td>
+      <td>0.025</td>
     </tr>
     <tr>
       <th>3</th>
@@ -6548,8 +6558,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>0.081</td>
       <td>8</td>
       <td>STGCN</td>
-      <td>0.989</td>
-      <td>0.007</td>
+      <td>0.988</td>
+      <td>0.006</td>
     </tr>
   </tbody>
 </table>
@@ -6562,11 +6572,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Montevideobus (lags=4)</h1>
 <section id="baseline-5" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-5">Baseline</h2>
-<div class="cell" data-execution_count="124">
+<div class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'model'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="124">
+<div class="cell-output cell-output-display" data-execution_count="45">
 
 <div>
 
@@ -6600,7 +6610,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>4</td>
       <td>IT-STGCN</td>
       <td>1.008</td>
@@ -6608,7 +6618,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>4</td>
       <td>STGCN</td>
       <td>0.983</td>
@@ -6734,11 +6744,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-5" class="level2">
 <h2 class="anchored" data-anchor-id="random-5">Random</h2>
-<div class="cell" data-execution_count="125">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="125">
+<div class="cell-output cell-output-display" data-execution_count="46">
 
 <div>
 
@@ -6778,7 +6788,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>4</td>
       <td>nearest</td>
@@ -6788,7 +6798,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.8</td>
       <td>4</td>
       <td>nearest</td>
@@ -6944,11 +6954,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-5" class="level2">
 <h2 class="anchored" data-anchor-id="block-5">Block</h2>
-<div class="cell" data-execution_count="127">
+<div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>         df.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'model'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'model'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="127">
+<div class="cell-output cell-output-display" data-execution_count="47">
 
 <div>
 
@@ -6988,7 +6998,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>2</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.149142</td>
       <td>4</td>
       <td>nearest</td>
@@ -6998,7 +7008,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>3</th>
-      <td>DYGRENCODER</td>
+      <td>DyGrEncoder</td>
       <td>0.149142</td>
       <td>4</td>
       <td>nearest</td>

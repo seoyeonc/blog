@@ -6,3 +6,11 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+comments: 
+  utterances: 
+    repo: seoyeonc/blog
+
+cap-location: margin
+reference-location: margin
+citation-location: margin

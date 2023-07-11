@@ -1,0 +1,7 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+windmillsmall,GNAR,0,,8,,,,1.6492302417755127,2.513212203979492
+windmillsmall,GNAR,0.7,rand,8,,nearest,,1.6492302417755127,3.334993839263916
+windmillsmall,GNAR,0,,8,,,,1.6492302417755127,2.1161997318267822
+windmillsmall,GNAR,0.7,rand,8,,nearest,,1.6492302417755127,2.3916993141174316
+windmillsmall,GNAR,0,,8,,,,1.6492302417755127,3.406726360321045
+windmillsmall,GNAR,0.7,rand,8,,nearest,,1.6492302417755127,2.5869574546813965

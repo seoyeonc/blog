@@ -2,310 +2,314 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://seoyeonc.github.io/blog/index.html</loc>
-    <lastmod>2023-07-10T11:05:26.803Z</lastmod>
+    <lastmod>2023-07-10T20:55:58.429Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-21-ST-GCN_Dataset.html</loc>
-    <lastmod>2023-07-10T11:05:28.475Z</lastmod>
+    <lastmod>2023-07-10T20:56:01.897Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/index.html</loc>
-    <lastmod>2023-07-10T11:05:28.767Z</lastmod>
+    <lastmod>2023-07-10T20:56:02.317Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html</loc>
-    <lastmod>2023-07-10T11:05:29.455Z</lastmod>
+    <lastmod>2023-07-10T20:56:03.521Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-guebin.html</loc>
-    <lastmod>2023-07-10T11:05:30.075Z</lastmod>
+    <lastmod>2023-07-10T20:56:04.593Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:30.675Z</lastmod>
+    <lastmod>2023-07-10T20:56:05.776Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:31.215Z</lastmod>
+    <lastmod>2023-07-10T20:56:06.856Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-06-METRLADatasetLoader.html</loc>
-    <lastmod>2023-07-10T11:05:31.519Z</lastmod>
+    <lastmod>2023-07-10T20:56:07.440Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-27-simulation_table.html</loc>
-    <lastmod>2023-07-10T11:05:32.331Z</lastmod>
+    <lastmod>2023-07-10T20:56:08.916Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-18-Self Consistency toy ex.html</loc>
-    <lastmod>2023-07-10T11:05:32.871Z</lastmod>
+    <lastmod>2023-07-10T20:56:09.728Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:33.651Z</lastmod>
+    <lastmod>2023-07-10T20:56:11.024Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:34.215Z</lastmod>
+    <lastmod>2023-07-10T20:56:11.932Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:34.795Z</lastmod>
+    <lastmod>2023-07-10T20:56:12.840Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:35.591Z</lastmod>
+    <lastmod>2023-07-10T20:56:14.276Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-05-GNAR.html</loc>
-    <lastmod>2023-07-10T11:05:36.199Z</lastmod>
+    <lastmod>2023-07-10T20:56:15.196Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-06-article_refer.html</loc>
-    <lastmod>2023-07-10T11:05:36.535Z</lastmod>
+    <lastmod>2023-07-10T20:56:15.928Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html</loc>
-    <lastmod>2023-07-10T11:05:37.327Z</lastmod>
+    <lastmod>2023-07-10T20:56:17.200Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-07-08-toy_example_using_gnar.html</loc>
-    <lastmod>2023-07-10T11:05:38.475Z</lastmod>
+    <lastmod>2023-07-10T20:56:18.788Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-20-Algorithm_traintest.html</loc>
-    <lastmod>2023-07-10T11:05:39.191Z</lastmod>
+    <lastmod>2023-07-10T20:56:19.760Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-03-17-ITSTGCN-Tutorial.html</loc>
-    <lastmod>2023-07-10T11:05:39.735Z</lastmod>
+    <lastmod>2023-07-10T20:56:20.540Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-07-05-ITSTGCN_data_management.html</loc>
-    <lastmod>2023-07-10T11:05:40.491Z</lastmod>
+    <lastmod>2023-07-10T20:56:22.044Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-18-Algorithm_traintest_2.html</loc>
-    <lastmod>2023-07-10T11:05:40.871Z</lastmod>
+    <lastmod>2023-07-10T20:56:22.784Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-29-pedalme_GSO_st.html</loc>
-    <lastmod>2023-07-10T11:05:41.263Z</lastmod>
+    <lastmod>2023-07-10T20:56:23.608Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html</loc>
-    <lastmod>2023-07-10T11:05:41.791Z</lastmod>
+    <lastmod>2023-07-10T20:56:24.716Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-05-Simulation_boxplot.html</loc>
-    <lastmod>2023-07-10T11:05:43.499Z</lastmod>
+    <lastmod>2023-07-10T20:56:28.628Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:44.439Z</lastmod>
+    <lastmod>2023-07-10T20:56:30.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-25-note_matrix.html</loc>
-    <lastmod>2023-07-10T11:05:44.943Z</lastmod>
+    <lastmod>2023-07-10T20:56:30.780Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-04-questions of pytorch geometric temporal.html</loc>
-    <lastmod>2023-07-10T11:05:45.347Z</lastmod>
+    <lastmod>2023-07-10T20:56:31.392Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:46.191Z</lastmod>
+    <lastmod>2023-07-10T20:56:32.936Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html</loc>
-    <lastmod>2023-07-10T11:05:46.943Z</lastmod>
+    <lastmod>2023-07-10T20:56:34.284Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html</loc>
-    <lastmod>2023-07-10T11:05:47.791Z</lastmod>
+    <lastmod>2023-07-10T20:56:35.712Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html</loc>
-    <lastmod>2023-07-10T11:05:48.779Z</lastmod>
+    <lastmod>2023-07-10T20:56:37.608Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:05:49.243Z</lastmod>
+    <lastmod>2023-07-10T20:56:38.492Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html</loc>
-    <lastmod>2023-07-10T11:05:49.967Z</lastmod>
+    <lastmod>2023-07-10T20:56:39.888Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-07-torchgcn.html</loc>
-    <lastmod>2023-07-10T11:05:50.295Z</lastmod>
+    <lastmod>2023-07-10T20:56:40.416Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-21-Class.html</loc>
-    <lastmod>2023-07-10T11:05:58.658Z</lastmod>
+    <lastmod>2023-07-10T20:56:53.407Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-07-04-toy_example_figure.html</loc>
-    <lastmod>2023-07-10T11:06:00.114Z</lastmod>
+    <lastmod>2023-07-10T20:56:56.111Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html</loc>
-    <lastmod>2023-07-10T11:06:00.734Z</lastmod>
+    <lastmod>2023-07-10T20:56:57.019Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:01.622Z</lastmod>
+    <lastmod>2023-07-10T20:56:58.215Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:02.614Z</lastmod>
+    <lastmod>2023-07-10T20:56:59.739Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-27-toy_example_notes.html</loc>
-    <lastmod>2023-07-10T11:06:02.994Z</lastmod>
+    <lastmod>2023-07-10T20:57:00.327Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-03-20-data load, data save as pickle.html</loc>
-    <lastmod>2023-07-10T11:06:06.422Z</lastmod>
+    <lastmod>2023-07-10T20:57:05.979Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:07.302Z</lastmod>
+    <lastmod>2023-07-10T20:57:07.603Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-11-CPUvsGPU.html</loc>
-    <lastmod>2023-07-10T11:06:07.630Z</lastmod>
+    <lastmod>2023-07-10T20:57:08.183Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-28-gcn_simulation.html</loc>
-    <lastmod>2023-07-10T11:06:08.158Z</lastmod>
+    <lastmod>2023-07-10T20:57:09.075Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html</loc>
-    <lastmod>2023-07-10T11:06:09.042Z</lastmod>
+    <lastmod>2023-07-10T20:57:10.675Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html</loc>
-    <lastmod>2023-07-10T11:06:09.878Z</lastmod>
+    <lastmod>2023-07-10T20:57:12.123Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-04-05-Simulation.html</loc>
-    <lastmod>2023-07-10T11:06:10.862Z</lastmod>
+    <lastmod>2023-07-10T20:57:13.963Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-04-Sparse_matrix.html</loc>
-    <lastmod>2023-07-10T11:06:11.390Z</lastmod>
+    <lastmod>2023-07-10T20:57:14.819Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:12.022Z</lastmod>
+    <lastmod>2023-07-10T20:57:15.975Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-11-PyGGeometricTemporalEx.html</loc>
-    <lastmod>2023-07-10T11:06:12.938Z</lastmod>
+    <lastmod>2023-07-10T20:57:18.003Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:13.998Z</lastmod>
+    <lastmod>2023-07-10T20:57:19.987Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:14.898Z</lastmod>
+    <lastmod>2023-07-10T20:57:21.899Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html</loc>
-    <lastmod>2023-07-10T11:06:15.414Z</lastmod>
+    <lastmod>2023-07-10T20:57:22.963Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-20-EbayesThresh toy ex.html</loc>
-    <lastmod>2023-07-10T11:06:16.014Z</lastmod>
+    <lastmod>2023-07-10T20:57:24.275Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:16.778Z</lastmod>
+    <lastmod>2023-07-10T20:57:26.039Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-29-STGCN-tutorial.html</loc>
-    <lastmod>2023-07-10T11:06:17.206Z</lastmod>
+    <lastmod>2023-07-10T20:57:26.967Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:17.690Z</lastmod>
+    <lastmod>2023-07-10T20:57:27.987Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-05-31-Other Method.html</loc>
-    <lastmod>2023-07-10T11:06:18.194Z</lastmod>
+    <lastmod>2023-07-10T20:57:29.079Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-01-11-Algorithm_EX_1.html</loc>
-    <lastmod>2023-07-10T11:06:19.134Z</lastmod>
+    <lastmod>2023-07-10T20:57:31.103Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:19.910Z</lastmod>
+    <lastmod>2023-07-10T20:57:32.739Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:20.674Z</lastmod>
+    <lastmod>2023-07-10T20:57:34.403Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-07-10T11:06:21.954Z</lastmod>
+    <lastmod>2023-07-10T20:57:36.218Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/STOCK/index.html</loc>
-    <lastmod>2023-07-10T11:06:22.282Z</lastmod>
+    <lastmod>2023-07-10T20:57:36.742Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/STOCK/2023-07-08-stock_on_graph.html</loc>
-    <lastmod>2023-07-10T11:06:23.422Z</lastmod>
+    <lastmod>2023-07-10T20:57:37.842Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/STOCK/2023-07-07-Stock_Crawling.html</loc>
-    <lastmod>2023-07-10T11:06:25.230Z</lastmod>
+    <lastmod>2023-07-10T20:57:39.746Z</lastmod>
+  </url>
+  <url>
+    <loc>https://seoyeonc.github.io/blog/posts/FRAUD/2023-07-10-fraud_data.html</loc>
+    <lastmod>2023-07-10T20:57:40.298Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2023-07-03-other_outlier_detection.html</loc>
-    <lastmod>2023-07-10T11:06:28.790Z</lastmod>
+    <lastmod>2023-07-10T20:57:43.590Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-01-graph_code_guebin.html</loc>
-    <lastmod>2023-07-10T11:06:30.390Z</lastmod>
+    <lastmod>2023-07-10T20:57:45.198Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/index.html</loc>
-    <lastmod>2023-07-10T11:06:30.898Z</lastmod>
+    <lastmod>2023-07-10T20:57:45.722Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-11-19-class_code_for_paper.html</loc>
-    <lastmod>2023-07-10T11:06:33.362Z</lastmod>
+    <lastmod>2023-07-10T20:57:48.466Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-09-02-paper_simulation.html</loc>
-    <lastmod>2023-07-10T11:06:34.778Z</lastmod>
+    <lastmod>2023-07-10T20:57:49.830Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-10-02-Earthquake_real.html</loc>
-    <lastmod>2023-07-10T11:06:37.246Z</lastmod>
+    <lastmod>2023-07-10T20:57:52.182Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2023-06-22-comparison_earthquake.html</loc>
-    <lastmod>2023-07-10T11:06:39.822Z</lastmod>
+    <lastmod>2023-07-10T20:57:55.062Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2022-12-27-DFT_study.html</loc>
-    <lastmod>2023-07-10T11:06:40.470Z</lastmod>
+    <lastmod>2023-07-10T20:57:55.710Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/Untitled.html</loc>
-    <lastmod>2023-07-10T11:06:41.006Z</lastmod>
+    <lastmod>2023-07-10T20:57:56.230Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GODE/2023-06-27-Linear_graph_code_for_paper.html</loc>
-    <lastmod>2023-07-10T11:06:42.270Z</lastmod>
+    <lastmod>2023-07-10T20:57:57.422Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/about.html</loc>
-    <lastmod>2023-07-10T11:06:43.398Z</lastmod>
+    <lastmod>2023-07-10T20:57:58.406Z</lastmod>
   </url>
 </urlset>

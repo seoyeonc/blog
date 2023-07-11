@@ -652,7 +652,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#covid20202022" id="toc-covid20202022" class="nav-link" data-scroll-target="#covid20202022">COVID(2020~2022)</a></li>
   <li><a href="#define-class" id="toc-define-class" class="nav-link" data-scroll-target="#define-class">define class</a></li>
+  <li><a href="#시도-1-자기자신만-연결" id="toc-시도-1-자기자신만-연결" class="nav-link" data-scroll-target="#시도-1-자기자신만-연결">시도 1 자기자신만 연결</a>
+  <ul class="collapse">
   <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
+  </ul></li>
+  <li><a href="#시도-2" id="toc-시도-2" class="nav-link" data-scroll-target="#시도-2">시도 2</a>
+  <ul class="collapse">
+  <li><a href="#result-1" id="toc-result-1" class="nav-link" data-scroll-target="#result-1">Result</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1187,26 +1194,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="china" class="level2">
 <h2 class="anchored" data-anchor-id="china">China</h2>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/china_ssec.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="18">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.concat([df_china,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">35.8617</span>]<span class="op">*</span><span class="bu">len</span>(df_china), <span class="st">'lon'</span>: [<span class="fl">104.1954</span>]<span class="op">*</span><span class="bu">len</span>(df_china),<span class="st">'Country'</span>: <span class="st">'China'</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_china[<span class="st">'Close'</span>] <span class="op">-</span> df_china[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_china[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_china_add <span class="op">=</span> df_china.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_china[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_china[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_china[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_china_add.Year <span class="op">=</span> df_china_add.Year.astype(np.float64)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_china_add.Mon <span class="op">=</span> df_china_add.Mon.astype(np.float64)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_china_add.Day <span class="op">=</span> df_china_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="21">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_china_covid <span class="op">=</span> df_china_add.query(<span class="st">"Year&gt;=2020 and Year &lt;=2022"</span>)<span class="op">;</span>df_china_covid</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <div>
 
@@ -1424,7 +1431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">8</span>)) </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'China (close)'</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>) </span>
@@ -1437,26 +1444,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="japan" class="level2">
 <h2 class="anchored" data-anchor-id="japan">Japan</h2>
-<div class="cell" data-execution_count="23">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/japan_n225.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.concat([df_japan,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">36.2048</span>]<span class="op">*</span><span class="bu">len</span>(df_japan), <span class="st">'lon'</span>: [<span class="fl">138.2529</span>]<span class="op">*</span><span class="bu">len</span>(df_japan),<span class="st">'Country'</span>: <span class="st">'Japan'</span>,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_japan[<span class="st">'Close'</span>] <span class="op">-</span> df_japan[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_japan[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_japan_add <span class="op">=</span> df_japan.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_japan[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_japan[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_japan[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_japan_add.Year <span class="op">=</span> df_japan_add.Year.astype(np.float64)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_japan_add.Mon <span class="op">=</span> df_japan_add.Mon.astype(np.float64)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df_japan_add.Day <span class="op">=</span> df_japan_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_japan_covid <span class="op">=</span> df_japan_add.query(<span class="st">"Year&gt;=2020"</span>)<span class="op">;</span>df_japan_covid</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_japan_covid <span class="op">=</span> df_japan_add.query(<span class="st">"Year&gt;=2020 and Year&lt;=2022"</span>)<span class="op">;</span>df_japan_covid</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
 
@@ -1584,97 +1591,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>...</td>
     </tr>
     <tr>
-      <th>1220</th>
-      <td>2023-07-03</td>
-      <td>33517.601563</td>
-      <td>33762.808594</td>
-      <td>33510.550781</td>
-      <td>33753.328125</td>
-      <td>33753.328125</td>
-      <td>95400000.0</td>
+      <th>1093</th>
+      <td>2022-12-26</td>
+      <td>26299.539063</td>
+      <td>26438.650391</td>
+      <td>26294.849609</td>
+      <td>26405.869141</td>
+      <td>26405.869141</td>
+      <td>47300000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.479101</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>3.0</td>
+      <td>0.331131</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>26.0</td>
     </tr>
     <tr>
-      <th>1221</th>
-      <td>2023-07-04</td>
-      <td>33512.261719</td>
-      <td>33576.449219</td>
-      <td>33338.781250</td>
-      <td>33422.519531</td>
-      <td>33422.519531</td>
-      <td>99400000.0</td>
+      <th>1094</th>
+      <td>2022-12-27</td>
+      <td>26570.779297</td>
+      <td>26620.490234</td>
+      <td>26447.869141</td>
+      <td>26447.869141</td>
+      <td>26447.869141</td>
+      <td>50200000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.382392</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>4.0</td>
+      <td>0.343410</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>27.0</td>
     </tr>
     <tr>
-      <th>1222</th>
-      <td>2023-07-05</td>
-      <td>33165.058594</td>
-      <td>33389.218750</td>
-      <td>33041.140625</td>
-      <td>33338.699219</td>
-      <td>33338.699219</td>
-      <td>95100000.0</td>
+      <th>1095</th>
+      <td>2022-12-28</td>
+      <td>26309.339844</td>
+      <td>26354.269531</td>
+      <td>26199.669922</td>
+      <td>26340.500000</td>
+      <td>26340.500000</td>
+      <td>61500000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.357888</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>5.0</td>
+      <td>0.312021</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>28.0</td>
     </tr>
     <tr>
-      <th>1223</th>
-      <td>2023-07-06</td>
-      <td>33058.398438</td>
-      <td>33079.449219</td>
-      <td>32637.720703</td>
-      <td>32773.019531</td>
-      <td>32773.019531</td>
-      <td>100600000.0</td>
+      <th>1096</th>
+      <td>2022-12-29</td>
+      <td>26074.900391</td>
+      <td>26126.699219</td>
+      <td>25953.919922</td>
+      <td>26093.669922</td>
+      <td>26093.669922</td>
+      <td>63100000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.192516</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>6.0</td>
+      <td>0.239862</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>29.0</td>
     </tr>
     <tr>
-      <th>1224</th>
-      <td>2023-07-07</td>
-      <td>32450.640625</td>
-      <td>32730.250000</td>
-      <td>32327.900391</td>
-      <td>32388.419922</td>
-      <td>32388.419922</td>
-      <td>0.0</td>
+      <th>1097</th>
+      <td>2022-12-30</td>
+      <td>26288.000000</td>
+      <td>26321.369141</td>
+      <td>26067.919922</td>
+      <td>26094.500000</td>
+      <td>26094.500000</td>
+      <td>52700000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.080081</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
+      <td>0.240105</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>30.0</td>
     </tr>
   </tbody>
 </table>
-<p>858 rows × 14 columns</p>
+<p>731 rows × 14 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">30</span>, <span class="dv">8</span>)) </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Japan (close)'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>) </span>
@@ -1684,20 +1691,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">15</span>))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(df_korea_covid[<span class="st">'Date'</span>], df_korea_covid[<span class="st">'Close'</span>])</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    ax2.plot(df_us_covid[<span class="st">'Date'</span>], df_us_covid[<span class="st">'Close'</span>])</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    ax3.plot(df_china_covid[<span class="st">'Date'</span>], df_china_covid[<span class="st">'Close'</span>])</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    ax7.plot(df_japan_covid[<span class="st">'Date'</span>], df_japan_covid[<span class="st">'Close'</span>])</span></code></pre></div>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    ax4.plot(df_japan_covid[<span class="st">'Date'</span>], df_japan_covid[<span class="st">'Close'</span>])</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
+<div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df_korea_covid,df_us_covid,df_china_covid,df_japan_covid])<span class="op">;</span>df</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="28">
 
 <div>
 
@@ -1825,99 +1832,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>...</td>
     </tr>
     <tr>
-      <th>1220</th>
-      <td>2023-07-03</td>
-      <td>33517.601563</td>
-      <td>33762.808594</td>
-      <td>33510.550781</td>
-      <td>33753.328125</td>
-      <td>33753.328125</td>
-      <td>95400000.0</td>
+      <th>1093</th>
+      <td>2022-12-26</td>
+      <td>26299.539063</td>
+      <td>26438.650391</td>
+      <td>26294.849609</td>
+      <td>26405.869141</td>
+      <td>26405.869141</td>
+      <td>47300000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.479101</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>3.0</td>
+      <td>0.331131</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>26.0</td>
     </tr>
     <tr>
-      <th>1221</th>
-      <td>2023-07-04</td>
-      <td>33512.261719</td>
-      <td>33576.449219</td>
-      <td>33338.781250</td>
-      <td>33422.519531</td>
-      <td>33422.519531</td>
-      <td>99400000.0</td>
+      <th>1094</th>
+      <td>2022-12-27</td>
+      <td>26570.779297</td>
+      <td>26620.490234</td>
+      <td>26447.869141</td>
+      <td>26447.869141</td>
+      <td>26447.869141</td>
+      <td>50200000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.382392</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>4.0</td>
+      <td>0.343410</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>27.0</td>
     </tr>
     <tr>
-      <th>1222</th>
-      <td>2023-07-05</td>
-      <td>33165.058594</td>
-      <td>33389.218750</td>
-      <td>33041.140625</td>
-      <td>33338.699219</td>
-      <td>33338.699219</td>
-      <td>95100000.0</td>
+      <th>1095</th>
+      <td>2022-12-28</td>
+      <td>26309.339844</td>
+      <td>26354.269531</td>
+      <td>26199.669922</td>
+      <td>26340.500000</td>
+      <td>26340.500000</td>
+      <td>61500000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.357888</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>5.0</td>
+      <td>0.312021</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>28.0</td>
     </tr>
     <tr>
-      <th>1223</th>
-      <td>2023-07-06</td>
-      <td>33058.398438</td>
-      <td>33079.449219</td>
-      <td>32637.720703</td>
-      <td>32773.019531</td>
-      <td>32773.019531</td>
-      <td>100600000.0</td>
+      <th>1096</th>
+      <td>2022-12-29</td>
+      <td>26074.900391</td>
+      <td>26126.699219</td>
+      <td>25953.919922</td>
+      <td>26093.669922</td>
+      <td>26093.669922</td>
+      <td>63100000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.192516</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>6.0</td>
+      <td>0.239862</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>29.0</td>
     </tr>
     <tr>
-      <th>1224</th>
-      <td>2023-07-07</td>
-      <td>32450.640625</td>
-      <td>32730.250000</td>
-      <td>32327.900391</td>
-      <td>32388.419922</td>
-      <td>32388.419922</td>
-      <td>0.0</td>
+      <th>1097</th>
+      <td>2022-12-30</td>
+      <td>26288.000000</td>
+      <td>26321.369141</td>
+      <td>26067.919922</td>
+      <td>26094.500000</td>
+      <td>26094.500000</td>
+      <td>52700000.0</td>
       <td>36.2048</td>
       <td>138.2529</td>
       <td>Japan</td>
-      <td>2.080081</td>
-      <td>2023.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
+      <td>0.240105</td>
+      <td>2022.0</td>
+      <td>12.0</td>
+      <td>30.0</td>
     </tr>
   </tbody>
 </table>
-<p>3082 rows × 14 columns</p>
+<p>2955 rows × 14 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="36">
+<div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Country'</span>].unique()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>array(['Korea', 'United States of America', 'China', 'Japan'],
       dtype=object)</code></pre>
 </div>
@@ -1927,9 +1934,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="covid20202022" class="level1">
 <h1>COVID(2020~2022)</h1>
 <p>Ref: <a href="https://covid19.who.int/data">WHO</a>, <a href="https://ncov.kdca.go.kr/">질병관리청</a></p>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>covid <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/WHO-COVID-19-global-data.csv'</span>).iloc[:,[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]]<span class="op">;</span>covid</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="30">
 
 <div>
 
@@ -2039,9 +2046,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>covid[<span class="st">'Country'</span>].unique()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array(['Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra',
        'Angola', 'Anguilla', 'Antigua and Barbuda', 'Argentina',
        'Armenia', 'Aruba', 'Australia', 'Austria', 'Azerbaijan',
@@ -2104,15 +2111,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
        'Wallis and Futuna', 'Yemen', 'Zambia', 'Zimbabwe'], dtype=object)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>covid.query(<span class="st">"Country_code =='KP'"</span>)[<span class="st">'New_cases'</span>].unique()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>array([0])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>_korea_covid <span class="op">=</span> pd.read_excel(<span class="st">'./dataset/covid_korea.csv'</span>)<span class="op">;</span>_korea_covid[:<span class="dv">10</span>]</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
 
@@ -2213,13 +2220,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>korea_covid <span class="op">=</span> _korea_covid.assign(New_cases<span class="op">=</span>np.where(_korea_covid[<span class="st">'Unnamed: 2'</span>] <span class="op">==</span> <span class="st">'-'</span>, <span class="dv">0</span>, _korea_covid[<span class="st">'Unnamed: 2'</span>]),<span class="op">\</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                                  New_deaths<span class="op">=</span>np.where(_korea_covid[<span class="st">'Unnamed: 4'</span>] <span class="op">==</span> <span class="st">'-'</span>, <span class="dv">0</span>, _korea_covid[<span class="st">'Unnamed: 4'</span>]),<span class="op">\</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                  Date_reported<span class="op">=</span><span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">str</span>(x).split()[<span class="dv">0</span>],_korea_covid[<span class="st">'Unnamed: 0'</span>])),<span class="op">\</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                                  Country<span class="op">=</span><span class="st">'Korea'</span>,Country_code<span class="op">=</span><span class="st">'KP'</span>).<span class="op">\</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                             iloc[<span class="dv">5</span>:,[<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">5</span>]]<span class="op">;</span>korea_covid</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="34">
 
 <div>
 
@@ -2329,9 +2336,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>covid_final <span class="op">=</span> pd.concat([covid, korea_covid]).rename(columns<span class="op">=</span>{<span class="st">'Date_reported'</span>: <span class="st">'Date'</span>})<span class="op">;</span>covid_final</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
 
@@ -2441,9 +2448,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="61">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>covid_final</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>covid_final_add <span class="op">=</span> covid_final.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],covid_final[<span class="st">'Date'</span>])),<span class="op">\</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],covid_final[<span class="st">'Date'</span>])),<span class="op">\</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],covid_final[<span class="st">'Date'</span>])))</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
 
@@ -2456,6 +2468,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Country</th>
       <th>New_cases</th>
       <th>New_deaths</th>
+      <th>Year</th>
+      <th>Mon</th>
+      <th>Day</th>
     </tr>
   </thead>
   <tbody>
@@ -2466,6 +2481,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Afghanistan</td>
       <td>0</td>
       <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>03</td>
     </tr>
     <tr>
       <th>1</th>
@@ -2474,6 +2492,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Afghanistan</td>
       <td>0</td>
       <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>04</td>
     </tr>
     <tr>
       <th>2</th>
@@ -2482,6 +2503,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Afghanistan</td>
       <td>0</td>
       <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>05</td>
     </tr>
     <tr>
       <th>3</th>
@@ -2490,6 +2514,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Afghanistan</td>
       <td>0</td>
       <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>06</td>
     </tr>
     <tr>
       <th>4</th>
@@ -2498,9 +2525,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Afghanistan</td>
       <td>0</td>
       <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>07</td>
     </tr>
     <tr>
       <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -2514,6 +2547,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Korea</td>
       <td>24339</td>
       <td>12</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>06</td>
     </tr>
     <tr>
       <th>1269</th>
@@ -2522,6 +2558,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Korea</td>
       <td>24757</td>
       <td>7</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>07</td>
     </tr>
     <tr>
       <th>1270</th>
@@ -2530,6 +2569,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Korea</td>
       <td>25659</td>
       <td>3</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>08</td>
     </tr>
     <tr>
       <th>1271</th>
@@ -2538,6 +2580,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Korea</td>
       <td>22560</td>
       <td>2</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>09</td>
     </tr>
     <tr>
       <th>1272</th>
@@ -2546,135 +2591,1114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>Korea</td>
       <td>9253</td>
       <td>2</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>10</td>
     </tr>
   </tbody>
 </table>
-<p>304628 rows × 5 columns</p>
+<p>304628 rows × 8 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">15</span>))</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(covid_final.query(<span class="st">"Country =='Korea'"</span>)[<span class="st">'Date'</span>], covid_final.query(<span class="st">"Country =='Korea'"</span>)[<span class="st">'New_cases'</span>])</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    ax2.plot(covid_final.query(<span class="st">"Country =='United States of America'"</span>)[<span class="st">'Date'</span>], covid_final.query(<span class="st">"Country =='United States of America'"</span>)[<span class="st">'New_cases'</span>])</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    ax3.plot(covid_final.query(<span class="st">"Country =='China'"</span>)[<span class="st">'Date'</span>], covid_final.query(<span class="st">"Country =='China'"</span>)[<span class="st">'New_cases'</span>])</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    ax4.plot(covid_final.query(<span class="st">"Country =='Japan'"</span>)[<span class="st">'Date'</span>], covid_final.query(<span class="st">"Country =='Japan'"</span>)[<span class="st">'New_cases'</span>])</span></code></pre></div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    fig, ((ax1, ax2), (ax3, ax4)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">15</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    ax1.plot(covid_final_add.query(<span class="st">"Country =='Korea'"</span>)[<span class="st">'Date'</span>], covid_final_add.query(<span class="st">"Country =='Korea'"</span>)[<span class="st">'New_cases'</span>])</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    ax2.plot(covid_final_add.query(<span class="st">"Country =='United States of America'"</span>)[<span class="st">'Date'</span>], covid_final_add.query(<span class="st">"Country =='United States of America'"</span>)[<span class="st">'New_cases'</span>])</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    ax3.plot(covid_final_add.query(<span class="st">"Country =='China'"</span>)[<span class="st">'Date'</span>], covid_final_add.query(<span class="st">"Country =='China'"</span>)[<span class="st">'New_cases'</span>])</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    ax4.plot(covid_final_add.query(<span class="st">"Country =='Japan'"</span>)[<span class="st">'Date'</span>], covid_final_add.query(<span class="st">"Country =='Japan'"</span>)[<span class="st">'New_cases'</span>])</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-38-output-1.png" class="img-fluid"></p>
+<p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="define-class" class="level1">
 <h1>define class</h1>
-<div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Stock_graph:</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.f <span class="op">=</span> df.Value.to_numpy()</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.year <span class="op">=</span> df.Year.to_numpy()</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mon <span class="op">=</span> df.Mon.to_numpy()</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.day <span class="op">=</span> df.Day.to_numpy()</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lat <span class="op">=</span> df.lat.to_numpy()</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">long</span> <span class="op">=</span> df.lon.to_numpy()</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.country <span class="op">=</span> df.Country</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.f)</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta<span class="op">=</span> <span class="va">None</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_distance(<span class="va">self</span>):</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> np.zeros([<span class="va">self</span>.n,<span class="va">self</span>.n])</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>        locations <span class="op">=</span> np.stack([<span class="va">self</span>.lat, <span class="va">self</span>.<span class="bu">long</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(<span class="bu">range</span>(<span class="va">self</span>.n)):</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i,<span class="va">self</span>.n): </span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.D[i,j]<span class="op">=</span>haversine(locations[i],locations[j])</span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> <span class="va">self</span>.D<span class="op">+</span><span class="va">self</span>.D.T</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weightmatrix(<span class="va">self</span>,theta<span class="op">=</span><span class="dv">1</span>,beta<span class="op">=</span><span class="fl">0.5</span>,kappa<span class="op">=</span><span class="dv">4000</span>):</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta <span class="op">=</span> theta</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>        dist <span class="op">=</span> np.where(<span class="va">self</span>.D<span class="op">&lt;</span>kappa,<span class="va">self</span>.D,<span class="dv">0</span>)</span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> np.exp(<span class="op">-</span>(dist<span class="op">/</span><span class="va">self</span>.theta)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)        </span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vis(<span class="va">self</span>,ValueThresh<span class="op">=</span><span class="dv">7</span>,ResThresh<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.density_mapbox(<span class="va">self</span>.df, </span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>                        lat<span class="op">=</span><span class="st">'Latitude'</span>, </span>
-<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>                        lon<span class="op">=</span><span class="st">'Longitude'</span>, </span>
-<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>                        z<span class="op">=</span><span class="st">'Value'</span>, </span>
-<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>                        radius<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>                        center<span class="op">=</span><span class="bu">dict</span>(lat<span class="op">=</span><span class="dv">37</span>, lon<span class="op">=</span><span class="dv">126</span>), </span>
-<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>                        zoom<span class="op">=</span><span class="fl">5.7</span>,</span>
-<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>                        height<span class="op">=</span><span class="dv">900</span>,</span>
-<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>                        opacity <span class="op">=</span> <span class="fl">0.3</span>,</span>
-<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>                        mapbox_style<span class="op">=</span><span class="st">"stamen-terrain"</span>)</span>
-<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(margin<span class="op">=</span>{<span class="st">"r"</span>:<span class="dv">0</span>,<span class="st">"t"</span>:<span class="dv">0</span>,<span class="st">"l"</span>:<span class="dv">0</span>,<span class="st">"b"</span>:<span class="dv">0</span>})</span>
-<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Latitude'</span>],</span>
-<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Longitude'</span>],</span>
-<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Value'</span>],</span>
-<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
-<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'red'</span>,</span>
-<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Latitude'</span>],</span>
-<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Longitude'</span>],</span>
-<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ResThresh'</span>)[<span class="st">'Value'</span>],</span>
-<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
-<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'blue'</span>,</span>
-<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> HTML(fig.to_html(include_mathjax<span class="op">=</span><span class="va">False</span>, config<span class="op">=</span><span class="bu">dict</span>({<span class="st">'scrollZoom'</span>:<span class="va">False</span>})))</span>
-<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,ref<span class="op">=</span><span class="fl">0.5</span>): <span class="co"># fit with ebayesthresh</span></span>
-<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
-<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.f <span class="co"># fbar := graph fourier transform of f</span></span>
-<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>
-<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
-<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span>)))</span>
-<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.fbar,<span class="dv">0</span>)</span>
-<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.fbar_threshed</span>
-<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(ValueHat <span class="op">=</span> <span class="va">self</span>.fhat)</span>
-<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.Value<span class="op">-</span> <span class="va">self</span>.df.ValueHat)</span>
-<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self.con = np.where(self.df.Residual&gt;0.7,1,0)</span></span>
-<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.f,'.')</span></span>
-<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.fhat,'x')</span></span></code></pre></div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Stock_graph:</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.f <span class="op">=</span> df.Value.to_numpy()</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.year <span class="op">=</span> df.Year.to_numpy()</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mon <span class="op">=</span> df.Mon.to_numpy()</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.day <span class="op">=</span> df.Day.to_numpy()</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lat <span class="op">=</span> df.lat.to_numpy()</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">long</span> <span class="op">=</span> df.lon.to_numpy()</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.country <span class="op">=</span> df.Country</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.f)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta<span class="op">=</span> <span class="va">None</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_distance(<span class="va">self</span>):</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> np.zeros([<span class="va">self</span>.n,<span class="va">self</span>.n])</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>        locations <span class="op">=</span> np.stack([<span class="va">self</span>.lat, <span class="va">self</span>.<span class="bu">long</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(<span class="bu">range</span>(<span class="va">self</span>.n)):</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i,<span class="va">self</span>.n): </span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.D[i,j]<span class="op">=</span>haversine(locations[i],locations[j])</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> <span class="va">self</span>.D<span class="op">+</span><span class="va">self</span>.D.T</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weightmatrix(<span class="va">self</span>,theta<span class="op">=</span><span class="dv">1</span>,beta<span class="op">=</span><span class="fl">0.5</span>,kappa<span class="op">=</span><span class="dv">4000</span>):</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta <span class="op">=</span> theta</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>        dist <span class="op">=</span> np.where(<span class="va">self</span>.D<span class="op">&lt;</span>kappa,<span class="va">self</span>.D,<span class="dv">0</span>)</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> np.exp(<span class="op">-</span>(dist<span class="op">/</span><span class="va">self</span>.theta)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)        </span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vis(<span class="va">self</span>,ValueThresh<span class="op">=</span><span class="dv">7</span>,ResThresh<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.density_mapbox(<span class="va">self</span>.df, </span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>                        lat<span class="op">=</span><span class="st">'Latitude'</span>, </span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>                        lon<span class="op">=</span><span class="st">'Longitude'</span>, </span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>                        z<span class="op">=</span><span class="st">'Value'</span>, </span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>                        radius<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>                        center<span class="op">=</span><span class="bu">dict</span>(lat<span class="op">=</span><span class="dv">37</span>, lon<span class="op">=</span><span class="dv">126</span>), </span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>                        zoom<span class="op">=</span><span class="fl">5.7</span>,</span>
+<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>                        height<span class="op">=</span><span class="dv">900</span>,</span>
+<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>                        opacity <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>                        mapbox_style<span class="op">=</span><span class="st">"stamen-terrain"</span>)</span>
+<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(margin<span class="op">=</span>{<span class="st">"r"</span>:<span class="dv">0</span>,<span class="st">"t"</span>:<span class="dv">0</span>,<span class="st">"l"</span>:<span class="dv">0</span>,<span class="st">"b"</span>:<span class="dv">0</span>})</span>
+<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Latitude'</span>],</span>
+<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Longitude'</span>],</span>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Value'</span>],</span>
+<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'red'</span>,</span>
+<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Latitude'</span>],</span>
+<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Longitude'</span>],</span>
+<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ResThresh'</span>)[<span class="st">'Value'</span>],</span>
+<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
+<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'blue'</span>,</span>
+<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb42-58"><a href="#cb42-58" aria-hidden="true" tabindex="-1"></a>                      )</span>
+<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> HTML(fig.to_html(include_mathjax<span class="op">=</span><span class="va">False</span>, config<span class="op">=</span><span class="bu">dict</span>({<span class="st">'scrollZoom'</span>:<span class="va">False</span>})))</span>
+<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,ref<span class="op">=</span><span class="fl">0.5</span>): <span class="co"># fit with ebayesthresh</span></span>
+<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
+<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.f <span class="co"># fbar := graph fourier transform of f</span></span>
+<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>
+<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
+<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span>)))</span>
+<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.fbar,<span class="dv">0</span>)</span>
+<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.fbar_threshed</span>
+<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(ValueHat <span class="op">=</span> <span class="va">self</span>.fhat)</span>
+<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.Value<span class="op">-</span> <span class="va">self</span>.df.ValueHat)</span>
+<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self.con = np.where(self.df.Residual&gt;0.7,1,0)</span></span>
+<span id="cb42-71"><a href="#cb42-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.f,'.')</span></span>
+<span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.fhat,'x')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="57">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>rst <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
+</section>
+<section id="시도-1-자기자신만-연결" class="level1">
+<h1>시도 1 자기자신만 연결</h1>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rst <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="58">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rst.get_distance()</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 3082/3082 [00:24&lt;00:00, 124.02it/s]</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>rst.D[rst.D<span class="op">&gt;</span><span class="dv">0</span>].mean()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
-<pre><code>2278.9250860197926</code></pre>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>2955</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="60">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.hist(rst.D[rst.D<span class="op">&gt;</span><span class="dv">0</span>])</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="60">
-<pre><code>(array([2370576.,       0.,       0.,       0., 1077440.,       0.,
-        1118880., 1249248.,       0., 1297296.]),
- array([ 770.36770296, 1069.756563  , 1369.14542305, 1668.5342831 ,
-        1967.92314315, 2267.3120032 , 2566.70086324, 2866.08972329,
-        3165.47858334, 3464.86744339, 3764.25630344]),
- &lt;BarContainer object of 10 artists&gt;)</code></pre>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="bu">len</span>(rst.df)</span></code></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros((T,T))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">==</span>j :</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>W</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>array([[1., 0., 0., ..., 0., 0., 0.],
+       [0., 1., 0., ..., 0., 0., 0.],
+       [0., 0., 1., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 1., 0., 0.],
+       [0., 0., 0., ..., 0., 1., 0.],
+       [0., 0., 0., ..., 0., 0., 1.]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
+</div>
+<section id="result" class="level2">
+<h2 class="anchored" data-anchor-id="result">Result</h2>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>Country_x</th>
+      <th>...</th>
+      <th>Day_x</th>
+      <th>ValueHat</th>
+      <th>Residual</th>
+      <th>Country_code</th>
+      <th>Country_y</th>
+      <th>New_cases</th>
+      <th>New_deaths</th>
+      <th>Year_y</th>
+      <th>Mon_y</th>
+      <th>Day_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>462970</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>IL</td>
+      <td>Israel</td>
+      <td>48595</td>
+      <td>8</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463056</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>SA</td>
+      <td>Saudi Arabia</td>
+      <td>5362</td>
+      <td>2</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463034</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PN</td>
+      <td>Pitcairn Islands</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463035</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PL</td>
+      <td>Poland</td>
+      <td>16878</td>
+      <td>481</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463036</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PT</td>
+      <td>Portugal</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463037</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PR</td>
+      <td>Puerto Rico</td>
+      <td>9344</td>
+      <td>19</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463038</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>QA</td>
+      <td>Qatar</td>
+      <td>4206</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463039</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>KR</td>
+      <td>Republic of Korea</td>
+      <td>4542</td>
+      <td>49</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463040</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>MD</td>
+      <td>Republic of Moldova</td>
+      <td>1420</td>
+      <td>9</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463041</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>RE</td>
+      <td>Réunion</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463042</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>RO</td>
+      <td>Romania</td>
+      <td>8600</td>
+      <td>44</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463043</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>RU</td>
+      <td>Russian Federation</td>
+      <td>21155</td>
+      <td>740</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463044</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>RW</td>
+      <td>Rwanda</td>
+      <td>763</td>
+      <td>4</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463045</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>XC</td>
+      <td>Saba</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463046</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>BL</td>
+      <td>Saint Barthélemy</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463047</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>SH</td>
+      <td>Saint Helena, Ascension and Tristan da Cunha</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463048</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>KN</td>
+      <td>Saint Kitts and Nevis</td>
+      <td>145</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463049</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>LC</td>
+      <td>Saint Lucia</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463050</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>MF</td>
+      <td>Saint Martin</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463051</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PM</td>
+      <td>Saint Pierre and Miquelon</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463052</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>VC</td>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>67</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463053</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>WS</td>
+      <td>Samoa</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463054</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>SM</td>
+      <td>San Marino</td>
+      <td>177</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463033</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PH</td>
+      <td>Philippines</td>
+      <td>33917</td>
+      <td>82</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463032</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PE</td>
+      <td>Peru</td>
+      <td>24288</td>
+      <td>60</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463031</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>PY</td>
+      <td>Paraguay</td>
+      <td>2535</td>
+      <td>5</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463019</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>NG</td>
+      <td>Nigeria</td>
+      <td>432</td>
+      <td>6</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463010</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>MM</td>
+      <td>Myanmar</td>
+      <td>172</td>
+      <td>1</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463011</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>NaN</td>
+      <td>Namibia</td>
+      <td>358</td>
+      <td>21</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>463012</th>
+      <td>2022-01-13</td>
+      <td>3601.030029</td>
+      <td>3601.070068</td>
+      <td>3555.159912</td>
+      <td>3555.26001</td>
+      <td>3555.26001</td>
+      <td>369400.0</td>
+      <td>35.8617</td>
+      <td>104.1954</td>
+      <td>China</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>1.3374</td>
+      <td>NR</td>
+      <td>Nauru</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2022</td>
+      <td>01</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+<p>30 rows × 23 columns</p>
+</div>
 </div>
 </div>
 </section>
-<section id="result" class="level1">
-<h1>Result</h1>
+</section>
+<section id="시도-2" class="level1">
+<h1>시도 2</h1>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>2955</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>2955</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">0</span>].dropna()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>0      1.253258
+1      1.548745
+2      1.541731
+3      1.589329
+4      1.477884
+         ...   
+723    1.247930
+724    1.322648
+725    1.407895
+726    1.387381
+727    1.516051
+Name: China, Length: 728, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>728     0.240105
+729    -0.604658
+730    -0.604687
+731     1.025946
+732     0.994920
+          ...   
+1454    0.845206
+1455    0.930643
+1456    1.001293
+1457    0.867971
+1458    0.239862
+Name: Japan, Length: 731, dtype: float64</code></pre>
+</div>
+</div>
+<section id="result-1" class="level2">
+<h2 class="anchored" data-anchor-id="result-1">Result</h2>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Country_code</th>
+      <th>Country</th>
+      <th>New_cases</th>
+      <th>New_deaths</th>
+      <th>Year</th>
+      <th>Mon</th>
+      <th>Day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-03</td>
+      <td>AF</td>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>03</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-04</td>
+      <td>AF</td>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-05</td>
+      <td>AF</td>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-01-06</td>
+      <td>AF</td>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-01-07</td>
+      <td>AF</td>
+      <td>Afghanistan</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>01</td>
+      <td>07</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1268</th>
+      <td>2023-07-06</td>
+      <td>KP</td>
+      <td>Korea</td>
+      <td>24339</td>
+      <td>12</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>06</td>
+    </tr>
+    <tr>
+      <th>1269</th>
+      <td>2023-07-07</td>
+      <td>KP</td>
+      <td>Korea</td>
+      <td>24757</td>
+      <td>7</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>07</td>
+    </tr>
+    <tr>
+      <th>1270</th>
+      <td>2023-07-08</td>
+      <td>KP</td>
+      <td>Korea</td>
+      <td>25659</td>
+      <td>3</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>08</td>
+    </tr>
+    <tr>
+      <th>1271</th>
+      <td>2023-07-09</td>
+      <td>KP</td>
+      <td>Korea</td>
+      <td>22560</td>
+      <td>2</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>09</td>
+    </tr>
+    <tr>
+      <th>1272</th>
+      <td>2023-07-10</td>
+      <td>KP</td>
+      <td>Korea</td>
+      <td>9253</td>
+      <td>2</td>
+      <td>2023</td>
+      <td>07</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+<p>304628 rows × 8 columns</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

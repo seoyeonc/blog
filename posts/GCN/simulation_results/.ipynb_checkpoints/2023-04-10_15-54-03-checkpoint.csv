@@ -1,7 +1,0 @@
-dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
-five_nodes,GNAR,0.125,block,2,,cubic,,1.4068299531936646,0.01945328712463379
-five_nodes,GNAR,0.125,block,2,,linear,,1.4068299531936646,0.006452322006225586
-five_nodes,GNAR,0.125,block,2,,cubic,,1.4068299531936646,0.006349325180053711
-five_nodes,GNAR,0.125,block,2,,linear,,1.4068299531936646,0.00620722770690918
-five_nodes,GNAR,0.125,block,2,,cubic,,1.4068299531936646,0.009549379348754883
-five_nodes,GNAR,0.125,block,2,,linear,,1.4068299531936646,0.006585359573364258

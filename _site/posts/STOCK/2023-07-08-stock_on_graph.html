@@ -601,11 +601,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-07-03-other_outlier_detection-Copy1.html" class="sidebar-item-text sidebar-link">Other Outlier Detection</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
   </div>
 </li>
@@ -657,7 +652,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#covid20202022" id="toc-covid20202022" class="nav-link" data-scroll-target="#covid20202022">COVID(2020~2022)</a></li>
   <li><a href="#define-class" id="toc-define-class" class="nav-link" data-scroll-target="#define-class">define class</a></li>
-  <li><a href="#시도-1-자기자신만-연결" id="toc-시도-1-자기자신만-연결" class="nav-link" data-scroll-target="#시도-1-자기자신만-연결">시도 1 자기자신만 연결</a>
+  <li><a href="#시도-1" id="toc-시도-1" class="nav-link" data-scroll-target="#시도-1">시도 1</a>
   <ul class="collapse">
   <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">Result</a></li>
   </ul></li>
@@ -703,7 +698,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_korea <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/korea_kospi.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_korea <span class="op">=</span> pd.concat([df_korea,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">35.9078</span>]<span class="op">*</span><span class="bu">len</span>(df_korea), <span class="st">'lon'</span>: [<span class="fl">127.7669</span>]<span class="op">*</span><span class="bu">len</span>(df_korea),<span class="st">'Country'</span>: <span class="st">"Korea"</span>,</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_korea <span class="op">=</span> pd.concat([df_korea,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">"Korea"</span>,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_korea[<span class="st">'Close'</span>] <span class="op">-</span> df_korea[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_korea[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="5">
@@ -733,8 +728,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
       <th>Country</th>
       <th>Value</th>
       <th>Year</th>
@@ -752,8 +745,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2175.169922</td>
       <td>2175.169922</td>
       <td>494700</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.719054</td>
       <td>2020.0</td>
@@ -769,8 +760,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2176.459961</td>
       <td>2176.459961</td>
       <td>631600</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.715806</td>
       <td>2020.0</td>
@@ -786,8 +775,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2155.070068</td>
       <td>2155.070068</td>
       <td>592700</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.769651</td>
       <td>2020.0</td>
@@ -803,8 +790,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2175.540039</td>
       <td>2175.540039</td>
       <td>568200</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.718122</td>
       <td>2020.0</td>
@@ -820,8 +805,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2151.310059</td>
       <td>2151.310059</td>
       <td>913800</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.779116</td>
       <td>2020.0</td>
@@ -830,8 +813,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -854,8 +835,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2313.689941</td>
       <td>2313.689941</td>
       <td>367000</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.370356</td>
       <td>2022.0</td>
@@ -871,8 +850,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2317.139893</td>
       <td>2317.139893</td>
       <td>427600</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.361672</td>
       <td>2022.0</td>
@@ -888,8 +865,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2332.790039</td>
       <td>2332.790039</td>
       <td>448300</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.322276</td>
       <td>2022.0</td>
@@ -905,8 +880,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2280.449951</td>
       <td>2280.449951</td>
       <td>405700</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.454032</td>
       <td>2022.0</td>
@@ -922,8 +895,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2236.399902</td>
       <td>2236.399902</td>
       <td>361000</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.564919</td>
       <td>2022.0</td>
@@ -932,7 +903,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>740 rows × 14 columns</p>
+<p>740 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -950,7 +921,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_us <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/us_nasdaq.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_us <span class="op">=</span> pd.concat([df_us,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">37.0902</span>]<span class="op">*</span><span class="bu">len</span>(df_us), <span class="st">'lon'</span>: [<span class="fl">95.7129</span>]<span class="op">*</span><span class="bu">len</span>(df_us),<span class="st">'Country'</span>: <span class="st">'United States of America'</span>,</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_us <span class="op">=</span> pd.concat([df_us,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'United States of America'</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_us[<span class="st">'Close'</span>] <span class="op">-</span> df_us[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_us[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="11">
@@ -980,8 +951,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
       <th>Country</th>
       <th>Value</th>
       <th>Year</th>
@@ -999,8 +968,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>9092.190430</td>
       <td>9092.190430</td>
       <td>2862700000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.695392</td>
       <td>2020.0</td>
@@ -1016,8 +983,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>9020.769531</td>
       <td>9020.769531</td>
       <td>2586520000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.722486</td>
       <td>2020.0</td>
@@ -1033,8 +998,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>9071.469727</td>
       <td>9071.469727</td>
       <td>2810450000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.703253</td>
       <td>2020.0</td>
@@ -1050,8 +1013,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>9068.580078</td>
       <td>9068.580078</td>
       <td>2381740000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.704349</td>
       <td>2020.0</td>
@@ -1067,8 +1028,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>9129.240234</td>
       <td>9129.240234</td>
       <td>2472620000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.681336</td>
       <td>2020.0</td>
@@ -1077,8 +1036,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1101,8 +1058,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>10497.860352</td>
       <td>10497.860352</td>
       <td>3544680000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.162131</td>
       <td>2022.0</td>
@@ -1118,8 +1073,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>10353.230469</td>
       <td>10353.230469</td>
       <td>3827290000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.216999</td>
       <td>2022.0</td>
@@ -1135,8 +1088,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>10213.290039</td>
       <td>10213.290039</td>
       <td>3842970000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.270087</td>
       <td>2022.0</td>
@@ -1152,8 +1103,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>10478.089844</td>
       <td>10478.089844</td>
       <td>4154100000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.169631</td>
       <td>2022.0</td>
@@ -1169,8 +1118,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>10466.480469</td>
       <td>10466.480469</td>
       <td>3959030000</td>
-      <td>37.0902</td>
-      <td>95.7129</td>
       <td>United States of America</td>
       <td>-0.174036</td>
       <td>2022.0</td>
@@ -1179,7 +1126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>756 rows × 14 columns</p>
+<p>756 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -1197,7 +1144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/china_ssec.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.concat([df_china,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">35.8617</span>]<span class="op">*</span><span class="bu">len</span>(df_china), <span class="st">'lon'</span>: [<span class="fl">104.1954</span>]<span class="op">*</span><span class="bu">len</span>(df_china),<span class="st">'Country'</span>: <span class="st">'China'</span>,</span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.concat([df_china,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'China'</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_china[<span class="st">'Close'</span>] <span class="op">-</span> df_china[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_china[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="17">
@@ -1227,8 +1174,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
       <th>Country</th>
       <th>Value</th>
       <th>Year</th>
@@ -1246,8 +1191,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3085.197998</td>
       <td>3085.197998</td>
       <td>292500</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.244680</td>
       <td>2020.0</td>
@@ -1263,8 +1206,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3083.785889</td>
       <td>3083.785889</td>
       <td>261500</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.249433</td>
       <td>2020.0</td>
@@ -1280,8 +1221,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3083.407959</td>
       <td>3083.407959</td>
       <td>312600</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.250705</td>
       <td>2020.0</td>
@@ -1297,8 +1236,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3104.802002</td>
       <td>3104.802002</td>
       <td>276600</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.178700</td>
       <td>2020.0</td>
@@ -1314,8 +1251,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3066.893066</td>
       <td>3066.893066</td>
       <td>297900</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.306289</td>
       <td>2020.0</td>
@@ -1324,8 +1259,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1348,8 +1281,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3065.562988</td>
       <td>3065.562988</td>
       <td>206500</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.310766</td>
       <td>2022.0</td>
@@ -1365,8 +1296,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3095.570068</td>
       <td>3095.570068</td>
       <td>222200</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.209771</td>
       <td>2022.0</td>
@@ -1382,8 +1311,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3087.399902</td>
       <td>3087.399902</td>
       <td>224600</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.237270</td>
       <td>2022.0</td>
@@ -1399,8 +1326,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3073.699951</td>
       <td>3073.699951</td>
       <td>215600</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.283379</td>
       <td>2022.0</td>
@@ -1416,8 +1341,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>3089.260010</td>
       <td>3089.260010</td>
       <td>217500</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
       <td>China</td>
       <td>-0.231009</td>
       <td>2022.0</td>
@@ -1426,7 +1349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>728 rows × 14 columns</p>
+<p>728 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -1444,7 +1367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/japan_n225.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.concat([df_japan,pd.DataFrame({<span class="st">'lat'</span>: [<span class="fl">36.2048</span>]<span class="op">*</span><span class="bu">len</span>(df_japan), <span class="st">'lon'</span>: [<span class="fl">138.2529</span>]<span class="op">*</span><span class="bu">len</span>(df_japan),<span class="st">'Country'</span>: <span class="st">'Japan'</span>,</span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.concat([df_japan,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'Japan'</span>,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_japan[<span class="st">'Close'</span>] <span class="op">-</span> df_japan[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_japan[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="23">
@@ -1474,8 +1397,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
       <th>Country</th>
       <th>Value</th>
       <th>Year</th>
@@ -1493,8 +1414,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>23204.859375</td>
       <td>23204.859375</td>
       <td>72800000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>-0.604658</td>
       <td>2020.0</td>
@@ -1510,8 +1429,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>23575.720703</td>
       <td>23575.720703</td>
       <td>64300000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>-0.496240</td>
       <td>2020.0</td>
@@ -1527,8 +1444,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>23204.759766</td>
       <td>23204.759766</td>
       <td>79400000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>-0.604687</td>
       <td>2020.0</td>
@@ -1544,8 +1459,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>23739.869141</td>
       <td>23739.869141</td>
       <td>62200000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>-0.448252</td>
       <td>2020.0</td>
@@ -1561,8 +1474,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>23850.570313</td>
       <td>23850.570313</td>
       <td>55900000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>-0.415890</td>
       <td>2020.0</td>
@@ -1571,8 +1482,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1595,8 +1504,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26405.869141</td>
       <td>26405.869141</td>
       <td>47300000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.331131</td>
       <td>2022.0</td>
@@ -1612,8 +1519,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26447.869141</td>
       <td>26447.869141</td>
       <td>50200000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.343410</td>
       <td>2022.0</td>
@@ -1629,8 +1534,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26340.500000</td>
       <td>26340.500000</td>
       <td>61500000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.312021</td>
       <td>2022.0</td>
@@ -1646,8 +1549,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26093.669922</td>
       <td>26093.669922</td>
       <td>63100000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.239862</td>
       <td>2022.0</td>
@@ -1663,8 +1564,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26094.500000</td>
       <td>26094.500000</td>
       <td>52700000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.240105</td>
       <td>2022.0</td>
@@ -1673,7 +1572,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>731 rows × 14 columns</p>
+<p>731 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -1709,8 +1608,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>Close</th>
       <th>Adj Close</th>
       <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
       <th>Country</th>
       <th>Value</th>
       <th>Year</th>
@@ -1728,8 +1625,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2175.169922</td>
       <td>2175.169922</td>
       <td>494700.0</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.719054</td>
       <td>2020.0</td>
@@ -1745,8 +1640,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2176.459961</td>
       <td>2176.459961</td>
       <td>631600.0</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.715806</td>
       <td>2020.0</td>
@@ -1762,8 +1655,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2155.070068</td>
       <td>2155.070068</td>
       <td>592700.0</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.769651</td>
       <td>2020.0</td>
@@ -1779,8 +1670,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2175.540039</td>
       <td>2175.540039</td>
       <td>568200.0</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.718122</td>
       <td>2020.0</td>
@@ -1796,8 +1685,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>2151.310059</td>
       <td>2151.310059</td>
       <td>913800.0</td>
-      <td>35.9078</td>
-      <td>127.7669</td>
       <td>Korea</td>
       <td>-0.779116</td>
       <td>2020.0</td>
@@ -1806,8 +1693,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1830,8 +1715,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26405.869141</td>
       <td>26405.869141</td>
       <td>47300000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.331131</td>
       <td>2022.0</td>
@@ -1847,8 +1730,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26447.869141</td>
       <td>26447.869141</td>
       <td>50200000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.343410</td>
       <td>2022.0</td>
@@ -1864,8 +1745,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26340.500000</td>
       <td>26340.500000</td>
       <td>61500000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.312021</td>
       <td>2022.0</td>
@@ -1881,8 +1760,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26093.669922</td>
       <td>26093.669922</td>
       <td>63100000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.239862</td>
       <td>2022.0</td>
@@ -1898,8 +1775,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>26094.500000</td>
       <td>26094.500000</td>
       <td>52700000.0</td>
-      <td>36.2048</td>
-      <td>138.2529</td>
       <td>Japan</td>
       <td>0.240105</td>
       <td>2022.0</td>
@@ -1908,7 +1783,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>2955 rows × 14 columns</p>
+<p>2955 rows × 12 columns</p>
 </div>
 </div>
 </div>
@@ -2677,1011 +2552,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.fhat,'x')</span></span></code></pre></div>
 </div>
 </section>
-<section id="시도-1-자기자신만-연결" class="level1">
-<h1>시도 1 자기자신만 연결</h1>
+<section id="시도-1" class="level1">
+<h1>시도 1</h1>
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rst <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
-<pre><code>2955</code></pre>
+<div class="cell-output cell-output-error">
+<pre><code>AttributeError: 'DataFrame' object has no attribute 'lat'</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="42">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="bu">len</span>(rst.df)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="43">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros((T,T))</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T):</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i<span class="op">==</span>j :</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">==</span><span class="dv">1</span> :</span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="44">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>W</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
-<pre><code>array([[1., 0., 0., ..., 0., 0., 0.],
-       [0., 1., 0., ..., 0., 0., 0.],
-       [0., 0., 1., ..., 0., 0., 0.],
-       ...,
-       [0., 0., 0., ..., 1., 0., 0.],
-       [0., 0., 0., ..., 0., 1., 0.],
-       [0., 0., 0., ..., 0., 0., 1.]])</code></pre>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
-</div>
-<div class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
 </div>
 <section id="result" class="level2">
 <h2 class="anchored" data-anchor-id="result">Result</h2>
-<div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>lat</th>
-      <th>lon</th>
-      <th>Country_x</th>
-      <th>...</th>
-      <th>Day_x</th>
-      <th>ValueHat</th>
-      <th>Residual</th>
-      <th>Country_code</th>
-      <th>Country_y</th>
-      <th>New_cases</th>
-      <th>New_deaths</th>
-      <th>Year_y</th>
-      <th>Mon_y</th>
-      <th>Day_y</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>462970</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>IL</td>
-      <td>Israel</td>
-      <td>48595</td>
-      <td>8</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463056</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>SA</td>
-      <td>Saudi Arabia</td>
-      <td>5362</td>
-      <td>2</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463034</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PN</td>
-      <td>Pitcairn Islands</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463035</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PL</td>
-      <td>Poland</td>
-      <td>16878</td>
-      <td>481</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463036</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PT</td>
-      <td>Portugal</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463037</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PR</td>
-      <td>Puerto Rico</td>
-      <td>9344</td>
-      <td>19</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463038</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>QA</td>
-      <td>Qatar</td>
-      <td>4206</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463039</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>KR</td>
-      <td>Republic of Korea</td>
-      <td>4542</td>
-      <td>49</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463040</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>MD</td>
-      <td>Republic of Moldova</td>
-      <td>1420</td>
-      <td>9</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463041</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>RE</td>
-      <td>Réunion</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463042</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>RO</td>
-      <td>Romania</td>
-      <td>8600</td>
-      <td>44</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463043</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>RU</td>
-      <td>Russian Federation</td>
-      <td>21155</td>
-      <td>740</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463044</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>RW</td>
-      <td>Rwanda</td>
-      <td>763</td>
-      <td>4</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463045</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>XC</td>
-      <td>Saba</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463046</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>BL</td>
-      <td>Saint Barthélemy</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463047</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>SH</td>
-      <td>Saint Helena, Ascension and Tristan da Cunha</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463048</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>KN</td>
-      <td>Saint Kitts and Nevis</td>
-      <td>145</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463049</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>LC</td>
-      <td>Saint Lucia</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463050</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>MF</td>
-      <td>Saint Martin</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463051</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PM</td>
-      <td>Saint Pierre and Miquelon</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463052</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>VC</td>
-      <td>Saint Vincent and the Grenadines</td>
-      <td>67</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463053</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>WS</td>
-      <td>Samoa</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463054</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>SM</td>
-      <td>San Marino</td>
-      <td>177</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463033</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PH</td>
-      <td>Philippines</td>
-      <td>33917</td>
-      <td>82</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463032</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PE</td>
-      <td>Peru</td>
-      <td>24288</td>
-      <td>60</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463031</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>PY</td>
-      <td>Paraguay</td>
-      <td>2535</td>
-      <td>5</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463019</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>NG</td>
-      <td>Nigeria</td>
-      <td>432</td>
-      <td>6</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463010</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>MM</td>
-      <td>Myanmar</td>
-      <td>172</td>
-      <td>1</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463011</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>NaN</td>
-      <td>Namibia</td>
-      <td>358</td>
-      <td>21</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>463012</th>
-      <td>2022-01-13</td>
-      <td>3601.030029</td>
-      <td>3601.070068</td>
-      <td>3555.159912</td>
-      <td>3555.26001</td>
-      <td>3555.26001</td>
-      <td>369400.0</td>
-      <td>35.8617</td>
-      <td>104.1954</td>
-      <td>China</td>
-      <td>...</td>
-      <td>13.0</td>
-      <td>0.0</td>
-      <td>1.3374</td>
-      <td>NR</td>
-      <td>Nauru</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2022</td>
-      <td>01</td>
-      <td>13</td>
-    </tr>
-  </tbody>
-</table>
-<p>30 rows × 23 columns</p>
-</div>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="시도-2" class="level1">
 <h1>시도 2</h1>
-<div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>2955</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>2955</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rst2.df</span></code></pre></div>
 </div>
-</div>
-<div class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">0</span>].dropna()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>0      1.253258
-1      1.548745
-2      1.541731
-3      1.589329
-4      1.477884
-         ...   
-723    1.247930
-724    1.322648
-725    1.407895
-726    1.387381
-727    1.516051
-Name: China, Length: 728, dtype: float64</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
-<pre><code>728     0.240105
-729    -0.604658
-730    -0.604687
-731     1.025946
-732     0.994920
-          ...   
-1454    0.845206
-1455    0.930643
-1456    1.001293
-1457    0.867971
-1458    0.239862
-Name: Japan, Length: 731, dtype: float64</code></pre>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
 </div>
 <section id="result-1" class="level2">
 <h2 class="anchored" data-anchor-id="result-1">Result</h2>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="53">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Country_code</th>
-      <th>Country</th>
-      <th>New_cases</th>
-      <th>New_deaths</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-01-03</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>03</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-01-04</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>04</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-01-05</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>05</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-01-06</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>06</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-01-07</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>07</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1268</th>
-      <td>2023-07-06</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24339</td>
-      <td>12</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>06</td>
-    </tr>
-    <tr>
-      <th>1269</th>
-      <td>2023-07-07</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24757</td>
-      <td>7</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>07</td>
-    </tr>
-    <tr>
-      <th>1270</th>
-      <td>2023-07-08</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>25659</td>
-      <td>3</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>08</td>
-    </tr>
-    <tr>
-      <th>1271</th>
-      <td>2023-07-09</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>22560</td>
-      <td>2</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>09</td>
-    </tr>
-    <tr>
-      <th>1272</th>
-      <td>2023-07-10</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>9253</td>
-      <td>2</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
-<p>304628 rows × 8 columns</p>
-</div>
-</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
 </div>
 
 

@@ -2477,7 +2477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="define-class" class="level1">
 <h1>define class</h1>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Stock_graph:</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df </span>
@@ -2485,133 +2485,186 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.year <span class="op">=</span> df.Year.to_numpy()</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.mon <span class="op">=</span> df.Mon.to_numpy()</span>
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.day <span class="op">=</span> df.Day.to_numpy()</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lat <span class="op">=</span> df.lat.to_numpy()</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">long</span> <span class="op">=</span> df.lon.to_numpy()</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.country <span class="op">=</span> df.Country</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.f)</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta<span class="op">=</span> <span class="va">None</span></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_distance(<span class="va">self</span>):</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> np.zeros([<span class="va">self</span>.n,<span class="va">self</span>.n])</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>        locations <span class="op">=</span> np.stack([<span class="va">self</span>.lat, <span class="va">self</span>.<span class="bu">long</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(<span class="bu">range</span>(<span class="va">self</span>.n)):</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i,<span class="va">self</span>.n): </span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.D[i,j]<span class="op">=</span>haversine(locations[i],locations[j])</span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> <span class="va">self</span>.D<span class="op">+</span><span class="va">self</span>.D.T</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weightmatrix(<span class="va">self</span>,theta<span class="op">=</span><span class="dv">1</span>,beta<span class="op">=</span><span class="fl">0.5</span>,kappa<span class="op">=</span><span class="dv">4000</span>):</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta <span class="op">=</span> theta</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>        dist <span class="op">=</span> np.where(<span class="va">self</span>.D<span class="op">&lt;</span>kappa,<span class="va">self</span>.D,<span class="dv">0</span>)</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> np.exp(<span class="op">-</span>(dist<span class="op">/</span><span class="va">self</span>.theta)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)        </span>
-<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> vis(<span class="va">self</span>,ValueThresh<span class="op">=</span><span class="dv">7</span>,ResThresh<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.density_mapbox(<span class="va">self</span>.df, </span>
-<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>                        lat<span class="op">=</span><span class="st">'Latitude'</span>, </span>
-<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>                        lon<span class="op">=</span><span class="st">'Longitude'</span>, </span>
-<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>                        z<span class="op">=</span><span class="st">'Value'</span>, </span>
-<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>                        radius<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>                        center<span class="op">=</span><span class="bu">dict</span>(lat<span class="op">=</span><span class="dv">37</span>, lon<span class="op">=</span><span class="dv">126</span>), </span>
-<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>                        zoom<span class="op">=</span><span class="fl">5.7</span>,</span>
-<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>                        height<span class="op">=</span><span class="dv">900</span>,</span>
-<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>                        opacity <span class="op">=</span> <span class="fl">0.3</span>,</span>
-<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>                        mapbox_style<span class="op">=</span><span class="st">"stamen-terrain"</span>)</span>
-<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>        fig.update_layout(margin<span class="op">=</span>{<span class="st">"r"</span>:<span class="dv">0</span>,<span class="st">"t"</span>:<span class="dv">0</span>,<span class="st">"l"</span>:<span class="dv">0</span>,<span class="st">"b"</span>:<span class="dv">0</span>})</span>
-<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Latitude'</span>],</span>
-<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Longitude'</span>],</span>
-<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ValueThresh'</span>)[<span class="st">'Value'</span>],</span>
-<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
-<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'red'</span>,</span>
-<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>        fig.add_scattermapbox(lat <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Latitude'</span>],</span>
-<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>                      lon <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Residual**2 &gt; @ResThresh'</span>)[<span class="st">'Longitude'</span>],</span>
-<span id="cb42-54"><a href="#cb42-54" aria-hidden="true" tabindex="-1"></a>                      text <span class="op">=</span> <span class="va">self</span>.df.query(<span class="st">'Value &gt; @ResThresh'</span>)[<span class="st">'Value'</span>],</span>
-<span id="cb42-55"><a href="#cb42-55" aria-hidden="true" tabindex="-1"></a>                      marker_size<span class="op">=</span> <span class="dv">8</span>,</span>
-<span id="cb42-56"><a href="#cb42-56" aria-hidden="true" tabindex="-1"></a>                      marker_color<span class="op">=</span> <span class="st">'blue'</span>,</span>
-<span id="cb42-57"><a href="#cb42-57" aria-hidden="true" tabindex="-1"></a>                      opacity <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb42-58"><a href="#cb42-58" aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb42-59"><a href="#cb42-59" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> HTML(fig.to_html(include_mathjax<span class="op">=</span><span class="va">False</span>, config<span class="op">=</span><span class="bu">dict</span>({<span class="st">'scrollZoom'</span>:<span class="va">False</span>})))</span>
-<span id="cb42-60"><a href="#cb42-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,ref<span class="op">=</span><span class="fl">0.5</span>): <span class="co"># fit with ebayesthresh</span></span>
-<span id="cb42-61"><a href="#cb42-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
-<span id="cb42-62"><a href="#cb42-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.f <span class="co"># fbar := graph fourier transform of f</span></span>
-<span id="cb42-63"><a href="#cb42-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>
-<span id="cb42-64"><a href="#cb42-64" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
-<span id="cb42-65"><a href="#cb42-65" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span>)))</span>
-<span id="cb42-66"><a href="#cb42-66" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.fbar,<span class="dv">0</span>)</span>
-<span id="cb42-67"><a href="#cb42-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.fbar_threshed</span>
-<span id="cb42-68"><a href="#cb42-68" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(ValueHat <span class="op">=</span> <span class="va">self</span>.fhat)</span>
-<span id="cb42-69"><a href="#cb42-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.Value<span class="op">-</span> <span class="va">self</span>.df.ValueHat)</span>
-<span id="cb42-70"><a href="#cb42-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self.con = np.where(self.df.Residual&gt;0.7,1,0)</span></span>
-<span id="cb42-71"><a href="#cb42-71" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.f,'.')</span></span>
-<span id="cb42-72"><a href="#cb42-72" aria-hidden="true" tabindex="-1"></a>        <span class="co">#plt.plot(self.fhat,'x')</span></span></code></pre></div>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.country <span class="op">=</span> df.Country</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.f)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta<span class="op">=</span> <span class="va">None</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_distance(<span class="va">self</span>):</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> np.zeros([<span class="va">self</span>.n,<span class="va">self</span>.n])</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>        locations <span class="op">=</span> np.stack([<span class="va">self</span>.lat, <span class="va">self</span>.<span class="bu">long</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> tqdm.tqdm(<span class="bu">range</span>(<span class="va">self</span>.n)):</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i,<span class="va">self</span>.n): </span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.D[i,j]<span class="op">=</span>haversine(locations[i],locations[j])</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.D <span class="op">=</span> <span class="va">self</span>.D<span class="op">+</span><span class="va">self</span>.D.T</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_weightmatrix(<span class="va">self</span>,theta<span class="op">=</span><span class="dv">1</span>,beta<span class="op">=</span><span class="fl">0.5</span>,kappa<span class="op">=</span><span class="dv">4000</span>):</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.theta <span class="op">=</span> theta</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>        dist <span class="op">=</span> np.where(<span class="va">self</span>.D<span class="op">&lt;</span>kappa,<span class="va">self</span>.D,<span class="dv">0</span>)</span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W <span class="op">=</span> np.exp(<span class="op">-</span>(dist<span class="op">/</span><span class="va">self</span>.theta)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _eigen(<span class="va">self</span>):</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>        d<span class="op">=</span> <span class="va">self</span>.W.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>        D<span class="op">=</span> np.diag(d)</span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
+<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)    </span>
+<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,ref<span class="op">=</span><span class="fl">0.5</span>): <span class="co"># fit with ebayesthresh</span></span>
+<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
+<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.f <span class="co"># fbar := graph fourier transform of f</span></span>
+<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>
+<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>        ebayesthresh <span class="op">=</span> importr(<span class="st">'EbayesThresh'</span>).ebayesthresh</span>
+<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power_threshed<span class="op">=</span>np.array(ebayesthresh(FloatVector(<span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span>)))</span>
+<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar_threshed <span class="op">=</span> np.where(<span class="va">self</span>.power_threshed<span class="op">&gt;</span><span class="dv">0</span>,<span class="va">self</span>.fbar,<span class="dv">0</span>)</span>
+<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat <span class="op">=</span> <span class="va">self</span>.Psi<span class="op">@</span>self.fbar_threshed</span>
+<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(ValueHat <span class="op">=</span> <span class="va">self</span>.fhat)</span>
+<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> <span class="va">self</span>.df.assign(Residual <span class="op">=</span> <span class="va">self</span>.df.Value<span class="op">-</span> <span class="va">self</span>.df.ValueHat)</span></code></pre></div>
 </div>
 </section>
 <section id="시도-1" class="level1">
 <h1>시도 1</h1>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rst <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>AttributeError: 'DataFrame' object has no attribute 'lat'</code></pre>
+</div>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>2955</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
-</div>
-<div class="cell">
+<div class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="bu">len</span>(rst.df)</span></code></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros((T,T))</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T):</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">==</span><span class="dv">1</span> :</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Korea'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]],rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Japan'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]])</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ValueError: x and y must be the same size</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-44-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Japan'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Value</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>367</th>
+      <td>-0.604658</td>
+      <td>2020.0</td>
+    </tr>
+    <tr>
+      <th>368</th>
+      <td>-0.496240</td>
+      <td>2020.0</td>
+    </tr>
+    <tr>
+      <th>369</th>
+      <td>-0.604687</td>
+      <td>2020.0</td>
+    </tr>
+    <tr>
+      <th>370</th>
+      <td>-0.448252</td>
+      <td>2020.0</td>
+    </tr>
+    <tr>
+      <th>371</th>
+      <td>-0.415890</td>
+      <td>2020.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1093</th>
+      <td>0.331131</td>
+      <td>2022.0</td>
+    </tr>
+    <tr>
+      <th>1094</th>
+      <td>0.343410</td>
+      <td>2022.0</td>
+    </tr>
+    <tr>
+      <th>1095</th>
+      <td>0.312021</td>
+      <td>2022.0</td>
+    </tr>
+    <tr>
+      <th>1096</th>
+      <td>0.239862</td>
+      <td>2022.0</td>
+    </tr>
+    <tr>
+      <th>1097</th>
+      <td>0.240105</td>
+      <td>2022.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>731 rows × 2 columns</p>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>W</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros((T,T))</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.<span class="bu">abs</span>(i<span class="op">-</span>j) <span class="op">==</span><span class="dv">1</span> :</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>W</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
 </div>
 <section id="result" class="level2">
 <h2 class="anchored" data-anchor-id="result">Result</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="시도-2" class="level1">
 <h1>시도 2</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rst2.df</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rst2.df</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
 </div>
 <section id="result-1" class="level2">
 <h2 class="anchored" data-anchor-id="result-1">Result</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
 </div>
 
 

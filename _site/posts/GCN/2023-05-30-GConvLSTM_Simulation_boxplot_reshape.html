@@ -1338,7 +1338,7 @@ if (outputEl) {{
 </section>
 <section id="windmilsmall" class="level1">
 <h1>Windmilsmall</h1>
-<div class="cell" data-execution_count="689">
+<div class="cell" data-execution_count="700">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-06-18_08-49-16.csv'</span>) <span class="co"># STGCN IT-STGCN 70%</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-06-18_19-23-41.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-06-19_05-43-03.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
@@ -1428,19 +1428,20 @@ if (outputEl) {{
 <span id="cb43-87"><a href="#cb43-87" aria-hidden="true" tabindex="-1"></a>df87 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-12_10-10-49.csv'</span>)</span>
 <span id="cb43-88"><a href="#cb43-88" aria-hidden="true" tabindex="-1"></a>df88 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-12_17-03-55.csv'</span>)</span>
 <span id="cb43-89"><a href="#cb43-89" aria-hidden="true" tabindex="-1"></a>df89 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-13_15-31-01.csv'</span>)</span>
-<span id="cb43-90"><a href="#cb43-90" aria-hidden="true" tabindex="-1"></a>df91 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-13_04-24-40.csv'</span>)</span></code></pre></div>
+<span id="cb43-90"><a href="#cb43-90" aria-hidden="true" tabindex="-1"></a>df90 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-14_20-29-43.csv'</span>)</span>
+<span id="cb43-91"><a href="#cb43-91" aria-hidden="true" tabindex="-1"></a>df91 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-13_04-24-40.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="690">
+<div class="cell" data-execution_count="701">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                 df22,df23,df24,df25,df26,df27,df28,df29,df30,df31,df32,df33,df34,df35,df36,df37,df38,df39,df40,</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                 df41,df42,df43,df44,df45,df46,df47,df48,df29,df50,df51,df52,df53,df54,df55,df56,df57,df58,df59,df60,df61,</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                 df62,df63,df64,df65,df66,df67,df68,df69,df70,df71,df72,df73,df74,df75,df76,df77,df78,df79,df80,df81,</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>                 df82,df83,df84,df85,df86,df87,df88,df89,df91],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>                 df82,df83,df84,df85,df86,df87,df88,df89,df90,df91],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="691">
+<div class="cell" data-execution_count="702">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_windmillsmall.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="692">
+<div class="cell" data-execution_count="703">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
 <section id="baseline-4" class="level2">

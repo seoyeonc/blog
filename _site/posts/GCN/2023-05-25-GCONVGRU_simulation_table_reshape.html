@@ -696,36 +696,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="42">
+<div class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="43">
+<div class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="44">
+<div class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="45">
+<div class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="130">
 
 <div>
 
@@ -891,17 +891,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>2106 rows × 10 columns</p>
+<p>2876 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data_pedal2,data_wiki_GSO])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvGRU_pedal_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 </section>
@@ -2130,7 +2130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="gnar" class="level1">
 <h1>GNAR</h1>
-<div class="cell" data-execution_count="74">
+<div class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_10-06-15.csv'</span>) <span class="co"># STGCN IT-STGCN 70%</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_10-06-19.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_10-06-20.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
@@ -2144,18 +2144,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>df11 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_11-54-04.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>df12 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_11-55-04.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df13 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-16_08-11-09.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>df14 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-16_08-11-11.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>df15 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-16_08-11-13.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># df16 = pd.read_csv('./simulation_results/2023-07-09_11-53-31.csv') # STGCN IT-STGCN</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># df17 = pd.read_csv('./simulation_results/2023-07-09_11-53-31.csv') # STGCN IT-STGCN</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,df13,df14,df15],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR.csv'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR.csv'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="114">
 
 <div>
 
@@ -2186,7 +2193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>1.40683</td>
+      <td>1.406830</td>
       <td>0.021981</td>
     </tr>
     <tr>
@@ -2199,7 +2206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>1.40683</td>
+      <td>1.406830</td>
       <td>0.017151</td>
     </tr>
     <tr>
@@ -2212,7 +2219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>NaN</td>
       <td>linear</td>
       <td>NaN</td>
-      <td>1.40683</td>
+      <td>1.406830</td>
       <td>0.084960</td>
     </tr>
     <tr>
@@ -2225,7 +2232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>NaN</td>
       <td>nearest</td>
       <td>NaN</td>
-      <td>1.40683</td>
+      <td>1.406830</td>
       <td>0.010853</td>
     </tr>
     <tr>
@@ -2238,7 +2245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>NaN</td>
       <td>linear</td>
       <td>NaN</td>
-      <td>1.40683</td>
+      <td>1.406830</td>
       <td>0.012061</td>
     </tr>
     <tr>
@@ -2255,84 +2262,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <td>...</td>
     </tr>
     <tr>
-      <th>88</th>
-      <td>windmillsmall</td>
+      <th>286</th>
+      <td>pedalme</td>
       <td>GNAR</td>
-      <td>0.7</td>
+      <td>0.8</td>
       <td>rand</td>
-      <td>8</td>
+      <td>4</td>
       <td>NaN</td>
       <td>nearest</td>
       <td>NaN</td>
-      <td>1.64923</td>
-      <td>3.334994</td>
+      <td>1.302679</td>
+      <td>0.023105</td>
     </tr>
     <tr>
-      <th>89</th>
-      <td>windmillsmall</td>
+      <th>287</th>
+      <td>pedalme</td>
       <td>GNAR</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>8</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.64923</td>
-      <td>2.116200</td>
-    </tr>
-    <tr>
-      <th>90</th>
-      <td>windmillsmall</td>
-      <td>GNAR</td>
-      <td>0.7</td>
+      <td>0.5</td>
       <td>rand</td>
-      <td>8</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.302679</td>
+      <td>0.022839</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>pedalme</td>
+      <td>GNAR</td>
+      <td>0.5</td>
+      <td>rand</td>
+      <td>4</td>
       <td>NaN</td>
       <td>nearest</td>
       <td>NaN</td>
-      <td>1.64923</td>
-      <td>2.391699</td>
+      <td>1.302679</td>
+      <td>0.023041</td>
     </tr>
     <tr>
-      <th>91</th>
-      <td>windmillsmall</td>
+      <th>289</th>
+      <td>pedalme</td>
       <td>GNAR</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>8</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.64923</td>
-      <td>3.406726</td>
-    </tr>
-    <tr>
-      <th>92</th>
-      <td>windmillsmall</td>
-      <td>GNAR</td>
-      <td>0.7</td>
+      <td>0.8</td>
       <td>rand</td>
-      <td>8</td>
+      <td>4</td>
+      <td>NaN</td>
+      <td>linear</td>
+      <td>NaN</td>
+      <td>1.302679</td>
+      <td>0.060872</td>
+    </tr>
+    <tr>
+      <th>290</th>
+      <td>pedalme</td>
+      <td>GNAR</td>
+      <td>0.8</td>
+      <td>rand</td>
+      <td>4</td>
       <td>NaN</td>
       <td>nearest</td>
       <td>NaN</td>
-      <td>1.64923</td>
-      <td>2.586957</td>
+      <td>1.302679</td>
+      <td>0.023526</td>
     </tr>
   </tbody>
 </table>
-<p>93 rows × 10 columns</p>
+<p>291 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_22-21-58.csv'</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-09_22-21-58.csv'</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data])</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GNAR_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 
 

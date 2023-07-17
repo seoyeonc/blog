@@ -2,7 +2,7 @@
 title: "GCN"
 author: "SEOYEON CHOI"
 date: "2022-12-05"
-categories: [GODE]
+categories: [GCN]
 ---
 
 About GCN Study

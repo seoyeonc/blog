@@ -554,6 +554,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -705,36 +710,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="362">
+<div class="cell" data-execution_count="373">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="363">
+<div class="cell" data-execution_count="374">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="364">
+<div class="cell" data-execution_count="375">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="365">
+<div class="cell" data-execution_count="376">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="366">
+<div class="cell" data-execution_count="377">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="367">
+<div class="cell" data-execution_count="378">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="368">
+<div class="cell" data-execution_count="379">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="369">
+<div class="cell" data-execution_count="380">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="370">
+<div class="cell" data-execution_count="381">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="371">
+<div class="cell" data-execution_count="382">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="371">
+<div class="cell-output cell-output-display" data-execution_count="382">
 
 <div>
 
@@ -900,11 +905,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>2344 rows × 10 columns</p>
+<p>2584 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="372">
+<div class="cell" data-execution_count="383">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_GConvLSTM.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="355">

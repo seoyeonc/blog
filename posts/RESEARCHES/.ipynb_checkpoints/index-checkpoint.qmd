@@ -1,0 +1,8 @@
+---
+title: "RESEARCHES"
+author: "SEOYEON CHOI"
+date: "2023-07-05"
+categories: [RESEARCHES]
+---
+
+About RESEARCHES

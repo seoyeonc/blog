@@ -1,8 +1,0 @@
----
-title: "STOCK"
-author: "SEOYEON CHOI"
-date: "2023-07-05"
-categories: [Stock]
----
-
-About Stock Crawling

@@ -343,6 +343,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">Data management Figure for ITSTGCN</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2023-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">Data management for ITSTGCN</a>
   </div>
 </li>
@@ -635,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/STOCK/index.html" class="sidebar-item-text sidebar-link">STOCK</a>
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">RESEARCHES</a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -643,12 +648,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/STOCK/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/STOCK/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
   </div>
 </li>
       </ul>
@@ -716,7 +726,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>Simulation Study</p>
 </blockquote>
-<div class="cell" data-execution_count="27">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcnGConvLSTM</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcnGConvLSTM.planner </span>
@@ -1761,17 +1771,19 @@ if (outputEl) {{
 <span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>df6 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-06-10_23-03-00.csv'</span>) <span class="co"># lags 8</span></span>
 <span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>df7 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-06-11_02-22-49.csv'</span>) <span class="co"># lags 8</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="592">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>df8 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-20_01-06-37.csv'</span>) <span class="co"># lags 8</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>df9 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-20_06-05-46.csv'</span>) <span class="co"># lags 8</span></span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>df10 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-20_10-50-04.csv'</span>) <span class="co"># lags 8</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># df11 = pd.read_csv('./simulation_results/2023-06-09_20-18-35.csv') # lags 8</span></span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co"># df12 = pd.read_csv('./simulation_results/2023-06-10_19-55-08.csv') # lags 8</span></span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df13 = pd.read_csv('./simulation_results/2023-06-10_23-03-00.csv') # lags 8</span></span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="co"># df14 = pd.read_csv('./simulation_results/2023-06-11_02-22-49.csv') # lags 8</span></span></code></pre></div>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>df11 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-20_15-35-45.csv'</span>) <span class="co"># lags 8</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>df12 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-20_20-12-53.csv'</span>) <span class="co"># lags 8</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>df13 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-21_00-58-20.csv'</span>) <span class="co"># lags 8</span></span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a>df14 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/2023-07-21_05-45-10.csv'</span>) <span class="co"># lags 8</span></span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co"># df15 = pd.read_csv('./simulation_results/2023-07-21_00-58-20.csv') # lags 8</span></span>
+<span id="cb84-9"><a href="#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co"># df16 = pd.read_csv('./simulation_results/2023-07-21_05-45-10csv') # lags 8</span></span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="195">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,df13,df14],axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="196">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/GConvLSTM_monte.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>

@@ -754,9 +754,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> TFGPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_quotes(data):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f'"</span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"'</span></span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df2.applymap(add_quotes)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>text</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>"@Pericles216 @HierBeforeTheAC @Sachinettiyil ...</td>
+      <td>"intj"</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>"@Hispanthicckk Being you makes you look cute|...</td>
+      <td>"intj"</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>"@Alshymi Les balles sont réelles et sont tiré...</td>
+      <td>"intj"</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>"I'm like entp but idiotic|||Hey boy, do you w...</td>
+      <td>"intj"</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>"@kaeshurr1 Give it to @ZargarShanif ... He ha...</td>
+      <td>"intj"</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7806</th>
+      <td>"@sobsjjun God,,pls take care 😕|||@sobsjjun Hi...</td>
+      <td>"intp"</td>
+    </tr>
+    <tr>
+      <th>7807</th>
+      <td>"@Ignis_02 wow last time i got intp https://t....</td>
+      <td>"intp"</td>
+    </tr>
+    <tr>
+      <th>7808</th>
+      <td>"@akupilled A 100%|||@akupilled That SOMEONE w...</td>
+      <td>"entp"</td>
+    </tr>
+    <tr>
+      <th>7809</th>
+      <td>"If you’re #INTJ this one is for you | What is...</td>
+      <td>"infj"</td>
+    </tr>
+    <tr>
+      <th>7810</th>
+      <td>"@harry__lambert @gucci hey can you dm me a pi...</td>
+      <td>"istp"</td>
+    </tr>
+  </tbody>
+</table>
+<p>7811 rows × 2 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> TFGPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>All PyTorch model weights were used when initializing TFGPT2LMHeadModel.
 
@@ -766,8 +849,8 @@ If your task is similar to the task the model of the checkpoint was trained on, 
 </div>
 <p>https://wikidocs.net/152922</p>
 <p>https://dacon.io/codeshare/5619</p>
-<div class="cell" data-execution_count="73">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(df2.iloc[:,<span class="dv">0</span>],return_tensors<span class="op">=</span><span class="st">"tf"</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(df2.iloc[:,<span class="dv">0</span>],return_tensors<span class="op">=</span><span class="st">"tf"</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ValueError: text input must of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).</code></pre>
 </div>

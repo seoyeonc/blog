@@ -626,6 +626,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link"><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
   </div>
 </li>
@@ -715,36 +720,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="162">
+<div class="cell" data-execution_count="173">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="163">
+<div class="cell" data-execution_count="174">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="164">
+<div class="cell" data-execution_count="175">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="165">
+<div class="cell" data-execution_count="176">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="166">
+<div class="cell" data-execution_count="177">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="167">
+<div class="cell" data-execution_count="178">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="168">
+<div class="cell" data-execution_count="179">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="169">
+<div class="cell" data-execution_count="180">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="170">
+<div class="cell" data-execution_count="181">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/DCRNN_monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="171">
+<div class="cell" data-execution_count="182">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="171">
+<div class="cell-output cell-output-display" data-execution_count="182">
 
 <div>
 
@@ -910,11 +915,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </tr>
   </tbody>
 </table>
-<p>2466 rows × 10 columns</p>
+<p>2474 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="172">
+<div class="cell" data-execution_count="183">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_DCRNN.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 <div class="cell" data-execution_count="110">

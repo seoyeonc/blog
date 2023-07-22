@@ -626,6 +626,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link"><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link active">LLM</a>
   </div>
 </li>
@@ -665,22 +670,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="import" class="level1">
 <h1>Import</h1>
-<div class="cell" data-execution_count="52">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> GPT2Tokenizer, TFGPT2LMHeadModel</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> transformers</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset, DataLoader, RandomSampler, SequentialSampler</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> BertTokenizer, AutoTokenizer, BertModel, BertConfig, AutoModel, AdamW</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.max_columns"</span>, <span class="va">None</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="data" class="level1">
 <h1>Data</h1>
 <p>ref: <a href="https://www.kaggle.com/datasets/mazlumi/mbti-personality-type-twitter-dataset/code">kaggle</a></p>
-<div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df2 = pd.read_csv('./dataset/twitter_MBTI.csv').iloc[:,1:]</span></span></code></pre></div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/twitter_MBTI.csv'</span>).iloc[:,<span class="dv">1</span>:]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -754,16 +784,331 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_quotes(data):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f'"</span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"'</span></span></code></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">25</span>, <span class="dv">8</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.hist(df2[<span class="st">'label'</span>],color<span class="op">=</span><span class="st">'grey'</span>, align<span class="op">=</span><span class="st">'left'</span>, rwidth<span class="op">=</span><span class="fl">0.8</span>,bins<span class="op">=</span><span class="dv">16</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>(array([ 781.,  811.,  279.,  577., 1057., 1282.,  518.,  729.,  259.,
+         364.,   81.,  105.,  327.,  367.,  100.,  174.]),
+ array([ 0.    ,  0.9375,  1.875 ,  2.8125,  3.75  ,  4.6875,  5.625 ,
+         6.5625,  7.5   ,  8.4375,  9.375 , 10.3125, 11.25  , 12.1875,
+        13.125 , 14.0625, 15.    ]),
+ &lt;BarContainer object of 16 artists&gt;)</code></pre>
 </div>
-<div class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df2.applymap(add_quotes)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-20-LLM_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
 </div>
-<div class="cell" data-execution_count="76">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="76">
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df2[<span class="st">'word_count'</span>] <span class="op">=</span> df2[<span class="st">'text'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">len</span>(x.split()))</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">25</span>, <span class="dv">8</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.hist(df2[<span class="st">'word_count'</span>],color<span class="op">=</span><span class="st">'lightblue'</span>, align<span class="op">=</span><span class="st">'left'</span>, rwidth<span class="op">=</span><span class="fl">0.8</span>,bins<span class="op">=</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>(array([109.,  94.,  89.,  99.,  99., 102., 153., 106., 124., 149., 151.,
+        162., 140., 161., 155., 221., 229., 218., 210., 202., 220., 209.,
+        192., 240., 207., 188., 184., 186., 182., 187., 185., 160., 174.,
+        155., 133., 116., 121., 123., 130., 118.,  99.,  90.,  91.,  84.,
+         88.,  68.,  64.,  57.,  70.,  58.,  42.,  44.,  53.,  43.,  47.,
+         42.,  30.,  37.,  42.,  15.,  21.,  27.,  26.,  14.,  18.,   9.,
+         13.,  19.,  14.,  20.,   7.,  12.,   3.,  11.,   4.,   3.,   4.,
+          4.,   1.,   4.,   5.,   3.,   3.,   5.,   2.,   4.,   2.,   0.,
+          1.,   1.,   0.,   0.,   0.,   1.,   0.,   0.,   1.,   0.,   1.,
+          1.]),
+ array([ 201.  ,  242.43,  283.86,  325.29,  366.72,  408.15,  449.58,
+         491.01,  532.44,  573.87,  615.3 ,  656.73,  698.16,  739.59,
+         781.02,  822.45,  863.88,  905.31,  946.74,  988.17, 1029.6 ,
+        1071.03, 1112.46, 1153.89, 1195.32, 1236.75, 1278.18, 1319.61,
+        1361.04, 1402.47, 1443.9 , 1485.33, 1526.76, 1568.19, 1609.62,
+        1651.05, 1692.48, 1733.91, 1775.34, 1816.77, 1858.2 , 1899.63,
+        1941.06, 1982.49, 2023.92, 2065.35, 2106.78, 2148.21, 2189.64,
+        2231.07, 2272.5 , 2313.93, 2355.36, 2396.79, 2438.22, 2479.65,
+        2521.08, 2562.51, 2603.94, 2645.37, 2686.8 , 2728.23, 2769.66,
+        2811.09, 2852.52, 2893.95, 2935.38, 2976.81, 3018.24, 3059.67,
+        3101.1 , 3142.53, 3183.96, 3225.39, 3266.82, 3308.25, 3349.68,
+        3391.11, 3432.54, 3473.97, 3515.4 , 3556.83, 3598.26, 3639.69,
+        3681.12, 3722.55, 3763.98, 3805.41, 3846.84, 3888.27, 3929.7 ,
+        3971.13, 4012.56, 4053.99, 4095.42, 4136.85, 4178.28, 4219.71,
+        4261.14, 4302.57, 4344.  ]),
+ &lt;BarContainer object of 100 artists&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-07-20-LLM_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the DataFrame into train and test sets</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>train_data, test_data <span class="op">=</span> train_test_split(df2, test_size<span class="op">=</span><span class="fl">0.1</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Encode the labels using LabelEncoder</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>le.fit(df2[<span class="st">'label'</span>].unique())</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>train_data[<span class="st">'label'</span>] <span class="op">=</span> le.transform(train_data[<span class="st">'label'</span>])</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>test_data[<span class="st">'label'</span>] <span class="op">=</span> le.transform(test_data[<span class="st">'label'</span>])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize TfidfVectorizer</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer(stop_words<span class="op">=</span><span class="st">'english'</span>, max_features<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit and transform the text data</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> vectorizer.fit_transform(train_data[<span class="st">'text'</span>])</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> vectorizer.transform(test_data[<span class="st">'text'</span>])</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the feature names from the vectorizer</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> vectorizer.get_feature_names_out()</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame from the feature names and their corresponding TF-IDF scores</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>tfidf_scores <span class="op">=</span> pd.DataFrame(X_train.toarray(), columns<span class="op">=</span>feature_names)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by label and calculate the mean of each feature for each label</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>mean_tfidf_by_label <span class="op">=</span> tfidf_scores.groupby(train_data[<span class="st">'label'</span>]).mean()</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the top 10 features for each label</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> mean_tfidf_by_label.iterrows():</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    label_idx <span class="op">=</span> <span class="bu">int</span>(idx)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    label <span class="op">=</span> le.inverse_transform([label_idx])[<span class="dv">0</span>]</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Top 10 features for label </span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row.nlargest(<span class="dv">10</span>))</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Top 10 features for label enfj:
+https     0.544064
+like      0.088445
+just      0.073376
+im        0.062178
+love      0.054354
+don       0.045868
+good      0.044032
+people    0.038759
+thank     0.037399
+think     0.036237
+Name: 0.0, dtype: float64
+
+
+Top 10 features for label enfp:
+https    0.544385
+like     0.087725
+im       0.075049
+just     0.074734
+love     0.055559
+good     0.045889
+don      0.043349
+thank    0.040182
+lt       0.039768
+know     0.035386
+Name: 1.0, dtype: float64
+
+
+Top 10 features for label entj:
+https     0.541774
+like      0.085349
+just      0.075224
+im        0.059616
+don       0.046998
+love      0.045708
+good      0.043065
+know      0.040048
+people    0.037159
+thank     0.036534
+Name: 2.0, dtype: float64
+
+
+Top 10 features for label entp:
+https     0.542707
+like      0.081749
+just      0.073859
+im        0.061867
+love      0.054395
+good      0.046557
+don       0.043300
+thank     0.041849
+lt        0.040374
+people    0.035310
+Name: 3.0, dtype: float64
+
+
+Top 10 features for label esfj:
+https     0.561008
+like      0.078436
+just      0.070634
+im        0.059814
+good      0.048755
+love      0.046679
+thank     0.046433
+don       0.042690
+people    0.040582
+lt        0.039046
+Name: 4.0, dtype: float64
+
+
+Top 10 features for label esfp:
+https    0.531055
+like     0.084362
+just     0.075558
+im       0.073661
+love     0.053065
+thank    0.048551
+good     0.040424
+don      0.039235
+bc       0.039114
+know     0.037974
+Name: 5.0, dtype: float64
+
+
+Top 10 features for label estj:
+https     0.571518
+like      0.082115
+just      0.073212
+im        0.066115
+love      0.053623
+don       0.050215
+good      0.047132
+ur        0.042847
+people    0.040426
+oh        0.039707
+Name: 6.0, dtype: float64
+
+
+Top 10 features for label estp:
+https    0.552264
+like     0.084491
+just     0.074036
+im       0.071888
+love     0.054965
+don      0.048087
+good     0.040940
+think    0.040723
+know     0.037247
+thank    0.037196
+Name: 7.0, dtype: float64
+
+
+Top 10 features for label infj:
+https     0.560947
+like      0.087569
+just      0.077065
+im        0.073290
+love      0.053375
+good      0.044557
+don       0.040778
+thank     0.036204
+know      0.035712
+people    0.035671
+Name: 8.0, dtype: float64
+
+
+Top 10 features for label infp:
+https     0.560719
+like      0.085920
+just      0.073152
+im        0.062472
+love      0.052656
+don       0.044018
+thank     0.041546
+good      0.040254
+people    0.037387
+know      0.036744
+Name: 9.0, dtype: float64
+
+
+Top 10 features for label intj:
+https     0.550307
+like      0.084191
+just      0.074420
+im        0.060392
+love      0.054960
+don       0.045576
+good      0.041979
+thank     0.040367
+know      0.037432
+people    0.036651
+Name: 10.0, dtype: float64
+
+
+Top 10 features for label intp:
+https    0.557129
+like     0.089548
+just     0.072059
+im       0.067288
+love     0.055833
+don      0.046009
+good     0.045614
+omg      0.038897
+lt       0.037420
+know     0.036872
+Name: 11.0, dtype: float64
+
+
+Top 10 features for label isfj:
+https     0.548550
+like      0.090753
+just      0.077889
+im        0.060503
+love      0.056123
+don       0.046623
+good      0.043154
+thank     0.042043
+people    0.040799
+know      0.038099
+Name: 12.0, dtype: float64
+
+
+Top 10 features for label isfp:
+https     0.548239
+like      0.087374
+just      0.073125
+im        0.067553
+love      0.058253
+don       0.050132
+good      0.042300
+thank     0.041189
+people    0.038470
+know      0.037891
+Name: 13.0, dtype: float64
+
+
+Top 10 features for label istj:
+https    0.535890
+like     0.090069
+just     0.078515
+im       0.065596
+love     0.052505
+don      0.047940
+good     0.043867
+know     0.040670
+amp      0.039617
+thank    0.038146
+Name: 14.0, dtype: float64
+
+
+Top 10 features for label istp:
+https    0.554382
+like     0.084266
+just     0.070412
+im       0.065598
+love     0.051578
+don      0.039678
+good     0.038423
+know     0.036918
+omg      0.035138
+thank    0.033308
+Name: 15.0, dtype: float64
+
+</code></pre>
+</div>
+</div>
+<p>https://wikidocs.net/152922</p>
+<p>https://dacon.io/codeshare/5619</p>
+<p>https://www.kaggle.com/code/debarshichanda/bert-multi-label-text-classification</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>one <span class="op">=</span> pd.get_dummies(df2[<span class="st">'label'</span>], prefix<span class="op">=</span><span class="st">'label'</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.concat([df2,one],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df3.head()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 
 <div>
 
@@ -773,86 +1118,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th></th>
       <th>text</th>
       <th>label</th>
+      <th>word_count</th>
+      <th>label_enfj</th>
+      <th>label_enfp</th>
+      <th>label_entj</th>
+      <th>label_entp</th>
+      <th>label_esfj</th>
+      <th>label_esfp</th>
+      <th>label_estj</th>
+      <th>label_estp</th>
+      <th>label_infj</th>
+      <th>label_infp</th>
+      <th>label_intj</th>
+      <th>label_intp</th>
+      <th>label_isfj</th>
+      <th>label_isfp</th>
+      <th>label_istj</th>
+      <th>label_istp</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>"@Pericles216 @HierBeforeTheAC @Sachinettiyil ...</td>
-      <td>"intj"</td>
+      <td>@Pericles216 @HierBeforeTheAC @Sachinettiyil T...</td>
+      <td>intj</td>
+      <td>2351</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>"@Hispanthicckk Being you makes you look cute|...</td>
-      <td>"intj"</td>
+      <td>@Hispanthicckk Being you makes you look cute||...</td>
+      <td>intj</td>
+      <td>943</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>"@Alshymi Les balles sont réelles et sont tiré...</td>
-      <td>"intj"</td>
+      <td>@Alshymi Les balles sont réelles et sont tirée...</td>
+      <td>intj</td>
+      <td>1646</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>"I'm like entp but idiotic|||Hey boy, do you w...</td>
-      <td>"intj"</td>
+      <td>I'm like entp but idiotic|||Hey boy, do you wa...</td>
+      <td>intj</td>
+      <td>923</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>"@kaeshurr1 Give it to @ZargarShanif ... He ha...</td>
-      <td>"intj"</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>7806</th>
-      <td>"@sobsjjun God,,pls take care 😕|||@sobsjjun Hi...</td>
-      <td>"intp"</td>
-    </tr>
-    <tr>
-      <th>7807</th>
-      <td>"@Ignis_02 wow last time i got intp https://t....</td>
-      <td>"intp"</td>
-    </tr>
-    <tr>
-      <th>7808</th>
-      <td>"@akupilled A 100%|||@akupilled That SOMEONE w...</td>
-      <td>"entp"</td>
-    </tr>
-    <tr>
-      <th>7809</th>
-      <td>"If you’re #INTJ this one is for you | What is...</td>
-      <td>"infj"</td>
-    </tr>
-    <tr>
-      <th>7810</th>
-      <td>"@harry__lambert @gucci hey can you dm me a pi...</td>
-      <td>"istp"</td>
+      <td>@kaeshurr1 Give it to @ZargarShanif ... He has...</td>
+      <td>intj</td>
+      <td>1024</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>7811 rows × 2 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="77">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> TFGPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>All PyTorch model weights were used when initializing TFGPT2LMHeadModel.
-
-All the weights of TFGPT2LMHeadModel were initialized from the PyTorch model.
-If your task is similar to the task the model of the checkpoint was trained on, you can already use TFGPT2LMHeadModel for predictions without further training.</code></pre>
-</div>
-</div>
-<p>https://wikidocs.net/152922</p>
-<p>https://dacon.io/codeshare/5619</p>
-<div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(df2.iloc[:,<span class="dv">0</span>],return_tensors<span class="op">=</span><span class="st">"tf"</span>, padding<span class="op">=</span><span class="va">True</span>, truncation<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>ValueError: text input must of type `str` (single example), `List[str]` (batch or single pretokenized example) or `List[List[str]]` (batch of pretokenized examples).</code></pre>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df3.iloc[<span class="dv">1</span>,<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>'@Hispanthicckk Being you makes you look cute|||@ThiccWhiteDuke_ On, because then I can have the fun of peeling it off...|||@whedonesque "Bored now."|||@biggeradn Less is more 😏|||@biggeradn Sweetie, I’d suck your dick even if there were no shake inducement  😉|||@tintinpp @biggeradn Leg day?  Looks more like crotch day.  (Which is not a bad thing) 🤤|||@BuzzFeed Goth pairs figure skating|||@whedonesque The West Wing, The Closer, M*A*S*H, Orphan Black, Sense8|||@thiccbruja Are you a good spice, or a bad spice?|||@thiccbruja It looks enticing...|||I\'m tired of corporations profiting from the LGBTQ  community while actively funding our persecution. Join me in ca… https://t.co/8gDDS6zWyp|||@gdtdpodcast https://t.co/i0X4sztB4o|||@gwenstefani Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/j5T1iaSZez|||@chancetherapper Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/gWUxzeYKtI|||@NorahJones Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/naGDRSGU9e|||@PTXofficial Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/zCUIl3bGB7|||@DarrenCriss Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/CfuGLtkSSA|||@derekhough Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/z9fx83w7vF|||@juliannehough Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/EQGnnHYZkn|||@KChenoweth Do you support Disney funding anti-LGBTQ+ politicians?  They still use you in their advertising.… https://t.co/ktBBuhBGXq|||Disney supports anti LGBTQ+ politicians in Florida.  #Shameonyoudisney|||Poor Peter doesn’t understand what “worthy adversary” means because he’s never been one. https://t.co/ErV7r9nVI4|||@Hispanthicckk That\'s horrible.  I\'m so sorry that happened.  Did you report them?|||@dontlickchalk @SHEsus__Christ I\'m pretty sure they already have 3 second pricks, but not in their arms...|||@cpoliticditto Having air conditioning.  Or a dishwasher|||@Martini_Art_ Chubby|||@Hispanthicckk I hope this hiatus brings you peace|||@glaad Lito from Sense8---What a man, what a man, what a man, what a mighty fine man https://t.co/pQlJvo10j7|||@biggeradn Good evening, gorgeous 😘|||@Hispanthicckk I just want to hug you every time I see you post 🙂|||I am an INTJ! We are independent, analytical and enjoy logical reasoning and complex problem-solving. What is your… https://t.co/PTqHhslF0e|||@whedonesque Willow|||@thiccbruja No!  You gain the weight back every time you diet because this body is the one you want.  Don’t torture yourself|||I would also suggest that the converse is true, “Moral politics is good policy.” https://t.co/Y3s1IqtPcq|||@EllenTroxclair To quote Nancy Reagan, “Who does this bitch think she is!?!”|||@ThiccWhiteDuke_ You wore it better|||@brunobaba11 Outfit #1–There’s something to be said for getting to undress you…|||@brunobaba11 Shave it off|||@brunobaba11 Right baby, Oh so right|||@criminalmoots Scruffy Reed!|||@ProjectLincoln Apparently he didn\'t take his own advice, that Republicans need to stop being the Party of stupid.|||@meganhilty Any performance of “On My Own” from Les Mis.  Stunning in its own right, it’s also the unofficial Anthe… https://t.co/3dqGhnvBNW|||@myfaceisitchy Dick and pecs for me|||@gainerology Beauty, Majesty, behold Gainerology|||@fatprivateparts I belong to your patreon.  My name is Silentommy there|||@GeorgeTakei Storm from the X-men|||@Big_belly_lover As long as it fits over your head, no tank top is too small|||@Mr_Cublet Genius!  And Yum 🤤|||@nichefixation I’m partial to Ao3|||@funcookiedough Absolutely|||@Hispanthicckk Yes you do.|||@cbouzy I’m not sure.  All Republicans look the same to me|||@Hispanthicckk I don’t know if I’m that flexible, but it would be fun finding out 😉|||@meganhilty She’s been a vibe in every decade|||@biggeradn Both sweetie.  Both.|||@biggeradn Nice ass 😘|||@biggeradn Sweetie, my thighs would have snapped you in two back then 😎|||@biggeradn We absolutely celebrate it|||@biggeradn It wouldn’t look so small if you’re arms weren’t straining the poor shirt 😏|||@Astro_dough You amaze me|||@SarahKSilverman Hunky men in tightly whites kissing|||@Astro_dough Absolutely.  Being that you\'re already out driving, you\'ll end up saving gas, which is good for your wallet and the planet 😉|||@GeorgeTakei Idiocy|||@biggeradn @hotbearsboys @BearsDailyy @BGBG on YouTube.  He\'s gorgeous, and I know he\'s done OnlyFans collabs before|||@SpedetheRed @biggeradn @hotbearsboys @BearsDailyy @BGBG from YouTube.  I know he\'s done OnlyFans collabs before|||@localtotoro Call child protective services NOW.|||@DKmate1 I want in|||@biggeradn Sweetie, I don\'t think my waist has been that small since the seventies 😂|||@biggeradn Retweet accomplished|||@Astro_dough How did you know you were my favorite? 😏|||@LoViLu @3DMacD @Marina_Sirtis Heck, she looks good for 35 or older😉|||@Marina_Sirtis "Why is OUR Elderly having to WAIT"\n\nWow.  These people really are exactly who we think they are.|||@conorjrogers Diet Proud Boy.  There’s a bit of poetry in your prose|||#DietProudBoy https://t.co/GdHg75CF2q|||@MondaireJones Where was your outrage before the inauguration when McConnell was Senate Majority leader and Trump w… https://t.co/F2NL6olaD6|||@Rasmussen_Poll This is current?  People actually believe there is still a caravan coming.  These people really are… https://t.co/sxniDVJ3d0|||@whedonesque I. Am. Gutted.|||@GeorgeTakei Fake hair, fake tan.  Can’t decide which will end up on top|||@Hispanthicckk I love how bouncy you are|||@JoshMalina And just how, exactly, did you do that, Marjorie?|||@SenTedCruz As opposed to the bang up job you Republicans have done?  Resign.|||@GeorgeTakei Moscow.  And not Moscow, Idaho.|||@Lesdoggg Wow.  These people are even more exactly who I thought they are than I thought they were|||@Hispanthicckk No, cuz you’re beautiful|||@GeorgeTakei And that is not America’s ass.|||@meganhilty Waking up and hearing my dog snoring next to me in bed|||@whedonesque I’m trying to decide what it says about me that my top two I can’t decide between are Spike and Adele Dewitt|||@Hispanthicckk Big brain|||@QuillOtt And do you remember how fat you thought you were, Lol?|||@QuillOtt A4$|||@fl33twoodbigmac Done and Done!|||@RepBonnie @chrislhayes Representative Watson Coleman, you need to name your colleagues who refused to wear masks.… https://t.co/eG8m9ZryW5|||@whedonesque Feeling happy/nostalgic and so, so very old|||@Lcars24 @LinkedHD @ZeroFuelEnviro And Idiotatry|||@HawleyMO @simonschuster In the words of my people, “Bitch, Please”|||@thealexnewell https://t.co/yD2XNMq4Yl|||@Hispanthicckk How rude.  Don’t they know they are supposed to buy you food? https://t.co/xCdw2Ife5T|||@GeorgeTakei Or Treasonous|||@GeorgeTakei Malicious|||@gaylor_swift13 Now is so much better|||@jeiwaii2000 Ok, so who\'s Kevin and how do we meet? 😉|||#fuckers https://t.co/upt71cX0YO|||@zeusray22 1|||#fuckers https://t.co/fqqx99sDKy|||#fuckers https://t.co/7RHrwbZfvb|||#fuckers https://t.co/p6TSP9urCb|||#fuckers https://t.co/7nsSzx9KBB|||#fuckers https://t.co/VkWv5ErYcu|||#fuckers https://t.co/rHy9jimw2S|||#fuckers https://t.co/qVz3gxEDVp|||@iansomerhalder Good night beautiful man...|||@GeorgeTakei On top of his grave.  We always knew his headstone would be oversized and gaudy.|||'</code></pre>
 </div>
 </div>
 

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="신록예찬">
+<meta name="dcterms.date" content="2023-07-07">
 
-<title>Seoyeon's Blog for study – ls2.out</title>
+<title>Seoyeon’s Blog for study - PyG lesson2: 벤치마크 데이터셋 (train/test분리)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"></h1>
+      <h1 class="quarto-secondary-nav-title">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -168,7 +170,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">pyg</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>신록예찬 </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 7, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -591,12 +624,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link active"><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link active">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -622,8 +655,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pyg-lesson2-벤치마크-데이터셋-traintest분리" id="toc-pyg-lesson2-벤치마크-데이터셋-traintest분리" class="nav-link active" data-scroll-target="#pyg-lesson2-벤치마크-데이터셋-traintest분리"><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</a></li>
-  <li><a href="#download-notebook" id="toc-download-notebook" class="nav-link" data-scroll-target="#download-notebook">Download notebook</a></li>
+  <li><a href="#download-notebook" id="toc-download-notebook" class="nav-link active" data-scroll-target="#download-notebook">Download notebook</a></li>
   <li><a href="#ref" id="toc-ref" class="nav-link" data-scroll-target="#ref">Ref</a></li>
   <li><a href="#벤치마크-데이터셋" id="toc-벤치마크-데이터셋" class="nav-link" data-scroll-target="#벤치마크-데이터셋">벤치마크 데이터셋</a></li>
   <li><a href="#데이터셋1-tudataset" id="toc-데이터셋1-tudataset" class="nav-link" data-scroll-target="#데이터셋1-tudataset"><strong>데이터셋1</strong>: TUDataset</a>
@@ -644,17 +676,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<section id="pyg-lesson2-벤치마크-데이터셋-traintest분리" class="level1">
-<h1><strong>[PyG]</strong> lesson2: 벤치마크 데이터셋 (train/test분리)</h1>
-<p>신록예찬<br>
-2023-07-07</p>
+
 <div class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span></code></pre></div>
 </div>
-</section>
 <section id="download-notebook" class="level1">
 <h1>Download notebook</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>!wget https://raw.githubusercontent.com/miruetoto/yechan3/main/posts/2_Studies/PyG/ls2.ipynb</span></code></pre></div>

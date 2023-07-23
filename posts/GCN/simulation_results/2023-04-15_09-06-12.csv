@@ -1,0 +1,4 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+windmilmedium,GNAR,0.1,rand,4,,cubic,,1.4105236530303955,3.150951385498047
+windmilmedium,GNAR,0.1,rand,4,,cubic,,1.4105236530303955,2.926644802093506
+windmilmedium,GNAR,0.1,rand,4,,cubic,,1.4105236530303955,2.406094074249268

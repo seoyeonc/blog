@@ -1,3 +1,0 @@
-dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
-windmillsmall,STGCN,0.7,rand,8,12,linear,50,1.577491283416748,4354.15517449379
-windmillsmall,IT-STGCN,0.7,rand,8,12,linear,50,1.1348665952682495,43213.207461595535

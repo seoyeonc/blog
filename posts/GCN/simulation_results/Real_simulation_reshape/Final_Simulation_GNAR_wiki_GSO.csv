@@ -1,0 +1,4 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+wikimath,GNAR,0.5119453924914675,block,8,,nearest,,1.3536372184753418,143.2520730495453
+wikimath,GNAR,0.5119453924914675,block,8,,nearest,,1.3536372184753418,211.3334667682648
+wikimath,GNAR,0.5119453924914675,block,8,,nearest,,1.3536372184753418,218.5161559581757

@@ -1,0 +1,4 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+monte,GNAR,0.14914243102162567,block,4,,nearest,,1.0619367361068726,4.948564529418945
+monte,GNAR,0.14914243102162567,block,4,,nearest,,1.0619367361068726,2.942073345184326
+monte,GNAR,0.14914243102162567,block,4,,nearest,,1.0619367361068726,5.179985046386719

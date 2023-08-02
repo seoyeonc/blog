@@ -1,0 +1,5 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+wikimath,STGCN,0.4,rand,4,12,linear,1,0.9073051810264587,24.77650260925293
+wikimath,STGCN,0.4,rand,4,12,cubic,1,0.8541266918182373,24.60810375213623
+wikimath,IT-STGCN,0.4,rand,4,12,linear,1,0.8711462616920471,29.00877618789673
+wikimath,IT-STGCN,0.4,rand,4,12,cubic,1,0.905354380607605,30.405766487121582

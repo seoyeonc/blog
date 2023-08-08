@@ -1,0 +1,7 @@
+dataset,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time
+chickenpox,GNAR,0.5,rand,4,,linear,,1.4274942874908447,0.07768034934997559
+chickenpox,GNAR,0.6,rand,4,,linear,,1.4274942874908447,0.10464787483215332
+chickenpox,GNAR,0.5,rand,4,,linear,,1.4274942874908447,0.1233518123626709
+chickenpox,GNAR,0.6,rand,4,,linear,,1.4274942874908447,0.07375717163085938
+chickenpox,GNAR,0.5,rand,4,,linear,,1.4274942874908447,0.08240699768066406
+chickenpox,GNAR,0.6,rand,4,,linear,,1.4274942874908447,0.07321953773498535

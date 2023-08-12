@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.315">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -48,6 +48,11 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,7 +62,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -91,6 +97,7 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -98,40 +105,46 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Seoyeon’s Blog for study</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="./about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">:)</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">:)</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -140,12 +153,12 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">:)</h1>
+      <h1 class="title">:)</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-body">
 
       
     
@@ -155,473 +168,561 @@ ul.task-list li input[type="checkbox"] {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">FRAUD</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">Fraud data</a>
+  <a href="./posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a href="./posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  <a href="./posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  <a href="./posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  <a href="./posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  <a href="./posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  <a href="./posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  <a href="./posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="./posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="./posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  <a href="./posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  <a href="./posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  <a href="./posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="./posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  <a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">Data management Figure for ITSTGCN</a>
+  <a href="./posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">Data management for ITSTGCN</a>
+  <a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  <a href="./posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  <a href="./posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU and GNAR_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Boxplot_reshape</a>
+  <a href="./posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  <a href="./posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  <a href="./posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  <a href="./posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  <a href="./posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  <a href="./posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  <a href="./posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  <a href="./posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  <a href="./posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  <a href="./posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  <a href="./posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  <a href="./posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  <a href="./posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="./posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="./posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="./posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="./posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  <a href="./posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  <a href="./posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  <a href="./posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  <a href="./posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation Tables_reshape</a>
+  <a href="./posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation_reshape</a>
+  <a href="./posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  <a href="./posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  <a href="./posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  <a href="./posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="./posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="./posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="./posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  <a href="./posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">Comparison Results on Real Data</a>
+  <a href="./posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  <a href="./posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  <a href="./posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">final GODE code(paper)</a>
+  <a href="./posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  <a href="./posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">Linear Graph code for Paper</a>
+  <a href="./posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">Other Outlier Detection</a>
+  <a href="./posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">Semifinal_Other Outlier Detection</a>
+  <a href="./posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="./posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">The options of Outlier Detection method</a>
+  <a href="./posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  <a href="./posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">RESEARCHES</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a href="./posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link"><strong>[LLM]</strong>Transformer_META</a>
+  <a href="./posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">CAM</a>
+  <a href="./posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">CAM_downsize</a>
+  <a href="./posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
+  <a href="./posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  <a href="./posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  <a href="./posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
+  <a href="./posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM_downsize</span></a>
   </div>
 </li>
       </ul>
@@ -631,6 +732,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
@@ -646,7 +748,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-
 <table class="quarto-listing-table table">
 <thead>
 <tr>
@@ -662,951 +763,942 @@ Author
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1689152440795" data-listing-reading-time-sort="0.02" data-listing-filename-sort="Untitled.ipynb">
-<td class="listing-date">
+<tr data-index="0" data-listing-file-modified-sort="1689152440795" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-filename-sort="Untitled.ipynb">
+<td>
+<span class="listing-date">&nbsp;</span>
 </td>
-<td class="listing-title">
+<td>
+<a href="./posts/GODE/Untitled.html" class="title listing-title">&nbsp;</a>
 </td>
-<td class="listing-author">
+<td>
+<span class="listing-author">&nbsp;</span>
 </td>
 </tr>
-<tr data-index="1" data-categories="ITSTGCN" data-listing-date-sort="4083836400000" data-listing-file-modified-sort="1691483634000" data-listing-reading-time-sort="0.215" data-listing-title-sort="ITSTGCN add Model" data-listing-filename-sort="2099-05-31-Other Method.ipynb">
-<td class="listing-date">
-May 31, 2099
+<tr data-index="1" data-categories="ITSTGCN" data-listing-date-sort="4083836400000" data-listing-file-modified-sort="1691483634000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="ITSTGCN add Model" data-listing-filename-sort="2099-05-31-Other Method.ipynb">
+<td>
+<span class="listing-date">May 31, 2099</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2099-05-31-Other Method.html" class="title">ITSTGCN add Model</a>
+<td>
+<a href="./posts/GCN/2099-05-31-Other Method.html" class="title listing-title">ITSTGCN add Model</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1692111600000" data-listing-file-modified-sort="1691485640371" data-listing-reading-time-sort="28.535" data-listing-title-sort="The options of Outlier Detection method" data-listing-filename-sort="2023-08-16-options.ipynb">
-<td class="listing-date">
-Aug 16, 2023
+<tr data-index="2" data-listing-date-sort="1692111600000" data-listing-file-modified-sort="1691485640371" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="29" data-listing-word-count-sort="5707" data-listing-title-sort="The options of Outlier Detection method" data-listing-filename-sort="2023-08-16-options.ipynb">
+<td>
+<span class="listing-date">Aug 16, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-08-16-options.html" class="title">The options of Outlier Detection method</a>
+<td>
+<a href="./posts/GODE/2023-08-16-options.html" class="title listing-title">The options of Outlier Detection method</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1692111600000" data-listing-file-modified-sort="1691482466000" data-listing-reading-time-sort="0.5" data-listing-title-sort="final GODE code(paper)" data-listing-filename-sort="2023-08-16-final GODE code(paper).ipynb">
-<td class="listing-date">
-Aug 16, 2023
+<tr data-index="3" data-listing-date-sort="1692111600000" data-listing-file-modified-sort="1691482466000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="100" data-listing-title-sort="final GODE code(paper)" data-listing-filename-sort="2023-08-16-final GODE code(paper).ipynb">
+<td>
+<span class="listing-date">Aug 16, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-08-16-final GODE code(paper).html" class="title">final GODE code(paper)</a>
+<td>
+<a href="./posts/GODE/2023-08-16-final GODE code(paper).html" class="title listing-title">final GODE code(paper)</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="4" data-categories="CAM" data-listing-date-sort="1691593200000" data-listing-file-modified-sort="1691704740014" data-listing-reading-time-sort="0.105" data-listing-title-sort="CAM_downsize" data-listing-filename-sort="2023-08-10-CAM_down.ipynb">
-<td class="listing-date">
-Aug 10, 2023
+<tr data-index="4" data-categories="CAM" data-listing-date-sort="1691593200000" data-listing-file-modified-sort="1691705343019" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21" data-listing-title-sort="CAM_downsize" data-listing-filename-sort="2023-08-10-CAM_down.ipynb">
+<td>
+<span class="listing-date">Aug 10, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-08-10-CAM_down.html" class="title">CAM_downsize</a>
+<td>
+<a href="./posts/RESEARCHES/2023-08-10-CAM_down.html" class="title listing-title">CAM_downsize</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="5" data-categories="GODE" data-listing-date-sort="1691161200000" data-listing-file-modified-sort="1691408726000" data-listing-reading-time-sort="8.735" data-listing-title-sort="Semifinal_Other Outlier Detection" data-listing-filename-sort="2023-08-05-semifinal_simulation_code.ipynb">
-<td class="listing-date">
-Aug 5, 2023
+<tr data-index="5" data-categories="GODE" data-listing-date-sort="1691161200000" data-listing-file-modified-sort="1691408726000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1747" data-listing-title-sort="Semifinal_Other Outlier Detection" data-listing-filename-sort="2023-08-05-semifinal_simulation_code.ipynb">
+<td>
+<span class="listing-date">Aug 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-08-05-semifinal_simulation_code.html" class="title">Semifinal_Other Outlier Detection</a>
+<td>
+<a href="./posts/GODE/2023-08-05-semifinal_simulation_code.html" class="title listing-title">Semifinal_Other Outlier Detection</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="6" data-listing-date-sort="1690815600000" data-listing-file-modified-sort="1691678478864" data-listing-reading-time-sort="12.03" data-listing-title-sort="**[LLM]**Transformer_META" data-listing-filename-sort="2023-08-01-llama2.ipynb">
-<td class="listing-date">
-Aug 1, 2023
+<tr data-index="6" data-listing-date-sort="1690815600000" data-listing-file-modified-sort="1691708875357" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2406" data-listing-title-sort="**[LLM]**Transformer_META" data-listing-filename-sort="2023-08-01-llama2.ipynb">
+<td>
+<span class="listing-date">Aug 1, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-08-01-llama2.html" class="title"><strong>[LLM]</strong>Transformer_META</a>
+<td>
+<a href="./posts/RESEARCHES/2023-08-01-llama2.html" class="title listing-title"><strong>[LLM]</strong>Transformer_META</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="7" data-categories="CAM" data-listing-date-sort="1690297200000" data-listing-file-modified-sort="1691634590272" data-listing-reading-time-sort="0.105" data-listing-title-sort="CAM" data-listing-filename-sort="2023-07-26-CAM.ipynb">
-<td class="listing-date">
-Jul 26, 2023
+<tr data-index="7" data-categories="CAM" data-listing-date-sort="1690297200000" data-listing-file-modified-sort="1691634590272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21" data-listing-title-sort="CAM" data-listing-filename-sort="2023-07-26-CAM.ipynb">
+<td>
+<span class="listing-date">Jul 26, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-07-26-CAM.html" class="title">CAM</a>
+<td>
+<a href="./posts/RESEARCHES/2023-07-26-CAM.html" class="title listing-title">CAM</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="8" data-categories="STGCN" data-listing-date-sort="1689778800000" data-listing-file-modified-sort="1691568889000" data-listing-reading-time-sort="0.09" data-listing-title-sort="Data management Figure for ITSTGCN" data-listing-filename-sort="2099-07-20-ITSTGCN_data_magement_figure.ipynb">
-<td class="listing-date">
-Jul 20, 2023
+<tr data-index="8" data-categories="STGCN" data-listing-date-sort="1689778800000" data-listing-file-modified-sort="1691568889000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18" data-listing-title-sort="Data management Figure for ITSTGCN" data-listing-filename-sort="2099-07-20-ITSTGCN_data_magement_figure.ipynb">
+<td>
+<span class="listing-date">Jul 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="title">Data management Figure for ITSTGCN</a>
+<td>
+<a href="./posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="title listing-title">Data management Figure for ITSTGCN</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="9" data-categories="LLM" data-listing-date-sort="1689778800000" data-listing-file-modified-sort="1690378688291" data-listing-reading-time-sort="0.24" data-listing-title-sort="LLM" data-listing-filename-sort="2023-07-20-LLM.ipynb">
-<td class="listing-date">
-Jul 20, 2023
+<tr data-index="9" data-categories="LLM" data-listing-date-sort="1689778800000" data-listing-file-modified-sort="1690378688291" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="48" data-listing-title-sort="LLM" data-listing-filename-sort="2023-07-20-LLM.ipynb">
+<td>
+<span class="listing-date">Jul 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-07-20-LLM.html" class="title">LLM</a>
+<td>
+<a href="./posts/RESEARCHES/2023-07-20-LLM.html" class="title listing-title">LLM</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="10" data-categories="ITSTGCN" data-listing-date-sort="1689606000000" data-listing-file-modified-sort="1689717956000" data-listing-reading-time-sort="1.535" data-listing-title-sort="Self Consistency Toy ex" data-listing-filename-sort="2023-07-18-Self Consistency toy ex.ipynb">
-<td class="listing-date">
-Jul 18, 2023
+<tr data-index="10" data-categories="ITSTGCN" data-listing-date-sort="1689606000000" data-listing-file-modified-sort="1689717956000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="307" data-listing-title-sort="Self Consistency Toy ex" data-listing-filename-sort="2023-07-18-Self Consistency toy ex.ipynb">
+<td>
+<span class="listing-date">Jul 18, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-18-Self Consistency toy ex.html" class="title">Self Consistency Toy ex</a>
+<td>
+<a href="./posts/GCN/2023-07-18-Self Consistency toy ex.html" class="title listing-title">Self Consistency Toy ex</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="11" data-categories="ITSTGCN" data-listing-date-sort="1689606000000" data-listing-file-modified-sort="1689677919000" data-listing-reading-time-sort="1.825" data-listing-title-sort="EbayesThresh Toy ex" data-listing-filename-sort="2023-07-18-EbayesThresh toy ex.ipynb">
-<td class="listing-date">
-Jul 18, 2023
+<tr data-index="11" data-categories="ITSTGCN" data-listing-date-sort="1689606000000" data-listing-file-modified-sort="1689677919000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="365" data-listing-title-sort="EbayesThresh Toy ex" data-listing-filename-sort="2023-07-18-EbayesThresh toy ex.ipynb">
+<td>
+<span class="listing-date">Jul 18, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="title">EbayesThresh Toy ex</a>
+<td>
+<a href="./posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="title listing-title">EbayesThresh Toy ex</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="12" data-categories="fraud" data-listing-date-sort="1688914800000" data-listing-file-modified-sort="1689152440047" data-listing-reading-time-sort="0.015" data-listing-title-sort="Fraud data" data-listing-filename-sort="2023-07-10-fraud_data.ipynb">
-<td class="listing-date">
-Jul 10, 2023
+<tr data-index="12" data-categories="fraud" data-listing-date-sort="1688914800000" data-listing-file-modified-sort="1689152440047" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Fraud data" data-listing-filename-sort="2023-07-10-fraud_data.ipynb">
+<td>
+<span class="listing-date">Jul 10, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/FRAUD/2023-07-10-fraud_data.html" class="title">Fraud data</a>
+<td>
+<a href="./posts/FRAUD/2023-07-10-fraud_data.html" class="title listing-title">Fraud data</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="13" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689584464000" data-listing-reading-time-sort="0.705" data-listing-title-sort="Toy example using GNAR" data-listing-filename-sort="2023-07-08-toy_example_using_gnar.ipynb">
-<td class="listing-date">
-Jul 8, 2023
+<tr data-index="13" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689584464000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="141" data-listing-title-sort="Toy example using GNAR" data-listing-filename-sort="2023-07-08-toy_example_using_gnar.ipynb">
+<td>
+<span class="listing-date">Jul 8, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-08-toy_example_using_gnar.html" class="title">Toy example using GNAR</a>
+<td>
+<a href="./posts/GCN/2023-07-08-toy_example_using_gnar.html" class="title listing-title">Toy example using GNAR</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="14" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689591579000" data-listing-reading-time-sort="0.01" data-listing-title-sort="Toy example using GNAR" data-listing-filename-sort="2023-07-17-toy_example_guebin.ipynb">
-<td class="listing-date">
-Jul 8, 2023
+<tr data-index="14" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689591579000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="2" data-listing-title-sort="Toy example using GNAR" data-listing-filename-sort="2023-07-17-toy_example_guebin.ipynb">
+<td>
+<span class="listing-date">Jul 8, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-17-toy_example_guebin.html" class="title">Toy example using GNAR</a>
+<td>
+<a href="./posts/GCN/2023-07-17-toy_example_guebin.html" class="title listing-title">Toy example using GNAR</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="15" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689305392985" data-listing-reading-time-sort="0.095" data-listing-title-sort="Stock on Graph" data-listing-filename-sort="2023-07-08-stock_on_graph.ipynb">
-<td class="listing-date">
-Jul 8, 2023
+<tr data-index="15" data-categories="STGCN" data-listing-date-sort="1688742000000" data-listing-file-modified-sort="1689305392985" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="19" data-listing-title-sort="Stock on Graph" data-listing-filename-sort="2023-07-08-stock_on_graph.ipynb">
+<td>
+<span class="listing-date">Jul 8, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="title">Stock on Graph</a>
+<td>
+<a href="./posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="title listing-title">Stock on Graph</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="16" data-categories="Stock" data-listing-date-sort="1688655600000" data-listing-file-modified-sort="1689152440811" data-listing-reading-time-sort="0.015" data-listing-title-sort="Stock Crawling" data-listing-filename-sort="2023-07-07-Stock_Crawling.ipynb">
-<td class="listing-date">
-Jul 7, 2023
+<tr data-index="16" data-categories="Stock" data-listing-date-sort="1688655600000" data-listing-file-modified-sort="1689152440811" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Stock Crawling" data-listing-filename-sort="2023-07-07-Stock_Crawling.ipynb">
+<td>
+<span class="listing-date">Jul 7, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="title">Stock Crawling</a>
+<td>
+<a href="./posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="title listing-title">Stock Crawling</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="17" data-categories="pyg" data-listing-date-sort="1688655600000" data-listing-file-modified-sort="1690879848725" data-listing-reading-time-sort="1.695" data-listing-title-sort="PyG lesson2: 벤치마크 데이터셋 (train/test분리)" data-listing-filename-sort="2023-07-22-ls2.out.ipynb">
-<td class="listing-date">
-Jul 7, 2023
+<tr data-index="17" data-categories="pyg" data-listing-date-sort="1688655600000" data-listing-file-modified-sort="1690879848725" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="339" data-listing-title-sort="PyG lesson2: 벤치마크 데이터셋 (train/test분리)" data-listing-filename-sort="2023-07-22-ls2.out.ipynb">
+<td>
+<span class="listing-date">Jul 7, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/2023-07-22-ls2.out.html" class="title">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+<td>
+<a href="./posts/RESEARCHES/2023-07-22-ls2.out.html" class="title listing-title">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
 </td>
-<td class="listing-author">
-신록예찬
+<td>
+<span class="listing-author">신록예찬 </span>
 </td>
 </tr>
-<tr data-index="18" data-categories="STGCN" data-listing-date-sort="1688482800000" data-listing-file-modified-sort="1691568810000" data-listing-reading-time-sort="1.65" data-listing-title-sort="Data management for ITSTGCN" data-listing-filename-sort="2099-07-05-ITSTGCN_data_management.ipynb">
-<td class="listing-date">
-Jul 5, 2023
+<tr data-index="18" data-categories="STGCN" data-listing-date-sort="1688482800000" data-listing-file-modified-sort="1691568810000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="330" data-listing-title-sort="Data management for ITSTGCN" data-listing-filename-sort="2099-07-05-ITSTGCN_data_management.ipynb">
+<td>
+<span class="listing-date">Jul 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="title">Data management for ITSTGCN</a>
+<td>
+<a href="./posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="title listing-title">Data management for ITSTGCN</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="19" data-categories="RESEARCHES" data-listing-date-sort="1688482800000" data-listing-file-modified-sort="1689865961288" data-listing-reading-time-sort="0.01" data-listing-title-sort="RESEARCHES" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Jul 5, 2023
+<tr data-index="19" data-categories="RESEARCHES" data-listing-date-sort="1688482800000" data-listing-file-modified-sort="1689865961288" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="2" data-listing-title-sort="RESEARCHES" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Jul 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/RESEARCHES/index.html" class="title">RESEARCHES</a>
+<td>
+<a href="./posts/RESEARCHES/index.html" class="title listing-title">RESEARCHES</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="20" data-categories="ITSTGCN" data-listing-date-sort="1688396400000" data-listing-file-modified-sort="1688770903000" data-listing-reading-time-sort="0.225" data-listing-title-sort="Toy Example Figure(Intro)" data-listing-filename-sort="2023-07-04-toy_example_figure.ipynb">
-<td class="listing-date">
-Jul 4, 2023
+<tr data-index="20" data-categories="ITSTGCN" data-listing-date-sort="1688396400000" data-listing-file-modified-sort="1688770903000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="45" data-listing-title-sort="Toy Example Figure(Intro)" data-listing-filename-sort="2023-07-04-toy_example_figure.ipynb">
+<td>
+<span class="listing-date">Jul 4, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-04-toy_example_figure.html" class="title">Toy Example Figure(Intro)</a>
+<td>
+<a href="./posts/GCN/2023-07-04-toy_example_figure.html" class="title listing-title">Toy Example Figure(Intro)</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="21" data-categories="GODE" data-listing-date-sort="1688310000000" data-listing-file-modified-sort="1691224437000" data-listing-reading-time-sort="12.47" data-listing-title-sort="Other Outlier Detection" data-listing-filename-sort="2023-07-03-other_outlier_detection.ipynb">
-<td class="listing-date">
-Jul 3, 2023
+<tr data-index="21" data-categories="GODE" data-listing-date-sort="1688310000000" data-listing-file-modified-sort="1691224437000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2494" data-listing-title-sort="Other Outlier Detection" data-listing-filename-sort="2023-07-03-other_outlier_detection.ipynb">
+<td>
+<span class="listing-date">Jul 3, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-07-03-other_outlier_detection.html" class="title">Other Outlier Detection</a>
+<td>
+<a href="./posts/GODE/2023-07-03-other_outlier_detection.html" class="title listing-title">Other Outlier Detection</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="22" data-categories="ITSTGCN" data-listing-date-sort="1688137200000" data-listing-file-modified-sort="1691481951000" data-listing-reading-time-sort="0.195" data-listing-title-sort="EvolveGCNH_Simulation_reshape" data-listing-filename-sort="2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jul 1, 2023
+<tr data-index="22" data-categories="ITSTGCN" data-listing-date-sort="1688137200000" data-listing-file-modified-sort="1691481951000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="EvolveGCNH_Simulation_reshape" data-listing-filename-sort="2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jul 1, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="title">EvolveGCNH_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="title listing-title">EvolveGCNH_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="23" data-categories="ITSTGCN" data-listing-date-sort="1688137200000" data-listing-file-modified-sort="1691482002000" data-listing-reading-time-sort="0.455" data-listing-title-sort="EvolveGCNH_Simulation Tables_reshape" data-listing-filename-sort="2023-07-01-EvolveGCNH_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jul 1, 2023
+<tr data-index="23" data-categories="ITSTGCN" data-listing-date-sort="1688137200000" data-listing-file-modified-sort="1691482002000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="91" data-listing-title-sort="EvolveGCNH_Simulation Tables_reshape" data-listing-filename-sort="2023-07-01-EvolveGCNH_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jul 1, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="title">EvolveGCNH_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="title listing-title">EvolveGCNH_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="24" data-categories="ITSTGCN" data-listing-date-sort="1687878000000" data-listing-file-modified-sort="1691386033000" data-listing-reading-time-sort="0.47" data-listing-title-sort="DYGRENCODER_Simulation Tables_reshape" data-listing-filename-sort="2023-06-28-DYGRENCODER_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 28, 2023
+<tr data-index="24" data-categories="ITSTGCN" data-listing-date-sort="1687878000000" data-listing-file-modified-sort="1691386033000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="DYGRENCODER_Simulation Tables_reshape" data-listing-filename-sort="2023-06-28-DYGRENCODER_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 28, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="title">DYGRENCODER_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="title listing-title">DYGRENCODER_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="25" data-categories="ITSTGCN" data-listing-date-sort="1687878000000" data-listing-file-modified-sort="1691444161000" data-listing-reading-time-sort="0.195" data-listing-title-sort="DYGRENCODER_Simulation_reshape" data-listing-filename-sort="2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 28, 2023
+<tr data-index="25" data-categories="ITSTGCN" data-listing-date-sort="1687878000000" data-listing-file-modified-sort="1691444161000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="DYGRENCODER_Simulation_reshape" data-listing-filename-sort="2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 28, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="title">DYGRENCODER_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="title listing-title">DYGRENCODER_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="26" data-categories="GODE" data-listing-date-sort="1687791600000" data-listing-file-modified-sort="1689152440615" data-listing-reading-time-sort="0.06" data-listing-title-sort="Linear Graph code for Paper" data-listing-filename-sort="2023-06-27-Linear_graph_code_for_paper.ipynb">
-<td class="listing-date">
-Jun 27, 2023
+<tr data-index="26" data-categories="GODE" data-listing-date-sort="1687791600000" data-listing-file-modified-sort="1689152440615" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12" data-listing-title-sort="Linear Graph code for Paper" data-listing-filename-sort="2023-06-27-Linear_graph_code_for_paper.ipynb">
+<td>
+<span class="listing-date">Jun 27, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="title">Linear Graph code for Paper</a>
+<td>
+<a href="./posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="title listing-title">Linear Graph code for Paper</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="27" data-categories="ITSTGCN" data-listing-date-sort="1687618800000" data-listing-file-modified-sort="1691251495000" data-listing-reading-time-sort="0.195" data-listing-title-sort="EvolveGCNO_Simulation_reshape" data-listing-filename-sort="2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 25, 2023
+<tr data-index="27" data-categories="ITSTGCN" data-listing-date-sort="1687618800000" data-listing-file-modified-sort="1691251495000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="EvolveGCNO_Simulation_reshape" data-listing-filename-sort="2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 25, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="title">EvolveGCNO_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="title listing-title">EvolveGCNO_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="28" data-categories="ITSTGCN" data-listing-date-sort="1687618800000" data-listing-file-modified-sort="1691251580000" data-listing-reading-time-sort="0.47" data-listing-title-sort="EvolveGCNO_Simulation Tables_reshape" data-listing-filename-sort="2023-06-25-EvolveGCNO_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 25, 2023
+<tr data-index="28" data-categories="ITSTGCN" data-listing-date-sort="1687618800000" data-listing-file-modified-sort="1691251580000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="EvolveGCNO_Simulation Tables_reshape" data-listing-filename-sort="2023-06-25-EvolveGCNO_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 25, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="title">EvolveGCNO_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="title listing-title">EvolveGCNO_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="29" data-categories="GODE" data-listing-date-sort="1687359600000" data-listing-file-modified-sort="1689152440611" data-listing-reading-time-sort="0.185" data-listing-title-sort="Comparison Results on Real Data" data-listing-filename-sort="2023-06-22-comparison_earthquake.ipynb">
-<td class="listing-date">
-Jun 22, 2023
+<tr data-index="29" data-categories="GODE" data-listing-date-sort="1687359600000" data-listing-file-modified-sort="1689152440611" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="37" data-listing-title-sort="Comparison Results on Real Data" data-listing-filename-sort="2023-06-22-comparison_earthquake.ipynb">
+<td>
+<span class="listing-date">Jun 22, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2023-06-22-comparison_earthquake.html" class="title">Comparison Results on Real Data</a>
+<td>
+<a href="./posts/GODE/2023-06-22-comparison_earthquake.html" class="title listing-title">Comparison Results on Real Data</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="30" data-categories="ITSTGCN" data-listing-date-sort="1687186800000" data-listing-file-modified-sort="1691156828000" data-listing-reading-time-sort="0.195" data-listing-title-sort="TGCN_Simulation_reshape" data-listing-filename-sort="2023-06-20-TGCN_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 20, 2023
+<tr data-index="30" data-categories="ITSTGCN" data-listing-date-sort="1687186800000" data-listing-file-modified-sort="1691156828000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="TGCN_Simulation_reshape" data-listing-filename-sort="2023-06-20-TGCN_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="title">TGCN_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="title listing-title">TGCN_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="31" data-categories="ITSTGCN" data-listing-date-sort="1687186800000" data-listing-file-modified-sort="1691156850000" data-listing-reading-time-sort="0.47" data-listing-title-sort="TGCN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-20-TGCN_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 20, 2023
+<tr data-index="31" data-categories="ITSTGCN" data-listing-date-sort="1687186800000" data-listing-file-modified-sort="1691156850000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="TGCN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-20-TGCN_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="title">TGCN_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="title listing-title">TGCN_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="32" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691704285000" data-listing-reading-time-sort="0.195" data-listing-title-sort="DCRNN_Simulation_reshape" data-listing-filename-sort="2023-06-13-DCRNN_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 13, 2023
+<tr data-index="32" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691704285000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="DCRNN_Simulation_reshape" data-listing-filename-sort="2023-06-13-DCRNN_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 13, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="title">DCRNN_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="title listing-title">DCRNN_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="33" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691482020000" data-listing-reading-time-sort="0.47" data-listing-title-sort="LRGCN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-19-LRGCN_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 13, 2023
+<tr data-index="33" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691482020000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="LRGCN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-19-LRGCN_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 13, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="title">LRGCN_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="title listing-title">LRGCN_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="34" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691704303000" data-listing-reading-time-sort="0.195" data-listing-title-sort="LRGCN_Simulation_reshape" data-listing-filename-sort="2023-06-19-LRGCN_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 13, 2023
+<tr data-index="34" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691704303000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="LRGCN_Simulation_reshape" data-listing-filename-sort="2023-06-19-LRGCN_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 13, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="title">LRGCN_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="title listing-title">LRGCN_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="35" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691568696000" data-listing-reading-time-sort="0.47" data-listing-title-sort="DCRNN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-13-DCRNN_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 13, 2023
+<tr data-index="35" data-categories="ITSTGCN" data-listing-date-sort="1686582000000" data-listing-file-modified-sort="1691568696000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="DCRNN_Simulation Tables_reshape" data-listing-filename-sort="2023-06-13-DCRNN_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 13, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="title">DCRNN_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="title listing-title">DCRNN_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="36" data-categories="ITSTGCN" data-listing-date-sort="1685977200000" data-listing-file-modified-sort="1690705878000" data-listing-reading-time-sort="0.48" data-listing-title-sort="GCLSTM_Simulation Tables_reshape" data-listing-filename-sort="2023-06-06-GCLSTM_simulation_table_reshape.ipynb">
-<td class="listing-date">
-Jun 6, 2023
+<tr data-index="36" data-categories="ITSTGCN" data-listing-date-sort="1685977200000" data-listing-file-modified-sort="1690705878000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96" data-listing-title-sort="GCLSTM_Simulation Tables_reshape" data-listing-filename-sort="2023-06-06-GCLSTM_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="title">GCLSTM_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="title listing-title">GCLSTM_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="37" data-categories="ITSTGCN" data-listing-date-sort="1685977200000" data-listing-file-modified-sort="1690705870000" data-listing-reading-time-sort="0.195" data-listing-title-sort="GCLSTM_Simulation_reshape" data-listing-filename-sort="2023-06-06-GCLSTM_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Jun 6, 2023
+<tr data-index="37" data-categories="ITSTGCN" data-listing-date-sort="1685977200000" data-listing-file-modified-sort="1690705870000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="GCLSTM_Simulation_reshape" data-listing-filename-sort="2023-06-06-GCLSTM_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Jun 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="title">GCLSTM_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="title listing-title">GCLSTM_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="38" data-categories="ITSTGCN" data-listing-date-sort="1685372400000" data-listing-file-modified-sort="1690532474000" data-listing-reading-time-sort="0.195" data-listing-title-sort="GConvLSTM_Simulation_reshape" data-listing-filename-sort="2023-05-30-GConvLSTM_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-May 30, 2023
+<tr data-index="38" data-categories="ITSTGCN" data-listing-date-sort="1685372400000" data-listing-file-modified-sort="1690532474000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="GConvLSTM_Simulation_reshape" data-listing-filename-sort="2023-05-30-GConvLSTM_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">May 30, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="title">GConvLSTM_Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="title listing-title">GConvLSTM_Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="39" data-categories="ITSTGCN" data-listing-date-sort="1685372400000" data-listing-file-modified-sort="1690532481000" data-listing-reading-time-sort="0.47" data-listing-title-sort="GConvLSTM_Simulation Tables_reshape" data-listing-filename-sort="2023-05-30-GConvLSTM_simulation_table_reshape.ipynb">
-<td class="listing-date">
-May 30, 2023
+<tr data-index="39" data-categories="ITSTGCN" data-listing-date-sort="1685372400000" data-listing-file-modified-sort="1690532481000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="94" data-listing-title-sort="GConvLSTM_Simulation Tables_reshape" data-listing-filename-sort="2023-05-30-GConvLSTM_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">May 30, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="title">GConvLSTM_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="title listing-title">GConvLSTM_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="40" data-categories="RecurrentGCN" data-listing-date-sort="1685113200000" data-listing-file-modified-sort="1685969093000" data-listing-reading-time-sort="0.505" data-listing-title-sort="Adding the RecurrentGCN models" data-listing-filename-sort="2023-05-27-AddingtheRecurrentGCNmodels.ipynb">
-<td class="listing-date">
-May 27, 2023
+<tr data-index="40" data-categories="RecurrentGCN" data-listing-date-sort="1685113200000" data-listing-file-modified-sort="1685969093000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="101" data-listing-title-sort="Adding the RecurrentGCN models" data-listing-filename-sort="2023-05-27-AddingtheRecurrentGCNmodels.ipynb">
+<td>
+<span class="listing-date">May 27, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="title">Adding the RecurrentGCN models</a>
+<td>
+<a href="./posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="title listing-title">Adding the RecurrentGCN models</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="41" data-categories="ITSTGCN" data-listing-date-sort="1684940400000" data-listing-file-modified-sort="1690033635000" data-listing-reading-time-sort="0.65" data-listing-title-sort="GConvGRU_Simulation Boxplot_reshape" data-listing-filename-sort="2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-May 25, 2023
+<tr data-index="41" data-categories="ITSTGCN" data-listing-date-sort="1684940400000" data-listing-file-modified-sort="1690033635000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="130" data-listing-title-sort="GConvGRU_Simulation Boxplot_reshape" data-listing-filename-sort="2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">May 25, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="title">GConvGRU_Simulation Boxplot_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="title listing-title">GConvGRU_Simulation Boxplot_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="42" data-categories="ITSTGCN" data-listing-date-sort="1684940400000" data-listing-file-modified-sort="1686775670000" data-listing-reading-time-sort="0.19" data-listing-title-sort="GConvGRU_Simulation Tables_reshape" data-listing-filename-sort="2023-05-17-xx_GCONVGRU_simulation_table_reshape.ipynb">
-<td class="listing-date">
-May 25, 2023
+<tr data-index="42" data-categories="ITSTGCN" data-listing-date-sort="1684940400000" data-listing-file-modified-sort="1686775670000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="38" data-listing-title-sort="GConvGRU_Simulation Tables_reshape" data-listing-filename-sort="2023-05-17-xx_GCONVGRU_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">May 25, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="title">GConvGRU_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="title listing-title">GConvGRU_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="43" data-categories="ITSTGCN" data-listing-date-sort="1684249200000" data-listing-file-modified-sort="1689976778000" data-listing-reading-time-sort="0.195" data-listing-title-sort="GConvGRU and GNAR_Simulation Tables_reshape" data-listing-filename-sort="2023-05-25-GCONVGRU_simulation_table_reshape.ipynb">
-<td class="listing-date">
-May 17, 2023
+<tr data-index="43" data-categories="ITSTGCN" data-listing-date-sort="1684249200000" data-listing-file-modified-sort="1689976778000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39" data-listing-title-sort="GConvGRU and GNAR_Simulation Tables_reshape" data-listing-filename-sort="2023-05-25-GCONVGRU_simulation_table_reshape.ipynb">
+<td>
+<span class="listing-date">May 17, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="title">GConvGRU and GNAR_Simulation Tables_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="title listing-title">GConvGRU and GNAR_Simulation Tables_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="44" data-categories="PyG" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1685969093000" data-listing-reading-time-sort="0.025" data-listing-title-sort="PyG Geometric Temporal CPU vs GPU" data-listing-filename-sort="2023-05-11-CPUvsGPU.ipynb">
-<td class="listing-date">
-May 11, 2023
+<tr data-index="44" data-categories="PyG" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1685969093000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="5" data-listing-title-sort="PyG Geometric Temporal CPU vs GPU" data-listing-filename-sort="2023-05-11-CPUvsGPU.ipynb">
+<td>
+<span class="listing-date">May 11, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-11-CPUvsGPU.html" class="title">PyG Geometric Temporal CPU vs GPU</a>
+<td>
+<a href="./posts/GCN/2023-05-11-CPUvsGPU.html" class="title listing-title">PyG Geometric Temporal CPU vs GPU</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="45" data-categories="PyG" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1688252381000" data-listing-reading-time-sort="0.11" data-listing-title-sort="PyG Geometric Temporal Examples" data-listing-filename-sort="2023-05-11-PyGGeometricTemporalEx.ipynb">
-<td class="listing-date">
-May 11, 2023
+<tr data-index="45" data-categories="PyG" data-listing-date-sort="1683730800000" data-listing-file-modified-sort="1688252381000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22" data-listing-title-sort="PyG Geometric Temporal Examples" data-listing-filename-sort="2023-05-11-PyGGeometricTemporalEx.ipynb">
+<td>
+<span class="listing-date">May 11, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="title">PyG Geometric Temporal Examples</a>
+<td>
+<a href="./posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="title listing-title">PyG Geometric Temporal Examples</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="46" data-categories="ITSTGCN" data-listing-date-sort="1683298800000" data-listing-file-modified-sort="1685969093000" data-listing-reading-time-sort="3.71" data-listing-title-sort="ITSTGCN Article Refernece" data-listing-filename-sort="2023-05-06-article_refer.ipynb">
-<td class="listing-date">
-May 6, 2023
+<tr data-index="46" data-categories="ITSTGCN" data-listing-date-sort="1683298800000" data-listing-file-modified-sort="1685969093000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="742" data-listing-title-sort="ITSTGCN Article Refernece" data-listing-filename-sort="2023-05-06-article_refer.ipynb">
+<td>
+<span class="listing-date">May 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-06-article_refer.html" class="title">ITSTGCN Article Refernece</a>
+<td>
+<a href="./posts/GCN/2023-05-06-article_refer.html" class="title listing-title">ITSTGCN Article Refernece</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="47" data-categories="PyTorch Geometric Temporal" data-listing-date-sort="1683126000000" data-listing-file-modified-sort="1686986118000" data-listing-reading-time-sort="0.34" data-listing-title-sort="Questions of PyTorch Geometric Temporal" data-listing-filename-sort="2023-05-04-questions of pytorch geometric temporal.ipynb">
-<td class="listing-date">
-May 4, 2023
+<tr data-index="47" data-categories="PyTorch Geometric Temporal" data-listing-date-sort="1683126000000" data-listing-file-modified-sort="1686986118000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="68" data-listing-title-sort="Questions of PyTorch Geometric Temporal" data-listing-filename-sort="2023-05-04-questions of pytorch geometric temporal.ipynb">
+<td>
+<span class="listing-date">May 4, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="title">Questions of PyTorch Geometric Temporal</a>
+<td>
+<a href="./posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="title listing-title">Questions of PyTorch Geometric Temporal</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="48" data-categories="ITSTGCN" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1688249999000" data-listing-reading-time-sort="0.015" data-listing-title-sort="Padalme GSO_st" data-listing-filename-sort="2023-04-29-pedalme_GSO_st.ipynb">
-<td class="listing-date">
-Apr 29, 2023
+<tr data-index="48" data-categories="ITSTGCN" data-listing-date-sort="1682694000000" data-listing-file-modified-sort="1688249999000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="Padalme GSO_st" data-listing-filename-sort="2023-04-29-pedalme_GSO_st.ipynb">
+<td>
+<span class="listing-date">Apr 29, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-29-pedalme_GSO_st.html" class="title">Padalme GSO_st</a>
+<td>
+<a href="./posts/GCN/2023-04-29-pedalme_GSO_st.html" class="title listing-title">Padalme GSO_st</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-
-<tr data-index="49" data-categories="ITSTGCN" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.215" data-listing-title-sort="Simulation Tables" data-listing-filename-sort="2023-04-27-simulation_table.ipynb">
-<td class="listing-date">
-Apr 27, 2023
+<tr data-index="49" data-categories="ITSTGCN" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="Simulation Tables" data-listing-filename-sort="2023-04-27-simulation_table.ipynb">
+<td>
+<span class="listing-date">Apr 27, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-27-simulation_table.html" class="title">Simulation Tables</a>
+<td>
+<a href="./posts/GCN/2023-04-27-simulation_table.html" class="title listing-title">Simulation Tables</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="50" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1685969093000" data-listing-reading-time-sort="0.005" data-listing-title-sort="Toy Example Note" data-listing-filename-sort="2023-04-27-toy_example_notes.ipynb">
-<td class="listing-date">
-Apr 27, 2023
+<tr data-index="50" data-listing-date-sort="1682521200000" data-listing-file-modified-sort="1685969093000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Toy Example Note" data-listing-filename-sort="2023-04-27-toy_example_notes.ipynb">
+<td>
+<span class="listing-date">Apr 27, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-27-toy_example_notes.html" class="title">Toy Example Note</a>
+<td>
+<a href="./posts/GCN/2023-04-27-toy_example_notes.html" class="title listing-title">Toy Example Note</a>
 </td>
-<td class="listing-author">
-GUEBIN CHOI
+<td>
+<span class="listing-author">GUEBIN CHOI</span>
 </td>
 </tr>
-<tr data-index="51" data-listing-date-sort="1682348400000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.455" data-listing-title-sort="Note_weight amatrix" data-listing-filename-sort="2023-04-25-note_matrix.ipynb">
-<td class="listing-date">
-Apr 25, 2023
+<tr data-index="51" data-listing-date-sort="1682348400000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="91" data-listing-title-sort="Note_weight amatrix" data-listing-filename-sort="2023-04-25-note_matrix.ipynb">
+<td>
+<span class="listing-date">Apr 25, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-25-note_matrix.html" class="title">Note_weight amatrix</a>
+<td>
+<a href="./posts/GCN/2023-04-25-note_matrix.html" class="title listing-title">Note_weight amatrix</a>
 </td>
-<td class="listing-author">
-GUEBIN CHOI
+<td>
+<span class="listing-author">GUEBIN CHOI</span>
 </td>
 </tr>
-<tr data-index="52" data-categories="ST-GCN" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.01" data-listing-title-sort="METRLADatasetLoader-Tutorial" data-listing-filename-sort="2023-04-06-METRLADatasetLoader.ipynb">
-<td class="listing-date">
-Apr 6, 2023
+<tr data-index="52" data-categories="ST-GCN" data-listing-date-sort="1680706800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="2" data-listing-title-sort="METRLADatasetLoader-Tutorial" data-listing-filename-sort="2023-04-06-METRLADatasetLoader.ipynb">
+<td>
+<span class="listing-date">Apr 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-06-METRLADatasetLoader.html" class="title">METRLADatasetLoader-Tutorial</a>
+<td>
+<a href="./posts/GCN/2023-04-06-METRLADatasetLoader.html" class="title listing-title">METRLADatasetLoader-Tutorial</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="53" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969093000" data-listing-reading-time-sort="0.635" data-listing-title-sort="Simulation_reshape" data-listing-filename-sort="2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.ipynb">
-<td class="listing-date">
-Apr 5, 2023
+<tr data-index="53" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969093000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="127" data-listing-title-sort="Simulation_reshape" data-listing-filename-sort="2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.ipynb">
+<td>
+<span class="listing-date">Apr 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="title">Simulation_reshape</a>
+<td>
+<a href="./posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="title listing-title">Simulation_reshape</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="54" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="2.435" data-listing-title-sort="Simulation" data-listing-filename-sort="2023-04-05-Simulation_boxplot.ipynb">
-<td class="listing-date">
-Apr 5, 2023
+<tr data-index="54" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="487" data-listing-title-sort="Simulation" data-listing-filename-sort="2023-04-05-Simulation_boxplot.ipynb">
+<td>
+<span class="listing-date">Apr 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-05-Simulation_boxplot.html" class="title">Simulation</a>
+<td>
+<a href="./posts/GCN/2023-04-05-Simulation_boxplot.html" class="title listing-title">Simulation</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="55" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="2.315" data-listing-title-sort="Simulation" data-listing-filename-sort="2023-04-05-Simulation.ipynb">
-<td class="listing-date">
-Apr 5, 2023
+<tr data-index="55" data-categories="ITSTGCN" data-listing-date-sort="1680620400000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="463" data-listing-title-sort="Simulation" data-listing-filename-sort="2023-04-05-Simulation.ipynb">
+<td>
+<span class="listing-date">Apr 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-04-05-Simulation.html" class="title">Simulation</a>
+<td>
+<a href="./posts/GCN/2023-04-05-Simulation.html" class="title listing-title">Simulation</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="56" data-categories="ST-GCN" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1691483635000" data-listing-reading-time-sort="0.11" data-listing-title-sort="SimualtionPlanner-Tutorial" data-listing-filename-sort="2099-03-22-SimulationPlanner-Tutorial_test_test.ipynb">
-<td class="listing-date">
-Mar 22, 2023
+<tr data-index="56" data-categories="ST-GCN" data-listing-date-sort="1679410800000" data-listing-file-modified-sort="1691483635000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22" data-listing-title-sort="SimualtionPlanner-Tutorial" data-listing-filename-sort="2099-03-22-SimulationPlanner-Tutorial_test_test.ipynb">
+<td>
+<span class="listing-date">Mar 22, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="title">SimualtionPlanner-Tutorial</a>
+<td>
+<a href="./posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="title listing-title">SimualtionPlanner-Tutorial</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="57" data-categories="data" data-listing-date-sort="1679238000000" data-listing-file-modified-sort="1690101561000" data-listing-reading-time-sort="11.59" data-listing-title-sort="data load, data save as pickle" data-listing-filename-sort="2023-03-20-data load, data save as pickle.ipynb">
-<td class="listing-date">
-Mar 20, 2023
+<tr data-index="57" data-categories="data" data-listing-date-sort="1679238000000" data-listing-file-modified-sort="1690101561000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2318" data-listing-title-sort="data load, data save as pickle" data-listing-filename-sort="2023-03-20-data load, data save as pickle.ipynb">
+<td>
+<span class="listing-date">Mar 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-03-20-data load, data save as pickle.html" class="title">data load, data save as pickle</a>
+<td>
+<a href="./posts/GCN/2023-03-20-data load, data save as pickle.html" class="title listing-title">data load, data save as pickle</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="58" data-categories="ST-GCN" data-listing-date-sort="1679065200000" data-listing-file-modified-sort="1691568900000" data-listing-reading-time-sort="0.22" data-listing-title-sort="SimualtionPlanner-Tutorial" data-listing-filename-sort="2099-03-18-SimulationPlanner-Tutorial.ipynb">
-<td class="listing-date">
-Mar 18, 2023
+<tr data-index="58" data-categories="ST-GCN" data-listing-date-sort="1679065200000" data-listing-file-modified-sort="1691568900000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="44" data-listing-title-sort="SimualtionPlanner-Tutorial" data-listing-filename-sort="2099-03-18-SimulationPlanner-Tutorial.ipynb">
+<td>
+<span class="listing-date">Mar 18, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="title">SimualtionPlanner-Tutorial</a>
+<td>
+<a href="./posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="title listing-title">SimualtionPlanner-Tutorial</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="59" data-categories="ST-GCN" data-listing-date-sort="1678978800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.925" data-listing-title-sort="ITSTGCN-Tutorial" data-listing-filename-sort="2023-03-17-ITSTGCN-Tutorial.ipynb">
-<td class="listing-date">
-Mar 17, 2023
+<tr data-index="59" data-categories="ST-GCN" data-listing-date-sort="1678978800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="185" data-listing-title-sort="ITSTGCN-Tutorial" data-listing-filename-sort="2023-03-17-ITSTGCN-Tutorial.ipynb">
+<td>
+<span class="listing-date">Mar 17, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="title">ITSTGCN-Tutorial</a>
+<td>
+<a href="./posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="title listing-title">ITSTGCN-Tutorial</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="60" data-categories="ST-GCN" data-listing-date-sort="1677769200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="5.28" data-listing-title-sort="SY 1st ITSTGCN" data-listing-filename-sort="2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.ipynb">
-<td class="listing-date">
-Mar 3, 2023
+<tr data-index="60" data-categories="ST-GCN" data-listing-date-sort="1677769200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056" data-listing-title-sort="SY 1st ITSTGCN" data-listing-filename-sort="2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.ipynb">
+<td>
+<span class="listing-date">Mar 3, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="title">SY 1st ITSTGCN</a>
+<td>
+<a href="./posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="title listing-title">SY 1st ITSTGCN</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="61" data-categories="ST-GCN" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.725" data-listing-title-sort="2nd ITSTGCN" data-listing-filename-sort="2023-02-20-ESTGCN_GNAR_edit_guebin2.ipynb">
-<td class="listing-date">
-Feb 15, 2023
+<tr data-index="61" data-categories="ST-GCN" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145" data-listing-title-sort="2nd ITSTGCN" data-listing-filename-sort="2023-02-20-ESTGCN_GNAR_edit_guebin2.ipynb">
+<td>
+<span class="listing-date">Feb 15, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="title">2nd ITSTGCN</a>
+<td>
+<a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="title listing-title">2nd ITSTGCN</a>
 </td>
-<td class="listing-author">
-GUEBIN CHOI
+<td>
+<span class="listing-author">GUEBIN CHOI</span>
 </td>
 </tr>
-<tr data-index="62" data-categories="ST-GCN" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.18" data-listing-title-sort="1st ITSTGCN" data-listing-filename-sort="2023-02-20-ESTGCN_GNAR_edit_guebin.ipynb">
-<td class="listing-date">
-Feb 15, 2023
+<tr data-index="62" data-categories="ST-GCN" data-listing-date-sort="1676386800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36" data-listing-title-sort="1st ITSTGCN" data-listing-filename-sort="2023-02-20-ESTGCN_GNAR_edit_guebin.ipynb">
+<td>
+<span class="listing-date">Feb 15, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="title">1st ITSTGCN</a>
+<td>
+<a href="./posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="title listing-title">1st ITSTGCN</a>
 </td>
-<td class="listing-author">
-GUEBIN CHOI
+<td>
+<span class="listing-author">GUEBIN CHOI</span>
 </td>
 </tr>
-<tr data-index="63" data-categories="ST-GCN" data-listing-date-sort="1675695600000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.815" data-listing-title-sort="Class of Method(WikiMath) lag 1" data-listing-filename-sort="2023-02-07-ESTGCN_WIKI_DATA_2.ipynb">
-<td class="listing-date">
-Feb 7, 2023
+<tr data-index="63" data-categories="ST-GCN" data-listing-date-sort="1675695600000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="163" data-listing-title-sort="Class of Method(WikiMath) lag 1" data-listing-filename-sort="2023-02-07-ESTGCN_WIKI_DATA_2.ipynb">
+<td>
+<span class="listing-date">Feb 7, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="title">Class of Method(WikiMath) lag 1</a>
+<td>
+<a href="./posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="title listing-title">Class of Method(WikiMath) lag 1</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="64" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.275" data-listing-title-sort="Class of Method(GNAR) lag 1 80% Missing repeat" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_3.ipynb">
-<td class="listing-date">
-Feb 6, 2023
+<tr data-index="64" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="55" data-listing-title-sort="Class of Method(GNAR) lag 1 80% Missing repeat" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_3.ipynb">
+<td>
+<span class="listing-date">Feb 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="title">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+<td>
+<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="title listing-title">Class of Method(GNAR) lag 1 80% Missing repeat</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="65" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.805" data-listing-title-sort="Class of Method(GNAR) lag 2" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_2.ipynb">
-<td class="listing-date">
-Feb 6, 2023
+<tr data-index="65" data-categories="ST-GCN" data-listing-date-sort="1675609200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="161" data-listing-title-sort="Class of Method(GNAR) lag 2" data-listing-filename-sort="2023-02-06-ESTGCN_GNAR_DATA_2.ipynb">
+<td>
+<span class="listing-date">Feb 6, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="title">Class of Method(GNAR) lag 2</a>
+<td>
+<a href="./posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="title listing-title">Class of Method(GNAR) lag 2</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="66" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.795" data-listing-title-sort="Class of Method(GNAR) lag 1" data-listing-filename-sort="2023-01-26-ESTGCN_GNAR_DATA.ipynb">
-<td class="listing-date">
-Jan 28, 2023
+<tr data-index="66" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="159" data-listing-title-sort="Class of Method(GNAR) lag 1" data-listing-filename-sort="2023-01-26-ESTGCN_GNAR_DATA.ipynb">
+<td>
+<span class="listing-date">Jan 28, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="title">Class of Method(GNAR) lag 1</a>
+<td>
+<a href="./posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="title listing-title">Class of Method(GNAR) lag 1</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="67" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.805" data-listing-title-sort="Class of Method(WikiMath) lag 4" data-listing-filename-sort="2023-01-26-ESTGCN_WIKI_DATA.ipynb">
-<td class="listing-date">
-Jan 28, 2023
+<tr data-index="67" data-categories="ST-GCN" data-listing-date-sort="1674831600000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="161" data-listing-title-sort="Class of Method(WikiMath) lag 4" data-listing-filename-sort="2023-01-26-ESTGCN_WIKI_DATA.ipynb">
+<td>
+<span class="listing-date">Jan 28, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="title">Class of Method(WikiMath) lag 4</a>
+<td>
+<a href="./posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="title listing-title">Class of Method(WikiMath) lag 4</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="68" data-categories="ST-GCN" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.565" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-26-guebin.ipynb">
-<td class="listing-date">
-Jan 26, 2023
+<tr data-index="68" data-categories="ST-GCN" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="113" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-26-guebin.ipynb">
+<td>
+<span class="listing-date">Jan 26, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-26-guebin.html" class="title">Class of Method</a>
+<td>
+<a href="./posts/GCN/2023-01-26-guebin.html" class="title listing-title">Class of Method</a>
 </td>
-<td class="listing-author">
-Guebin Choi
+<td>
+<span class="listing-author">Guebin Choi</span>
 </td>
 </tr>
-<tr data-index="69" data-categories="ST-GCN" data-listing-date-sort="1674226800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.48" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-21-Class.ipynb">
-<td class="listing-date">
-Jan 21, 2023
+<tr data-index="69" data-categories="ST-GCN" data-listing-date-sort="1674226800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96" data-listing-title-sort="Class of Method" data-listing-filename-sort="2023-01-21-Class.ipynb">
+<td>
+<span class="listing-date">Jan 21, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-21-Class.html" class="title">Class of Method</a>
+<td>
+<a href="./posts/GCN/2023-01-21-Class.html" class="title listing-title">Class of Method</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="70" data-categories="ST-GCN" data-listing-date-sort="1674140400000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.48" data-listing-title-sort="1st ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-20-Algorithm_traintest.ipynb">
-<td class="listing-date">
-Jan 20, 2023
+<tr data-index="70" data-categories="ST-GCN" data-listing-date-sort="1674140400000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="96" data-listing-title-sort="1st ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-20-Algorithm_traintest.ipynb">
+<td>
+<span class="listing-date">Jan 20, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-20-Algorithm_traintest.html" class="title">1st ST-GCN Example dividing train and test</a>
+<td>
+<a href="./posts/GCN/2023-01-20-Algorithm_traintest.html" class="title listing-title">1st ST-GCN Example dividing train and test</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="71" data-categories="ST-GCN" data-listing-date-sort="1673881200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.14" data-listing-title-sort="2nd ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-18-Algorithm_traintest_2.ipynb">
-<td class="listing-date">
-Jan 17, 2023
+<tr data-index="71" data-categories="ST-GCN" data-listing-date-sort="1673881200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28" data-listing-title-sort="2nd ST-GCN Example dividing train and test" data-listing-filename-sort="2023-01-18-Algorithm_traintest_2.ipynb">
+<td>
+<span class="listing-date">Jan 17, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="title">2nd ST-GCN Example dividing train and test</a>
+<td>
+<a href="./posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="title listing-title">2nd ST-GCN Example dividing train and test</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="72" data-categories="ST-GCN,GNAR" data-listing-date-sort="1673362800000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="1.545" data-listing-title-sort="GCN Algorithm Example 1" data-listing-filename-sort="2023-01-11-Algorithm_EX_1.ipynb">
-<td class="listing-date">
-Jan 11, 2023
+<tr data-index="72" data-categories="ST-GCN,GNAR" data-listing-date-sort="1673362800000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="309" data-listing-title-sort="GCN Algorithm Example 1" data-listing-filename-sort="2023-01-11-Algorithm_EX_1.ipynb">
+<td>
+<span class="listing-date">Jan 11, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-11-Algorithm_EX_1.html" class="title">GCN Algorithm Example 1</a>
+<td>
+<a href="./posts/GCN/2023-01-11-Algorithm_EX_1.html" class="title listing-title">GCN Algorithm Example 1</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="73" data-categories="GNAR" data-listing-date-sort="1672844400000" data-listing-file-modified-sort="1687054939000" data-listing-reading-time-sort="7.295" data-listing-title-sort="GNAR data" data-listing-filename-sort="2023-01-05-GNAR.ipynb">
-<td class="listing-date">
-Jan 5, 2023
+<tr data-index="73" data-categories="GNAR" data-listing-date-sort="1672844400000" data-listing-file-modified-sort="1687054939000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1459" data-listing-title-sort="GNAR data" data-listing-filename-sort="2023-01-05-GNAR.ipynb">
+<td>
+<span class="listing-date">Jan 5, 2023</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2023-01-05-GNAR.html" class="title">GNAR data</a>
+<td>
+<a href="./posts/GCN/2023-01-05-GNAR.html" class="title listing-title">GNAR data</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="74" data-categories="ST-GCN" data-listing-date-sort="1672239600000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="3.5" data-listing-title-sort="**[IT-STGCN]** STGCN 튜토리얼" data-listing-filename-sort="2022-12-29-STGCN-tutorial.ipynb">
-<td class="listing-date">
-Dec 29, 2022
+<tr data-index="74" data-categories="ST-GCN" data-listing-date-sort="1672239600000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="700" data-listing-title-sort="**[IT-STGCN]** STGCN 튜토리얼" data-listing-filename-sort="2022-12-29-STGCN-tutorial.ipynb">
+<td>
+<span class="listing-date">Dec 29, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2022-12-29-STGCN-tutorial.html" class="title"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+<td>
+<a href="./posts/GCN/2022-12-29-STGCN-tutorial.html" class="title listing-title"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
 </td>
-<td class="listing-author">
-신록예찬, SEOYEON CHOI
+<td>
+<span class="listing-author">신록예찬, SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="75" data-categories="ST-GCN" data-listing-date-sort="1672153200000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.94" data-listing-title-sort="Simulation of geometric-temporal" data-listing-filename-sort="2022-12-28-gcn_simulation.ipynb">
-<td class="listing-date">
-Dec 28, 2022
+<tr data-index="75" data-categories="ST-GCN" data-listing-date-sort="1672153200000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="188" data-listing-title-sort="Simulation of geometric-temporal" data-listing-filename-sort="2022-12-28-gcn_simulation.ipynb">
+<td>
+<span class="listing-date">Dec 28, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2022-12-28-gcn_simulation.html" class="title">Simulation of geometric-temporal</a>
+<td>
+<a href="./posts/GCN/2022-12-28-gcn_simulation.html" class="title listing-title">Simulation of geometric-temporal</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="76" data-categories="DFT" data-listing-date-sort="1672066800000" data-listing-file-modified-sort="1689152440611" data-listing-reading-time-sort="0.295" data-listing-title-sort="Discrete Fourier Transform" data-listing-filename-sort="2022-12-27-DFT_study.ipynb">
-<td class="listing-date">
-Dec 27, 2022
+<tr data-index="76" data-categories="DFT" data-listing-date-sort="1672066800000" data-listing-file-modified-sort="1689152440611" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="59" data-listing-title-sort="Discrete Fourier Transform" data-listing-filename-sort="2022-12-27-DFT_study.ipynb">
+<td>
+<span class="listing-date">Dec 27, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2022-12-27-DFT_study.html" class="title">Discrete Fourier Transform</a>
+<td>
+<a href="./posts/GODE/2022-12-27-DFT_study.html" class="title listing-title">Discrete Fourier Transform</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="77" data-categories="ST-GCN" data-listing-date-sort="1671548400000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="14.78" data-listing-title-sort="PyTorch ST-GCN Dataset" data-listing-filename-sort="2022-12-21-ST-GCN_Dataset.ipynb">
-<td class="listing-date">
-Dec 21, 2022
+<tr data-index="77" data-categories="ST-GCN" data-listing-date-sort="1671548400000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2956" data-listing-title-sort="PyTorch ST-GCN Dataset" data-listing-filename-sort="2022-12-21-ST-GCN_Dataset.ipynb">
+<td>
+<span class="listing-date">Dec 21, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="title">PyTorch ST-GCN Dataset</a>
+<td>
+<a href="./posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="title listing-title">PyTorch ST-GCN Dataset</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="78" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1689564298000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GCN" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Dec 5, 2022
+<tr data-index="78" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1689564298000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="GCN" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Dec 5, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/index.html" class="title">GCN</a>
+<td>
+<a href="./posts/GCN/index.html" class="title listing-title">GCN</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="79" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1685969092000" data-listing-reading-time-sort="0.55" data-listing-title-sort="TORCH_GEOMETRIC.NN" data-listing-filename-sort="2022-12-07-torchgcn.ipynb">
-<td class="listing-date">
-Dec 5, 2022
+<tr data-index="79" data-categories="GCN" data-listing-date-sort="1670166000000" data-listing-file-modified-sort="1685969092000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110" data-listing-title-sort="TORCH_GEOMETRIC.NN" data-listing-filename-sort="2022-12-07-torchgcn.ipynb">
+<td>
+<span class="listing-date">Dec 5, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GCN/2022-12-07-torchgcn.html" class="title">TORCH_GEOMETRIC.NN</a>
+<td>
+<a href="./posts/GCN/2022-12-07-torchgcn.html" class="title listing-title">TORCH_GEOMETRIC.NN</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="80" data-categories="GODE" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1689152440611" data-listing-reading-time-sort="0.07" data-listing-title-sort="Graph code" data-listing-filename-sort="2022-12-01-graph_code_guebin.ipynb">
-<td class="listing-date">
-Dec 1, 2022
+<tr data-index="80" data-categories="GODE" data-listing-date-sort="1669820400000" data-listing-file-modified-sort="1689152440611" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14" data-listing-title-sort="Graph code" data-listing-filename-sort="2022-12-01-graph_code_guebin.ipynb">
+<td>
+<span class="listing-date">Dec 1, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2022-12-01-graph_code_guebin.html" class="title">Graph code</a>
+<td>
+<a href="./posts/GODE/2022-12-01-graph_code_guebin.html" class="title listing-title">Graph code</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="81" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1689152440519" data-listing-reading-time-sort="1.385" data-listing-title-sort="Class code for Comparison Study" data-listing-filename-sort="2022-11-19-class_code_for_paper.ipynb">
-<td class="listing-date">
-Nov 24, 2022
+<tr data-index="81" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1689152440519" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="277" data-listing-title-sort="Class code for Comparison Study" data-listing-filename-sort="2022-11-19-class_code_for_paper.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2022-11-19-class_code_for_paper.html" class="title">Class code for Comparison Study</a>
+<td>
+<a href="./posts/GODE/2022-11-19-class_code_for_paper.html" class="title listing-title">Class code for Comparison Study</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="82" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1689152440511" data-listing-reading-time-sort="0.785" data-listing-title-sort="Earthquake" data-listing-filename-sort="2022-10-02-Earthquake_real.ipynb">
-<td class="listing-date">
-Nov 24, 2022
+<tr data-index="82" data-categories="GODE" data-listing-date-sort="1669215600000" data-listing-file-modified-sort="1689152440511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="157" data-listing-title-sort="Earthquake" data-listing-filename-sort="2022-10-02-Earthquake_real.ipynb">
+<td>
+<span class="listing-date">Nov 24, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2022-10-02-Earthquake_real.html" class="title">Earthquake</a>
+<td>
+<a href="./posts/GODE/2022-10-02-Earthquake_real.html" class="title listing-title">Earthquake</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="83" data-categories="GODE" data-listing-date-sort="1662044400000" data-listing-file-modified-sort="1689152440455" data-listing-reading-time-sort="1.245" data-listing-title-sort="Simulation" data-listing-filename-sort="2022-09-02-paper_simulation.ipynb">
-<td class="listing-date">
-Sep 2, 2022
+<tr data-index="83" data-categories="GODE" data-listing-date-sort="1662044400000" data-listing-file-modified-sort="1689152440455" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="249" data-listing-title-sort="Simulation" data-listing-filename-sort="2022-09-02-paper_simulation.ipynb">
+<td>
+<span class="listing-date">Sep 2, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/2022-09-02-paper_simulation.html" class="title">Simulation</a>
+<td>
+<a href="./posts/GODE/2022-09-02-paper_simulation.html" class="title listing-title">Simulation</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
-<tr data-index="84" data-categories="GODE" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1688987069000" data-listing-reading-time-sort="0.015" data-listing-title-sort="GODE" data-listing-filename-sort="index.qmd">
-<td class="listing-date">
-Sep 1, 2022
+<tr data-index="84" data-categories="GODE" data-listing-date-sort="1661958000000" data-listing-file-modified-sort="1688987069000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3" data-listing-title-sort="GODE" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-date">Sep 1, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/GODE/index.html" class="title">GODE</a>
+<td>
+<a href="./posts/GODE/index.html" class="title listing-title">GODE</a>
 </td>
-<td class="listing-author">
-SEOYEON CHOI
+<td>
+<span class="listing-author">SEOYEON CHOI</span>
 </td>
 </tr>
 </tbody>
-
 </table>
 <div class="listing-no-matching d-none">
 No matching items
@@ -1642,10 +1734,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1655,8 +1746,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1671,6 +1771,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1711,6 +2000,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

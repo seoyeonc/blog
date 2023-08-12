@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.315">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -133,545 +110,608 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Seoyeon’s Blog for study</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Stock on Graph</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html">Stock on Graph</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Stock on Graph</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">STGCN</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>SEOYEON CHOI </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">July 8, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">FRAUD</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">Fraud data</a>
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">Data management Figure for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">Data management for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU and GNAR_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Boxplot_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">Comparison Results on Real Data</a>
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">final GODE code(paper)</a>
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">Linear Graph code for Paper</a>
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">Semifinal_Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">The options of Outlier Detection method</a>
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">RESEARCHES</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link"><strong>[LLM]</strong>Transformer_META</a>
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">CAM</a>
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Stock on Graph</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">CAM_downsize</a>
+  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link active">Stock on Graph</a>
+  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM_downsize</span></a>
   </div>
 </li>
       </ul>
@@ -681,6 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -706,17 +747,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#result-1" id="toc-result-1" class="nav-link" data-scroll-target="#result-1">Result</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-07-08-stock_on_graph.out.ipynb" download="2023-07-08-stock_on_graph.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html">Stock on Graph</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Stock on Graph</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">STGCN</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <section id="import" class="level1">
 <h1>Import</h1>
-<div class="cell" data-execution_count="1">
+<div id="ba4c06aa-47b5-421a-8fbe-0ec5b91e5842" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tqdm</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -728,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div id="cae83057-0fd2-4365-a379-d74ab241b916" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector </span>
@@ -739,220 +810,221 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Data intro(2020~2022)</h1>
 <section id="korea" class="level2">
 <h2 class="anchored" data-anchor-id="korea">Korea</h2>
-<div class="cell" data-execution_count="3">
+<div id="18e91de3-8932-46a9-945c-a0ef892365ec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_korea <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/korea_kospi.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div id="89101fb1-70b8-4f2a-85eb-b47573620505" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_korea <span class="op">=</span> pd.concat([df_korea,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">"Korea"</span>,</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_korea[<span class="st">'Close'</span>] <span class="op">-</span> df_korea[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_korea[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="5">
+<div id="c026a7ed-2fde-4dfd-a27b-29f3f5d60e29" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_korea_add <span class="op">=</span> df_korea.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_korea[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_korea[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_korea[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div id="59371117-44aa-4387-8a48-97f1f81940ed" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_korea_add.Year <span class="op">=</span> df_korea_add.Year.astype(np.float64)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_korea_add.Mon <span class="op">=</span> df_korea_add.Mon.astype(np.float64)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_korea_add.Day <span class="op">=</span> df_korea_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div id="f25619e4-f2e8-42fb-a5b6-295a3e8d9500" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_korea_covid <span class="op">=</span> df_korea_add.query(<span class="st">"Year&gt;=2020 and Year &lt;= 2022"</span>)<span class="op">;</span>df_korea_covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>Country</th>
-      <th>Value</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>364</th>
-      <td>2020-01-02</td>
-      <td>2201.209961</td>
-      <td>2202.320068</td>
-      <td>2171.840088</td>
-      <td>2175.169922</td>
-      <td>2175.169922</td>
-      <td>494700</td>
-      <td>Korea</td>
-      <td>-0.719054</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>365</th>
-      <td>2020-01-03</td>
-      <td>2192.580078</td>
-      <td>2203.379883</td>
-      <td>2165.389893</td>
-      <td>2176.459961</td>
-      <td>2176.459961</td>
-      <td>631600</td>
-      <td>Korea</td>
-      <td>-0.715806</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>366</th>
-      <td>2020-01-06</td>
-      <td>2154.969971</td>
-      <td>2164.419922</td>
-      <td>2149.949951</td>
-      <td>2155.070068</td>
-      <td>2155.070068</td>
-      <td>592700</td>
-      <td>Korea</td>
-      <td>-0.769651</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>367</th>
-      <td>2020-01-07</td>
-      <td>2166.600098</td>
-      <td>2181.620117</td>
-      <td>2164.270020</td>
-      <td>2175.540039</td>
-      <td>2175.540039</td>
-      <td>568200</td>
-      <td>Korea</td>
-      <td>-0.718122</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>368</th>
-      <td>2020-01-08</td>
-      <td>2156.270020</td>
-      <td>2162.320068</td>
-      <td>2137.719971</td>
-      <td>2151.310059</td>
-      <td>2151.310059</td>
-      <td>913800</td>
-      <td>Korea</td>
-      <td>-0.779116</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1099</th>
-      <td>2022-12-23</td>
-      <td>2325.860107</td>
-      <td>2333.080078</td>
-      <td>2311.899902</td>
-      <td>2313.689941</td>
-      <td>2313.689941</td>
-      <td>367000</td>
-      <td>Korea</td>
-      <td>-0.370356</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>23.0</td>
-    </tr>
-    <tr>
-      <th>1100</th>
-      <td>2022-12-26</td>
-      <td>2312.540039</td>
-      <td>2321.919922</td>
-      <td>2304.199951</td>
-      <td>2317.139893</td>
-      <td>2317.139893</td>
-      <td>427600</td>
-      <td>Korea</td>
-      <td>-0.361672</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>26.0</td>
-    </tr>
-    <tr>
-      <th>1101</th>
-      <td>2022-12-27</td>
-      <td>2327.520020</td>
-      <td>2335.989990</td>
-      <td>2321.479980</td>
-      <td>2332.790039</td>
-      <td>2332.790039</td>
-      <td>448300</td>
-      <td>Korea</td>
-      <td>-0.322276</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>27.0</td>
-    </tr>
-    <tr>
-      <th>1102</th>
-      <td>2022-12-28</td>
-      <td>2296.449951</td>
-      <td>2296.449951</td>
-      <td>2276.899902</td>
-      <td>2280.449951</td>
-      <td>2280.449951</td>
-      <td>405700</td>
-      <td>Korea</td>
-      <td>-0.454032</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>1103</th>
-      <td>2022-12-29</td>
-      <td>2265.729980</td>
-      <td>2272.669922</td>
-      <td>2236.379883</td>
-      <td>2236.399902</td>
-      <td>2236.399902</td>
-      <td>361000</td>
-      <td>Korea</td>
-      <td>-0.564919</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>29.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Adj Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2020-01-02</td>
+<td>2201.209961</td>
+<td>2202.320068</td>
+<td>2171.840088</td>
+<td>2175.169922</td>
+<td>2175.169922</td>
+<td>494700</td>
+<td>Korea</td>
+<td>-0.719054</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2020-01-03</td>
+<td>2192.580078</td>
+<td>2203.379883</td>
+<td>2165.389893</td>
+<td>2176.459961</td>
+<td>2176.459961</td>
+<td>631600</td>
+<td>Korea</td>
+<td>-0.715806</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">366</td>
+<td>2020-01-06</td>
+<td>2154.969971</td>
+<td>2164.419922</td>
+<td>2149.949951</td>
+<td>2155.070068</td>
+<td>2155.070068</td>
+<td>592700</td>
+<td>Korea</td>
+<td>-0.769651</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">367</td>
+<td>2020-01-07</td>
+<td>2166.600098</td>
+<td>2181.620117</td>
+<td>2164.270020</td>
+<td>2175.540039</td>
+<td>2175.540039</td>
+<td>568200</td>
+<td>Korea</td>
+<td>-0.718122</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">368</td>
+<td>2020-01-08</td>
+<td>2156.270020</td>
+<td>2162.320068</td>
+<td>2137.719971</td>
+<td>2151.310059</td>
+<td>2151.310059</td>
+<td>913800</td>
+<td>Korea</td>
+<td>-0.779116</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1099</td>
+<td>2022-12-23</td>
+<td>2325.860107</td>
+<td>2333.080078</td>
+<td>2311.899902</td>
+<td>2313.689941</td>
+<td>2313.689941</td>
+<td>367000</td>
+<td>Korea</td>
+<td>-0.370356</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>23.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1100</td>
+<td>2022-12-26</td>
+<td>2312.540039</td>
+<td>2321.919922</td>
+<td>2304.199951</td>
+<td>2317.139893</td>
+<td>2317.139893</td>
+<td>427600</td>
+<td>Korea</td>
+<td>-0.361672</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>26.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1101</td>
+<td>2022-12-27</td>
+<td>2327.520020</td>
+<td>2335.989990</td>
+<td>2321.479980</td>
+<td>2332.790039</td>
+<td>2332.790039</td>
+<td>448300</td>
+<td>Korea</td>
+<td>-0.322276</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>27.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1102</td>
+<td>2022-12-28</td>
+<td>2296.449951</td>
+<td>2296.449951</td>
+<td>2276.899902</td>
+<td>2280.449951</td>
+<td>2280.449951</td>
+<td>405700</td>
+<td>Korea</td>
+<td>-0.454032</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>28.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1103</td>
+<td>2022-12-29</td>
+<td>2265.729980</td>
+<td>2272.669922</td>
+<td>2236.379883</td>
+<td>2236.399902</td>
+<td>2236.399902</td>
+<td>361000</td>
+<td>Korea</td>
+<td>-0.564919</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>29.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>740 rows × 12 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
+<div id="715304e5-a179-42c1-95a7-c7f937c2092d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.figure(figsize=(30, 8)) </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('Korea (close)')</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xticks(rotation=45) </span></span>
@@ -962,220 +1034,221 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="us" class="level2">
 <h2 class="anchored" data-anchor-id="us">US</h2>
-<div class="cell" data-execution_count="9">
+<div id="f9dc8d69-0882-46c1-8208-6ad5655872a0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_us <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/us_nasdaq.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
+<div id="a4f4b9af-e6fd-4bed-8c63-165ea5d3786c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_us <span class="op">=</span> pd.concat([df_us,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'United States of America'</span>,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_us[<span class="st">'Close'</span>] <span class="op">-</span> df_us[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_us[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="11">
+<div id="36da8591-d590-41bc-9d1b-d5936d9a88b8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_us_add <span class="op">=</span> df_us.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_us[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                            Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_us[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                            Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_us[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
+<div id="fd0bbaba-6a48-4b73-b7d7-26b72ba6e3da" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_us_add.Year <span class="op">=</span> df_us_add.Year.astype(np.float64)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_us_add.Mon <span class="op">=</span> df_us_add.Mon.astype(np.float64)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_us_add.Day <span class="op">=</span> df_us_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="13">
+<div id="d3e2a9d6-73cb-4017-8610-07fb730b62fc" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_us_covid <span class="op">=</span> df_us_add.query(<span class="st">"Year&gt;=2020 and Year &lt;=2022"</span>)<span class="op">;</span>df_us_covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>Country</th>
-      <th>Value</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>374</th>
-      <td>2020-01-02</td>
-      <td>9039.459961</td>
-      <td>9093.429688</td>
-      <td>9010.889648</td>
-      <td>9092.190430</td>
-      <td>9092.190430</td>
-      <td>2862700000</td>
-      <td>United States of America</td>
-      <td>-0.695392</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>375</th>
-      <td>2020-01-03</td>
-      <td>8976.429688</td>
-      <td>9065.759766</td>
-      <td>8976.429688</td>
-      <td>9020.769531</td>
-      <td>9020.769531</td>
-      <td>2586520000</td>
-      <td>United States of America</td>
-      <td>-0.722486</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>376</th>
-      <td>2020-01-06</td>
-      <td>8943.500000</td>
-      <td>9072.410156</td>
-      <td>8943.500000</td>
-      <td>9071.469727</td>
-      <td>9071.469727</td>
-      <td>2810450000</td>
-      <td>United States of America</td>
-      <td>-0.703253</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>377</th>
-      <td>2020-01-07</td>
-      <td>9076.639648</td>
-      <td>9091.929688</td>
-      <td>9042.549805</td>
-      <td>9068.580078</td>
-      <td>9068.580078</td>
-      <td>2381740000</td>
-      <td>United States of America</td>
-      <td>-0.704349</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>378</th>
-      <td>2020-01-08</td>
-      <td>9068.030273</td>
-      <td>9168.889648</td>
-      <td>9059.379883</td>
-      <td>9129.240234</td>
-      <td>9129.240234</td>
-      <td>2472620000</td>
-      <td>United States of America</td>
-      <td>-0.681336</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1125</th>
-      <td>2022-12-23</td>
-      <td>10437.750000</td>
-      <td>10514.759766</td>
-      <td>10361.820313</td>
-      <td>10497.860352</td>
-      <td>10497.860352</td>
-      <td>3544680000</td>
-      <td>United States of America</td>
-      <td>-0.162131</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>23.0</td>
-    </tr>
-    <tr>
-      <th>1126</th>
-      <td>2022-12-27</td>
-      <td>10462.190430</td>
-      <td>10472.320313</td>
-      <td>10340.730469</td>
-      <td>10353.230469</td>
-      <td>10353.230469</td>
-      <td>3827290000</td>
-      <td>United States of America</td>
-      <td>-0.216999</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>27.0</td>
-    </tr>
-    <tr>
-      <th>1127</th>
-      <td>2022-12-28</td>
-      <td>10339.200195</td>
-      <td>10414.820313</td>
-      <td>10207.469727</td>
-      <td>10213.290039</td>
-      <td>10213.290039</td>
-      <td>3842970000</td>
-      <td>United States of America</td>
-      <td>-0.270087</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>1128</th>
-      <td>2022-12-29</td>
-      <td>10321.459961</td>
-      <td>10502.080078</td>
-      <td>10301.059570</td>
-      <td>10478.089844</td>
-      <td>10478.089844</td>
-      <td>4154100000</td>
-      <td>United States of America</td>
-      <td>-0.169631</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>1129</th>
-      <td>2022-12-30</td>
-      <td>10368.370117</td>
-      <td>10468.309570</td>
-      <td>10324.700195</td>
-      <td>10466.480469</td>
-      <td>10466.480469</td>
-      <td>3959030000</td>
-      <td>United States of America</td>
-      <td>-0.174036</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>30.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Adj Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">374</td>
+<td>2020-01-02</td>
+<td>9039.459961</td>
+<td>9093.429688</td>
+<td>9010.889648</td>
+<td>9092.190430</td>
+<td>9092.190430</td>
+<td>2862700000</td>
+<td>United States of America</td>
+<td>-0.695392</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">375</td>
+<td>2020-01-03</td>
+<td>8976.429688</td>
+<td>9065.759766</td>
+<td>8976.429688</td>
+<td>9020.769531</td>
+<td>9020.769531</td>
+<td>2586520000</td>
+<td>United States of America</td>
+<td>-0.722486</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">376</td>
+<td>2020-01-06</td>
+<td>8943.500000</td>
+<td>9072.410156</td>
+<td>8943.500000</td>
+<td>9071.469727</td>
+<td>9071.469727</td>
+<td>2810450000</td>
+<td>United States of America</td>
+<td>-0.703253</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">377</td>
+<td>2020-01-07</td>
+<td>9076.639648</td>
+<td>9091.929688</td>
+<td>9042.549805</td>
+<td>9068.580078</td>
+<td>9068.580078</td>
+<td>2381740000</td>
+<td>United States of America</td>
+<td>-0.704349</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">378</td>
+<td>2020-01-08</td>
+<td>9068.030273</td>
+<td>9168.889648</td>
+<td>9059.379883</td>
+<td>9129.240234</td>
+<td>9129.240234</td>
+<td>2472620000</td>
+<td>United States of America</td>
+<td>-0.681336</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1125</td>
+<td>2022-12-23</td>
+<td>10437.750000</td>
+<td>10514.759766</td>
+<td>10361.820313</td>
+<td>10497.860352</td>
+<td>10497.860352</td>
+<td>3544680000</td>
+<td>United States of America</td>
+<td>-0.162131</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>23.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1126</td>
+<td>2022-12-27</td>
+<td>10462.190430</td>
+<td>10472.320313</td>
+<td>10340.730469</td>
+<td>10353.230469</td>
+<td>10353.230469</td>
+<td>3827290000</td>
+<td>United States of America</td>
+<td>-0.216999</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>27.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1127</td>
+<td>2022-12-28</td>
+<td>10339.200195</td>
+<td>10414.820313</td>
+<td>10207.469727</td>
+<td>10213.290039</td>
+<td>10213.290039</td>
+<td>3842970000</td>
+<td>United States of America</td>
+<td>-0.270087</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>28.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1128</td>
+<td>2022-12-29</td>
+<td>10321.459961</td>
+<td>10502.080078</td>
+<td>10301.059570</td>
+<td>10478.089844</td>
+<td>10478.089844</td>
+<td>4154100000</td>
+<td>United States of America</td>
+<td>-0.169631</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>29.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1129</td>
+<td>2022-12-30</td>
+<td>10368.370117</td>
+<td>10468.309570</td>
+<td>10324.700195</td>
+<td>10466.480469</td>
+<td>10466.480469</td>
+<td>3959030000</td>
+<td>United States of America</td>
+<td>-0.174036</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>30.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>756 rows × 12 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="14">
+<div id="6ea35bca-ece9-47d1-ac43-8990af211134" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.figure(figsize=(30, 8)) </span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('US (close)')</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xticks(rotation=45) </span></span>
@@ -1185,220 +1258,221 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="china" class="level2">
 <h2 class="anchored" data-anchor-id="china">China</h2>
-<div class="cell" data-execution_count="15">
+<div id="8eaeabae-8eeb-4db6-b4e3-d9f29e95c266" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/china_ssec.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="16">
+<div id="a510dca8-abc1-4f47-a195-7ac52f6a3595" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_china <span class="op">=</span> pd.concat([df_china,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'China'</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_china[<span class="st">'Close'</span>] <span class="op">-</span> df_china[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_china[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="17">
+<div id="9163b16f-98d1-4f25-8c57-66d61ad9cfe4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_china_add <span class="op">=</span> df_china.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_china[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_china[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_china[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="18">
+<div id="41e8721c-c121-4f4e-a1f1-4bccd8322f44" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_china_add.Year <span class="op">=</span> df_china_add.Year.astype(np.float64)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_china_add.Mon <span class="op">=</span> df_china_add.Mon.astype(np.float64)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df_china_add.Day <span class="op">=</span> df_china_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
+<div id="356f25e0-9d52-40f6-bbd5-e0a3e664ccbb" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_china_covid <span class="op">=</span> df_china_add.query(<span class="st">"Year&gt;=2020 and Year &lt;=2022"</span>)<span class="op">;</span>df_china_covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>Country</th>
-      <th>Value</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>361</th>
-      <td>2020-01-02</td>
-      <td>3066.335938</td>
-      <td>3098.100098</td>
-      <td>3066.335938</td>
-      <td>3085.197998</td>
-      <td>3085.197998</td>
-      <td>292500</td>
-      <td>China</td>
-      <td>-0.244680</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>362</th>
-      <td>2020-01-03</td>
-      <td>3089.021973</td>
-      <td>3093.819092</td>
-      <td>3074.518066</td>
-      <td>3083.785889</td>
-      <td>3083.785889</td>
-      <td>261500</td>
-      <td>China</td>
-      <td>-0.249433</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>363</th>
-      <td>2020-01-06</td>
-      <td>3070.908936</td>
-      <td>3107.202881</td>
-      <td>3065.309082</td>
-      <td>3083.407959</td>
-      <td>3083.407959</td>
-      <td>312600</td>
-      <td>China</td>
-      <td>-0.250705</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>364</th>
-      <td>2020-01-07</td>
-      <td>3085.488037</td>
-      <td>3105.450928</td>
-      <td>3084.329102</td>
-      <td>3104.802002</td>
-      <td>3104.802002</td>
-      <td>276600</td>
-      <td>China</td>
-      <td>-0.178700</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>365</th>
-      <td>2020-01-08</td>
-      <td>3094.239014</td>
-      <td>3094.239014</td>
-      <td>3059.131104</td>
-      <td>3066.893066</td>
-      <td>3066.893066</td>
-      <td>297900</td>
-      <td>China</td>
-      <td>-0.306289</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1084</th>
-      <td>2022-12-26</td>
-      <td>3048.196045</td>
-      <td>3071.835938</td>
-      <td>3047.349121</td>
-      <td>3065.562988</td>
-      <td>3065.562988</td>
-      <td>206500</td>
-      <td>China</td>
-      <td>-0.310766</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>26.0</td>
-    </tr>
-    <tr>
-      <th>1085</th>
-      <td>2022-12-27</td>
-      <td>3077.750000</td>
-      <td>3098.080078</td>
-      <td>3074.310059</td>
-      <td>3095.570068</td>
-      <td>3095.570068</td>
-      <td>222200</td>
-      <td>China</td>
-      <td>-0.209771</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>27.0</td>
-    </tr>
-    <tr>
-      <th>1086</th>
-      <td>2022-12-28</td>
-      <td>3088.620117</td>
-      <td>3098.649902</td>
-      <td>3079.429932</td>
-      <td>3087.399902</td>
-      <td>3087.399902</td>
-      <td>224600</td>
-      <td>China</td>
-      <td>-0.237270</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>1087</th>
-      <td>2022-12-29</td>
-      <td>3076.729980</td>
-      <td>3086.000000</td>
-      <td>3064.459961</td>
-      <td>3073.699951</td>
-      <td>3073.699951</td>
-      <td>215600</td>
-      <td>China</td>
-      <td>-0.283379</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>1088</th>
-      <td>2022-12-30</td>
-      <td>3084.520020</td>
-      <td>3096.310059</td>
-      <td>3082.199951</td>
-      <td>3089.260010</td>
-      <td>3089.260010</td>
-      <td>217500</td>
-      <td>China</td>
-      <td>-0.231009</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>30.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Adj Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">361</td>
+<td>2020-01-02</td>
+<td>3066.335938</td>
+<td>3098.100098</td>
+<td>3066.335938</td>
+<td>3085.197998</td>
+<td>3085.197998</td>
+<td>292500</td>
+<td>China</td>
+<td>-0.244680</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">362</td>
+<td>2020-01-03</td>
+<td>3089.021973</td>
+<td>3093.819092</td>
+<td>3074.518066</td>
+<td>3083.785889</td>
+<td>3083.785889</td>
+<td>261500</td>
+<td>China</td>
+<td>-0.249433</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">363</td>
+<td>2020-01-06</td>
+<td>3070.908936</td>
+<td>3107.202881</td>
+<td>3065.309082</td>
+<td>3083.407959</td>
+<td>3083.407959</td>
+<td>312600</td>
+<td>China</td>
+<td>-0.250705</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2020-01-07</td>
+<td>3085.488037</td>
+<td>3105.450928</td>
+<td>3084.329102</td>
+<td>3104.802002</td>
+<td>3104.802002</td>
+<td>276600</td>
+<td>China</td>
+<td>-0.178700</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2020-01-08</td>
+<td>3094.239014</td>
+<td>3094.239014</td>
+<td>3059.131104</td>
+<td>3066.893066</td>
+<td>3066.893066</td>
+<td>297900</td>
+<td>China</td>
+<td>-0.306289</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1084</td>
+<td>2022-12-26</td>
+<td>3048.196045</td>
+<td>3071.835938</td>
+<td>3047.349121</td>
+<td>3065.562988</td>
+<td>3065.562988</td>
+<td>206500</td>
+<td>China</td>
+<td>-0.310766</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>26.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1085</td>
+<td>2022-12-27</td>
+<td>3077.750000</td>
+<td>3098.080078</td>
+<td>3074.310059</td>
+<td>3095.570068</td>
+<td>3095.570068</td>
+<td>222200</td>
+<td>China</td>
+<td>-0.209771</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>27.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1086</td>
+<td>2022-12-28</td>
+<td>3088.620117</td>
+<td>3098.649902</td>
+<td>3079.429932</td>
+<td>3087.399902</td>
+<td>3087.399902</td>
+<td>224600</td>
+<td>China</td>
+<td>-0.237270</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>28.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1087</td>
+<td>2022-12-29</td>
+<td>3076.729980</td>
+<td>3086.000000</td>
+<td>3064.459961</td>
+<td>3073.699951</td>
+<td>3073.699951</td>
+<td>215600</td>
+<td>China</td>
+<td>-0.283379</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>29.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1088</td>
+<td>2022-12-30</td>
+<td>3084.520020</td>
+<td>3096.310059</td>
+<td>3082.199951</td>
+<td>3089.260010</td>
+<td>3089.260010</td>
+<td>217500</td>
+<td>China</td>
+<td>-0.231009</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>30.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>728 rows × 12 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
+<div id="e66b66db-4f29-4e36-ad4c-469802de6261" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.figure(figsize=(30, 8)) </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('China (close)')</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xticks(rotation=45) </span></span>
@@ -1408,227 +1482,228 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="japan" class="level2">
 <h2 class="anchored" data-anchor-id="japan">Japan</h2>
-<div class="cell" data-execution_count="21">
+<div id="8bd135a3-d76b-4fb7-8646-ab17ddea717c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/japan_n225.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="22">
+<div id="be5d63cb-55ed-427c-b8f1-694426e7af35" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_japan <span class="op">=</span> pd.concat([df_japan,pd.DataFrame({<span class="st">'Country'</span>: <span class="st">'Japan'</span>,</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">'Value'</span>:(df_japan[<span class="st">'Close'</span>] <span class="op">-</span> df_japan[<span class="st">'Close'</span>].mean())<span class="op">/</span>df_japan[<span class="st">'Close'</span>].std()})],axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="23">
+<div id="23baf5e8-1aac-48c9-8492-4710a1858524" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_japan_add <span class="op">=</span> df_japan.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],df_japan[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],df_japan[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],df_japan[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="24">
+<div id="6b152a20-5368-4928-b3cc-4fee5b98700b" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_japan_add.Year <span class="op">=</span> df_japan_add.Year.astype(np.float64)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_japan_add.Mon <span class="op">=</span> df_japan_add.Mon.astype(np.float64)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df_japan_add.Day <span class="op">=</span> df_japan_add.Day.astype(np.float64)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="25">
+<div id="2db394a1-5b25-4b43-9c62-7199033c3c98" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_japan_covid <span class="op">=</span> df_japan_add.query(<span class="st">"Year&gt;=2020 and Year&lt;=2022"</span>)<span class="op">;</span>df_japan_covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>Country</th>
-      <th>Value</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>367</th>
-      <td>2020-01-06</td>
-      <td>23319.759766</td>
-      <td>23365.359375</td>
-      <td>23148.529297</td>
-      <td>23204.859375</td>
-      <td>23204.859375</td>
-      <td>72800000.0</td>
-      <td>Japan</td>
-      <td>-0.604658</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>368</th>
-      <td>2020-01-07</td>
-      <td>23320.119141</td>
-      <td>23577.439453</td>
-      <td>23299.919922</td>
-      <td>23575.720703</td>
-      <td>23575.720703</td>
-      <td>64300000.0</td>
-      <td>Japan</td>
-      <td>-0.496240</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>369</th>
-      <td>2020-01-08</td>
-      <td>23217.490234</td>
-      <td>23303.210938</td>
-      <td>22951.179688</td>
-      <td>23204.759766</td>
-      <td>23204.759766</td>
-      <td>79400000.0</td>
-      <td>Japan</td>
-      <td>-0.604687</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>370</th>
-      <td>2020-01-09</td>
-      <td>23530.289063</td>
-      <td>23767.089844</td>
-      <td>23506.150391</td>
-      <td>23739.869141</td>
-      <td>23739.869141</td>
-      <td>62200000.0</td>
-      <td>Japan</td>
-      <td>-0.448252</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <th>371</th>
-      <td>2020-01-10</td>
-      <td>23813.279297</td>
-      <td>23903.289063</td>
-      <td>23761.080078</td>
-      <td>23850.570313</td>
-      <td>23850.570313</td>
-      <td>55900000.0</td>
-      <td>Japan</td>
-      <td>-0.415890</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1093</th>
-      <td>2022-12-26</td>
-      <td>26299.539063</td>
-      <td>26438.650391</td>
-      <td>26294.849609</td>
-      <td>26405.869141</td>
-      <td>26405.869141</td>
-      <td>47300000.0</td>
-      <td>Japan</td>
-      <td>0.331131</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>26.0</td>
-    </tr>
-    <tr>
-      <th>1094</th>
-      <td>2022-12-27</td>
-      <td>26570.779297</td>
-      <td>26620.490234</td>
-      <td>26447.869141</td>
-      <td>26447.869141</td>
-      <td>26447.869141</td>
-      <td>50200000.0</td>
-      <td>Japan</td>
-      <td>0.343410</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>27.0</td>
-    </tr>
-    <tr>
-      <th>1095</th>
-      <td>2022-12-28</td>
-      <td>26309.339844</td>
-      <td>26354.269531</td>
-      <td>26199.669922</td>
-      <td>26340.500000</td>
-      <td>26340.500000</td>
-      <td>61500000.0</td>
-      <td>Japan</td>
-      <td>0.312021</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>1096</th>
-      <td>2022-12-29</td>
-      <td>26074.900391</td>
-      <td>26126.699219</td>
-      <td>25953.919922</td>
-      <td>26093.669922</td>
-      <td>26093.669922</td>
-      <td>63100000.0</td>
-      <td>Japan</td>
-      <td>0.239862</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>1097</th>
-      <td>2022-12-30</td>
-      <td>26288.000000</td>
-      <td>26321.369141</td>
-      <td>26067.919922</td>
-      <td>26094.500000</td>
-      <td>26094.500000</td>
-      <td>52700000.0</td>
-      <td>Japan</td>
-      <td>0.240105</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>30.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Adj Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">367</td>
+<td>2020-01-06</td>
+<td>23319.759766</td>
+<td>23365.359375</td>
+<td>23148.529297</td>
+<td>23204.859375</td>
+<td>23204.859375</td>
+<td>72800000.0</td>
+<td>Japan</td>
+<td>-0.604658</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">368</td>
+<td>2020-01-07</td>
+<td>23320.119141</td>
+<td>23577.439453</td>
+<td>23299.919922</td>
+<td>23575.720703</td>
+<td>23575.720703</td>
+<td>64300000.0</td>
+<td>Japan</td>
+<td>-0.496240</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">369</td>
+<td>2020-01-08</td>
+<td>23217.490234</td>
+<td>23303.210938</td>
+<td>22951.179688</td>
+<td>23204.759766</td>
+<td>23204.759766</td>
+<td>79400000.0</td>
+<td>Japan</td>
+<td>-0.604687</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">370</td>
+<td>2020-01-09</td>
+<td>23530.289063</td>
+<td>23767.089844</td>
+<td>23506.150391</td>
+<td>23739.869141</td>
+<td>23739.869141</td>
+<td>62200000.0</td>
+<td>Japan</td>
+<td>-0.448252</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>9.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">371</td>
+<td>2020-01-10</td>
+<td>23813.279297</td>
+<td>23903.289063</td>
+<td>23761.080078</td>
+<td>23850.570313</td>
+<td>23850.570313</td>
+<td>55900000.0</td>
+<td>Japan</td>
+<td>-0.415890</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1093</td>
+<td>2022-12-26</td>
+<td>26299.539063</td>
+<td>26438.650391</td>
+<td>26294.849609</td>
+<td>26405.869141</td>
+<td>26405.869141</td>
+<td>47300000.0</td>
+<td>Japan</td>
+<td>0.331131</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>26.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1094</td>
+<td>2022-12-27</td>
+<td>26570.779297</td>
+<td>26620.490234</td>
+<td>26447.869141</td>
+<td>26447.869141</td>
+<td>26447.869141</td>
+<td>50200000.0</td>
+<td>Japan</td>
+<td>0.343410</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>27.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1095</td>
+<td>2022-12-28</td>
+<td>26309.339844</td>
+<td>26354.269531</td>
+<td>26199.669922</td>
+<td>26340.500000</td>
+<td>26340.500000</td>
+<td>61500000.0</td>
+<td>Japan</td>
+<td>0.312021</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>28.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1096</td>
+<td>2022-12-29</td>
+<td>26074.900391</td>
+<td>26126.699219</td>
+<td>25953.919922</td>
+<td>26093.669922</td>
+<td>26093.669922</td>
+<td>63100000.0</td>
+<td>Japan</td>
+<td>0.239862</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>29.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1097</td>
+<td>2022-12-30</td>
+<td>26288.000000</td>
+<td>26321.369141</td>
+<td>26067.919922</td>
+<td>26094.500000</td>
+<td>26094.500000</td>
+<td>52700000.0</td>
+<td>Japan</td>
+<td>0.240105</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>30.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>731 rows × 12 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="26">
+<div id="940c1849-b70d-496b-b69f-1600792af048" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.figure(figsize=(30, 8)) </span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.title('Japan (close)')</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.xticks(rotation=45) </span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(df_japan_covid['Date'], df_japan_covid['Close'], 'co-')</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.grid(color='gray', linestyle='--')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
+<div id="6ee76868-4b9b-4aec-8c2c-cb494d05d225" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with plt.style.context('seaborn-white'):</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2,figsize=(30,15))</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax1.plot(df_korea_covid['Date'], df_korea_covid['Close'])</span></span>
@@ -1636,203 +1711,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax3.plot(df_china_covid['Date'], df_china_covid['Close'])</span></span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax4.plot(df_japan_covid['Date'], df_japan_covid['Close'])</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="28">
+<div id="605a137c-6ca3-4074-8c4a-44effc6b950e" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df_korea_covid,df_us_covid,df_china_covid,df_japan_covid])<span class="op">;</span>df</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Open</th>
-      <th>High</th>
-      <th>Low</th>
-      <th>Close</th>
-      <th>Adj Close</th>
-      <th>Volume</th>
-      <th>Country</th>
-      <th>Value</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>364</th>
-      <td>2020-01-02</td>
-      <td>2201.209961</td>
-      <td>2202.320068</td>
-      <td>2171.840088</td>
-      <td>2175.169922</td>
-      <td>2175.169922</td>
-      <td>494700.0</td>
-      <td>Korea</td>
-      <td>-0.719054</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>365</th>
-      <td>2020-01-03</td>
-      <td>2192.580078</td>
-      <td>2203.379883</td>
-      <td>2165.389893</td>
-      <td>2176.459961</td>
-      <td>2176.459961</td>
-      <td>631600.0</td>
-      <td>Korea</td>
-      <td>-0.715806</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>366</th>
-      <td>2020-01-06</td>
-      <td>2154.969971</td>
-      <td>2164.419922</td>
-      <td>2149.949951</td>
-      <td>2155.070068</td>
-      <td>2155.070068</td>
-      <td>592700.0</td>
-      <td>Korea</td>
-      <td>-0.769651</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>367</th>
-      <td>2020-01-07</td>
-      <td>2166.600098</td>
-      <td>2181.620117</td>
-      <td>2164.270020</td>
-      <td>2175.540039</td>
-      <td>2175.540039</td>
-      <td>568200.0</td>
-      <td>Korea</td>
-      <td>-0.718122</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>368</th>
-      <td>2020-01-08</td>
-      <td>2156.270020</td>
-      <td>2162.320068</td>
-      <td>2137.719971</td>
-      <td>2151.310059</td>
-      <td>2151.310059</td>
-      <td>913800.0</td>
-      <td>Korea</td>
-      <td>-0.779116</td>
-      <td>2020.0</td>
-      <td>1.0</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1093</th>
-      <td>2022-12-26</td>
-      <td>26299.539063</td>
-      <td>26438.650391</td>
-      <td>26294.849609</td>
-      <td>26405.869141</td>
-      <td>26405.869141</td>
-      <td>47300000.0</td>
-      <td>Japan</td>
-      <td>0.331131</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>26.0</td>
-    </tr>
-    <tr>
-      <th>1094</th>
-      <td>2022-12-27</td>
-      <td>26570.779297</td>
-      <td>26620.490234</td>
-      <td>26447.869141</td>
-      <td>26447.869141</td>
-      <td>26447.869141</td>
-      <td>50200000.0</td>
-      <td>Japan</td>
-      <td>0.343410</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>27.0</td>
-    </tr>
-    <tr>
-      <th>1095</th>
-      <td>2022-12-28</td>
-      <td>26309.339844</td>
-      <td>26354.269531</td>
-      <td>26199.669922</td>
-      <td>26340.500000</td>
-      <td>26340.500000</td>
-      <td>61500000.0</td>
-      <td>Japan</td>
-      <td>0.312021</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>1096</th>
-      <td>2022-12-29</td>
-      <td>26074.900391</td>
-      <td>26126.699219</td>
-      <td>25953.919922</td>
-      <td>26093.669922</td>
-      <td>26093.669922</td>
-      <td>63100000.0</td>
-      <td>Japan</td>
-      <td>0.239862</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>1097</th>
-      <td>2022-12-30</td>
-      <td>26288.000000</td>
-      <td>26321.369141</td>
-      <td>26067.919922</td>
-      <td>26094.500000</td>
-      <td>26094.500000</td>
-      <td>52700000.0</td>
-      <td>Japan</td>
-      <td>0.240105</td>
-      <td>2022.0</td>
-      <td>12.0</td>
-      <td>30.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Open</th>
+<th data-quarto-table-cell-role="th">High</th>
+<th data-quarto-table-cell-role="th">Low</th>
+<th data-quarto-table-cell-role="th">Close</th>
+<th data-quarto-table-cell-role="th">Adj Close</th>
+<th data-quarto-table-cell-role="th">Volume</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">364</td>
+<td>2020-01-02</td>
+<td>2201.209961</td>
+<td>2202.320068</td>
+<td>2171.840088</td>
+<td>2175.169922</td>
+<td>2175.169922</td>
+<td>494700.0</td>
+<td>Korea</td>
+<td>-0.719054</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">365</td>
+<td>2020-01-03</td>
+<td>2192.580078</td>
+<td>2203.379883</td>
+<td>2165.389893</td>
+<td>2176.459961</td>
+<td>2176.459961</td>
+<td>631600.0</td>
+<td>Korea</td>
+<td>-0.715806</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>3.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">366</td>
+<td>2020-01-06</td>
+<td>2154.969971</td>
+<td>2164.419922</td>
+<td>2149.949951</td>
+<td>2155.070068</td>
+<td>2155.070068</td>
+<td>592700.0</td>
+<td>Korea</td>
+<td>-0.769651</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">367</td>
+<td>2020-01-07</td>
+<td>2166.600098</td>
+<td>2181.620117</td>
+<td>2164.270020</td>
+<td>2175.540039</td>
+<td>2175.540039</td>
+<td>568200.0</td>
+<td>Korea</td>
+<td>-0.718122</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">368</td>
+<td>2020-01-08</td>
+<td>2156.270020</td>
+<td>2162.320068</td>
+<td>2137.719971</td>
+<td>2151.310059</td>
+<td>2151.310059</td>
+<td>913800.0</td>
+<td>Korea</td>
+<td>-0.779116</td>
+<td>2020.0</td>
+<td>1.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1093</td>
+<td>2022-12-26</td>
+<td>26299.539063</td>
+<td>26438.650391</td>
+<td>26294.849609</td>
+<td>26405.869141</td>
+<td>26405.869141</td>
+<td>47300000.0</td>
+<td>Japan</td>
+<td>0.331131</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>26.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1094</td>
+<td>2022-12-27</td>
+<td>26570.779297</td>
+<td>26620.490234</td>
+<td>26447.869141</td>
+<td>26447.869141</td>
+<td>26447.869141</td>
+<td>50200000.0</td>
+<td>Japan</td>
+<td>0.343410</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>27.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1095</td>
+<td>2022-12-28</td>
+<td>26309.339844</td>
+<td>26354.269531</td>
+<td>26199.669922</td>
+<td>26340.500000</td>
+<td>26340.500000</td>
+<td>61500000.0</td>
+<td>Japan</td>
+<td>0.312021</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>28.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1096</td>
+<td>2022-12-29</td>
+<td>26074.900391</td>
+<td>26126.699219</td>
+<td>25953.919922</td>
+<td>26093.669922</td>
+<td>26093.669922</td>
+<td>63100000.0</td>
+<td>Japan</td>
+<td>0.239862</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>29.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1097</td>
+<td>2022-12-30</td>
+<td>26288.000000</td>
+<td>26321.369141</td>
+<td>26067.919922</td>
+<td>26094.500000</td>
+<td>26094.500000</td>
+<td>52700000.0</td>
+<td>Japan</td>
+<td>0.240105</td>
+<td>2022.0</td>
+<td>12.0</td>
+<td>30.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>2955 rows × 12 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
+<div id="fe5ac761-8d70-427f-8d83-20ad3f26db91" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Country'</span>].unique()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>array(['Korea', 'United States of America', 'China', 'Japan'],
@@ -1844,119 +1920,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="covid20202022" class="level1">
 <h1>COVID(2020~2022)</h1>
 <p>Ref: <a href="https://covid19.who.int/data">WHO</a>, <a href="https://ncov.kdca.go.kr/">질병관리청</a></p>
-<div class="cell" data-execution_count="30">
+<div id="b8b4c8f2-fe16-40c8-96b9-79f5c31a8fa2" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>covid <span class="op">=</span> pd.read_csv(<span class="st">'./dataset/WHO-COVID-19-global-data.csv'</span>).iloc[:,[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>]]<span class="op">;</span>covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date_reported</th>
-      <th>Country_code</th>
-      <th>Country</th>
-      <th>New_cases</th>
-      <th>New_deaths</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-01-03</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-01-04</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-01-05</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-01-06</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-01-07</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>303355</th>
-      <td>2023-07-01</td>
-      <td>ZW</td>
-      <td>Zimbabwe</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>303356</th>
-      <td>2023-07-02</td>
-      <td>ZW</td>
-      <td>Zimbabwe</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>303357</th>
-      <td>2023-07-03</td>
-      <td>ZW</td>
-      <td>Zimbabwe</td>
-      <td>80</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>303358</th>
-      <td>2023-07-04</td>
-      <td>ZW</td>
-      <td>Zimbabwe</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>303359</th>
-      <td>2023-07-05</td>
-      <td>ZW</td>
-      <td>Zimbabwe</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date_reported</th>
+<th data-quarto-table-cell-role="th">Country_code</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">New_cases</th>
+<th data-quarto-table-cell-role="th">New_deaths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2020-01-03</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2020-01-04</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2020-01-05</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2020-01-06</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2020-01-07</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303355</td>
+<td>2023-07-01</td>
+<td>ZW</td>
+<td>Zimbabwe</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">303356</td>
+<td>2023-07-02</td>
+<td>ZW</td>
+<td>Zimbabwe</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303357</td>
+<td>2023-07-03</td>
+<td>ZW</td>
+<td>Zimbabwe</td>
+<td>80</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">303358</td>
+<td>2023-07-04</td>
+<td>ZW</td>
+<td>Zimbabwe</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">303359</td>
+<td>2023-07-05</td>
+<td>ZW</td>
+<td>Zimbabwe</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
 </table>
+
 <p>303360 rows × 5 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="31">
+<div id="044e3a67-d204-4516-ad1a-bc5ecc207c03" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>covid[<span class="st">'Country'</span>].unique()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>array(['Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andorra',
@@ -2021,497 +2098,501 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
        'Wallis and Futuna', 'Yemen', 'Zambia', 'Zimbabwe'], dtype=object)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
+<div id="d38a429e-f334-4170-ab24-725729bd9870" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>covid.query(<span class="st">"Country_code =='KP'"</span>)[<span class="st">'New_cases'</span>].unique()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>array([0])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
+<div id="d716e793-490b-42d5-b47e-a23b507961d5" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>_korea_covid <span class="op">=</span> pd.read_excel(<span class="st">'./dataset/covid_korea.csv'</span>)<span class="op">;</span>_korea_covid[:<span class="dv">10</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>Unnamed: 1</th>
-      <th>Unnamed: 2</th>
-      <th>Unnamed: 3</th>
-      <th>Unnamed: 4</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>일자</td>
-      <td>계(명)</td>
-      <td>국내발생(명)</td>
-      <td>해외유입(명)</td>
-      <td>사망(명)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>누적(명)</td>
-      <td>32415857</td>
-      <td>32336444</td>
-      <td>79413</td>
-      <td>35111</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2020-01-20 00:00:00</td>
-      <td>1</td>
-      <td>-</td>
-      <td>1</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2020-01-21 00:00:00</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2020-01-22 00:00:00</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2020-01-23 00:00:00</td>
-      <td>0</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2020-01-24 00:00:00</td>
-      <td>1</td>
-      <td>-</td>
-      <td>1</td>
-      <td>-</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Unnamed: 1</th>
+<th data-quarto-table-cell-role="th">Unnamed: 2</th>
+<th data-quarto-table-cell-role="th">Unnamed: 3</th>
+<th data-quarto-table-cell-role="th">Unnamed: 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>일자</td>
+<td>계(명)</td>
+<td>국내발생(명)</td>
+<td>해외유입(명)</td>
+<td>사망(명)</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>누적(명)</td>
+<td>32415857</td>
+<td>32336444</td>
+<td>79413</td>
+<td>35111</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2020-01-20 00:00:00</td>
+<td>1</td>
+<td>-</td>
+<td>1</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>2020-01-21 00:00:00</td>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>2020-01-22 00:00:00</td>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>2020-01-23 00:00:00</td>
+<td>0</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>2020-01-24 00:00:00</td>
+<td>1</td>
+<td>-</td>
+<td>1</td>
+<td>-</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="34">
+<div id="f22949ef-9952-471b-bba9-6489fcdafccd" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>korea_covid <span class="op">=</span> _korea_covid.assign(New_cases<span class="op">=</span>np.where(_korea_covid[<span class="st">'Unnamed: 2'</span>] <span class="op">==</span> <span class="st">'-'</span>, <span class="dv">0</span>, _korea_covid[<span class="st">'Unnamed: 2'</span>]),<span class="op">\</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                                  New_deaths<span class="op">=</span>np.where(_korea_covid[<span class="st">'Unnamed: 4'</span>] <span class="op">==</span> <span class="st">'-'</span>, <span class="dv">0</span>, _korea_covid[<span class="st">'Unnamed: 4'</span>]),<span class="op">\</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                  Date_reported<span class="op">=</span><span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: <span class="bu">str</span>(x).split()[<span class="dv">0</span>],_korea_covid[<span class="st">'Unnamed: 0'</span>])),<span class="op">\</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                                  Country<span class="op">=</span><span class="st">'Korea'</span>,Country_code<span class="op">=</span><span class="st">'KP'</span>).<span class="op">\</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                             iloc[<span class="dv">5</span>:,[<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">6</span>,<span class="dv">5</span>]]<span class="op">;</span>korea_covid</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date_reported</th>
-      <th>Country_code</th>
-      <th>Country</th>
-      <th>New_deaths</th>
-      <th>New_cases</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5</th>
-      <td>2020-01-20</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2020-01-21</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2020-01-22</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2020-01-23</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2020-01-24</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1268</th>
-      <td>2023-07-06</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>12</td>
-      <td>24339</td>
-    </tr>
-    <tr>
-      <th>1269</th>
-      <td>2023-07-07</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>7</td>
-      <td>24757</td>
-    </tr>
-    <tr>
-      <th>1270</th>
-      <td>2023-07-08</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>3</td>
-      <td>25659</td>
-    </tr>
-    <tr>
-      <th>1271</th>
-      <td>2023-07-09</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>2</td>
-      <td>22560</td>
-    </tr>
-    <tr>
-      <th>1272</th>
-      <td>2023-07-10</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>2</td>
-      <td>9253</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date_reported</th>
+<th data-quarto-table-cell-role="th">Country_code</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">New_deaths</th>
+<th data-quarto-table-cell-role="th">New_cases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2020-01-20</td>
+<td>KP</td>
+<td>Korea</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>2020-01-21</td>
+<td>KP</td>
+<td>Korea</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">7</td>
+<td>2020-01-22</td>
+<td>KP</td>
+<td>Korea</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8</td>
+<td>2020-01-23</td>
+<td>KP</td>
+<td>Korea</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>2020-01-24</td>
+<td>KP</td>
+<td>Korea</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1268</td>
+<td>2023-07-06</td>
+<td>KP</td>
+<td>Korea</td>
+<td>12</td>
+<td>24339</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1269</td>
+<td>2023-07-07</td>
+<td>KP</td>
+<td>Korea</td>
+<td>7</td>
+<td>24757</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1270</td>
+<td>2023-07-08</td>
+<td>KP</td>
+<td>Korea</td>
+<td>3</td>
+<td>25659</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1271</td>
+<td>2023-07-09</td>
+<td>KP</td>
+<td>Korea</td>
+<td>2</td>
+<td>22560</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1272</td>
+<td>2023-07-10</td>
+<td>KP</td>
+<td>Korea</td>
+<td>2</td>
+<td>9253</td>
+</tr>
+</tbody>
 </table>
+
 <p>1268 rows × 5 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
+<div id="024bfd55-7cd9-4ccd-8373-e306fd62a25d" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>covid_final <span class="op">=</span> pd.concat([covid, korea_covid]).rename(columns<span class="op">=</span>{<span class="st">'Date_reported'</span>: <span class="st">'Date'</span>})<span class="op">;</span>covid_final</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Country_code</th>
-      <th>Country</th>
-      <th>New_cases</th>
-      <th>New_deaths</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-01-03</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-01-04</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-01-05</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-01-06</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-01-07</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1268</th>
-      <td>2023-07-06</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24339</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>1269</th>
-      <td>2023-07-07</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24757</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1270</th>
-      <td>2023-07-08</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>25659</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1271</th>
-      <td>2023-07-09</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>22560</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1272</th>
-      <td>2023-07-10</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>9253</td>
-      <td>2</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Country_code</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">New_cases</th>
+<th data-quarto-table-cell-role="th">New_deaths</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2020-01-03</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2020-01-04</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2020-01-05</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2020-01-06</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2020-01-07</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1268</td>
+<td>2023-07-06</td>
+<td>KP</td>
+<td>Korea</td>
+<td>24339</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1269</td>
+<td>2023-07-07</td>
+<td>KP</td>
+<td>Korea</td>
+<td>24757</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1270</td>
+<td>2023-07-08</td>
+<td>KP</td>
+<td>Korea</td>
+<td>25659</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1271</td>
+<td>2023-07-09</td>
+<td>KP</td>
+<td>Korea</td>
+<td>22560</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1272</td>
+<td>2023-07-10</td>
+<td>KP</td>
+<td>Korea</td>
+<td>9253</td>
+<td>2</td>
+</tr>
+</tbody>
 </table>
+
 <p>304628 rows × 5 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="36">
+<div id="e788e223-de94-49fa-862c-e5db3b28e202" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>covid_final_add <span class="op">=</span> covid_final.assign(Year <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">0</span>],covid_final[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                                    Mon <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">1</span>],covid_final[<span class="st">'Date'</span>])),<span class="op">\</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                                    Day <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x.split(<span class="st">'-'</span>)[<span class="dv">2</span>],covid_final[<span class="st">'Date'</span>])))</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="37">
+<div id="89c41baf-458b-4fe3-acba-56cb5519ee2c" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Country_code</th>
-      <th>Country</th>
-      <th>New_cases</th>
-      <th>New_deaths</th>
-      <th>Year</th>
-      <th>Mon</th>
-      <th>Day</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-01-03</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>03</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-01-04</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>04</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-01-05</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>05</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-01-06</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>06</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-01-07</td>
-      <td>AF</td>
-      <td>Afghanistan</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2020</td>
-      <td>01</td>
-      <td>07</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1268</th>
-      <td>2023-07-06</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24339</td>
-      <td>12</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>06</td>
-    </tr>
-    <tr>
-      <th>1269</th>
-      <td>2023-07-07</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>24757</td>
-      <td>7</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>07</td>
-    </tr>
-    <tr>
-      <th>1270</th>
-      <td>2023-07-08</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>25659</td>
-      <td>3</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>08</td>
-    </tr>
-    <tr>
-      <th>1271</th>
-      <td>2023-07-09</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>22560</td>
-      <td>2</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>09</td>
-    </tr>
-    <tr>
-      <th>1272</th>
-      <td>2023-07-10</td>
-      <td>KP</td>
-      <td>Korea</td>
-      <td>9253</td>
-      <td>2</td>
-      <td>2023</td>
-      <td>07</td>
-      <td>10</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Country_code</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">New_cases</th>
+<th data-quarto-table-cell-role="th">New_deaths</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Mon</th>
+<th data-quarto-table-cell-role="th">Day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2020-01-03</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+<td>2020</td>
+<td>01</td>
+<td>03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2020-01-04</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+<td>2020</td>
+<td>01</td>
+<td>04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2020-01-05</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+<td>2020</td>
+<td>01</td>
+<td>05</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2020-01-06</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+<td>2020</td>
+<td>01</td>
+<td>06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2020-01-07</td>
+<td>AF</td>
+<td>Afghanistan</td>
+<td>0</td>
+<td>0</td>
+<td>2020</td>
+<td>01</td>
+<td>07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1268</td>
+<td>2023-07-06</td>
+<td>KP</td>
+<td>Korea</td>
+<td>24339</td>
+<td>12</td>
+<td>2023</td>
+<td>07</td>
+<td>06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1269</td>
+<td>2023-07-07</td>
+<td>KP</td>
+<td>Korea</td>
+<td>24757</td>
+<td>7</td>
+<td>2023</td>
+<td>07</td>
+<td>07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1270</td>
+<td>2023-07-08</td>
+<td>KP</td>
+<td>Korea</td>
+<td>25659</td>
+<td>3</td>
+<td>2023</td>
+<td>07</td>
+<td>08</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1271</td>
+<td>2023-07-09</td>
+<td>KP</td>
+<td>Korea</td>
+<td>22560</td>
+<td>2</td>
+<td>2023</td>
+<td>07</td>
+<td>09</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1272</td>
+<td>2023-07-10</td>
+<td>KP</td>
+<td>Korea</td>
+<td>9253</td>
+<td>2</td>
+<td>2023</td>
+<td>07</td>
+<td>10</td>
+</tr>
+</tbody>
 </table>
+
 <p>304628 rows × 8 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="38">
+<div id="70735998-fa20-4342-b31e-7781672567fc" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with plt.style.context('seaborn-white'):</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2,figsize=(30,15))</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     ax1.plot(covid_final_add.query("Country =='Korea'")['Date'], covid_final_add.query("Country =='Korea'")['New_cases'])</span></span>
@@ -2522,7 +2603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="define-class" class="level1">
 <h1>define class</h1>
-<div class="cell" data-execution_count="41">
+<div id="f1b4afb1-8923-42a8-8114-c97161c30265" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Stock_graph:</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,df):</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.df <span class="op">=</span> df </span>
@@ -2567,19 +2648,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="시도-1" class="level1">
 <h1>시도 1</h1>
-<div class="cell" data-execution_count="42">
+<div id="7ed8ed1d-d96f-439e-889b-7c67ff5a0f59" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>rst <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="43">
+<div id="41b1ba98-46f6-4902-90b4-2b375939fb04" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst.df)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>2955</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="44">
+<div id="d6f0e1f4-a7a3-4e77-b648-5b83f1515439" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="bu">len</span>(rst.df)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="55">
+<div id="ea22af24-8acf-4705-a1ad-e15e832902cd" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Korea'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]],rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Japan'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]])</span></code></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ValueError: x and y must be the same size</code></pre>
@@ -2588,83 +2669,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-07-08-stock_on_graph_files/figure-html/cell-44-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="53">
+<div id="bd078f10-bc82-4ebd-a6da-1cdc88007068" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>rst.df[rst.df[<span class="st">'Country'</span>]<span class="op">==</span><span class="st">'Japan'</span>].iloc[:,[<span class="dv">8</span>,<span class="dv">9</span>]]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Value</th>
-      <th>Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>367</th>
-      <td>-0.604658</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>368</th>
-      <td>-0.496240</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>369</th>
-      <td>-0.604687</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>370</th>
-      <td>-0.448252</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>371</th>
-      <td>-0.415890</td>
-      <td>2020.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1093</th>
-      <td>0.331131</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>1094</th>
-      <td>0.343410</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>1095</th>
-      <td>0.312021</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>1096</th>
-      <td>0.239862</td>
-      <td>2022.0</td>
-    </tr>
-    <tr>
-      <th>1097</th>
-      <td>0.240105</td>
-      <td>2022.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Value</th>
+<th data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">367</td>
+<td>-0.604658</td>
+<td>2020.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">368</td>
+<td>-0.496240</td>
+<td>2020.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">369</td>
+<td>-0.604687</td>
+<td>2020.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">370</td>
+<td>-0.448252</td>
+<td>2020.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">371</td>
+<td>-0.415890</td>
+<td>2020.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1093</td>
+<td>0.331131</td>
+<td>2022.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1094</td>
+<td>0.343410</td>
+<td>2022.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1095</td>
+<td>0.312021</td>
+<td>2022.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1096</td>
+<td>0.239862</td>
+<td>2022.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1097</td>
+<td>0.240105</td>
+<td>2022.0</td>
+</tr>
+</tbody>
 </table>
+
 <p>731 rows × 2 columns</p>
 </div>
 </div>
 </div>
-<div class="cell">
+<div id="b38da63e-9f19-4e7e-95cf-494de4055bc7" class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.zeros((T,T))</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(T):</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(T):</span>
@@ -2673,42 +2755,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
 <span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>            W[i,j] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
 </div>
-<div class="cell">
+<div id="010cd2d4-bc7a-4f39-8e53-264dd5c65519" class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>W</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="b2f397b7-36e3-4c04-b49c-128b29be3a67" class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>rst.W <span class="op">=</span> W</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="f1f62334-1af0-4692-bf95-225bc7b27233" class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rst.fit()</span></code></pre></div>
 </div>
 <section id="result" class="level2">
 <h2 class="anchored" data-anchor-id="result">Result</h2>
-<div class="cell">
+<div id="cfa28182-9c56-4c5f-867c-e02fffdf0fb5" class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>rst.df.merge(covid_final_add,on<span class="op">=</span><span class="st">'Date'</span>).sort_values(<span class="st">"Residual"</span>,ascending<span class="op">=</span><span class="va">False</span>).iloc[:<span class="dv">30</span>,:]</span></code></pre></div>
 </div>
 </section>
 </section>
 <section id="시도-2" class="level1">
 <h1>시도 2</h1>
-<div class="cell">
+<div id="e211fcc0-fd26-4a12-841d-811b27fa3652" class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rst2 <span class="op">=</span> Stock_graph(df)</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="d2f7e20e-c15d-499a-b33e-35650e1cc155" class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(rst2.df)</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="d32416ea-ddc8-4304-95bd-bcb045947b67" class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>T</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="af159714-e458-46b4-9522-b5c575366758" class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>rst2.df</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="cb4bdd6f-d23d-4255-b5f0-e1460dd47654" class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>rst2.df.sort_values(<span class="st">'Country'</span>).iloc[:,[<span class="dv">9</span>,<span class="dv">10</span>]].reset_index().iloc[:,<span class="dv">1</span>:].pivot(columns<span class="op">=</span><span class="st">'Country'</span>, values<span class="op">=</span><span class="st">'Value'</span>).iloc[:,<span class="dv">1</span>].dropna()</span></code></pre></div>
 </div>
 <section id="result-1" class="level2">
 <h2 class="anchored" data-anchor-id="result-1">Result</h2>
-<div class="cell">
+<div id="23cc73ea-807f-48d3-8129-db409549d5e1" class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>covid_final_add</span></code></pre></div>
 </div>
 
@@ -2744,10 +2826,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2757,8 +2838,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2773,6 +2863,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -2815,6 +3094,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
+
 
 
 

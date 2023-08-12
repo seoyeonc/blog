@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.315">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,10 +96,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
@@ -131,545 +109,608 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar docked nav-fixed slimcontent">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Seoyeon’s Blog for study</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">GNAR data</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/GCN/index.html">GCN</a></li><li class="breadcrumb-item"><a href="../../posts/GCN/2023-01-05-GNAR.html">GNAR data</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">GNAR data</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">GNAR</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>SEOYEON CHOI </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">January 5, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">FRAUD</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">Fraud data</a>
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">GNAR data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">Data management Figure for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">Data management for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU and GNAR_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Boxplot_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link active">GNAR data</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">Comparison Results on Real Data</a>
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">final GODE code(paper)</a>
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">Linear Graph code for Paper</a>
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">Semifinal_Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">The options of Outlier Detection method</a>
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">RESEARCHES</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link"><strong>[LLM]</strong>Transformer_META</a>
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">CAM</a>
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">CAM_downsize</a>
+  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
+  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM_downsize</span></a>
   </div>
 </li>
       </ul>
@@ -679,6 +720,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -698,13 +740,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#finding-a-network-to-aid-prediction" id="toc-finding-a-network-to-aid-prediction" class="nav-link" data-scroll-target="#finding-a-network-to-aid-prediction">4.1. Finding a network to aid prediction</a></li>
   <li><a href="#results-and-comparisons" id="toc-results-and-comparisons" class="nav-link" data-scroll-target="#results-and-comparisons">4.2. Results and comparisons</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-01-05-GNAR.out.ipynb" download="2023-01-05-GNAR.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/GCN/index.html">GCN</a></li><li class="breadcrumb-item"><a href="../../posts/GCN/2023-01-05-GNAR.html">GNAR data</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">GNAR data</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">GNAR</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 5, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <blockquote class="blockquote">
 <p>GNAR</p>
@@ -715,16 +787,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>항상 노드의 수가 일정해야 함</li>
 <li>GNAR은 전제 데이터 set에 대해 이웃을 통해 모델화한다는 것이 장점</li>
 </ul>
-<div class="cell" data-execution_count="1">
+<div id="5e0b584d-72fb-45d5-830a-e5cfc13a2fef" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rpy2.robjects <span class="im">as</span> ro </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.vectors <span class="im">import</span> FloatVector </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rpy2.robjects.packages <span class="im">import</span> importr</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div id="5e0da8a4-c4ab-4f13-aa24-6fa1c7db8f0f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div id="fd961277-03aa-4683-8f23-f1571a7cfd1c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>library(GNAR)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>library(igraph)</span></code></pre></div>
@@ -757,14 +829,14 @@ R[write to console]: Loading required package: RColorBrewer
 <li>edge(list)</li>
 <li>dist(list)</li>
 </ul>
-<div class="cell" data-execution_count="4">
+<div id="196b35f1-db66-458f-b85e-f1869b7efb87" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plot(fiveNet, vertex.label <span class="op">=</span> c(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>))</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-01-05-GNAR_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="5">
+<div id="9bb6c326-74d7-4f68-bbfa-f32d4a0f95c1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>summary(<span class="st">"fiveNet"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -776,7 +848,7 @@ R[write to console]: Loading required package: RColorBrewer
 <ul>
 <li>igraphtoGNAR or GNARtoigraph쓰는 예제</li>
 </ul>
-<div class="cell" data-execution_count="6">
+<div id="11e68daa-2fdc-4b94-aa4c-9c27a8f4cdaa" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fiveNet2 <span class="op">&lt;-</span> GNARtoigraph(net <span class="op">=</span> fiveNet)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>summary(fiveNet2)</span></code></pre></div>
@@ -785,7 +857,7 @@ R[write to console]: Loading required package: RColorBrewer
 + attr: weight (e/n)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
+<div id="42cc4707-b4d7-4158-b941-06957f110dd1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fiveNet3 <span class="op">&lt;-</span> igraphtoGNAR(fiveNet2)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>.equal(fiveNet, fiveNet3)</span></code></pre></div>
@@ -793,7 +865,7 @@ R[write to console]: Loading required package: RColorBrewer
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
+<div id="d802179b-d7af-4c3c-9e8f-f3181b327cc7" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(igraphtoGNAR(fiveNet2))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -805,7 +877,7 @@ edges:1--4 1--5 2--3 2--4 3--2 3--4 4--1 4--2 4--3 5--1
 </div>
 <p>edge들 보고 싶을 때</p>
 <p>whereas the <strong>reverse</strong> conversion would be performed as</p>
-<div class="cell" data-execution_count="9">
+<div id="84494f10-2794-4351-88a3-659ba4827554" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">&lt;-</span> make_ring(<span class="dv">10</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(igraphtoGNAR(g))</span></code></pre></div>
@@ -817,7 +889,7 @@ edges:1--2 1--10 2--1 2--3 3--2 3--4 4--3 4--5 5--4 5--6
  edges of each of length  1 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
+<div id="0e843d88-3e26-4118-842a-bc191ff88926" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>make_ring(<span class="dv">10</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -833,7 +905,7 @@ edges:1--2 1--10 2--1 2--3 3--2 3--4 4--3 4--5 5--4 5--6
 <li><code>as.matrix</code> or <code>matrixtoGNAR</code>로 인접 행렬 구할 수 있음</li>
 </ul>
 <p>we can prosucean adjacency matrix for the <code>fiveNet</code> obeject with</p>
-<div class="cell" data-execution_count="11">
+<div id="40e2c53d-09e7-499e-9737-910f74365fda" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">as</span>.matrix(fiveNet)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -846,7 +918,7 @@ edges:1--2 1--10 2--1 2--3 3--2 3--4 4--3 4--5 5--4 5--6
 </div>
 </div>
 <p>and an example converting a weighted adjacency matrix to a <code>GNARnet</code> object is</p>
-<div class="cell" data-execution_count="12">
+<div id="2988c1ad-2c00-4179-9245-639724cf3dba" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>adj <span class="op">&lt;-</span> matrix(runif(<span class="dv">9</span>), ncol <span class="op">=</span> <span class="dv">3</span>, nrow <span class="op">=</span> <span class="dv">3</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>adj[adj <span class="op">&lt;</span> <span class="fl">0.3</span>] <span class="op">&lt;-</span> <span class="dv">0</span></span>
@@ -864,7 +936,7 @@ edges:1--2 1--3 2--1 2--3 3--1 3--2
 <ul>
 <li>GNAR로 fit과 predict 가능</li>
 </ul>
-<div class="cell" data-execution_count="13">
+<div id="1c13a132-2257-40b3-b895-1f3e48bc871c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data(<span class="st">"fiveNode"</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>answer <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> fiveVTS, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -885,7 +957,7 @@ Coefficients:
 <ul>
 <li>파라메터 4개 가지고 있음</li>
 </ul>
-<div class="cell" data-execution_count="14">
+<div id="980fed6e-283b-4eac-9a60-ba71e1c15f7a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">1</span>], ylab <span class="op">=</span> <span class="st">"Node A Time Series"</span>)</span>
@@ -896,7 +968,7 @@ Coefficients:
 <p><img src="2023-01-05-GNAR_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="15">
+<div id="ed5e8cd2-99ce-42b1-816c-a797902e5b98" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plot(fiveVTS[, <span class="dv">3</span>], ylab <span class="op">=</span> <span class="st">"Node C Time Series"</span>)</span>
@@ -910,7 +982,7 @@ Coefficients:
 <ul>
 <li>각 노드의 time series(검정), fitted values from ‘answer’ model overlaid in red</li>
 </ul>
-<div class="cell" data-execution_count="16">
+<div id="b5ceeeed-35dd-48cd-9526-80bf270ceaca" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">1</span>]</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
@@ -920,7 +992,7 @@ Coefficients:
 <p><img src="2023-01-05-GNAR_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="17">
+<div id="10615d9d-3308-4cab-a139-acaa9e3f0c7c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">2</span>]</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
@@ -930,7 +1002,7 @@ Coefficients:
 <p><img src="2023-01-05-GNAR_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
+<div id="0abe17f2-6b50-4f8b-8fb4-0a9eb53f23a6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">3</span>]</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
@@ -940,7 +1012,7 @@ Coefficients:
 <p><img src="2023-01-05-GNAR_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
+<div id="d8df7d25-5bd7-456e-9406-4f3be73ff7ec" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>myresiduals <span class="op">&lt;-</span> residuals(answer)[, <span class="dv">4</span>]</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="dv">1</span>))</span>
@@ -960,7 +1032,7 @@ Coefficients:
 <li><p><code>fiveNet</code> 네트워크를 사용하여 네트워크 시계열 시뮬레이션 진행</p></li>
 <li><p>두 시뮬레이션 모두 sigma argument를 사용하여 표준 편차가 제어되는 표준 정규 노이즈를 사용하여 생성된다.</p></li>
 </ul>
-<div class="cell" data-execution_count="20">
+<div id="e0f53ac6-1b0e-4b68-bbf6-7342fe8683f1" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fiveVTS2 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.4</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">0.6</span>, <span class="dv">0</span>, <span class="dv">0</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.3</span>)))</span></code></pre></div>
@@ -968,7 +1040,7 @@ Coefficients:
 <ul>
 <li>fiveVTS2 네트워크를 사용하여 시뮬레이션 된 것이다보니 파라메터 계수 비슷</li>
 </ul>
-<div class="cell" data-execution_count="21">
+<div id="560dc602-c676-4ce5-825b-ff4ff31dec38" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS2, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -986,7 +1058,7 @@ dmatalpha1node5      dmatbeta1.1
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="22">
+<div id="e763caa7-2417-40bc-a369-a1c4cca9c1a3" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>fiveVTS3 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>), rep(<span class="fl">0.3</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.2</span>, <span class="fl">0.3</span>), c(<span class="dv">0</span>)))</span>
@@ -1004,7 +1076,7 @@ Coefficients:
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="23">
+<div id="9dcc9bcb-28b6-4f0a-b673-aea5acded0fe" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>fiveVTS4 <span class="op">&lt;-</span> simulate(GNARfit(vts <span class="op">=</span> fiveVTS2, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE), n <span class="op">=</span> <span class="dv">200</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(GNARfit(vts <span class="op">=</span> fiveVTS4, net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
@@ -1033,7 +1105,7 @@ dmatalpha1node5      dmatbeta1.1
 <li>The flexibility of GNAR modelling이 의미하는 것은 연결 가중치를 바꾸지 않고 변하는 네트워크로 missing data 를 모델링 할 수 있다.</li>
 <li>한 노드가 missing data 구간이 생기면 그 구간에서만 네트워크를 변화하여 weight가 변경된다.</li>
 </ul>
-<div class="cell" data-execution_count="24">
+<div id="bebcdb4a-649a-4865-a0e9-ec646bcb2d86" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fiveVTS0 <span class="op">&lt;-</span> fiveVTS</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>fiveVTS0[<span class="dv">50</span>:<span class="dv">150</span>, <span class="dv">3</span>] <span class="op">&lt;-</span> NA</span>
@@ -1058,7 +1130,7 @@ dmatalpha1node5      dmatbeta1.1
 </ul>
 <p><span class="math display">\[\sum^p_{j=1}(|\alpha_{i,j}| + \sum^{C}_{c=1} \sum^{s_j}_{r=1} |\beta_{j,t,c}|)&lt;1 , \forall_i \in 1,\dots, N\]</span></p>
 <p>위 조건을 <code>GNARsim</code>을 이용하여 확인 할 수 있다.</p>
-<div class="cell" data-execution_count="25">
+<div id="54331ab8-a261-4d5f-8f0b-6aa490ce5e40" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span>.seed(<span class="dv">10</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>fiveVTS4 <span class="op">&lt;-</span> GNARsim(n <span class="op">=</span> <span class="dv">200</span>, net <span class="op">=</span> fiveNet, alphaParams <span class="op">=</span> <span class="bu">list</span>(rep(<span class="fl">0.2</span>, <span class="dv">5</span>)), betaParams <span class="op">=</span> <span class="bu">list</span>(c(<span class="fl">0.85</span>)))</span>
@@ -1079,14 +1151,14 @@ dmatalpha1node5      dmatbeta1.1
 <h2 class="anchored" data-anchor-id="order-selection">3.1. Order selection</h2>
 <p><strong>Bayesian information criterion</strong></p>
 <p><span class="math display">\[BIC(p,s) = ln|\sum^{\hat{}}_{p,s}| + T^{-1} M ln(T)\]</span></p>
-<div class="cell" data-execution_count="26">
+<div id="9c7b90c4-cdc1-4322-acd8-174c68a6088b" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit())</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.003953124</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="27">
+<div id="3b37df5f-a9bf-401a-a180-238c2308bf35" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">1</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1095,14 +1167,14 @@ dmatalpha1node5      dmatbeta1.1
 </div>
 <p><strong>Akaike information criterion</strong></p>
 <p><span class="math display">\[AIC(p,s) = ln|\sum^{\hat{}}_{p,s}| + 2T^{-1} M\]</span></p>
-<div class="cell" data-execution_count="28">
+<div id="73958989-c62c-4141-ab90-0c5c1a5ab1e8" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>AIC(GNARfit())</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.06991947</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
+<div id="14dbfe33-8d6a-48df-b8d2-321191e48bfc" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>AIC(GNARfit(betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">1</span>)))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1117,7 +1189,7 @@ dmatalpha1node5      dmatbeta1.1
 <li>nodes : 102</li>
 <li>time step : 721</li>
 </ul>
-<div class="cell" data-execution_count="30">
+<div id="75b84284-c065-4847-9dc2-6bea2d46259a" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>oldpar <span class="op">&lt;-</span> par(cex <span class="op">=</span> <span class="fl">0.75</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>windnetplot()</span>
@@ -1131,14 +1203,14 @@ dmatalpha1node5      dmatbeta1.1
 <li>blue numbers are relative distance between sites</li>
 <li>labels are the site name</li>
 </ul>
-<div class="cell" data-execution_count="31">
+<div id="4c21651a-db62-4ea3-b7a2-ec4f799125b3" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">0</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -233.3848</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="61">
+<div id="a4dca7ef-1f1a-4333-8db8-896e7065f3aa" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>fiveFit <span class="op">&lt;-</span> GNARfit(fiveVTS[<span class="dv">1</span>:<span class="dv">160</span>,],net<span class="op">=</span>fiveNet, alphaOrder<span class="op">=</span><span class="dv">2</span>, betaOrder<span class="op">=</span>c(<span class="dv">2</span>,<span class="dv">0</span>)) <span class="co">#learn </span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>dim(fitted(fiveFit))</span></code></pre></div>
@@ -1146,12 +1218,12 @@ dmatalpha1node5      dmatbeta1.1
 <pre><code>[1] 158   5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="109">
+<div id="a9c0e22a-b4b4-4373-8c4d-8f688578b21f" class="cell" data-execution_count="109">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>dummyFit <span class="op">&lt;-</span> GNARfit(fiveVTS,net<span class="op">=</span>fiveNet, alphaOrder<span class="op">=</span><span class="dv">2</span>, betaOrder<span class="op">=</span>c(<span class="dv">2</span>,<span class="dv">0</span>)) <span class="co">#learn </span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>dummyFit$mod$coefficients <span class="op">&lt;-</span> fiveFit$mod$coefficients</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="111">
+<div id="0d39eb95-be18-43f4-9d7b-919f18c563d8" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>fitted(dummyFit)[<span class="dv">161</span>:<span class="dv">200</span>]</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1164,7 +1236,7 @@ dmatalpha1node5      dmatbeta1.1
 [37] -1.10766872 -0.76969390  0.71828989  0.69737474</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="71">
+<div id="ffed268e-3641-4008-b70b-9ad9d235f617" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>fitted(fiveFit)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1329,7 +1401,7 @@ dmatalpha1node5      dmatbeta1.1
 [158,]  0.013726373  0.132970935  0.077022243  0.0243587773 -0.211000744</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="50">
+<div id="676c8d8d-c501-478f-b04c-1fdeab2322c4" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R </span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>fiveVTS</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#gdpVTSn2[52,]</span></span></code></pre></div>
@@ -1537,14 +1609,14 @@ dmatalpha1node5      dmatbeta1.1
 [200,]  0.447242609  0.404155027  0.719959458 -0.442525233 -1.78159592</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
+<div id="e50c8249-d734-493d-9efe-952282d3b24f" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>BIC(GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">1</span>, betaOrder <span class="op">=</span> <span class="dv">0</span>, globalalpha <span class="op">=</span> FALSE))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -233.1697</code></pre>
 </div>
 </div>
-<div class="cell">
+<div id="cd5889b7-5cbc-4de2-a034-a03f0515ea18" class="cell">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>BIC.Alpha2.Beta <span class="op">&lt;-</span> matrix(<span class="dv">0</span>, ncol <span class="op">=</span> <span class="dv">15</span>, nrow <span class="op">=</span> <span class="dv">15</span>)</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b1 <span class="kw">in</span> <span class="dv">0</span>:<span class="dv">14</span>)</span>
@@ -1580,7 +1652,7 @@ KeyboardInterrupt: </code></pre>
 </ul>
 <p><em>chatGPT</em></p>
 <p>이 문장을 조금 더 자세히 설명하면, BIC(Bayesian Information Criterion)는 모델을 선택할 때 사용하는 지표로서, 우리가 선택한 모델이 얼마나 적합한지를 측정합니다. 이 문장에서는, 이웃 집합의 대기 시간이 증가할수록 BIC 값이 증가할 것이라고 언급하고 있습니다. 이는 우리가 선택한 모델이 적합하지 않을 가능성이 있다는 의미입니다. 그래프를 보고 있을 때, 수평 윤곽선은 BIC 값이 0인 스테이지를 의미합니다. 이는 우리가 선택한 모델이 완벽하게 적합한다는 의미입니다.</p>
-<div class="cell" data-execution_count="36">
+<div id="a0f07ef2-f6bf-42ec-aa9f-1f88a978c60d" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>goodmod <span class="op">&lt;-</span> GNARfit(vts <span class="op">=</span> vswindts, net <span class="op">=</span> vswindnet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">5</span>, <span class="dv">1</span>))</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>goodmod</span></code></pre></div>
@@ -1605,7 +1677,7 @@ Coefficients:
 <p>We propose a network construction method that uses prediction error, but note here that our scope is <strong>not to estimate an underlying network</strong>, but merely to find a structure that is useful in the task of prediction.</p>
 <p>we use a prediction error measure, understood as the sum of squared differences between the observations and the estimates:</p>
 <p><span class="math display">\[\sum^N_{i=1} (X_{i,t} - \hat{X}_{i,t})^2\]</span></p>
-<div class="cell" data-execution_count="37">
+<div id="ce03bf85-cc81-4a3a-981e-4653cfc5f80f" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">&lt;-</span> predict(GNARfit(vts <span class="op">=</span> fiveVTS[<span class="dv">1</span>:<span class="dv">199</span>,], net <span class="op">=</span> fiveNet, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>prediction</span></code></pre></div>
@@ -1630,7 +1702,7 @@ Frequency = 1
 <li><p>In this data set 20.8% (379 out of 1820) of the observations were missing due to some nodes not being included from the start.</p></li>
 <li><p>we do not uese covariate information, so C=1</p></li>
 </ul>
-<div class="cell" data-execution_count="38">
+<div id="92f6881d-723b-4225-8c48-632784fd554e" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"fields"</span>)</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>, <span class="dv">2</span>), nrow <span class="op">=</span> <span class="dv">1</span>, ncol <span class="op">=</span> <span class="dv">2</span>), widths <span class="op">=</span> c(<span class="fl">4.5</span>, <span class="dv">1</span>))</span>
@@ -1677,12 +1749,12 @@ Try help(fields) to get started.
 </section>
 <section id="finding-a-network-to-aid-prediction" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="finding-a-network-to-aid-prediction">4.1. Finding a network to aid prediction</h2>
-<div class="cell" data-execution_count="39">
+<div id="59d690af-cb57-427c-b860-84e2c9d057e3" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>net1 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">1</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>net2 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">2</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="40">
+<div id="cbffbd29-3042-46ab-8c1c-3c23bd62d76e" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">2</span>, <span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>par(mar<span class="op">=</span>c(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
@@ -1709,7 +1781,7 @@ Try help(fields) to get started.
 <li>seedSim 함수는 예측값과 원래 값의 제곱 차이의 합을 출력하고, 이를 예측 정확도의 측정 기준으로 사용</li>
 </ul></li>
 </ul>
-<div class="cell" data-execution_count="41">
+<div id="6ea220d1-5839-467a-85d3-be14e3a7618f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>gdpVTSn <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTS, <span class="dv">2</span>, function(x){x <span class="op">/</span> sd(x[<span class="dv">1</span>:<span class="dv">50</span>], na.rm <span class="op">=</span> TRUE)})</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">&lt;-</span> c(rep(<span class="dv">1</span>, <span class="dv">2</span>), rep(<span class="dv">2</span>, <span class="dv">6</span>))</span>
@@ -1722,21 +1794,21 @@ Try help(fields) to get started.
 <span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="bu">sum</span>((gdpPred <span class="op">-</span> gdpVTSn[<span class="dv">51</span>, ])<span class="op">^</span><span class="dv">2</span>))</span>
 <span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="42">
+<div id="be1f4b2f-a547-4e4c-8003-3d038a83d8d0" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>seedSim(seedNo <span class="op">=</span> seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">1</span>, globalalpha <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 23.36913</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="43">
+<div id="3481a5b5-8c3f-42cb-a37f-acbe1b5f22ba" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>seedSim(seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">3</span>, globalalpha <span class="op">=</span> TRUE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11.50739</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="44">
+<div id="77f983e8-93de-4813-9ed0-bf89c3f46a9b" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>seedSim(seed.nos[<span class="dv">1</span>], modelNo <span class="op">=</span> <span class="dv">3</span>, globalalpha <span class="op">=</span> FALSE)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1746,7 +1818,7 @@ Try help(fields) to get started.
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="2023-01-05-GNAR_files/figure-html/433688fa-9944-49b8-a0d4-a03ccbfa7453-1-505b0599-3887-46b8-aca5-d82dfa177e82.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption margin-caption">image.png</figcaption><p></p>
+<figcaption class="figure-caption margin-caption">image.png</figcaption>
 </figure>
 </div>
 <ul>
@@ -1758,7 +1830,7 @@ Try help(fields) to get started.
 <li>다른 global-α 모델들은 이 안에 포함되어 있기 때문에, global-α GNAR(2, [2, 2])의 예측 오류가 최소가 되는 임의의 그래프를 선택할 것.</li>
 <li>이는 seed.nos[921]에서 생성된 네트워크가 선택되게 됩니다.</li>
 </ul>
-<div class="cell" data-execution_count="45">
+<div id="511af55c-5c48-49bf-ae21-af840279de9d" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>net921 <span class="op">&lt;-</span> seedToNet(seed.no <span class="op">=</span> seed.nos[<span class="dv">921</span>], nnodes <span class="op">=</span> <span class="dv">35</span>, graph.prob <span class="op">=</span> <span class="fl">0.15</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>layout(matrix(c(<span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">1</span>))</span>
@@ -1777,7 +1849,7 @@ Try help(fields) to get started.
 <li>예측 성능이 유사한 적은 개수의 edge를 가진 네트워크를 찾기 위해 테스트 될 수 있지만, 여기서는 전체 선택된 네트워크를 그대로 사용.</li>
 <li>이 네트워크를 사용하면 BIC를 이용해 최적의 GNAR 순서를 선택할 수 있음.</li>
 </ul>
-<div class="cell" data-execution_count="46">
+<div id="80891e3b-9a98-4f97-b6ad-3e4bf87fd65b" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">&lt;-</span> rep(NA, <span class="dv">8</span>)</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="kw">in</span> <span class="dv">1</span>:<span class="dv">8</span>){</span>
@@ -1789,7 +1861,7 @@ Try help(fields) to get started.
 <pre><code>[1] 6 3 4 7 8 5 1 2</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="47">
+<div id="95f42acf-a4b8-4cfa-b32e-ba563444b94b" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>sort(res)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1806,7 +1878,7 @@ Try help(fields) to get started.
 <li>GNAR 예측은 선택된 네트워크(seed.nos[921]에 해당)를 가진 GNAR(2, [2, 0]) 모델을 t=51까지의 데이터에 적합시키고, t=52일 때의 값을 예측</li>
 <li>우선 series를 정규화한 다음, 모델 적합으로부터 SSE를 계산합니다.</li>
 </ul>
-<div class="cell" data-execution_count="48">
+<div id="2b9b8bca-7158-47d7-8754-ad8d393c2fdc" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>gdpVTSn2 <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTS, <span class="dv">2</span>, function(x){x <span class="op">/</span> sd(x[<span class="dv">1</span>:<span class="dv">51</span>], na.rm <span class="op">=</span> TRUE)})</span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>gdpFit <span class="op">&lt;-</span> GNARfit(gdpVTSn2[<span class="dv">1</span>:<span class="dv">51</span>,], net <span class="op">=</span> net921, alphaOrder <span class="op">=</span> <span class="dv">2</span>, betaOrder <span class="op">=</span> c(<span class="dv">2</span>, <span class="dv">0</span>))</span>
@@ -1837,7 +1909,7 @@ F-statistic: 76.02 on 4 and 1332 DF,  p-value: &lt; 2.2e-16
 GNAR BIC: -62.86003</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="49">
+<div id="291d8d55-b827-4df5-bc15-7c81dd60cc60" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>((predict(gdpFit) <span class="op">-</span> gdpVTSn2[<span class="dv">52</span>, ])<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1876,7 +1948,7 @@ GNAR BIC: -62.86003</code></pre>
 <ul>
 <li>섹션 4.1의 자기상관 분석을 고려해 각각 35개의 개별 모델의 최대 AR 순서를 p=2로 설정</li>
 </ul>
-<div class="cell" data-execution_count="50">
+<div id="2d54fdfe-9430-49da-96ba-f2fefa6d5f6a" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"forecast"</span>)</span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>arforecast <span class="op">&lt;-</span> <span class="bu">apply</span>(gdpVTSn2[<span class="dv">1</span>:<span class="dv">51</span>, ], <span class="dv">2</span>, function(x){</span>
@@ -1896,7 +1968,7 @@ GNAR BIC: -62.86003</code></pre>
 </div>
 </div>
 <p>We fit the model using the VAR function and then use the restrict function to reduce dimensionality further, by setting to zero any coefficient whose associated absolute t-statistic value is less than two.</p>
-<div class="cell" data-execution_count="59">
+<div id="5e9bf66c-1c02-4596-92b0-2297e36dd5cf" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"vars"</span>)</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span> <span class="op">&lt;-</span> gdpVTSn2</span>
@@ -1904,7 +1976,7 @@ GNAR BIC: -62.86003</code></pre>
 <span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>varforecast <span class="op">&lt;-</span> predict(restrict(VAR(gdpVTSn2<span class="fl">.0</span>[<span class="dv">1</span>:<span class="dv">51</span>, ], p <span class="op">=</span> <span class="dv">1</span>, <span class="bu">type</span> <span class="op">=</span> <span class="st">"none"</span>)), n.ahead <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
 </div>
 <p>compute the prediction error</p>
-<div class="cell" data-execution_count="60">
+<div id="5042550f-1186-458e-aaa5-bd3d5fa78db2" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>getfcst <span class="op">&lt;-</span> function(x){<span class="cf">return</span>(x[<span class="dv">1</span>])}</span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>varforecastpt <span class="op">&lt;-</span> unlist(lapply(varforecast$fcst, getfcst))</span>
@@ -1917,7 +1989,7 @@ GNAR BIC: -62.86003</code></pre>
 <p>위 절차를 반복해 2단계 앞으로의 예측을 기반으로 분석을 수행합니다.</p>
 <p>이 경우 다른 네트워크가 GNAR(2,[2,2]) 모델의 예측 오류를 최소화합니다.</p>
 <p>그러나 BIC 단계에서 GNAR(2,[0,0]) 모델이 최적으로 적합된 것을 식별하였고, 이는 네트워크 회귀 매개변수를 포함하지 않는 모델입니다.</p>
-<div class="cell" data-execution_count="61">
+<div id="0cfda147-94fd-448c-bb7a-b97a0ab90fd9" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>library(<span class="st">"vars"</span>)</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>gdpVTSn2<span class="fl">.0</span> <span class="op">&lt;-</span> gdpVTSn2</span>
@@ -1956,10 +2028,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1969,8 +2040,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1985,6 +2065,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -2027,6 +2296,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
+
 
 
 

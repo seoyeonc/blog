@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.4.315">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,43 +49,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -111,6 +82,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -120,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -133,545 +110,608 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Seoyeon’s Blog for study</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" aria-current="page">
- <span class="menu-text">About</span></a>
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/seoyeonc/blog/"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">EvolveGCNO_Simulation Tables_reshape</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/GCN/index.html">GCN</a></li><li class="breadcrumb-item"><a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html">EvolveGCNO_Simulation Tables_reshape</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">EvolveGCNO_Simulation Tables_reshape</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">ITSTGCN</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>SEOYEON CHOI </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">June 25, 2023</p>
-      </div>
-    </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Posts</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">FRAUD</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">Fraud data</a>
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">GCN</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</a>
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">1st ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">1st ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">2nd ITSTGCN</a>
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">2nd ST-GCN Example dividing train and test</a>
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">Adding the RecurrentGCN models</a>
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">Class of Method</a>
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1</a>
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 1 80% Missing repeat</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(GNAR) lag 2</a>
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 1</a>
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">Class of Method(WikiMath) lag 4</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">data load, data save as pickle</a>
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">Data management Figure for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">Data management for ITSTGCN</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DCRNN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">DYGRENCODER_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">EbayesThresh Toy ex</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNH_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link active">EvolveGCNO_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">EvolveGCNO_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GCLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">GCN Algorithm Example 1</a>
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU and GNAR_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Boxplot_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvGRU_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">GConvLSTM_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">GNAR data</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">ITSTGCN add Model</a>
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">ITSTGCN Article Refernece</a>
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">ITSTGCN-Tutorial</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">LRGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">METRLADatasetLoader-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">Note_weight amatrix</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">Padalme GSO_st</a>
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal CPU vs GPU</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">PyG Geometric Temporal Examples</a>
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">PyTorch ST-GCN Dataset</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">Questions of PyTorch Geometric Temporal</a>
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">Self Consistency Toy ex</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">SimualtionPlanner-Tutorial</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">Simulation of geometric-temporal</a>
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">Simulation Tables</a>
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">SY 1st ITSTGCN</a>
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation Tables_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">TGCN_Simulation_reshape</a>
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">TORCH_GEOMETRIC.NN</a>
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">Toy Example Figure(Intro)</a>
+  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">Toy Example Note</a>
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">Toy example using GNAR</a>
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">GODE</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">Class code for Comparison Study</a>
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">Comparison Results on Real Data</a>
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">Discrete Fourier Transform</a>
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">Earthquake</a>
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">final GODE code(paper)</a>
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">Graph code</a>
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">Linear Graph code for Paper</a>
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">Semifinal_Other Outlier Detection</a>
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">Simulation</a>
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">The options of Outlier Detection method</a>
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">Untitled</a>
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">RESEARCHES</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link"><strong>[LLM]</strong>Transformer_META</a>
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">CAM</a>
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">CAM_downsize</a>
+  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LLM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">LLM</a>
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</a>
+  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">Stock Crawling</a>
+  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">Stock on Graph</a>
+  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM_downsize</span></a>
   </div>
 </li>
       </ul>
@@ -681,6 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -737,225 +778,256 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#monte-nodes-4-filters" id="toc-monte-nodes-4-filters" class="nav-link" data-scroll-target="#monte-nodes-4-filters">Monte Nodes = 4, Filters =</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-06-25-EvolveGCNO_simulation_table_reshape.out.ipynb" download="2023-06-25-EvolveGCNO_simulation_table_reshape.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/GCN/index.html">GCN</a></li><li class="breadcrumb-item"><a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html">EvolveGCNO_Simulation Tables_reshape</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">EvolveGCNO_Simulation Tables_reshape</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">ITSTGCN</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 25, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 <blockquote class="blockquote">
 <p>Simulation Tables</p>
 </blockquote>
 <section id="import" class="level1">
 <h1>import</h1>
-<div class="cell" data-execution_count="212">
+<div id="2b94623d-9fcc-475e-888b-fab04f70cb53" class="cell" data-execution_count="212">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="213">
+<div id="3eb9818e-ae88-4ab1-b477-15622f336a9d" class="cell" data-execution_count="213">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_fivenodes <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_fivedones_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="214">
+<div id="017dcc04-f3c5-44d0-ae40-ec506dbfd630" class="cell" data-execution_count="214">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_chickenpox <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_chikenpox_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="215">
+<div id="0b711bcf-b2e4-4502-a6ad-a1313f7560fc" class="cell" data-execution_count="215">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_pedal <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_pedalme_Simulation.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="216">
+<div id="13bf364d-2d1f-4286-b0df-1b35b21e7105" class="cell" data-execution_count="216">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_pedal2 <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_pedalme_Simulation_itstgcnsnd.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="217">
+<div id="fef9086d-7b7f-406a-b396-1e4dbabf520c" class="cell" data-execution_count="217">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data__wiki <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_wikimath.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="218">
+<div id="c6461bba-82e7-494e-8cc5-dadf177fd3d8" class="cell" data-execution_count="218">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_wiki_GSO <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_wikimath_GSO_st.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="0f7322e3-0690-4637-80ca-55e30d5d1a96" class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_windmillsmall <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_windmillsmall.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="219">
+<div id="59532f6b-12df-4cea-9edb-101aedc988a7" class="cell" data-execution_count="219">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_monte <span class="op">=</span> pd.read_csv(<span class="st">'./simulation_results/Real_simulation_reshape/EvolveGCNO_monte.csv'</span>)</span></code></pre></div>
 </div>
-<div class="cell">
+<div id="6fe62078-eeb6-419c-a91e-cca745e7877b" class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.concat([data_fivenodes,data_chickenpox,data_pedal,data__wiki,data_windmillsmall,data_monte])<span class="op">;</span>data</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="220">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>dataset</th>
-      <th>method</th>
-      <th>mrate</th>
-      <th>mtype</th>
-      <th>lags</th>
-      <th>nof_filters</th>
-      <th>inter_method</th>
-      <th>epoch</th>
-      <th>mse</th>
-      <th>calculation_time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>fivenodes</td>
-      <td>STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12</td>
-      <td>linear</td>
-      <td>50</td>
-      <td>1.145873</td>
-      <td>10.957345</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>fivenodes</td>
-      <td>STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>1.094555</td>
-      <td>12.740510</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>fivenodes</td>
-      <td>IT-STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12</td>
-      <td>linear</td>
-      <td>50</td>
-      <td>1.145589</td>
-      <td>19.806524</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>fivenodes</td>
-      <td>IT-STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>1.208142</td>
-      <td>17.870021</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>fivenodes</td>
-      <td>STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>2</td>
-      <td>12</td>
-      <td>linear</td>
-      <td>50</td>
-      <td>1.158356</td>
-      <td>12.736769</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>355</th>
-      <td>monte</td>
-      <td>IT-STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>1.735651</td>
-      <td>346.335709</td>
-    </tr>
-    <tr>
-      <th>356</th>
-      <td>monte</td>
-      <td>STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>2.144485</td>
-      <td>102.588985</td>
-    </tr>
-    <tr>
-      <th>357</th>
-      <td>monte</td>
-      <td>IT-STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>1.576014</td>
-      <td>245.449893</td>
-    </tr>
-    <tr>
-      <th>358</th>
-      <td>monte</td>
-      <td>STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>2.426680</td>
-      <td>53.503511</td>
-    </tr>
-    <tr>
-      <th>359</th>
-      <td>monte</td>
-      <td>IT-STGCN</td>
-      <td>0.7</td>
-      <td>rand</td>
-      <td>4</td>
-      <td>12</td>
-      <td>nearest</td>
-      <td>50</td>
-      <td>2.329690</td>
-      <td>333.370776</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">dataset</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">mtype</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">mse</th>
+<th data-quarto-table-cell-role="th">calculation_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.145873</td>
+<td>10.957345</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>1.094555</td>
+<td>12.740510</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.145589</td>
+<td>19.806524</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>1.208142</td>
+<td>17.870021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.158356</td>
+<td>12.736769</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">355</td>
+<td>monte</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>4</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>1.735651</td>
+<td>346.335709</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">356</td>
+<td>monte</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>4</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>2.144485</td>
+<td>102.588985</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">357</td>
+<td>monte</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>4</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>1.576014</td>
+<td>245.449893</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">358</td>
+<td>monte</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>4</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>2.426680</td>
+<td>53.503511</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">359</td>
+<td>monte</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>4</td>
+<td>12</td>
+<td>nearest</td>
+<td>50</td>
+<td>2.329690</td>
+<td>333.370776</td>
+</tr>
+</tbody>
 </table>
+
 <p>2700 rows × 10 columns</p>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="221">
+<div id="1949557c-5100-4d32-9585-14a6ab44a11d" class="cell" data-execution_count="221">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="163">
+<div id="c446722e-5410-4b68-9a19-171238b3d33d" class="cell" data-execution_count="163">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO <span class="op">=</span> pd.concat([data_pedal2,data_wiki_GSO])</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="164">
+<div id="40645b34-bba5-4362-af56-7f40707aad6a" class="cell" data-execution_count="164">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pedal_wiki_GSO.to_csv(<span class="st">'./simulation_results/Real_simulation_reshape/Final_Simulation_EvolveGCNO_pedal_wiki_GSO.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 </section>
@@ -963,153 +1035,156 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Fivenodes</h1>
 <section id="baseline" class="level2">
 <h2 class="anchored" data-anchor-id="baseline">Baseline</h2>
-<div class="cell" data-execution_count="74">
+<div id="156e2353-5ee1-4cf9-ada3-161447f901fa" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>lags</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>12</td>
-      <td>IT-STGCN</td>
-      <td>2</td>
-      <td>1.172</td>
-      <td>0.064</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>12</td>
-      <td>STGCN</td>
-      <td>2</td>
-      <td>1.164</td>
-      <td>0.065</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>12</td>
+<td>IT-STGCN</td>
+<td>2</td>
+<td>1.172</td>
+<td>0.064</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>12</td>
+<td>STGCN</td>
+<td>2</td>
+<td>1.164</td>
+<td>0.065</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="random" class="level2">
 <h2 class="anchored" data-anchor-id="random">Random</h2>
-<div class="cell" data-execution_count="75">
+<div id="8eaefdd1-eabe-4452-97e9-2c79d3e510fa" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>,<span class="st">'lags'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"nof_filters==12"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>lags</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.7</td>
-      <td>12</td>
-      <td>IT-STGCN</td>
-      <td>2</td>
-      <td>1.173</td>
-      <td>0.048</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.7</td>
-      <td>12</td>
-      <td>STGCN</td>
-      <td>2</td>
-      <td>1.201</td>
-      <td>0.064</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.8</td>
-      <td>12</td>
-      <td>IT-STGCN</td>
-      <td>2</td>
-      <td>1.209</td>
-      <td>0.073</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.8</td>
-      <td>12</td>
-      <td>STGCN</td>
-      <td>2</td>
-      <td>1.216</td>
-      <td>0.058</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.7</td>
+<td>12</td>
+<td>IT-STGCN</td>
+<td>2</td>
+<td>1.173</td>
+<td>0.048</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.7</td>
+<td>12</td>
+<td>STGCN</td>
+<td>2</td>
+<td>1.201</td>
+<td>0.064</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.8</td>
+<td>12</td>
+<td>IT-STGCN</td>
+<td>2</td>
+<td>1.209</td>
+<td>0.073</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.8</td>
+<td>12</td>
+<td>STGCN</td>
+<td>2</td>
+<td>1.216</td>
+<td>0.058</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="block" class="level2">
 <h2 class="anchored" data-anchor-id="block">Block</h2>
-<div class="cell" data-execution_count="76">
+<div id="6f2c31a3-2d9c-487c-a43e-9c49657f2586" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='fivenodes' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'mrate'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.125</td>
-      <td>12</td>
-      <td>IT-STGCN</td>
-      <td>1.165</td>
-      <td>0.051</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.125</td>
-      <td>12</td>
-      <td>STGCN</td>
-      <td>1.185</td>
-      <td>0.061</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.125</td>
+<td>12</td>
+<td>IT-STGCN</td>
+<td>1.165</td>
+<td>0.051</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.125</td>
+<td>12</td>
+<td>STGCN</td>
+<td>1.185</td>
+<td>0.061</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1119,171 +1194,174 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>ChickenpoxDatasetLoader(lags=4)</h1>
 <section id="baseline-1" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-1">Baseline</h2>
-<div class="cell" data-execution_count="129">
+<div id="bb9e8543-d7f7-4024-b5dd-38309dcbcedf" class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="129">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>32</td>
-      <td>IT-STGCN</td>
-      <td>0.984</td>
-      <td>0.016</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>32</td>
-      <td>STGCN</td>
-      <td>0.988</td>
-      <td>0.019</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>32</td>
+<td>IT-STGCN</td>
+<td>0.984</td>
+<td>0.016</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>32</td>
+<td>STGCN</td>
+<td>0.988</td>
+<td>0.019</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="random-1" class="level2">
 <h2 class="anchored" data-anchor-id="random-1">Random</h2>
-<div class="cell" data-execution_count="78">
+<div id="c57cc44c-dce2-436d-8d3e-2527ecfc2556" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>inter_method</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.3</td>
-      <td>linear</td>
-      <td>32</td>
-      <td>IT-STGCN</td>
-      <td>0.998</td>
-      <td>0.019</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.3</td>
-      <td>linear</td>
-      <td>32</td>
-      <td>STGCN</td>
-      <td>1.054</td>
-      <td>0.011</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.8</td>
-      <td>linear</td>
-      <td>32</td>
-      <td>IT-STGCN</td>
-      <td>1.161</td>
-      <td>0.054</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.8</td>
-      <td>linear</td>
-      <td>32</td>
-      <td>STGCN</td>
-      <td>1.234</td>
-      <td>0.096</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.3</td>
+<td>linear</td>
+<td>32</td>
+<td>IT-STGCN</td>
+<td>0.998</td>
+<td>0.019</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.3</td>
+<td>linear</td>
+<td>32</td>
+<td>STGCN</td>
+<td>1.054</td>
+<td>0.011</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.8</td>
+<td>linear</td>
+<td>32</td>
+<td>IT-STGCN</td>
+<td>1.161</td>
+<td>0.054</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.8</td>
+<td>linear</td>
+<td>32</td>
+<td>STGCN</td>
+<td>1.234</td>
+<td>0.096</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="block-1" class="level2">
 <h2 class="anchored" data-anchor-id="block-1">Block</h2>
-<div class="cell" data-execution_count="79">
+<div id="4f347949-8d0a-4074-aa3c-1c73e94c1c34" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='chickenpox' and mtype=='block'"</span>).groupby([<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'inter_method'</span>,<span class="st">'mrate'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="79">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>inter_method</th>
-      <th>mrate</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>linear</td>
-      <td>0.28777</td>
-      <td>32</td>
-      <td>IT-STGCN</td>
-      <td>1.002350</td>
-      <td>0.015102</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>linear</td>
-      <td>0.28777</td>
-      <td>32</td>
-      <td>STGCN</td>
-      <td>1.027605</td>
-      <td>0.015945</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>nearest</td>
-      <td>0.28777</td>
-      <td>32</td>
-      <td>IT-STGCN</td>
-      <td>0.998713</td>
-      <td>0.021721</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>nearest</td>
-      <td>0.28777</td>
-      <td>32</td>
-      <td>STGCN</td>
-      <td>1.025797</td>
-      <td>0.014844</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>linear</td>
+<td>0.28777</td>
+<td>32</td>
+<td>IT-STGCN</td>
+<td>1.002350</td>
+<td>0.015102</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>linear</td>
+<td>0.28777</td>
+<td>32</td>
+<td>STGCN</td>
+<td>1.027605</td>
+<td>0.015945</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>nearest</td>
+<td>0.28777</td>
+<td>32</td>
+<td>IT-STGCN</td>
+<td>0.998713</td>
+<td>0.021721</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>nearest</td>
+<td>0.28777</td>
+<td>32</td>
+<td>STGCN</td>
+<td>1.025797</td>
+<td>0.014844</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1293,373 +1371,378 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>PedalMeDatasetLoader (lags=4)</h1>
 <section id="baseline-2" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-2">Baseline</h2>
-<div class="cell" data-execution_count="80">
+<div id="a300e109-1780-49c1-a4e7-c2e97f89f62d" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype!='rand' and mtype!='block'"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>lags</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>4</td>
-      <td>2</td>
-      <td>IT-STGCN</td>
-      <td>1.213</td>
-      <td>0.045</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4</td>
-      <td>2</td>
-      <td>STGCN</td>
-      <td>1.234</td>
-      <td>0.055</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>4</td>
+<td>2</td>
+<td>IT-STGCN</td>
+<td>1.213</td>
+<td>0.045</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>4</td>
+<td>2</td>
+<td>STGCN</td>
+<td>1.234</td>
+<td>0.055</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="random-2" class="level2">
 <h2 class="anchored" data-anchor-id="random-2">Random</h2>
-<div class="cell" data-execution_count="81">
+<div id="4d2b77ef-5564-4992-8169-b5ed790d199e" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.251</td>
-      <td>0.072</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.267</td>
-      <td>0.072</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.251</td>
-      <td>0.057</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.265</td>
-      <td>0.056</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.280</td>
-      <td>0.065</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.305</td>
-      <td>0.092</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.267</td>
-      <td>0.067</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.292</td>
-      <td>0.075</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.3</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.251</td>
+<td>0.072</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.3</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.267</td>
+<td>0.072</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.251</td>
+<td>0.057</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.265</td>
+<td>0.056</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.6</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.280</td>
+<td>0.065</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.6</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.305</td>
+<td>0.092</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.6</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.267</td>
+<td>0.067</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0.6</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.292</td>
+<td>0.075</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="block-2" class="level2">
 <h2 class="anchored" data-anchor-id="block-2">Block</h2>
-<div class="cell" data-execution_count="82">
+<div id="577831cf-8f43-4096-b889-ed611aff3fcf" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='pedalme' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.246</td>
-      <td>0.034</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.230</td>
-      <td>0.056</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.245</td>
-      <td>0.045</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.246</td>
-      <td>0.035</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.286</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.246</td>
+<td>0.034</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.286</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.230</td>
+<td>0.056</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.286</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.245</td>
+<td>0.045</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.286</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.246</td>
+<td>0.035</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="w_st" class="level2">
 <h2 class="anchored" data-anchor-id="w_st">W_st</h2>
-<div class="cell" data-execution_count="83">
+<div id="342d5e6e-1e72-4ad2-8e70-04e095ce5368" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_pedal2.query(<span class="st">"mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>         data_pedal2.query(<span class="st">"mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="83">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.223</td>
-      <td>0.041</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.263</td>
-      <td>0.048</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.234</td>
-      <td>0.046</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.252</td>
-      <td>0.071</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.269</td>
-      <td>0.092</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.304</td>
-      <td>0.061</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.248</td>
-      <td>0.072</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.6</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.321</td>
-      <td>0.094</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.3</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.223</td>
+<td>0.041</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.3</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.263</td>
+<td>0.048</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.234</td>
+<td>0.046</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.252</td>
+<td>0.071</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.6</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.269</td>
+<td>0.092</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.6</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.304</td>
+<td>0.061</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.6</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.248</td>
+<td>0.072</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0.6</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.321</td>
+<td>0.094</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="84">
+<div id="c0c626dd-3d91-4622-93ad-9497378fae27" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_pedal2.query(<span class="st">"mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>         data_pedal2.query(<span class="st">"mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>).query(<span class="st">"lags==4"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>IT-STGCN</td>
-      <td>1.204</td>
-      <td>0.033</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>linear</td>
-      <td>STGCN</td>
-      <td>1.210</td>
-      <td>0.058</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.211</td>
-      <td>0.033</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.286</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.241</td>
-      <td>0.095</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.286</td>
+<td>4</td>
+<td>linear</td>
+<td>IT-STGCN</td>
+<td>1.204</td>
+<td>0.033</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.286</td>
+<td>4</td>
+<td>linear</td>
+<td>STGCN</td>
+<td>1.210</td>
+<td>0.058</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.286</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.211</td>
+<td>0.033</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.286</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.241</td>
+<td>0.095</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1669,224 +1752,228 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WikiMathsDatasetLoader (lags=8)</h1>
 <section id="baseline-3" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-3">Baseline</h2>
-<div class="cell" data-execution_count="222">
+<div id="f6c27c05-9c04-4430-8825-5e6036641655" class="cell" data-execution_count="222">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="222">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>lags</th>
-      <th>nof_filters</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>8</td>
-      <td>12</td>
-      <td>IT-STGCN</td>
-      <td>0.735</td>
-      <td>0.023</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>8</td>
-      <td>12</td>
-      <td>STGCN</td>
-      <td>0.734</td>
-      <td>0.025</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>8</td>
+<td>12</td>
+<td>IT-STGCN</td>
+<td>0.735</td>
+<td>0.023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>8</td>
+<td>12</td>
+<td>STGCN</td>
+<td>0.734</td>
+<td>0.025</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="random-3" class="level2">
 <h2 class="anchored" data-anchor-id="random-3">Random</h2>
-<div class="cell" data-execution_count="223">
+<div id="93355d49-98a5-4317-a23b-cab8ce09b74b" class="cell" data-execution_count="223">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="223">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.3</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.738</td>
-      <td>0.018</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.3</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.743</td>
-      <td>0.024</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.5</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.744</td>
-      <td>0.021</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.5</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.759</td>
-      <td>0.021</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.6</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.745</td>
-      <td>0.019</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.6</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.775</td>
-      <td>0.026</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.8</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.780</td>
-      <td>0.027</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.8</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.863</td>
-      <td>0.038</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.3</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.738</td>
+<td>0.018</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.3</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.743</td>
+<td>0.024</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.5</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.744</td>
+<td>0.021</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.5</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.759</td>
+<td>0.021</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.6</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.745</td>
+<td>0.019</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.6</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.775</td>
+<td>0.026</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.8</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.780</td>
+<td>0.027</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0.8</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.863</td>
+<td>0.038</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="block-3" class="level2">
 <h2 class="anchored" data-anchor-id="block-3">Block</h2>
-<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="224">
+<div id="3a9cdb61-9ba7-454c-b31b-6c9066b83dc8" class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="224">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="224">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.119837</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.732454</td>
-      <td>0.025087</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.119837</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.734875</td>
-      <td>0.021822</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.119837</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.732454</td>
+<td>0.025087</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.119837</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.734875</td>
+<td>0.021822</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="missing-values-on-the-same-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values-on-the-same-nodes">missing values on the same nodes</h2>
-<div class="cell" data-execution_count="225">
+<div id="723f08c0-537d-434d-80ab-7901184aa74b" class="cell" data-execution_count="225">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="225">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.512</td>
-      <td>8</td>
-      <td>IT-STGCN</td>
-      <td>0.745</td>
-      <td>0.017</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.512</td>
-      <td>8</td>
-      <td>STGCN</td>
-      <td>0.753</td>
-      <td>0.026</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.512</td>
+<td>8</td>
+<td>IT-STGCN</td>
+<td>0.745</td>
+<td>0.017</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.512</td>
+<td>8</td>
+<td>STGCN</td>
+<td>0.753</td>
+<td>0.026</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1896,7 +1983,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>WindmillOutputSmallDatasetLoader (lags=8)</h1>
 <section id="baseline-4" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-4">Baseline</h2>
-<div class="cell">
+<div id="49b9fab5-a442-4d99-808f-8f9bfa70e094" class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -1904,7 +1991,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">Random</h2>
-<div class="cell">
+<div id="8902439c-dd57-4b4a-9ee7-a4a6f834b748" class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -1912,7 +1999,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="block-4" class="level2">
 <h2 class="anchored" data-anchor-id="block-4">Block</h2>
-<div class="cell">
+<div id="e6a097b4-c47c-48ff-92aa-fefa3472dba2" class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
@@ -1923,189 +2010,192 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Montevideobus (lags=4)</h1>
 <section id="baseline-5" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-5">Baseline</h2>
-<div class="cell" data-execution_count="199">
+<div id="80ca776b-e0ac-46cf-877c-50db022936cf" class="cell" data-execution_count="199">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="199">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>lags</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>4</td>
-      <td>IT-STGCN</td>
-      <td>1.317</td>
-      <td>0.118</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4</td>
-      <td>STGCN</td>
-      <td>0.997</td>
-      <td>0.004</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>4</td>
+<td>IT-STGCN</td>
+<td>1.317</td>
+<td>0.118</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>4</td>
+<td>STGCN</td>
+<td>0.997</td>
+<td>0.004</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="random-5" class="level2">
 <h2 class="anchored" data-anchor-id="random-5">Random</h2>
-<div class="cell" data-execution_count="200">
+<div id="0d19690b-1489-4e96-9a01-d5a8f755fb28" class="cell" data-execution_count="200">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="200">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.401606</td>
-      <td>0.147293</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.3</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.634467</td>
-      <td>0.161082</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.5</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.457940</td>
-      <td>0.093312</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.5</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.928135</td>
-      <td>0.303906</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.7</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.968742</td>
-      <td>0.235623</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.7</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>2.447478</td>
-      <td>0.499375</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.8</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>2.263371</td>
-      <td>0.476410</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.8</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>2.622998</td>
-      <td>0.693321</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.401606</td>
+<td>0.147293</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.3</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.634467</td>
+<td>0.161082</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.5</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.457940</td>
+<td>0.093312</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.5</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.928135</td>
+<td>0.303906</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.7</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.968742</td>
+<td>0.235623</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.7</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>2.447478</td>
+<td>0.499375</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0.8</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>2.263371</td>
+<td>0.476410</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0.8</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>2.622998</td>
+<td>0.693321</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
 <section id="block-5" class="level2">
 <h2 class="anchored" data-anchor-id="block-5">Block</h2>
-<div class="cell" data-execution_count="201">
+<div id="76aea718-eb75-4a87-a72f-d3e1e60c3cbe" class="cell" data-execution_count="201">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='monte' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'inter_method'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'inter_method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="201">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mrate</th>
-      <th>lags</th>
-      <th>inter_method</th>
-      <th>method</th>
-      <th>mean</th>
-      <th>std</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.149142</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>IT-STGCN</td>
-      <td>1.345316</td>
-      <td>0.110313</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.149142</td>
-      <td>4</td>
-      <td>nearest</td>
-      <td>STGCN</td>
-      <td>1.766133</td>
-      <td>0.123163</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0.149142</td>
+<td>4</td>
+<td>nearest</td>
+<td>IT-STGCN</td>
+<td>1.345316</td>
+<td>0.110313</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.149142</td>
+<td>4</td>
+<td>nearest</td>
+<td>STGCN</td>
+<td>1.766133</td>
+<td>0.123163</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2113,19 +2203,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="check" class="level1">
 <h1>Check</h1>
-<div class="cell" data-execution_count="93">
+<div id="86b95ea7-efd0-4674-afa8-f1160d6681d2" class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcnEvolveGCNO</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="94">
+<div id="a8ff2fbd-5865-4f3b-9777-6c7ab65bc150" class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="95">
+<div id="66b5a6fb-680d-4449-a19d-60441becc4e6" class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="96">
+<div id="7cc39147-393e-4cc8-8d41-84f4f928854a" class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Eval_csy:</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>,learner,train_dataset):</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learner <span class="op">=</span> learner</span>
@@ -2141,10 +2231,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat_tr <span class="op">=</span> rslt_tr[<span class="st">'yhat'</span>]</span>
 <span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fhat_tr <span class="op">=</span> torch.concat([<span class="va">self</span>.train_dataset[<span class="dv">0</span>].x.T,<span class="va">self</span>.yhat_tr],axis<span class="op">=</span><span class="dv">0</span>).<span class="bu">float</span>()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="97">
+<div id="709cf6d2-126b-4ccd-be46-d640e0d83c87" class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="98">
+<div id="fcccab62-3474-419c-ba64-2f5724d91a22" class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">500</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.arange(T)<span class="op">/</span>T <span class="op">*</span> <span class="dv">5</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2177,46 +2267,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-06-25-EvolveGCNO_simulation_table_reshape_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="99">
+<div id="d01477c3-f9f3-4424-bac4-aa272e4fc4b3" class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> itstgcnEvolveGCNO.DatasetLoader(data_dict1)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="130">
+<div id="4758c884-83c3-4eae-8e5d-430238da9850" class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div>
 </div>
 <p>mindex = itstgcn.rand_mindex(dataset,mrate=0) dataset_miss = itstgcn.miss(dataset,mindex,mtype=‘rand’)</p>
-<div class="cell" data-execution_count="131">
+<div id="7459b7fb-72fd-4fb8-99ed-cfddc3a6c979" class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [random.sample(<span class="bu">range</span>(<span class="dv">0</span>, T), <span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.8</span>)),[np.array(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">30</span>)))]]</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>dataset_miss <span class="op">=</span> itstgcnEvolveGCNO.miss(dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="132">
+<div id="416085a0-a85f-41a7-9ccf-e9ee8819246f" class="cell" data-execution_count="132">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>dataset_padded <span class="op">=</span> itstgcnEvolveGCNO.padding(dataset_miss,interpolation_method<span class="op">=</span><span class="st">'linear'</span>)</span></code></pre></div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="133">
+<div id="033be495-9963-48dc-b753-7b6068874e90" class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcnEvolveGCNO.StgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="134">
+<div id="92ce3e0f-1107-4499-8022-691d3641d6dd" class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">16</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="135">
+<div id="ea1908f3-15e5-4246-87d6-e82ddfd9ef6b" class="cell" data-execution_count="135">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>lrnr1 <span class="op">=</span> itstgcnEvolveGCNO.ITStgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="136">
+<div id="d62357ae-3d50-44cc-bd62-2078374530f2" class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>lrnr1.learn(filters<span class="op">=</span><span class="dv">16</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="137">
+<div id="b721451f-63cc-4d4e-aa75-d40bf69e29e7" class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> Eval_csy(lrnr,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="138">
+<div id="a17d5ab5-9dd1-466d-b057-9fd32193d880" class="cell" data-execution_count="138">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>evtor1 <span class="op">=</span> Eval_csy(lrnr1,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="139">
+<div id="3cfa75b6-c6dd-4076-ad26-1cd1228334e6" class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2232,7 +2322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-06-25-EvolveGCNO_simulation_table_reshape_files/figure-html/cell-52-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="140">
+<div id="2f27363b-cc70-4f73-bc42-286ce63d90b7" class="cell" data-execution_count="140">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2248,51 +2338,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-06-25-EvolveGCNO_simulation_table_reshape_files/figure-html/cell-53-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="111">
+<div id="85af0367-4345-4923-b70c-f421862952d8" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcnsnd</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="112">
+<div id="364fe660-1407-4301-8e32-177e2ec638e2" class="cell" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> itstgcnsnd.DatasetLoader(data_dict1)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="113">
+<div id="56805762-3512-4c09-a91a-b36c18f5ddab" class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> loader1.get_dataset(lags<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div>
 </div>
 <p>mindex = itstgcn.rand_mindex(dataset,mrate=0) dataset_miss = itstgcn.miss(dataset,mindex,mtype=‘rand’)</p>
-<div class="cell" data-execution_count="114">
+<div id="9576d9ce-75d2-44bc-9145-4d641bebbe0b" class="cell" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>mindex <span class="op">=</span> [random.sample(<span class="bu">range</span>(<span class="dv">0</span>, T), <span class="bu">int</span>(T<span class="op">*</span><span class="fl">0.5</span>)),[np.array(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">20</span>,<span class="dv">30</span>)))]]</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>dataset_miss <span class="op">=</span> itstgcnsnd.miss(dataset,mindex,mtype<span class="op">=</span><span class="st">'block'</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="115">
+<div id="182cb51a-873b-40fd-9d62-44e033c3cbf3" class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dataset_padded <span class="op">=</span> itstgcnsnd.padding(dataset_miss,interpolation_method<span class="op">=</span><span class="st">'linear'</span>)</span></code></pre></div>
 </div>
 <p><code>-</code> 학습</p>
-<div class="cell" data-execution_count="116">
+<div id="4c29ba1f-aacc-4168-8992-324fce9d1ca2" class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> itstgcnsnd.StgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="117">
+<div id="83246440-6e62-45f3-853d-eb7c4a0d36f5" class="cell" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>lrnr.learn(filters<span class="op">=</span><span class="dv">32</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="118">
+<div id="9c5ba237-9ba5-45cb-b04d-2fbe49ce0a48" class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>lrnr1 <span class="op">=</span> itstgcnsnd.ITStgcnLearner(dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="119">
+<div id="2375ff9f-88b2-42c4-9b9f-5bac87830684" class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>lrnr1.learn(filters<span class="op">=</span><span class="dv">32</span>,epoch<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5/5</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="120">
+<div id="7f4d3d00-b3f9-496b-9222-ff9de732e107" class="cell" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>evtor <span class="op">=</span> Eval_csy(lrnr,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="121">
+<div id="480813f0-8a2b-42b9-8fbc-b306a37ab743" class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>evtor1 <span class="op">=</span> Eval_csy(lrnr1,dataset_padded)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="122">
+<div id="0927419e-7caa-40e4-87da-bde012656697" class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2308,7 +2398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="2023-06-25-EvolveGCNO_simulation_table_reshape_files/figure-html/cell-65-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="123">
+<div id="f6f5ff90-5226-48a8-b2b8-83a342827e96" class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> plt.style.context(<span class="st">'seaborn-white'</span>):</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">10</span>))</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -2327,10 +2417,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="hyperparameter" class="level1">
 <h1>hyperparameter</h1>
-<div class="cell">
+<div id="e6727c1e-db02-4cf5-9c43-2b4706d1355b" class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>WindmillOutputSmallDatasetLoader()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="19">
+<div id="cb44d14f-0f4a-487d-9d0d-f21cb0febe7a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> itstgcn.load_data(<span class="st">'./data/fivenodes.pkl'</span>)</span>
@@ -2351,7 +2441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
 <span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a>loader10 <span class="op">=</span> MontevideoBusDatasetLoader()</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="20">
+<div id="65fac76f-ac3b-4306-afe2-5707b17f9652" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">ImportError</span>:</span>
@@ -2494,7 +2584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="cell" data-execution_count="54">
+<div id="5de1c73e-4115-495d-8e5c-712a19133fb7" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>EvolveGCNO?</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div class="ansi-escaped-output">
@@ -2533,7 +2623,7 @@ Args:
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="53">
+<div id="ef454897-5e0d-4a5d-a2ac-3d77fc3a8bf8" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> EvolveGCNO</span>
@@ -2557,16 +2647,16 @@ Args:
 <span id="cb74-21"><a href="#cb74-21" aria-hidden="true" tabindex="-1"></a><span class="co"># train_dataset6, test_dataset6 = temporal_signal_split(dataset6, train_ratio=0.2)</span></span>
 <span id="cb74-22"><a href="#cb74-22" aria-hidden="true" tabindex="-1"></a>train_dataset10, test_dataset10 <span class="op">=</span> temporal_signal_split(dataset10, train_ratio<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="40">
+<div id="584af4f2-1bd8-4b6c-9c24-7eebab7e9648" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _a = itstgcn.load_data('./data/Windmillsmall.pkl')</span></span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="41">
+<div id="c4484040-85bd-4e19-b910-e88e66235335" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>dataset6 <span class="op">=</span> _a.get_dataset(lags<span class="op">=</span><span class="dv">8</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="42">
+<div id="a7c695d8-bf33-4812-866d-cdae6f32c46e" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>train_dataset6, test_dataset6 <span class="op">=</span> temporal_signal_split(dataset6, train_ratio<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="55">
+<div id="ebfbc04d-e726-478a-9aa8-ae929848d903" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features):</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
@@ -2581,7 +2671,7 @@ Args:
 </div>
 <section id="fivenodes-nodes-2-filters" class="level3">
 <h3 class="anchored" data-anchor-id="fivenodes-nodes-2-filters">fivenodes Nodes = 2, Filters =</h3>
-<div class="cell" data-execution_count="56">
+<div id="c9e976ad-44ab-4bd8-8cb9-22272628c21f" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -2605,7 +2695,7 @@ Args:
 <pre><code>100%|██████████| 200/200 [00:09&lt;00:00, 20.06it/s]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="57">
+<div id="7d3614f3-4129-41cd-b456-c0b560b96052" class="cell" data-tags="[]" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2624,12 +2714,12 @@ Args:
 <pre><code>MSE: 1.0642</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="58">
+<div id="a6c29232-7d71-42d6-a494-9f79a41dae12" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="59">
+<div id="af95ced3-440a-414c-9df8-6954ac7cd198" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2661,7 +2751,7 @@ Args:
 </section>
 <section id="chickenpox-nodes-4-filters-12" class="level3">
 <h3 class="anchored" data-anchor-id="chickenpox-nodes-4-filters-12">Chickenpox Nodes = 4, Filters = 12</h3>
-<div class="cell" data-tags="[]" data-execution_count="61">
+<div id="c5f765dd-8546-44c5-9c3e-0f4e52b8788c" class="cell" data-tags="[]" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>optimizer1 <span class="op">=</span> torch.optim.Adam(model1.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -2685,7 +2775,7 @@ Args:
 <pre><code>100%|██████████| 200/200 [00:30&lt;00:00,  6.58it/s]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="63">
+<div id="c7a2dc4d-2835-40bb-a5b3-69dc46cbbb32" class="cell" data-tags="[]" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>model1.<span class="bu">eval</span>()</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2704,12 +2794,12 @@ Args:
 <pre><code>MSE: 0.9248</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="64">
+<div id="8dd43e0e-a4c0-4741-9ed0-d8f35fe2692d" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="65">
+<div id="92676245-f051-4336-ad0e-c80623d5da4c" class="cell" data-tags="[]" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2741,7 +2831,7 @@ Args:
 </section>
 <section id="pedalme-nodes-4-filters" class="level3">
 <h3 class="anchored" data-anchor-id="pedalme-nodes-4-filters">Pedalme Nodes = 4, Filters =</h3>
-<div class="cell" data-execution_count="67">
+<div id="31d9f361-6486-4fd9-8cf7-d6ae5a71b4de" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>optimizer2 <span class="op">=</span> torch.optim.Adam(model2.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -2766,7 +2856,7 @@ Args:
 <pre><code>100%|██████████| 200/200 [00:01&lt;00:00, 101.86it/s]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="68">
+<div id="bf2179d3-7e7f-413b-a932-27a7bc293b0a" class="cell" data-tags="[]" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>model2.<span class="bu">eval</span>()</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2785,13 +2875,13 @@ Args:
 <pre><code>MSE: 0.5624</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="69">
+<div id="37ffd6b3-4438-456a-803b-628b5caa1e30" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="70">
+<div id="ef0c75d1-2e34-46be-8a1c-300f6a389ca3" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="71">
+<div id="f3125e2f-d273-427f-acde-712d9a0c9c6b" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2822,7 +2912,7 @@ Args:
 </section>
 <section id="wikimaths-nodes-8-filters" class="level3">
 <h3 class="anchored" data-anchor-id="wikimaths-nodes-8-filters">Wikimaths Nodes = 8, Filters =</h3>
-<div class="cell" data-execution_count="73">
+<div id="7ea17ea6-091e-4f2f-9dc1-d73e9f73f5ae" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>model3 <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>optimizer3 <span class="op">=</span> torch.optim.Adam(model3.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -2846,7 +2936,7 @@ Args:
 <pre><code>100%|██████████| 50/50 [02:50&lt;00:00,  3.42s/it]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="74">
+<div id="c2185ea2-e62b-4b0f-a88c-9b5f51908bb3" class="cell" data-tags="[]" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>model3.<span class="bu">eval</span>()</span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2865,13 +2955,13 @@ Args:
 <pre><code>MSE: 0.6972</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="75">
+<div id="ca6fe39f-3a33-460f-8294-446398e9ee78" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="76">
+<div id="cd42aa36-3eb8-406b-a7e5-755ed7ba6ac4" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="77">
+<div id="74a0a809-e192-4b17-9d7f-a714bd1332f5" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2903,7 +2993,7 @@ Args:
 </section>
 <section id="windmillsmall-nodes-8-filters" class="level3">
 <h3 class="anchored" data-anchor-id="windmillsmall-nodes-8-filters">Windmillsmall Nodes = 8, Filters =</h3>
-<div class="cell" data-execution_count="79">
+<div id="e3c42939-c407-46e2-9f66-dc59bf1b3bc0" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>model6 <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>optimizer6 <span class="op">=</span> torch.optim.Adam(model6.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -2927,7 +3017,7 @@ Args:
 <pre><code>100%|██████████| 10/10 [00:49&lt;00:00,  4.97s/it]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="80">
+<div id="f7b50691-6169-4d06-b6b5-b0427df95074" class="cell" data-tags="[]" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>model6.<span class="bu">eval</span>()</span>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -2946,13 +3036,13 @@ Args:
 <pre><code>MSE: 1.0098</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="81">
+<div id="37e48ee0-2ef6-4281-be7f-01de798bff75" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="82">
+<div id="16f3ac24-7be8-40ec-aeec-4e66dfe8bba3" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="83">
+<div id="e44599c3-822a-4adb-b0f5-bba5afb199d7" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -2984,7 +3074,7 @@ Args:
 </section>
 <section id="monte-nodes-4-filters" class="level3">
 <h3 class="anchored" data-anchor-id="monte-nodes-4-filters">Monte Nodes = 4, Filters =</h3>
-<div class="cell" data-execution_count="84">
+<div id="1befeee5-0929-4ad3-bdab-c9bc41a8476f" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>model10 <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>optimizer10 <span class="op">=</span> torch.optim.Adam(model10.parameters(), lr<span class="op">=</span><span class="fl">0.01</span>)</span>
@@ -3008,7 +3098,7 @@ Args:
 <pre><code>100%|██████████| 200/200 [01:38&lt;00:00,  2.04it/s]</code></pre>
 </div>
 </div>
-<div class="cell" data-tags="[]" data-execution_count="85">
+<div id="947d7cc9-cd58-4238-bb3b-a594b244cfe7" class="cell" data-tags="[]" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>model10.<span class="bu">eval</span>()</span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>_a<span class="op">=</span>[]</span>
@@ -3027,12 +3117,12 @@ Args:
 <pre><code>MSE: 0.9850</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="86">
+<div id="c4680c96-61fb-4b77-9c01-bd575a9ed6a7" class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>_e <span class="op">=</span> [_d[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_d))]</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>_c <span class="op">=</span> [_a1[i].detach() <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(_a1))]</span></code></pre></div>
 </div>
-<div class="cell" data-execution_count="87">
+<div id="0bc97698-2b5e-4f6a-8aa3-3a92de466f21" class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>fig, (( ax1,ax2),(ax3,ax4),(ax5,ax6)) <span class="op">=</span> plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">30</span>,<span class="dv">20</span>))</span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'train node1'</span>)</span>
@@ -3094,10 +3184,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3107,8 +3196,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3123,6 +3221,195 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -3165,6 +3452,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
+
 
 
 

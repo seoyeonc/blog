@@ -708,12 +708,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-08-10-CAM_down.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">CAM_downsize</span></a>
-  </div>
-</li>
       </ul>
   </li>
       </ul>
@@ -748,7 +742,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   <li><a href="#데이터-시도-2-stock" id="toc-데이터-시도-2-stock" class="nav-link" data-scroll-target="#데이터-시도-2-stock">데이터 시도 2 Stock</a></li>
-  <li><a href="#lsp" id="toc-lsp" class="nav-link" data-scroll-target="#lsp">LSP</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-08-01-llama2.out.ipynb" download="2023-08-01-llama2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
@@ -1660,27 +1653,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div id="43e955e2-ffaf-4a90-b49e-8b3daad35684" class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">"table-question-answering"</span>`</span></code></pre></div>
 </div>
-</section>
-<section id="lsp" class="level1">
-<h1>LSP</h1>
-<div id="891e20a1-5d67-4141-bfbf-3d389b8a6e27" class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install deeplake</span></code></pre></div>
-</div>
-<div id="b27cd048-068a-4e3a-8b00-2895b574cb15" class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> deeplake</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>ModuleNotFoundError: No module named 'deeplake'</code></pre>
-</div>
-</div>
-<div id="24033625-65e8-45c2-b3f5-49fb699571e6" class="cell" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pipinstall deeplake</span></code></pre></div>
-</div>
-<div id="d86d4ce4-44ca-42f6-aadd-379e4f6f3a78" class="cell" data-execution_count="92">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> deeplake.load(<span class="st">"hub://activeloop/lsp-train"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>ModuleNotFoundError: No module named 'deeplake'</code></pre>
-</div>
-</div>
+<p>https://huggingface.co/docs/transformers/main/tasks/zero_shot_object_detection</p>
 
 
 </section>

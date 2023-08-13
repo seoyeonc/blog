@@ -742,6 +742,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul></li>
   <li><a href="#데이터-시도-2-stock" id="toc-데이터-시도-2-stock" class="nav-link" data-scroll-target="#데이터-시도-2-stock">데이터 시도 2 Stock</a></li>
+  <li><a href="#zeroshot-object-detection" id="toc-zeroshot-object-detection" class="nav-link" data-scroll-target="#zeroshot-object-detection">zeroshot object detection</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-08-01-llama2.out.ipynb" download="2023-08-01-llama2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
@@ -1653,7 +1654,274 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div id="43e955e2-ffaf-4a90-b49e-8b3daad35684" class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">"table-question-answering"</span>`</span></code></pre></div>
 </div>
+</section>
+<section id="zeroshot-object-detection" class="level1">
+<h1>zeroshot object detection</h1>
 <p>https://huggingface.co/docs/transformers/main/tasks/zero_shot_object_detection</p>
+<div id="1aff9f33-0df6-48b2-987a-f7920398c8e7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span></code></pre></div>
+</div>
+<div id="6dd911c1-f9a7-43e1-9718-a5352b82d61f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+</div>
+<div id="6d5cc1a7-e77d-4cfb-982b-a5cbb6f930c2" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoProcessor, AutoModelForZeroShotObjectDetection, OwlViTForObjectDetection</span></code></pre></div>
+</div>
+<div id="f5754bdb-3531-4144-bd0c-8d26e30082e0" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> ImageDraw</span></code></pre></div>
+</div>
+<div id="e7ab6065-7b8d-4787-b188-87f9a481e4fc" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>checkpoint <span class="op">=</span> <span class="st">"google/owlvit-base-patch32"</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># detector = pipeline(model=checkpoint, task="zero-shot-object-detection")</span></span></code></pre></div>
+</div>
+<div id="5ec8e96d-9d68-4021-9d33-dd5f8778e859" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://purrfectlove.net/wp-content/uploads/2015/06/catfamily.jpg"</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>image_target <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span></code></pre></div>
+</div>
+<div id="b91faa77-0c84-49b3-a6ce-75e63507a956" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForZeroShotObjectDetection.from_pretrained(checkpoint)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(checkpoint)</span></code></pre></div>
+</div>
+<div id="75ac14b9-fb01-49bd-ac37-e2a1df63d4d1" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image_target, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span></code></pre></div>
+</div>
+<div id="0f3ad416-14d9-467d-8523-e85824e1463f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image_target)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb5da934130&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-53-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="f5e176dc-3c75-485b-beca-c1ad7ba40c6d" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import requests</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from PIL import Image</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from transformers import AutoProcessor, OwlViTForObjectDetection</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="co"># url = "http://images.cocodataset.org/val2017/000000039769.jpg"</span></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a><span class="co"># image = Image.open(requests.get(url, stream=True).raw)</span></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="co"># query_url = "http://images.cocodataset.org/val2017/000000001675.jpg"</span></span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="co"># query_image = Image.open(requests.get(query_url, stream=True).raw)</span></span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://purrfectlove.net/wp-content/uploads/2015/06/catfamily.jpg"</span></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb75-28"><a href="#cb75-28" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb75-29"><a href="#cb75-29" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb75-30"><a href="#cb75-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb75-31"><a href="#cb75-31" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb75-32"><a href="#cb75-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb75-33"><a href="#cb75-33" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb75-34"><a href="#cb75-34" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb75-35"><a href="#cb75-35" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 1.0 at location [1096.79, 243.55, 1395.3, 982.55]
+Detected similar object with confidence 0.973 at location [155.07, 352.33, 505.55, 1010.84]
+Detected similar object with confidence 0.969 at location [784.87, 241.73, 1126.22, 1015.0]
+Detected similar object with confidence 0.959 at location [491.3, 292.01, 808.72, 978.77]
+Detected similar object with confidence 0.928 at location [1354.21, 385.72, 1749.25, 990.72]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-54-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="37a84ffa-ac52-45ea-9c5e-fc696d7dc049" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.padoniavets.com/sites/default/files/field/image/cats-and-dogs.jpg"</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 1.0 at location [324.86, 32.75, 557.97, 400.45]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-55-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="8ec5c65c-3d75-48a9-9857-37f959e259b6" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.padoniavets.com/sites/default/files/field/image/cats-and-dogs.jpg"</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image)</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb5df82fe20&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-56-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="ca364757-b196-44a2-9c4a-40b6362299ca" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import requests</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from PIL import Image</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from transformers import AutoProcessor, OwlViTForObjectDetection</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.slashfilm.com/img/gallery/15-bobs-burgers-side-characters-we-wish-got-more-screen-time/intro-1651259001.jpg"</span></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://tv-fanatic-res.cloudinary.com/iu/s--RbJisLOT--/t_full/cs_srgb,f_auto,fl_strip_profile.lossy,q_auto:420/v1604856710/louise-belcher-bobs-burgers-season-11-episode-5.jpg"</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb81-17"><a href="#cb81-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb81-18"><a href="#cb81-18" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb81-19"><a href="#cb81-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb81-20"><a href="#cb81-20" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb81-21"><a href="#cb81-21" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb81-22"><a href="#cb81-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-23"><a href="#cb81-23" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb81-24"><a href="#cb81-24" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb81-25"><a href="#cb81-25" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb81-26"><a href="#cb81-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb81-27"><a href="#cb81-27" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb81-28"><a href="#cb81-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb81-29"><a href="#cb81-29" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb81-30"><a href="#cb81-30" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb81-31"><a href="#cb81-31" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 1.0 at location [5.22, -1.8, 781.85, 429.02]
+Detected similar object with confidence 0.707 at location [0.86, -10.11, 246.1, 407.63]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-57-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="8b20473a-7611-4ffd-ad29-53255c5e05c8" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.slashfilm.com/img/gallery/15-bobs-burgers-side-characters-we-wish-got-more-screen-time/intro-1651259001.jpg"</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://tv-fanatic-res.cloudinary.com/iu/s--RbJisLOT--/t_full/cs_srgb,f_auto,fl_strip_profile.lossy,q_auto:420/v1604856710/louise-belcher-bobs-burgers-season-11-episode-5.jpg"</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image)</span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb48fd2e1f0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-58-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="1d6659a5-071d-43c1-b267-2d8b65ad937d" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import requests</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from PIL import Image</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from transformers import AutoProcessor, OwlViTForObjectDetection</span></span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb85-7"><a href="#cb85-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb85-8"><a href="#cb85-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://ichef.bbci.co.uk/images/ic/1200x675/p0915n36.jpg"</span></span>
+<span id="cb85-9"><a href="#cb85-9" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb85-10"><a href="#cb85-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-11"><a href="#cb85-11" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://api.duniagames.co.id/api/content/upload/file/21004195461626436486.jpg"</span></span>
+<span id="cb85-12"><a href="#cb85-12" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb85-13"><a href="#cb85-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-14"><a href="#cb85-14" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb85-15"><a href="#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb85-16"><a href="#cb85-16" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb85-17"><a href="#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb85-18"><a href="#cb85-18" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb85-19"><a href="#cb85-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb85-20"><a href="#cb85-20" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb85-21"><a href="#cb85-21" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb85-22"><a href="#cb85-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb85-23"><a href="#cb85-23" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb85-24"><a href="#cb85-24" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb85-25"><a href="#cb85-25" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb85-26"><a href="#cb85-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb85-27"><a href="#cb85-27" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb85-28"><a href="#cb85-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb85-29"><a href="#cb85-29" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb85-30"><a href="#cb85-30" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb85-31"><a href="#cb85-31" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 0.73 at location [-0.29, 307.27, 168.46, 519.25]
+Detected similar object with confidence 0.797 at location [488.69, 145.39, 947.84, 667.11]
+Detected similar object with confidence 1.0 at location [59.98, 394.1, 452.6, 669.63]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-59-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="dbb7135d-b9c6-4322-aa5a-141e1d77427b" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://ichef.bbci.co.uk/images/ic/1200x675/p0915n36.jpg"</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://api.duniagames.co.id/api/content/upload/file/21004195461626436486.jpg"</span></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image)</span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb4b1b9d880&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-01-llama2_files/figure-html/cell-60-output-2.png" class="img-fluid"></p>
+</div>
+</div>
 
 
 </section>

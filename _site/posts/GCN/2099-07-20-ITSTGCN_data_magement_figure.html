@@ -937,7 +937,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="fivenode" class="level1">
 <h1>fivenode</h1>
-<div id="6c00aa3b-8ffe-4917-bc7b-c6656fdf5fab" class="cell" data-execution_count="5">
+<div id="c951360d-e172-4e48-99a5-45f3f9e72b99" class="cell" data-execution_count="185">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fivenodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">rbind</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span>  <span class="sc">&amp;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
@@ -956,54 +956,64 @@ The following objects are masked from ‘package:base’:
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span> </span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))))</span></code></pre></div>
-</div>
-<div id="95481345-42be-455e-99a2-5b5203249c2b" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fivenodes<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(fivenodes<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fivenodes<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(fivenodes<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))))</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>fivenodes<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(fivenodes<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>fivenodes<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(fivenodes<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <section id="후보-1" class="level2">
 <h2 class="anchored" data-anchor-id="후보-1">후보 1</h2>
 <div id="2fad16d3-31ac-489a-a267-8238b17076eb" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.png")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.png")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="후보-2" class="level2">
 <h2 class="anchored" data-anchor-id="후보-2">후보 2</h2>
 <div id="fdb73c42-4885-4d27-8578-1b283d8f6b26" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>() </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.png")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>() </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.png")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="후보-3" class="level2">
 <h2 class="anchored" data-anchor-id="후보-3">후보 3</h2>
 <div id="add1aaf6-6cb6-4738-b57e-ac8c230855f8" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> mrate)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">'grey'</span>, <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'darkblue'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>,) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.pdf")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> mrate)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">'grey'</span>, <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'darkblue'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>,) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="후보-4" class="level2">
 <h2 class="anchored" data-anchor-id="후보-4">후보 4</h2>
-<div id="16730cb0-cf60-45f8-8451-eb7d0eb34818" class="cell" data-execution_count="10">
+<div id="16730cb0-cf60-45f8-8451-eb7d0eb34818" class="cell" data-execution_count="186">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">" "</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_fivenodes.pdf")</span></span></code></pre></div>
+</div>
+<div id="5fb26602-b2e2-4409-99f5-e80cde30ca2a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fivenodes, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
@@ -1021,7 +1031,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="chickenpoxdatasetloaderlags4" class="level1">
 <h1>ChickenpoxDatasetLoader(lags=4)</h1>
-<div id="3b37b26f-88c3-480e-8338-912e76149e40" class="cell" data-execution_count="11">
+<div id="c6bd0d20-2cfb-412a-bddf-2fd3f09bbe27" class="cell" data-execution_count="187">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chickenpox <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'chickenpox'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">16</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span>  <span class="sc">&amp;</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
@@ -1040,40 +1050,50 @@ The following objects are masked from ‘package:base’:
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span><span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'chickenpox'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span>  <span class="sc">&amp;</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span><span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'chickenpox'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">16</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span>  <span class="sc">&amp;</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span></code></pre></div>
-</div>
-<div id="a8bdb50b-24a1-4de4-a458-63873179b523" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chickenpox<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(chickenpox<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>chickenpox<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(chickenpox<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>chickenpox<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(chickenpox<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>chickenpox<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(chickenpox<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <div id="cceb131d-ddaf-4792-bf89-4270f69862f3" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="10cb511e-9cd8-4269-88f6-2902257f5b1d" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="10cb511e-9cd8-4269-88f6-2902257f5b1d" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div id="0f8ddb61-8c9e-4815-a298-5342fbb5affd" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_chickenpox.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="0f8ddb61-8c9e-4815-a298-5342fbb5affd" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_chickenpox.pdf")</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<div id="cce8e4e0-8329-41d9-8479-2364feb384ad" class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>p2<span class="ot">=</span> <span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">''</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">" "</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_chickenpox.pdf")</span></span></code></pre></div>
 </div>
-</div>
-<div id="cce8e4e0-8329-41d9-8479-2364feb384ad" class="cell" data-execution_count="16">
+<div id="cd4b66c7-2708-4d68-989d-7636561aae33" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(chickenpox, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
@@ -1090,7 +1110,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="pedalmedatasetloader-lags4" class="level1">
 <h1>PedalMeDatasetLoader (lags=4)</h1>
-<div id="b1ff9502-bee4-4cf1-a98c-f970c116a6b5" class="cell" data-execution_count="17">
+<div id="62b4523c-3cd3-4578-8567-7017e8f7174d" class="cell" data-execution_count="189">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pedalme <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'pedalme'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span> <span class="sc">&amp;</span> </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
@@ -1109,40 +1129,50 @@ The following objects are masked from ‘package:base’:
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'pedalme'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span></span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'pedalme'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span></code></pre></div>
-</div>
-<div id="38e98168-c169-4b81-b6fc-98457bc31e44" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pedalme<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(pedalme<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pedalme<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(pedalme<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>pedalme<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(pedalme<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>pedalme<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(pedalme<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <div id="4d6880ae-e4cb-490b-ae81-90effb1adc02" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> mse,<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="b2022cc1-58b1-40b2-b49c-2bada6b11397" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="b2022cc1-58b1-40b2-b49c-2bada6b11397" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div id="5a84db27-fa5b-48d2-8190-3254b1dd4790" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_pedalme.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="5a84db27-fa5b-48d2-8190-3254b1dd4790" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_pedalme.pdf")</span></span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+<div id="a73fe2e0-0726-4d86-824b-18961cd1b6a3" class="cell" data-execution_count="190">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">''</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_pedalme.pdf")</span></span></code></pre></div>
 </div>
-</div>
-<div id="a73fe2e0-0726-4d86-824b-18961cd1b6a3" class="cell" data-execution_count="22">
+<div id="f0411f80-8f6a-4f87-8e6e-fe8657a25b2b" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pedalme, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
@@ -1159,7 +1189,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="wikimathsdatasetloader-lags8" class="level1">
 <h1>WikiMathsDatasetLoader (lags=8)</h1>
-<div id="abeeebdc-8b80-49d3-9794-3ace920aaa4b" class="cell" data-execution_count="23">
+<div id="94c41e47-bc76-477d-b195-15e4cf625ebf" class="cell" data-execution_count="191">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wikimath <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'wikimath'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span> <span class="sc">&amp;</span> </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
@@ -1178,26 +1208,36 @@ The following objects are masked from ‘package:base’:
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'wikimath'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span></span>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
 <span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'wikimath'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span></code></pre></div>
-</div>
-<div id="b7346806-c2c3-4042-a881-39cd0d16db4f" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>wikimath<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(wikimath<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>wikimath<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(wikimath<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>wikimath<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(wikimath<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>wikimath<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(wikimath<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <div id="553a2288-96c5-47c6-aaab-5e15237add50" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wikimath, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_wikimath.pdf")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wikimath, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_wikimath.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="8cf428c0-3d4c-4377-85b7-a105f4850ea0" class="cell" data-execution_count="26">
+<div id="8cf428c0-3d4c-4377-85b7-a105f4850ea0" class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">=</span> <span class="fu">ggplot</span>(wikimath, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">''</span>) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_wikimath.pdf")</span></span></code></pre></div>
+</div>
+<div id="50751734-00bb-484f-a589-91b9799f5777" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wikimath, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
@@ -1214,7 +1254,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="windmillsmalllags8" class="level1">
 <h1>Windmillsmall(lags=8)</h1>
-<div id="5cb5fec0-fba1-49e2-b36c-55518629e271" class="cell" data-execution_count="27">
+<div id="beae41ce-b746-4305-9f90-aab1097c91f3" class="cell" data-execution_count="193">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>windmillsmall <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'windmillsmall'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span> <span class="sc">&amp;</span> </span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.7</span>)),</span>
@@ -1233,26 +1273,36 @@ The following objects are masked from ‘package:base’:
 <span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'windmillsmall'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span></span>
 <span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.7</span>)),</span>
 <span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'windmillsmall'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.7</span>)))</span></code></pre></div>
-</div>
-<div id="6d4ad17d-01a4-4c5d-b6d8-25a7d8f8a821" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>windmillsmall<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(windmillsmall<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>windmillsmall<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(windmillsmall<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.7</span>)))</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>windmillsmall<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(windmillsmall<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>windmillsmall<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(windmillsmall<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <div id="fa78e1cc-b7c1-46c1-b6a1-f4fed7f7d2bc" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(windmillsmall, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_windmill.pdf")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(windmillsmall, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_windmill.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-30-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="4ce00377-09b3-4f59-9bc8-38e006c8d97c" class="cell" data-execution_count="30">
+<div id="4ce00377-09b3-4f59-9bc8-38e006c8d97c" class="cell" data-execution_count="194">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">=</span> <span class="fu">ggplot</span>(windmillsmall, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">''</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_windmill.pdf")</span></span></code></pre></div>
+</div>
+<div id="5c378611-736d-461f-b28d-d464a0df9c2d" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(windmillsmall, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
@@ -1269,7 +1319,7 @@ The following objects are masked from ‘package:base’:
 </section>
 <section id="montevideobus-lags4" class="level1">
 <h1>Montevideobus (lags=4)</h1>
-<div id="3a6cced9-0fcb-4e4f-a1e1-92165d3b4404" class="cell" data-execution_count="31">
+<div id="d814c520-ffdc-4219-b42d-caa669702837" class="cell" data-execution_count="195">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>monte <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'monte'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'nearest'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span> <span class="sc">&amp;</span> </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.7</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
@@ -1288,31 +1338,41 @@ The following objects are masked from ‘package:base’:
 <span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'monte'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'nearest'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">8</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span></span>
 <span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.7</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
 <span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'monte'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'nearest'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.7</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span></code></pre></div>
-</div>
-<div id="9e653604-6147-45c4-bb51-0add94542935" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>monte<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(monte<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>monte<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(monte<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.7</span> <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)))</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>monte<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(monte<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"GConvGRU"</span>,<span class="st">"GConvLSTM"</span>,<span class="st">"GCLSTM"</span>,<span class="st">"LRGCN"</span>,<span class="st">"DyGrEncoder"</span>,<span class="st">"EvolveGCNH"</span>,<span class="st">"EvolveGCNO"</span>,<span class="st">"TGCN"</span>,<span class="st">"DCRNN"</span>))</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>monte<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(monte<span class="sc">$</span>method, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'STGCN'</span>,<span class="st">'IT-STGCN'</span>))</span></code></pre></div>
 </div>
 <div id="c8fa0df6-4602-4661-b873-fb9a50f2888e" class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(monte, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>)<span class="sc">+</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_monte.pdf")</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(monte, <span class="fu">aes</span>(<span class="at">x=</span>mrate,<span class="at">y=</span> <span class="fu">log10</span>(mse),<span class="at">group=</span>mrate)) <span class="sc">+</span> <span class="fu">facet_wrap</span>(model<span class="sc">~</span>method,<span class="at">ncol=</span><span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">'grey'</span>,<span class="at">color=</span><span class="st">'black'</span>,<span class="at">width=</span><span class="fl">0.7</span>,<span class="at">outlier.color =</span> <span class="st">'darkblue'</span>,<span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(model <span class="sc">~</span> method, <span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Missing Rate"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"MSE(log scale)"</span>)<span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>,<span class="st">''</span>))</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_monte.pdf")</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="e3263a04-3d05-44d0-be6a-1b3afe74477d" class="cell" data-execution_count="34">
+<div id="e3263a04-3d05-44d0-be6a-1b3afe74477d" class="cell" data-execution_count="196">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">=</span> <span class="fu">ggplot</span>(monte, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">'bottom'</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_list_monte.pdf")</span></span></code></pre></div>
+</div>
+<div id="f5eb96fb-6ff2-400b-b8fd-03f2906c3269" class="cell" data-execution_count="183">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(monte, <span class="fu">aes</span>(<span class="at">x =</span> mrate, <span class="at">y =</span> <span class="fu">log10</span>(mse), <span class="at">group =</span> <span class="fu">interaction</span>(mrate, method))) <span class="sc">+</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> method), <span class="at">color =</span> <span class="st">'black'</span>, <span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">outlier.color =</span> <span class="st">'black'</span>, <span class="at">outlier.shape =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"pink"</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'Classic'</span>, <span class="st">'Proposed'</span>)) <span class="sc">+</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_blank</span>(), <span class="at">strip.placement =</span> <span class="st">"outside"</span>, <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">'bottom'</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend.position =</span> <span class="st">''</span>) <span class="sc">+</span></span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Missing Rate"</span>, <span class="at">y =</span> <span class="st">"MSE(log scale)"</span>, <span class="at">fill =</span> <span class="st">""</span>) <span class="sc">+</span></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>)) <span class="sc">+</span></span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span>
@@ -1322,44 +1382,912 @@ The following objects are masked from ‘package:base’:
 </div>
 </div>
 </section>
-<section id="ggplot3" class="level1">
+<section id="ggplot3" class="level1 page-columns page-full">
 <h1>ggplot3</h1>
-<div id="a04b62a9-90ad-49c7-966a-315d990ce3db" class="cell">
+<div id="a04b62a9-90ad-49c7-966a-315d990ce3db" class="cell" data-execution_count="236">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">'ggplot3.R'</span>)</span></code></pre></div>
 </div>
-<div id="2ef7a383-cb2f-4bc4-acec-e4d2e31368ca" class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">boxplot</span>(<span class="at">col=</span><span class="st">'steelblue'</span>,<span class="at">x=</span><span class="st">'classic'</span>,df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> method<span class="sc">==</span><span class="st">'STGCN'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span>  <span class="sc">&amp;</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="st">'mse'</span>),<span class="at">label =</span> <span class="st">'classic'</span>) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">boxplot</span>(<span class="at">col=</span><span class="st">'coral'</span>,<span class="at">x=</span><span class="st">'proposed'</span>,df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> method<span class="sc">==</span><span class="st">'IT-STGCN'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span>  <span class="sc">&amp;</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="st">'mse'</span>),<span class="at">label=</span><span class="st">'proposed'</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">boxplot</span>(<span class="at">col=</span><span class="st">'steelblue'</span>,<span class="at">x=</span><span class="st">'classic'</span>,df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> method<span class="sc">==</span><span class="st">'STGCN'</span><span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvLSTM'</span> <span class="sc">&amp;</span> </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="st">'mse'</span>),<span class="at">label =</span> <span class="st">'classic'</span>) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">boxplot</span>(<span class="at">col=</span><span class="st">'coral'</span>,<span class="at">x=</span><span class="st">'proposed'</span>,df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> method<span class="sc">==</span><span class="st">'IT-STGCN'</span><span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvLSTM'</span> <span class="sc">&amp;</span> </span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))<span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="st">'mse'</span>),<span class="at">label=</span><span class="st">'proposed'</span>)</span></code></pre></div>
+<div id="47b9f7e5-f393-4a5e-a01f-e2a546fea326" class="cell" data-execution_count="198">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">figsize</span>(<span class="dv">20</span>,<span class="dv">20</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>(p1<span class="sc">|</span>p2)<span class="sc">/</span>(p3<span class="sc">|</span>p4)<span class="sc">/</span>(p5<span class="sc">|</span>p6)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ggsave("random_mrate.pdf",width = 20,height = 20)</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2099-07-20-ITSTGCN_data_magement_figure_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
 </div>
-<div id="8de9f409-18e6-4658-a88d-7eb73128fa00" class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
 </div>
-<div id="5c2c2678-9297-45aa-9fe4-409741ccd564" class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fivenodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">rbind</span>(</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvGRU'</span>  <span class="sc">&amp;</span> </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GConvLSTM'</span> <span class="sc">&amp;</span> </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'GCLSTM'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">4</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'LRGCN'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DyGrEncoder'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'EvolveGCNH'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'EvolveGCNO'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">12</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'TGCN'</span> <span class="sc">&amp;</span> </span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>)),</span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dataset<span class="sc">==</span><span class="st">'fivenodes'</span> <span class="sc">&amp;</span> mtype<span class="sc">==</span><span class="st">'rand'</span> <span class="sc">&amp;</span> inter_method <span class="sc">==</span> <span class="st">'linear'</span> <span class="sc">&amp;</span> nof_filters<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> lags<span class="sc">==</span><span class="dv">2</span> <span class="sc">&amp;</span> epoch<span class="sc">==</span><span class="dv">50</span> <span class="sc">&amp;</span> model<span class="sc">==</span><span class="st">'DCRNN'</span> <span class="sc">&amp;</span></span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>                  ( mrate <span class="sc">==</span> <span class="fl">0.3</span>  <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.5</span>  <span class="sc">|</span>mrate <span class="sc">==</span>  <span class="fl">0.6</span> <span class="sc">|</span> mrate <span class="sc">==</span> <span class="fl">0.7</span>  <span class="sc">|</span> mrate <span class="sc">==</span>  <span class="fl">0.8</span>))))</span></code></pre></div>
+<div id="a048395a-76af-492a-a3a3-58f9e9bd44c0" class="cell page-columns page-full" data-execution_count="254">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>fivenodes</span></code></pre></div>
+<div class="cell-output cell-output-display page-columns page-full">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true">
+
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" scope="col">X</th>
+<th data-quarto-table-cell-role="th" scope="col">dataset</th>
+<th data-quarto-table-cell-role="th" scope="col">method</th>
+<th data-quarto-table-cell-role="th" scope="col">mrate</th>
+<th data-quarto-table-cell-role="th" scope="col">mtype</th>
+<th data-quarto-table-cell-role="th" scope="col">lags</th>
+<th data-quarto-table-cell-role="th" scope="col">nof_filters</th>
+<th data-quarto-table-cell-role="th" scope="col">inter_method</th>
+<th data-quarto-table-cell-role="th" scope="col">epoch</th>
+<th data-quarto-table-cell-role="th" scope="col">mse</th>
+<th data-quarto-table-cell-role="th" scope="col">calculation_time</th>
+<th data-quarto-table-cell-role="th" scope="col">model</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;fct&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;int&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;chr&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;dbl&gt;</th>
+<th data-quarto-table-cell-role="th" scope="col">&lt;fct&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.892262</td>
+<td>81.97655</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.072818</td>
+<td>103.64874</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.244197</td>
+<td>123.85583</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.428064</td>
+<td>116.14180</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.699677</td>
+<td>99.00136</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.333100</td>
+<td>98.85933</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.267609</td>
+<td>114.73862</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.424445</td>
+<td>113.63355</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>26</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.868236</td>
+<td>114.07605</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.389049</td>
+<td>99.55423</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>32</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.103083</td>
+<td>122.35968</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>34</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.337490</td>
+<td>140.39959</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>38</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.816421</td>
+<td>115.28978</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.235262</td>
+<td>122.47946</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>44</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.159646</td>
+<td>141.34393</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>46</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.301588</td>
+<td>147.76632</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>50</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.931288</td>
+<td>119.68102</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.349104</td>
+<td>119.17171</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>56</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.195797</td>
+<td>135.26314</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.403969</td>
+<td>137.56146</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>62</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.877509</td>
+<td>114.22763</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.517601</td>
+<td>116.79539</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>68</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.196040</td>
+<td>137.43869</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.285712</td>
+<td>139.89288</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>74</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.614468</td>
+<td>120.67241</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.149269</td>
+<td>119.84526</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.147181</td>
+<td>136.44781</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>82</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.276231</td>
+<td>135.66005</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>86</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>1.765978</td>
+<td>115.49126</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="even">
+<td>88</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.8</td>
+<td>rand</td>
+<td>2</td>
+<td>12</td>
+<td>linear</td>
+<td>50</td>
+<td>2.442478</td>
+<td>116.26185</td>
+<td>GConvGRU</td>
+</tr>
+<tr class="odd">
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+<td>⋮</td>
+</tr>
+<tr class="even">
+<td>9760</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.215530</td>
+<td>21.37621</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9762</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.206242</td>
+<td>35.11960</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9764</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.234817</td>
+<td>21.35544</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9766</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.199285</td>
+<td>19.50826</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9768</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.268049</td>
+<td>16.97555</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9770</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.199859</td>
+<td>18.76043</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9772</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.276552</td>
+<td>15.83787</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9774</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.208091</td>
+<td>17.71081</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9776</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.273245</td>
+<td>19.52254</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9778</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.246838</td>
+<td>38.88582</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9780</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.280940</td>
+<td>21.22349</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9782</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.223870</td>
+<td>31.15116</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9784</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.320345</td>
+<td>21.75368</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9786</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.211209</td>
+<td>25.25301</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9788</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.315305</td>
+<td>21.44829</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9790</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.197776</td>
+<td>27.25900</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9792</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.267516</td>
+<td>20.36553</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9794</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.204517</td>
+<td>35.18677</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9796</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.239286</td>
+<td>21.63872</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9798</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.197067</td>
+<td>26.69481</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9800</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.201229</td>
+<td>14.04772</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9802</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.199647</td>
+<td>18.36858</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9804</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.201632</td>
+<td>14.90250</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9806</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.203077</td>
+<td>18.51829</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9808</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.338037</td>
+<td>20.13046</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9810</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.318265</td>
+<td>25.98562</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9812</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.247469</td>
+<td>22.01481</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9814</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.251032</td>
+<td>33.56302</td>
+<td>DCRNN</td>
+</tr>
+<tr class="even">
+<td>9816</td>
+<td>fivenodes</td>
+<td>STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.285776</td>
+<td>21.56314</td>
+<td>DCRNN</td>
+</tr>
+<tr class="odd">
+<td>9818</td>
+<td>fivenodes</td>
+<td>IT-STGCN</td>
+<td>0.6</td>
+<td>rand</td>
+<td>2</td>
+<td>2</td>
+<td>linear</td>
+<td>50</td>
+<td>1.196750</td>
+<td>29.83325</td>
+<td>DCRNN</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-table-caption margin-caption">A data.frame: 2700 × 12</div></div>
 </div>
 
 

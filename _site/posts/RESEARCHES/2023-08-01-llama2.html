@@ -743,6 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#데이터-시도-2-stock" id="toc-데이터-시도-2-stock" class="nav-link" data-scroll-target="#데이터-시도-2-stock">데이터 시도 2 Stock</a></li>
   <li><a href="#zeroshot-object-detection" id="toc-zeroshot-object-detection" class="nav-link" data-scroll-target="#zeroshot-object-detection">zeroshot object detection</a></li>
+  <li><a href="#summarization" id="toc-summarization" class="nav-link" data-scroll-target="#summarization">Summarization</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-08-01-llama2.out.ipynb" download="2023-08-01-llama2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
@@ -1920,6 +1921,55 @@ Detected similar object with confidence 1.0 at location [59.98, 394.1, 452.6, 66
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-08-01-llama2_files/figure-html/cell-60-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="summarization" class="level1">
+<h1>Summarization</h1>
+<div id="c8911e73-85fa-482f-9779-301cb9369947" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"summarize: The Inflation Reduction Act lowers prescription drug costs, health care costs, and energy costs. It's the most aggressive action on tackling the climate crisis in American history, which will lift up American workers and create good-paying, union jobs across the country. It'll lower the deficit and ask the ultra-wealthy and corporations to pay their fair share. And no one making under $400,000 per year will pay a penny more in taxes."</span></span></code></pre></div>
+</div>
+<div id="9943523b-1e7f-4bda-8a01-c80a3598fb4a" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">"stevhliu/my_awesome_billsum_model"</span>)</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(text, return_tensors<span class="op">=</span><span class="st">"pt"</span>).input_ids</span></code></pre></div>
+</div>
+<div id="a4a56dae-d5b6-4804-a378-0271e0ddb126" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForSeq2SeqLM</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForSeq2SeqLM.from_pretrained(<span class="st">"stevhliu/my_awesome_billsum_model"</span>)</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> model.generate(inputs, max_new_tokens<span class="op">=</span><span class="dv">100</span>, do_sample<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading (…)lve/main/config.json: 100%|██████████| 1.47k/1.47k [00:00&lt;00:00, 1.02MB/s]
+Downloading pytorch_model.bin: 100%|██████████| 242M/242M [00:02&lt;00:00, 103MB/s]  </code></pre>
+</div>
+</div>
+<div id="a9516c27-c19b-4197-be28-42e2aeda219a" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>tokenizer.decode(outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>"The Inflation Reduction Act lowers prescription drug costs, health care costs, and energy costs. It's the most aggressive action on tackling the climate crisis in American history. It'll ask the ultra-wealthy and corporations to pay their fair share."</code></pre>
+</div>
+</div>
+<div id="511412f3-d18f-4e71-8ce7-db43f573295b" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"CHICAGO -- Illinois Gov. J.B. Pritzker has signed a law banning firearms advertising that officials determine produces a public safety threat or appeals to children, militants or others who might later use the weapons illegally — opening the door for lawsuits against firearms manufacturers or distributors."</span></span></code></pre></div>
+</div>
+<div id="fabc479b-5394-45b3-8659-9b11f148a41a" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">"stevhliu/my_awesome_billsum_model"</span>)</span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(text, return_tensors<span class="op">=</span><span class="st">"pt"</span>).input_ids</span></code></pre></div>
+</div>
+<div id="de887472-46f7-43d6-864d-3ef045c3a351" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForSeq2SeqLM</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForSeq2SeqLM.from_pretrained(<span class="st">"stevhliu/my_awesome_billsum_model"</span>)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> model.generate(inputs, max_new_tokens<span class="op">=</span><span class="dv">100</span>, do_sample<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+</div>
+<div id="c04fb959-626a-4d37-b2af-1b0ac30502e9" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>tokenizer.decode(outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>'-- Illinois Gov. J.B. Pritzker has signed a law banning firearms advertising that officials determine produces a public safety threat or appeals to children, militants or others who might later use the weapons illegally — opening the door for lawsuits against firearms manufacturers or distributors.'</code></pre>
 </div>
 </div>
 

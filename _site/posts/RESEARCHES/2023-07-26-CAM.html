@@ -1109,10 +1109,10 @@ weighted avg       0.98      0.98      0.98      1478
 </section>
 <section id="랜덤박스" class="level3">
 <h3 class="anchored" data-anchor-id="랜덤박스">랜덤박스</h3>
-<div id="e24b8730-5756-4b4e-8229-711946aa10cf" class="cell" data-execution_count="66">
+<div id="e24b8730-5756-4b4e-8229-711946aa10cf" class="cell" data-execution_count="377">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># os.mkdir("random_pet")</span></span></code></pre></div>
 </div>
-<div id="e2caed24-f705-4270-b5d0-fb8cd7f138a7" class="cell" data-execution_count="67">
+<div id="e2caed24-f705-4270-b5d0-fb8cd7f138a7" class="cell" data-execution_count="378">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(path.ls())) :</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> PILImage.create(get_image_files(path)[i])</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> img.resize([<span class="dv">512</span>,<span class="dv">512</span>], resample<span class="op">=</span><span class="va">None</span>, box<span class="op">=</span><span class="va">None</span>, reducing_gap<span class="op">=</span><span class="va">None</span>)</span>
@@ -1134,18 +1134,58 @@ weighted avg       0.98      0.98      0.98      1478
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>        ImageDraw.Draw(img).text((a, b), <span class="st">'DOG'</span>, (<span class="dv">255</span>,<span class="dv">255</span>,<span class="dv">255</span>), font<span class="op">=</span>font)</span>
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        img.save(<span class="st">"random_pet/"</span><span class="op">+</span>name)</span></code></pre></div>
 </div>
-<div id="15145b1d-6a03-4135-a43f-9ea5e84a743b" class="cell" data-execution_count="353">
+<div id="15145b1d-6a03-4135-a43f-9ea5e84a743b" class="cell" data-execution_count="379">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>path_r<span class="op">=</span>Path(<span class="st">'random_pet'</span>)   <span class="co">#랜덤박스넣은사진</span></span></code></pre></div>
 </div>
-<div id="5b771802-8427-4348-ae25-b21d7e36aa58" class="cell" data-execution_count="354">
+<div id="5b771802-8427-4348-ae25-b21d7e36aa58" class="cell" data-execution_count="380">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>files<span class="op">=</span>get_image_files(path_r)</span></code></pre></div>
 </div>
-<div id="3513d4af-ceed-49e9-be0c-906febfb54fc" class="cell" data-execution_count="355">
+<div id="3513d4af-ceed-49e9-be0c-906febfb54fc" class="cell" data-execution_count="381">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dls_r<span class="op">=</span>ImageDataLoaders.from_name_func(path_r,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">512</span>)) </span></code></pre></div>
 </div>
 <div id="f1d5abe3-5edb-47ef-b211-398c9995962e" class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lrnr_r1<span class="op">=</span>cnn_learner(dls_r,resnet34,metrics<span class="op">=</span>error_rate)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lrnr_r1.fine_tune(<span class="dv">10</span>)</span></code></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lrnr_r1.fine_tune(<span class="dv">50</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.136262</td>
+<td>0.007657</td>
+<td>0.002706</td>
+<td>30:04</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1167,8 +1207,8 @@ weighted avg       0.98      0.98      0.98      1478
 <div class="cell-output cell-output-display">
 
     <div>
-      <progress value="0" class="" max="1" style="width:300px; height:20px; vertical-align: middle;"></progress>
-      0.00% [0/1 00:00&lt;?]
+      <progress value="3" class="" max="50" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      6.00% [3/50 2:09:36&lt;33:50:32]
     </div>
     
 
@@ -1183,13 +1223,34 @@ weighted avg       0.98      0.98      0.98      1478
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.004313</td>
+<td>0.000015</td>
+<td>0.000000</td>
+<td>38:24</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.000916</td>
+<td>0.000009</td>
+<td>0.000000</td>
+<td>44:21</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.000362</td>
+<td>0.000003</td>
+<td>0.000000</td>
+<td>46:49</td>
+</tr>
 </tbody>
 </table>
 <p>
 
     </p><div>
-      <progress value="3" class="" max="92" style="width:300px; height:20px; vertical-align: middle;"></progress>
-      3.26% [3/92 01:30&lt;44:47 1.1471]
+      <progress value="9" class="" max="92" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      9.78% [9/92 04:49&lt;44:27 0.0003]
     </div>
     
 </div>
@@ -1211,7 +1272,7 @@ weighted avg       0.98      0.98      0.98      1478
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2<span class="op">=</span>Learner(dls_r,net_r,metrics<span class="op">=</span>accuracy) </span></code></pre></div>
 </div>
 <div id="9091da62-09e0-4f8b-96d5-770306f3a816" class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2.fine_tune(<span class="dv">10</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2.fine_tune(<span class="dv">50</span>) </span></code></pre></div>
 </div>
 <div id="6dfbc071-ead2-4e57-802a-b9f79b082476" class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> ClassificationInterpretation.from_learner(lrnr_r2)</span>
@@ -1250,7 +1311,7 @@ weighted avg       0.98      0.98      0.98      1478
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>fig.set_figheight(<span class="dv">8</span>)</span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code></pre></div>
 </div>
-<div id="c826e674-b6f4-47d4-8734-595f33f7018c" class="cell">
+<div id="26811e29-03a4-40d8-98f2-6e2f243adc8b" class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
 </div>
 <div id="97e3b5d3-ea8a-4f4b-8d4b-4c6dc0bc65e9" class="cell" data-execution_count="171">

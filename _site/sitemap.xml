@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/RESEARCHES/2023-07-26-CAM.html</loc>
-    <lastmod>2023-08-18T08:13:56.846Z</lastmod>
+    <lastmod>2023-08-20T06:54:28.148Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/RESEARCHES/2023-07-08-stock_on_graph.html</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-05-31-Other Method.html</loc>
-    <lastmod>2023-08-18T08:15:47.000Z</lastmod>
+    <lastmod>2023-08-18T22:06:14.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-29-STGCN-tutorial.html</loc>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html</loc>
-    <lastmod>2023-08-18T08:15:48.000Z</lastmod>
+    <lastmod>2023-08-19T02:08:30.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html</loc>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html</loc>
-    <lastmod>2023-08-18T08:15:48.000Z</lastmod>
+    <lastmod>2023-08-19T02:08:27.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2022-12-28-gcn_simulation.html</loc>
@@ -226,7 +226,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-08-18T08:10:29.000Z</lastmod>
+    <lastmod>2023-08-18T21:45:21.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-04-questions of pytorch geometric temporal.html</loc>
@@ -258,7 +258,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html</loc>
-    <lastmod>2023-08-18T08:10:46.000Z</lastmod>
+    <lastmod>2023-08-18T21:45:54.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-03-20-data load, data save as pickle.html</loc>
@@ -282,7 +282,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html</loc>
-    <lastmod>2023-08-18T08:10:07.000Z</lastmod>
+    <lastmod>2023-08-18T21:45:38.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html</loc>
@@ -298,7 +298,7 @@
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html</loc>
-    <lastmod>2023-08-18T08:10:40.000Z</lastmod>
+    <lastmod>2023-08-18T21:45:49.000Z</lastmod>
   </url>
   <url>
     <loc>https://seoyeonc.github.io/blog/posts/FRAUD/2023-07-10-fraud_data.html</loc>

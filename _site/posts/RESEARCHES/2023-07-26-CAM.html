@@ -1134,18 +1134,18 @@ weighted avg       0.98      0.98      0.98      1478
 <span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>        ImageDraw.Draw(img).text((a, b), <span class="st">'DOG'</span>, (<span class="dv">255</span>,<span class="dv">255</span>,<span class="dv">255</span>), font<span class="op">=</span>font)</span>
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        img.save(<span class="st">"random_pet/"</span><span class="op">+</span>name)</span></code></pre></div>
 </div>
-<div id="15145b1d-6a03-4135-a43f-9ea5e84a743b" class="cell" data-execution_count="379">
+<div id="15145b1d-6a03-4135-a43f-9ea5e84a743b" class="cell" data-execution_count="408">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>path_r<span class="op">=</span>Path(<span class="st">'random_pet'</span>)   <span class="co">#랜덤박스넣은사진</span></span></code></pre></div>
 </div>
-<div id="5b771802-8427-4348-ae25-b21d7e36aa58" class="cell" data-execution_count="380">
+<div id="5b771802-8427-4348-ae25-b21d7e36aa58" class="cell" data-execution_count="409">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>files<span class="op">=</span>get_image_files(path_r)</span></code></pre></div>
 </div>
-<div id="3513d4af-ceed-49e9-be0c-906febfb54fc" class="cell" data-execution_count="381">
+<div id="3513d4af-ceed-49e9-be0c-906febfb54fc" class="cell" data-execution_count="410">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dls_r<span class="op">=</span>ImageDataLoaders.from_name_func(path_r,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">512</span>)) </span></code></pre></div>
 </div>
 <div id="f1d5abe3-5edb-47ef-b211-398c9995962e" class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lrnr_r1<span class="op">=</span>cnn_learner(dls_r,resnet34,metrics<span class="op">=</span>error_rate)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lrnr_r1.fine_tune(<span class="dv">50</span>)</span></code></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lrnr_r1.fine_tune(<span class="dv">10</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1178,10 +1178,10 @@ weighted avg       0.98      0.98      0.98      1478
 <tbody>
 <tr class="odd">
 <td>0</td>
-<td>0.136262</td>
-<td>0.007657</td>
-<td>0.002706</td>
-<td>30:04</td>
+<td>0.144889</td>
+<td>0.023095</td>
+<td>0.006766</td>
+<td>36:04</td>
 </tr>
 </tbody>
 </table>
@@ -1207,8 +1207,8 @@ weighted avg       0.98      0.98      0.98      1478
 <div class="cell-output cell-output-display">
 
     <div>
-      <progress value="3" class="" max="50" style="width:300px; height:20px; vertical-align: middle;"></progress>
-      6.00% [3/50 2:09:36&lt;33:50:32]
+      <progress value="0" class="" max="10" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      0.00% [0/10 00:00&lt;?]
     </div>
     
 
@@ -1223,34 +1223,13 @@ weighted avg       0.98      0.98      0.98      1478
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>0</td>
-<td>0.004313</td>
-<td>0.000015</td>
-<td>0.000000</td>
-<td>38:24</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>0.000916</td>
-<td>0.000009</td>
-<td>0.000000</td>
-<td>44:21</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>0.000362</td>
-<td>0.000003</td>
-<td>0.000000</td>
-<td>46:49</td>
-</tr>
 </tbody>
 </table>
 <p>
 
     </p><div>
-      <progress value="9" class="" max="92" style="width:300px; height:20px; vertical-align: middle;"></progress>
-      9.78% [9/92 04:49&lt;44:27 0.0003]
+      <progress value="5" class="" max="92" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      5.43% [5/92 02:12&lt;38:26 0.0568]
     </div>
     
 </div>
@@ -1272,7 +1251,7 @@ weighted avg       0.98      0.98      0.98      1478
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2<span class="op">=</span>Learner(dls_r,net_r,metrics<span class="op">=</span>accuracy) </span></code></pre></div>
 </div>
 <div id="9091da62-09e0-4f8b-96d5-770306f3a816" class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2.fine_tune(<span class="dv">50</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lrnr_r2.fine_tune(<span class="dv">10</span>) </span></code></pre></div>
 </div>
 <div id="6dfbc071-ead2-4e57-802a-b9f79b082476" class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> ClassificationInterpretation.from_learner(lrnr_r2)</span>

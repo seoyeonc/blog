@@ -550,6 +550,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-08-25-batch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Batch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
   </div>
@@ -686,12 +692,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/RESEARCHES/2023-07-20-LLM.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LLM</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
   </div>
@@ -705,6 +705,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
   </div>
 </li>
@@ -1011,7 +1017,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 
-<p>2830 rows × 10 columns</p>
+<p>2868 rows × 10 columns</p>
 </div>
 </div>
 </div>
@@ -1908,11 +1914,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>WikiMathsDatasetLoader (lags=8)</h1>
 <section id="baseline-3" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-3">Baseline</h2>
-<div id="f6c27c05-9c04-4430-8825-5e6036641655" class="cell" data-execution_count="502">
+<div id="f6c27c05-9c04-4430-8825-5e6036641655" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'lags'</span>,<span class="st">'nof_filters'</span>,<span class="st">'method'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="502">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
 
@@ -1953,11 +1959,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="random-3" class="level2">
 <h2 class="anchored" data-anchor-id="random-3">Random</h2>
-<div id="93355d49-98a5-4317-a23b-cab8ce09b74b" class="cell" data-execution_count="503">
+<div id="93355d49-98a5-4317-a23b-cab8ce09b74b" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="503">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
 
@@ -2046,11 +2052,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="block-3" class="level2">
 <h2 class="anchored" data-anchor-id="block-3">Block</h2>
-<div id="3a9cdb61-9ba7-454c-b31b-6c9066b83dc8" class="cell" data-execution_count="504">
+<div id="3a9cdb61-9ba7-454c-b31b-6c9066b83dc8" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='wikimath' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>})</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="504">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -2091,11 +2097,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="missing-values-on-the-same-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values-on-the-same-nodes">missing values on the same nodes</h2>
-<div id="c120c58a-e00a-4b4c-a43a-69b81d3fdca8" class="cell" data-execution_count="505">
+<div id="c120c58a-e00a-4b4c-a43a-69b81d3fdca8" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        data_wiki_GSO.groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="505">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
 
@@ -2139,11 +2145,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>WindmillOutputSmallDatasetLoader (lags=8)</h1>
 <section id="baseline-4" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-4">Baseline</h2>
-<div id="49b9fab5-a442-4d99-808f-8f9bfa70e094" class="cell" data-execution_count="578">
+<div id="49b9fab5-a442-4d99-808f-8f9bfa70e094" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mrate==0"</span>).groupby([<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="578">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -2162,15 +2168,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td data-quarto-table-cell-role="th">0</td>
 <td>8</td>
 <td>IT-STGCN</td>
-<td>0.989</td>
-<td>0.008</td>
+<td>0.988</td>
+<td>0.007</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>8</td>
 <td>STGCN</td>
-<td>0.988</td>
-<td>0.006</td>
+<td>0.989</td>
+<td>0.007</td>
 </tr>
 </tbody>
 </table>
@@ -2181,11 +2187,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="random-4" class="level2">
 <h2 class="anchored" data-anchor-id="random-4">Random</h2>
-<div id="8902439c-dd57-4b4a-9ee7-a4a6f834b748" class="cell" data-execution_count="579">
+<div id="8902439c-dd57-4b4a-9ee7-a4a6f834b748" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='rand'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="579">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div>
 
 
@@ -2226,11 +2232,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="block-4" class="level2">
 <h2 class="anchored" data-anchor-id="block-4">Block</h2>
-<div id="e6a097b4-c47c-48ff-92aa-fefa3472dba2" class="cell" data-execution_count="580">
+<div id="e6a097b4-c47c-48ff-92aa-fefa3472dba2" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].mean().reset_index(),</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>         data.query(<span class="st">"dataset=='windmillsmall' and mtype=='block'"</span>).groupby([<span class="st">'mrate'</span>,<span class="st">'lags'</span>,<span class="st">'method'</span>])[<span class="st">'mse'</span>].std().reset_index(),</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         on<span class="op">=</span>[<span class="st">'method'</span>,<span class="st">'mrate'</span>,<span class="st">'lags'</span>]).rename(columns<span class="op">=</span>{<span class="st">'mse_x'</span>:<span class="st">'mean'</span>,<span class="st">'mse_y'</span>:<span class="st">'std'</span>}).<span class="bu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="580">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
 
@@ -2260,7 +2266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>8</td>
 <td>STGCN</td>
 <td>0.985</td>
-<td>0.002</td>
+<td>0.003</td>
 </tr>
 </tbody>
 </table>

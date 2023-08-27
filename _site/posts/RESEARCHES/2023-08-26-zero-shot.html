@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.315">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-08-01">
+
+<title>Seoyeon’s Blog for study - [LLM]Transformer_META</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html"><strong>[LLM]</strong>Transformer_META</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-08-25-batch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Batch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-22-SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/Untitled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Untitled</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-26-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-01-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong>[LLM]</strong>Transformer_META</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  <li><a href="#zeroshot-object-detection" id="toc-zeroshot-object-detection" class="nav-link" data-scroll-target="#zeroshot-object-detection">zeroshot object detection</a></li>
+  <li><a href="#to-graph" id="toc-to-graph" class="nav-link" data-scroll-target="#to-graph">To graph</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-08-26-zero-shot.out.ipynb" download="2023-08-26-zero-shot.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html"><strong>[LLM]</strong>Transformer_META</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><strong>[LLM]</strong>Transformer_META</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<section id="import" class="level1">
+<h1>Import</h1>
+<div id="1aff9f33-0df6-48b2-987a-f7920398c8e7" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> skimage</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span></code></pre></div>
+</div>
+</section>
+<section id="zeroshot-object-detection" class="level1">
+<h1>zeroshot object detection</h1>
+<p>https://huggingface.co/docs/transformers/main/tasks/zero_shot_object_detection</p>
+<div id="6dd911c1-f9a7-43e1-9718-a5352b82d61f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/tqdm/auto.py:22: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+</div>
+<div id="6d5cc1a7-e77d-4cfb-982b-a5cbb6f930c2" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoProcessor, AutoModelForZeroShotObjectDetection, OwlViTForObjectDetection</span></code></pre></div>
+</div>
+<div id="f5754bdb-3531-4144-bd0c-8d26e30082e0" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> ImageDraw</span></code></pre></div>
+</div>
+<div id="e7ab6065-7b8d-4787-b188-87f9a481e4fc" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>checkpoint <span class="op">=</span> <span class="st">"google/owlvit-base-patch32"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># detector = pipeline(model=checkpoint, task="zero-shot-object-detection")</span></span></code></pre></div>
+</div>
+<div id="5ec8e96d-9d68-4021-9d33-dd5f8778e859" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://purrfectlove.net/wp-content/uploads/2015/06/catfamily.jpg"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>image_target <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span></code></pre></div>
+</div>
+<div id="b91faa77-0c84-49b3-a6ce-75e63507a956" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForZeroShotObjectDetection.from_pretrained(checkpoint)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(checkpoint)</span></code></pre></div>
+</div>
+<div id="75ac14b9-fb01-49bd-ac37-e2a1df63d4d1" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image_target, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span></code></pre></div>
+</div>
+<div id="0f3ad416-14d9-467d-8523-e85824e1463f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image_target)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb5da934130&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-26-zero-shot_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="ade00d6c-070b-4b64-8665-980b8fc4730f" class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>text_queries <span class="op">=</span> [<span class="st">"cat"</span>]</span></code></pre></div>
+</div>
+<div id="f5e176dc-3c75-485b-beca-c1ad7ba40c6d" class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import requests</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from PIL import Image</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import torch</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># from transformers import AutoProcessor, OwlViTForObjectDetection</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># url = "http://images.cocodataset.org/val2017/000000039769.jpg"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># image = Image.open(requests.get(url, stream=True).raw)</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># query_url = "http://images.cocodataset.org/val2017/000000001675.jpg"</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># query_image = Image.open(requests.get(query_url, stream=True).raw)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://purrfectlove.net/wp-content/uploads/2015/06/catfamily.jpg"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    draw.text(((xmin<span class="op">+</span>xmax)<span class="op">/</span><span class="dv">2</span>,(ymin<span class="op">+</span>ymax)<span class="op">/</span><span class="dv">2</span>),text<span class="op">=</span><span class="st">"0"</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 1.0 at location [1096.79, 243.55, 1395.3, 982.55]
+Detected similar object with confidence 0.973 at location [155.07, 352.33, 505.55, 1010.84]
+Detected similar object with confidence 0.969 at location [784.87, 241.73, 1126.22, 1015.0]
+Detected similar object with confidence 0.959 at location [491.3, 292.01, 808.72, 978.77]
+Detected similar object with confidence 0.928 at location [1354.21, 385.72, 1749.25, 990.72]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<p><img src="2023-08-26-zero-shot_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="37a84ffa-ac52-45ea-9c5e-fc696d7dc049" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>processor <span class="op">=</span> AutoProcessor.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> OwlViTForObjectDetection.from_pretrained(<span class="st">"google/owlvit-base-patch16"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.padoniavets.com/sites/default/files/field/image/cats-and-dogs.jpg"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> processor(images<span class="op">=</span>image, query_images<span class="op">=</span>query_image, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.image_guided_detection(<span class="op">**</span>inputs)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Target image sizes (height, width) to rescale box predictions [batch_size, 2]</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>target_sizes <span class="op">=</span> torch.Tensor([image.size[::<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert outputs (bounding boxes and class logits) to COCO API</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> processor.post_process_image_guided_detection(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>outputs, threshold<span class="op">=</span><span class="fl">0.6</span>, nms_threshold<span class="op">=</span><span class="fl">0.3</span>, target_sizes<span class="op">=</span>target_sizes</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Retrieve predictions for the first image</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>boxes, scores <span class="op">=</span> results[i][<span class="st">"boxes"</span>], results[i][<span class="st">"scores"</span>]</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> box, score <span class="kw">in</span> <span class="bu">zip</span>(boxes, scores):</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="bu">round</span>(i, <span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> box.tolist()]</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Detected similar object with confidence </span><span class="sc">{</span><span class="bu">round</span>(score.item(), <span class="dv">3</span>)<span class="sc">}</span><span class="ss"> at location </span><span class="sc">{</span>box<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    xmin, ymin, xmax, ymax <span class="op">=</span> box</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    draw.rectangle((xmin, ymin, xmax, ymax), outline<span class="op">=</span><span class="st">"white"</span>, width<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>image</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Detected similar object with confidence 1.0 at location [324.86, 32.75, 557.97, 400.45]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<p><img src="2023-08-26-zero-shot_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="8ec5c65c-3d75-48a9-9857-37f959e259b6" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://www.padoniavets.com/sites/default/files/field/image/cats-and-dogs.jpg"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>query_url <span class="op">=</span>  <span class="st">"https://hips.hearstapps.com/hmg-prod/images/beautiful-smooth-haired-red-cat-lies-on-the-sofa-royalty-free-image-1678488026.jpg?crop=0.668xw:1.00xh;0.119xw,0&amp;resize=1200:*"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>query_image <span class="op">=</span> Image.<span class="bu">open</span>(requests.get(query_url, stream<span class="op">=</span><span class="va">True</span>).raw)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].imshow(image)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].imshow(query_image)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7fb5df82fe20&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-26-zero-shot_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="to-graph" class="level1">
+<h1>To graph</h1>
+<div id="d2d30d42-19db-4982-9211-cadf19f5a1e8" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cppe5 <span class="op">=</span> load_dataset(<span class="st">"cppe-5"</span>)</span></code></pre></div>
+</div>
+<div id="10a42b52-ce13-4b39-b25f-ce7333b7e46e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image, ImageDraw</span></code></pre></div>
+</div>
+<ul>
+<li>흐릿한 점을 주변의 명확한 사진(노드)로 추론해보는것, 소프트맥스로 나온 결과가 애매한 것들</li>
+<li>노드로 인식하고 극중 상황을 추론하는 (싸움/긴장 등)</li>
+</ul>
+<div id="5930e875-667b-47f2-9e2d-59f5e31748a5" class="cell" data-tags="[]" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> cppe5[<span class="st">"train"</span>][<span class="dv">2</span>][<span class="st">"image"</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>annotations <span class="op">=</span> cppe5[<span class="st">"train"</span>][<span class="dv">9</span>][<span class="st">"objects"</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> cppe5[<span class="st">"train"</span>].features[<span class="st">"objects"</span>].feature[<span class="st">"category"</span>].names</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>id2label <span class="op">=</span> {index: x <span class="cf">for</span> index, x <span class="kw">in</span> <span class="bu">enumerate</span>(categories, start<span class="op">=</span><span class="dv">0</span>)}</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>label2id <span class="op">=</span> {v: k <span class="cf">for</span> k, v <span class="kw">in</span> id2label.items()}</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># for i in range(len(annotations["id"])):</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#     box = annotations["bbox"][i - 1]</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#     class_idx = annotations["category"][i - 1]</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#     x, y, w, h = tuple(box)</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     draw.rectangle((x, y, x + w, y + h), outline="red", width=1)</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     draw.text((x, y), id2label[class_idx], fill="white")</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># image</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>edge_matrix <span class="op">=</span> np.zeros((<span class="bu">len</span>(categories), <span class="bu">len</span>(categories)), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(annotations[<span class="st">'category'</span>])<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    edge_matrix[annotations[<span class="st">'category'</span>][i],annotations[<span class="st">'category'</span>][i<span class="op">+</span><span class="dv">1</span>]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>edge_list <span class="op">=</span> []</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(edge_matrix.shape[<span class="dv">0</span>]):</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(edge_matrix.shape[<span class="dv">1</span>]):</span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> edge_matrix[i, j] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>            edge_list.append([i, j])</span></code></pre></div>
+</div>
+<div id="1882fc61-c1aa-4734-9f26-6e45ea25223b" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(cppe5[<span class="st">'train'</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>1000</code></pre>
+</div>
+</div>
+<div id="c6fabe5a-b6eb-4964-8590-33f2c3e9ab21" class="cell" data-tags="[]" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {}</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cppe5[<span class="st">'train'</span>])) :</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> cppe5[<span class="st">"train"</span>][z][<span class="st">"image"</span>]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    annotations <span class="op">=</span> cppe5[<span class="st">"train"</span>][z][<span class="st">"objects"</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    draw <span class="op">=</span> ImageDraw.Draw(image)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    categories <span class="op">=</span> cppe5[<span class="st">"train"</span>].features[<span class="st">"objects"</span>].feature[<span class="st">"category"</span>].names</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    id2label <span class="op">=</span> {index: x <span class="cf">for</span> index, x <span class="kw">in</span> <span class="bu">enumerate</span>(categories, start<span class="op">=</span><span class="dv">0</span>)}</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    label2id <span class="op">=</span> {v: k <span class="cf">for</span> k, v <span class="kw">in</span> id2label.items()}</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for i in range(len(annotations["id"])):</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     box = annotations["bbox"][i - 1]</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     class_idx = annotations["category"][i - 1]</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     x, y, w, h = tuple(box)</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     draw.rectangle((x, y, x + w, y + h), outline="red", width=1)</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     draw.text((x, y), id2label[class_idx], fill="white")</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    edge_matrix <span class="op">=</span> np.zeros((<span class="bu">len</span>(categories), <span class="bu">len</span>(categories)), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(annotations[<span class="st">'category'</span>])<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        edge_matrix[annotations[<span class="st">'category'</span>][i],annotations[<span class="st">'category'</span>][i<span class="op">+</span><span class="dv">1</span>]] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    edge_list <span class="op">=</span> []</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(edge_matrix.shape[<span class="dv">0</span>]):</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(edge_matrix.shape[<span class="dv">1</span>]):</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> edge_matrix[i, j] <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>                edge_list.append([i, j])</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    data_dict[z] <span class="op">=</span> {</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"image"</span>: image,</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">"annotations"</span>: annotations,</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"edge_matrix"</span>: edge_matrix,</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"edge_list"</span>: edge_list</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
+</div>
+<div id="d5039e0d-6932-4640-8455-41327fc359c3" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data_dict[<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>{'image': &lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=943x663&gt;,
+ 'annotations': {'id': [114, 115, 116, 117],
+  'area': [3796, 1596, 152768, 81002],
+  'bbox': [[302.0, 109.0, 73.0, 52.0],
+   [810.0, 100.0, 57.0, 28.0],
+   [160.0, 31.0, 248.0, 616.0],
+   [741.0, 68.0, 202.0, 401.0]],
+  'category': [4, 4, 0, 0]},
+ 'edge_matrix': array([[1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 1]]),
+ 'edge_list': [[0, 0], [4, 0], [4, 4]]}</code></pre>
+</div>
+</div>
+<div id="72b284a8-b4d2-4948-86b1-0995c6c04c55" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data_dict[<span class="dv">999</span>][<span class="st">'edge_matrix'</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>array([[1, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0],
+       [0, 0, 1, 1, 0],
+       [0, 0, 0, 0, 1],
+       [1, 0, 0, 0, 1]])</code></pre>
+</div>
+</div>
+<div id="1e6b5ac3-ef74-49f3-973e-f581bbb26acc" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cppe5[<span class="st">"train"</span>][<span class="dv">999</span>][<span class="st">"image"</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<p><img src="2023-08-26-zero-shot_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="9c320bf4-bbd1-461b-a139-174f778b2edc" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>total_edge_matrix <span class="op">=</span> np.zeros((<span class="bu">len</span>(categories), <span class="bu">len</span>(categories)), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    edge_matrix <span class="op">=</span> data_dict[z][<span class="st">'edge_matrix'</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    total_edge_matrix <span class="op">+=</span> edge_matrix</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>average_edge_matrix <span class="op">=</span> total_edge_matrix <span class="op">/</span> <span class="dv">1000</span></span></code></pre></div>
+</div>
+<p><strong>weight matrix?</strong></p>
+<div id="2a5cc533-13a9-4b2e-8622-9d02ad868bcd" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>average_edge_matrix</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>array([[0.188, 0.012, 0.03 , 0.014, 0.042],
+       [0.078, 0.063, 0.076, 0.006, 0.13 ],
+       [0.345, 0.033, 0.442, 0.043, 0.06 ],
+       [0.049, 0.014, 0.091, 0.043, 0.089],
+       [0.166, 0.142, 0.245, 0.174, 0.193]])</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

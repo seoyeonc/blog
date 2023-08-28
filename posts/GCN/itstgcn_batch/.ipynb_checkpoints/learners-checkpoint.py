@@ -90,6 +90,7 @@ class StgcnLearner:
         self.method = 'STGCN'
         
         self.len_tr = self.train_dataset.snapshot_count
+        self.losses = []
     def _get_batches(self, batch_size=256):
         num_batches =  self.len_tr // batch_size + (1 if self.len_tr % batch_size != 0 else 0)
         self.batches = []
@@ -128,7 +129,7 @@ class ITStgcnLearner(StgcnLearner):
     def __init__(self,train_dataset,dataset_name = None):
         super().__init__(train_dataset)
         self.method = 'IT-STGCN'
-    def learn(self,filters=32,epoch=50):
+    def learn(self,filters=32,epoch=50,batch_size=256):
         self._get_batches(batch_size = batch_size)
         self.model = RecurrentGCN(node_features=self.lags, filters=filters)
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)

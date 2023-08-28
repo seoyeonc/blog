@@ -15,7 +15,7 @@ class PLNR():
         self.loader = loader
         self.dataset_name = dataset_name
         self.simulation_results = pd.DataFrame(columns=col) if simulation_results is None else simulation_results 
-    def record(self,method,mrate,mtype,lags,nof_filters,inter_method,epoch,mse,calculation_time):
+    def record(self,method,mrate,mtype,lags,nof_filters,batch_size, inter_method,epoch,mse,calculation_time):
         dct = {'dataset': self.dataset_name,
                'method': method,
                'mrate': mrate,

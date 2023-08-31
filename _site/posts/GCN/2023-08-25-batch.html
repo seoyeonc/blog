@@ -1439,14 +1439,14 @@ All results are stored in ./simulation_results/2023-08-29_18-13-12.csv</code></p
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> ChickenpoxDatasetLoader</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>loader1 <span class="op">=</span> ChickenpoxDatasetLoader()</span></code></pre></div>
 </div>
-<div id="ef7dd47d-f59e-4c8b-8e19-f1f3389eb7e2" class="cell" data-execution_count="33">
+<div id="ef7dd47d-f59e-4c8b-8e19-f1f3389eb7e2" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">1</span>, </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>],</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.7</span>],</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">8</span>], </span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">16</span>], </span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'batch_size'</span>:[<span class="dv">32</span>],</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'batch_size'</span>:[<span class="dv">128</span>],</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'linear'</span>],</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
@@ -1455,32 +1455,145 @@ All results are stored in ./simulation_results/2023-08-29_18-13-12.csv</code></p
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn_batch.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader1,dataset_name<span class="op">=</span><span class="st">'testchickenpox'</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>epoch=51     loss=8.22045982800997227133942     /502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/5039/5040/5041/5042/5043/5044/5045/5046/5047/5048/5049/5050/50
-batch=12     t=279   loss=0.6628434658050537    1/502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/50</code></pre>
+<pre><code>epoch=51     loss=29.052431225776672952057      1/502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/5039/5040/5041/5042/5043/5044/5045/5046/5047/5048/5049/5050/50
+batch=2  t=250   loss=0.6726564764976501    1/502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/5039/5040/5041/5042/5043/5044/5045/50</code></pre>
 </div>
 </div>
-<div id="a6bf8bb3-e1e4-4dc6-ad33-b9cfe98ee798" class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-29_18-14-16.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div id="a6bf8bb3-e1e4-4dc6-ad33-b9cfe98ee798" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-30_18-31-28.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">dataset</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">mtype</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">batch_size</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">mse</th>
+<th data-quarto-table-cell-role="th">calculation_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>testchickenpox</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>8</td>
+<td>16</td>
+<td>64</td>
+<td>linear</td>
+<td>50</td>
+<td>2.069710</td>
+<td>266.923153</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>testchickenpox</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>8</td>
+<td>16</td>
+<td>64</td>
+<td>linear</td>
+<td>50</td>
+<td>1.167303</td>
+<td>1718.838966</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="10dc7a6f-b269-41ec-8e56-c24fceec3d11" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-29_19-14-32.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">dataset</th>
+<th data-quarto-table-cell-role="th">method</th>
+<th data-quarto-table-cell-role="th">mrate</th>
+<th data-quarto-table-cell-role="th">mtype</th>
+<th data-quarto-table-cell-role="th">lags</th>
+<th data-quarto-table-cell-role="th">nof_filters</th>
+<th data-quarto-table-cell-role="th">batch_size</th>
+<th data-quarto-table-cell-role="th">inter_method</th>
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">mse</th>
+<th data-quarto-table-cell-role="th">calculation_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>testchickenpox</td>
+<td>STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>linear</td>
+<td>50</td>
+<td>2.145854</td>
+<td>200.711365</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>testchickenpox</td>
+<td>IT-STGCN</td>
+<td>0.7</td>
+<td>rand</td>
+<td>8</td>
+<td>16</td>
+<td>32</td>
+<td>linear</td>
+<td>50</td>
+<td>1.078493</td>
+<td>3340.726743</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <div id="9f37efca-486f-43ba-8e75-f287f5830ce3" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PedalMeDatasetLoader</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>loader2 <span class="op">=</span> PedalMeDatasetLoader()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> PedalMeDatasetLoader</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>loader2 <span class="op">=</span> PedalMeDatasetLoader()</span></code></pre></div>
 </div>
 <div id="263c388b-7102-4256-94c0-254502652f82" class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">1</span>, </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>],</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.7</span>],</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">8</span>], </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">12</span>], </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'batch_size'</span>:[<span class="dv">8</span>],</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'linear'</span>],</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plans_stgcn_rand <span class="op">=</span> {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_iteration'</span>: <span class="dv">1</span>, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'method'</span>: [<span class="st">'STGCN'</span>, <span class="st">'IT-STGCN'</span>],</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'mrate'</span>: [<span class="fl">0.7</span>],</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'lags'</span>: [<span class="dv">8</span>], </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'nof_filters'</span>: [<span class="dv">12</span>], </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'batch_size'</span>:[<span class="dv">8</span>],</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'inter_method'</span>: [<span class="st">'linear'</span>],</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'epoch'</span>: [<span class="dv">50</span>]</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="d58f27ff-bb90-414e-9c33-c7553a224d81" class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn_batch.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader2,dataset_name<span class="op">=</span><span class="st">'0829testpedal'</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plnr <span class="op">=</span> itstgcn_batch.planner.PLNR_STGCN_RAND(plans_stgcn_rand,loader2,dataset_name<span class="op">=</span><span class="st">'0829testpedal'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plnr.simulate()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch=51     loss=0.398880685369173739752       /502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/5039/5040/5041/5042/5043/5044/5045/5046/5047/5048/5049/5050/50
 epoch=51     loss=0.127143263816833568335       1/502/503/504/505/506/507/508/509/5010/5011/5012/5013/5014/5015/5016/5017/5018/5019/5020/5021/5022/5023/5024/5025/5026/5027/5028/5029/5030/5031/5032/5033/5034/5035/5036/5037/5038/5039/5040/5041/5042/5043/5044/5045/5046/5047/5048/5049/5050/50
@@ -1489,7 +1602,7 @@ All results are stored in ./simulation_results/2023-08-29_18-14-16.csv</code></p
 </div>
 </div>
 <div id="3e49da1c-8660-4f7e-93ae-5a9e7611642e" class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-29_18-14-16.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-29_18-14-16.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
@@ -1547,7 +1660,7 @@ All results are stored in ./simulation_results/2023-08-29_18-14-16.csv</code></p
 </div>
 </div>
 <div id="5bb94240-fdf5-4c88-9590-17666b0b6c02" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-28_12-49-19_x.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pd.read_csv(<span class="st">'./simulation_results/2023-08-28_12-49-19_x.csv'</span>) <span class="co"># STGCN IT-STGCN</span></span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -1605,201 +1718,201 @@ All results are stored in ./simulation_results/2023-08-29_18-14-16.csv</code></p
 </div>
 </div>
 <div id="48b490fd-9d64-4269-856f-125232960ad2" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> WikiMathsDatasetLoader</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>loader3 <span class="op">=</span> WikiMathsDatasetLoader()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> WikiMathsDatasetLoader</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>loader3 <span class="op">=</span> WikiMathsDatasetLoader()</span></code></pre></div>
 </div>
 <div id="c38187e5-ee4d-4f76-a9fe-614ad828eef4" class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>loader10 <span class="op">=</span> MontevideoBusDatasetLoader()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.dataset <span class="im">import</span> MontevideoBusDatasetLoader</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>loader10 <span class="op">=</span> MontevideoBusDatasetLoader()</span></code></pre></div>
 </div>
 <section id="import" class="level1">
 <h1>Import</h1>
 <div id="e6adc967-878e-4b3c-8809-b22a420e7ec0" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modules </span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn.planner</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric_temporal</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal.static_graph_temporal_signal <span class="im">import</span> StaticGraphTemporalSignal</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co"># torch</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#import torch_geometric_temporal</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvLSTM</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import GCLSTM</span></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import LRGCN</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import TGCN</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import DCRNN</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modules </span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itstgcn.planner</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch_geometric_temporal</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.signal.static_graph_temporal_signal <span class="im">import</span> StaticGraphTemporalSignal</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co"># torch</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="co">#import torch_geometric_temporal</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch_geometric_temporal.nn.recurrent <span class="im">import</span> GConvLSTM</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import GCLSTM</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import LRGCN</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import TGCN</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co"># from torch_geometric_temporal.nn.recurrent import DCRNN</span></span></code></pre></div>
 </div>
 <div id="c02552fa-67ad-4ce0-a618-84afa42f2023" class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read data</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> makedict(FX,W<span class="op">=</span><span class="va">None</span>,node_ids<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    T,N <span class="op">=</span> np.array(FX).shape</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> W<span class="op">==</span><span class="va">None</span>:</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        W <span class="op">=</span> pd.DataFrame(FX).corr().to_numpy().reshape(<span class="op">-</span><span class="dv">1</span>).tolist() <span class="co"># corr 로 weights</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> node_ids<span class="op">==</span><span class="va">None</span>:</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        node_ids <span class="op">=</span> [<span class="st">'node'</span><span class="op">+</span><span class="bu">str</span>(n) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    _dict<span class="op">=</span>{</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'node_ids'</span>: node_ids,</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'weights'</span>:W,</span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'FX'</span>:FX</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _dict</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read data</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> makedict(FX,W<span class="op">=</span><span class="va">None</span>,node_ids<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    T,N <span class="op">=</span> np.array(FX).shape</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> W<span class="op">==</span><span class="va">None</span>:</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        W <span class="op">=</span> pd.DataFrame(FX).corr().to_numpy().reshape(<span class="op">-</span><span class="dv">1</span>).tolist() <span class="co"># corr 로 weights</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> node_ids<span class="op">==</span><span class="va">None</span>:</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        node_ids <span class="op">=</span> [<span class="st">'node'</span><span class="op">+</span><span class="bu">str</span>(n) <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N)]</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    _dict<span class="op">=</span>{</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'edges'</span>:[[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(N)], </span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'node_ids'</span>: node_ids,</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'weights'</span>:W,</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'FX'</span>:FX</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> _dict</span></code></pre></div>
 </div>
 <div id="23f75774-1d81-4482-a15b-844618f81caf" class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Loader(<span class="bu">object</span>):</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data_dict):</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._dataset <span class="op">=</span> data_dict</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_edges(<span class="va">self</span>):</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._edges <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"edges"</span>]).T</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_edge_weights(<span class="va">self</span>):</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self._edge_weights = np.array(self._dataset["weights"]).T</span></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        edge_weights <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"weights"</span>]).T</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">#scaled_edge_weights = minmaxscaler(edge_weights)</span></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._edge_weights <span class="op">=</span> edge_weights</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_targets_and_features(<span class="va">self</span>):</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>        stacked_target <span class="op">=</span> np.stack(<span class="va">self</span>._dataset[<span class="st">"FX"</span>])</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> np.stack([</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>            stacked_target[i : i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>        ])</span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.targets <span class="op">=</span> np.stack([</span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>            stacked_target[i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>        ])</span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_dataset(<span class="va">self</span>, lags: <span class="bu">int</span> <span class="op">=</span> <span class="dv">4</span>) <span class="op">-&gt;</span> StaticGraphTemporalSignal:</span>
-<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lags <span class="op">=</span> lags</span>
-<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_edges()</span>
-<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_edge_weights()</span>
-<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_targets_and_features()</span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>        dataset <span class="op">=</span> StaticGraphTemporalSignal(</span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._edges, <span class="va">self</span>._edge_weights, <span class="va">self</span>.features, <span class="va">self</span>.targets</span>
-<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>        dataset.node_ids <span class="op">=</span> <span class="va">self</span>._dataset[<span class="st">'node_ids'</span>]</span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dataset</span>
-<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvLSTM(in_channels <span class="op">=</span> node_features, out_channels <span class="op">=</span> filters, K <span class="op">=</span> <span class="dv">2</span>)</span>
-<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight, h, c):</span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>        h_0, c_0 <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight, h, c)</span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> F.relu(h_0)</span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h, h_0, c_0</span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="co"># device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')</span></span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">'cpu'</span>)</span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGCN_Learner:</span>
-<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.method <span class="op">=</span> <span class="st">'RecurrentGCN'</span></span>
-<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.figs <span class="op">=</span> []</span>
-<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.epochs <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.losses <span class="op">=</span> []</span>
-<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._node_idx <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> load(<span class="va">self</span>,y): </span>
-<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">self</span>.lags <span class="kw">is</span> <span class="va">None</span>) <span class="kw">or</span> (<span class="va">self</span>.train_ratio <span class="kw">is</span> <span class="va">None</span>):</span>
-<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.lags <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.train_ratio <span class="op">=</span> <span class="fl">0.8</span> </span>
-<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.t,<span class="va">self</span>.n <span class="op">=</span> y.shape</span>
-<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>        dct <span class="op">=</span> makedict(FX<span class="op">=</span>y.tolist())</span>
-<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loader <span class="op">=</span> Loader(dct)</span>
-<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataset <span class="op">=</span> <span class="va">self</span>.loader.get_dataset(lags<span class="op">=</span><span class="va">self</span>.lags)</span>
-<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.X <span class="op">=</span> torch.tensor(<span class="va">self</span>.dataset.features).<span class="bu">float</span>()</span>
-<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> torch.tensor(<span class="va">self</span>.dataset.targets).<span class="bu">float</span>()</span>
-<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_dataset, <span class="va">self</span>.test_dataset <span class="op">=</span> eptstgcn.utils.temporal_signal_split(<span class="va">self</span>.dataset, train_ratio <span class="op">=</span> <span class="va">self</span>.train_ratio)</span>
-<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.len_test <span class="op">=</span> <span class="va">self</span>.test_dataset.snapshot_count</span>
-<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.len_tr <span class="op">=</span> <span class="va">self</span>.train_dataset.snapshot_count</span>
-<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>        <span class="co">#self.dataset_name = str(self.train_dataset) if dataset_name is None else dataset_name</span></span>
-<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_batches(<span class="va">self</span>, batch_size<span class="op">=</span><span class="dv">256</span>):</span>
-<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>        num_batches <span class="op">=</span>  <span class="va">self</span>.len_tr <span class="op">//</span> batch_size <span class="op">+</span> (<span class="dv">1</span> <span class="cf">if</span> <span class="va">self</span>.len_tr <span class="op">%</span> batch_size <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
-<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.batches <span class="op">=</span> []</span>
-<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_batches):</span>
-<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a>            start_idx <span class="op">=</span> i <span class="op">*</span> batch_size</span>
-<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>            end_idx <span class="op">=</span> start_idx <span class="op">+</span> batch_size</span>
-<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.batches.append(<span class="va">self</span>.train_dataset[start_idx:end_idx])</span>
-<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> learn(<span class="va">self</span>,epoch<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model.train()</span>
-<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(epoch):</span>
-<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a>            losses_batch <span class="op">=</span> []</span>
-<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> b,batch <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.batches):</span>
-<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.h, <span class="va">self</span>.c <span class="op">=</span> <span class="va">None</span>, <span class="va">None</span></span>
-<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(batch):</span>
-<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>                    snapshot <span class="op">=</span> snapshot.to(device)</span>
-<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>                    yt_hat, <span class="va">self</span>.h, <span class="va">self</span>.c <span class="op">=</span> <span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, <span class="va">self</span>.h, <span class="va">self</span>.c)</span>
-<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a>                    loss <span class="op">=</span> loss <span class="op">+</span> torch.mean((yt_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\r</span><span class="ss">batch=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ch">\t</span><span class="ss"> t=</span><span class="sc">{</span>t<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ch">\t</span><span class="ss"> loss=</span><span class="sc">{</span>loss<span class="op">/</span>(t<span class="op">+</span><span class="dv">1</span>)<span class="sc">}</span><span class="ch">\t</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> loss <span class="op">/</span> (t<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>                loss.backward()</span>
-<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.optimizer.step()</span>
-<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.optimizer.zero_grad()</span>
-<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a>                losses_batch.append(loss.item())</span>
-<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.epochs <span class="op">=</span> <span class="va">self</span>.epochs <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\r</span><span class="ss">epoch=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>epochs<span class="sc">}</span><span class="ch">\t</span><span class="ss"> loss=</span><span class="sc">{</span>np<span class="sc">.</span>mean(losses_batch)<span class="sc">}</span><span class="ch">\n</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.losses.append(np.mean(losses_batch))</span>
-<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._savefigs() </span>
-<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _savefigs(<span class="va">self</span>): </span>
-<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="fu">__call__</span>()</span>
-<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._node_idx</span>
-<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> plt.style.context(<span class="st">'default'</span>): </span>
-<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>            plt.ioff()</span>
-<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>            plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">3</span>]  <span class="co"># [가로 크기, 세로 크기]</span></span>
-<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>            fig,ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>            ax.plot(<span class="va">self</span>.y[:,<span class="va">self</span>._node_idx],label<span class="op">=</span><span class="st">'real'</span>,lw<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>            ax.plot(<span class="va">self</span>.yhat[:,<span class="va">self</span>._node_idx],<span class="st">'--'</span>,label<span class="op">=</span><span class="st">'predited'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>            ax.set_title(<span class="ss">f'Epoch=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>epochs<span class="sc">}</span><span class="ss">, node_idx=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_node_idx<span class="sc">}</span><span class="ss">'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a>            ax.legend()</span>
-<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a>            <span class="co">#mplcyberpunk.add_glow_effects()  </span></span>
-<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.figs.append(fig)</span>
-<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a>        plt.close()</span>
-<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>,dataset<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dataset <span class="op">==</span> <span class="va">None</span>: </span>
-<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a>            dataset <span class="op">=</span> <span class="va">self</span>.dataset</span>
-<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat <span class="op">=</span> torch.stack([<span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, <span class="va">self</span>.h, <span class="va">self</span>.c)[<span class="dv">0</span>] <span class="cf">for</span> snapshot <span class="kw">in</span> dataset]).detach().squeeze().<span class="bu">float</span>()</span>
-<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">'X'</span>:<span class="va">self</span>.X, <span class="st">'y'</span>:<span class="va">self</span>.y, <span class="st">'yhat'</span>:<span class="va">self</span>.yhat} </span>
-<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a><span class="co"># learn </span></span>
-<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a><span class="co"># def rgcn(FX,train_ratio,lags,filters,epoch):</span></span>
-<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="co">#     dct = makedict(FX=FX.tolist())</span></span>
-<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a><span class="co">#     loader = Loader(dct)</span></span>
-<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a><span class="co">#     dataset = loader.get_dataset(lags=lags)</span></span>
-<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a><span class="co">#     dataset_tr, dataset_test = eptstgcn.utils.temporal_signal_split(dataset, train_ratio = train_ratio)</span></span>
-<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="co">#     lrnr = RGCN_Learner(dataset_tr, dataset_name = 'org &amp; arbitrary')</span></span>
-<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a><span class="co">#     lrnr.learn(filters=filters, epoch=epoch)</span></span>
-<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a><span class="co">#     yhat = np.array(lrnr(dataset)['yhat'])</span></span>
-<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a><span class="co">#     yhat = np.concatenate([np.array([list(yhat[0])]*lags),yhat],axis=0)</span></span>
-<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a><span class="co">#     return yhat</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Loader(<span class="bu">object</span>):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data_dict):</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._dataset <span class="op">=</span> data_dict</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_edges(<span class="va">self</span>):</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._edges <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"edges"</span>]).T</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_edge_weights(<span class="va">self</span>):</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># self._edge_weights = np.array(self._dataset["weights"]).T</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>        edge_weights <span class="op">=</span> np.array(<span class="va">self</span>._dataset[<span class="st">"weights"</span>]).T</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">#scaled_edge_weights = minmaxscaler(edge_weights)</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._edge_weights <span class="op">=</span> edge_weights</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _get_targets_and_features(<span class="va">self</span>):</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>        stacked_target <span class="op">=</span> np.stack(<span class="va">self</span>._dataset[<span class="st">"FX"</span>])</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> np.stack([</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>            stacked_target[i : i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.targets <span class="op">=</span> np.stack([</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>            stacked_target[i <span class="op">+</span> <span class="va">self</span>.lags, :].T</span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(stacked_target.shape[<span class="dv">0</span>] <span class="op">-</span> <span class="va">self</span>.lags)</span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_dataset(<span class="va">self</span>, lags: <span class="bu">int</span> <span class="op">=</span> <span class="dv">4</span>) <span class="op">-&gt;</span> StaticGraphTemporalSignal:</span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lags <span class="op">=</span> lags</span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_edges()</span>
+<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_edge_weights()</span>
+<span id="cb37-33"><a href="#cb37-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._get_targets_and_features()</span>
+<span id="cb37-34"><a href="#cb37-34" aria-hidden="true" tabindex="-1"></a>        dataset <span class="op">=</span> StaticGraphTemporalSignal(</span>
+<span id="cb37-35"><a href="#cb37-35" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>._edges, <span class="va">self</span>._edge_weights, <span class="va">self</span>.features, <span class="va">self</span>.targets</span>
+<span id="cb37-36"><a href="#cb37-36" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb37-37"><a href="#cb37-37" aria-hidden="true" tabindex="-1"></a>        dataset.node_ids <span class="op">=</span> <span class="va">self</span>._dataset[<span class="st">'node_ids'</span>]</span>
+<span id="cb37-38"><a href="#cb37-38" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dataset</span>
+<span id="cb37-39"><a href="#cb37-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-40"><a href="#cb37-40" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RecurrentGCN(torch.nn.Module):</span>
+<span id="cb37-41"><a href="#cb37-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, node_features, filters):</span>
+<span id="cb37-42"><a href="#cb37-42" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(RecurrentGCN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb37-43"><a href="#cb37-43" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.recurrent <span class="op">=</span> GConvLSTM(in_channels <span class="op">=</span> node_features, out_channels <span class="op">=</span> filters, K <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb37-44"><a href="#cb37-44" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.linear <span class="op">=</span> torch.nn.Linear(filters, <span class="dv">1</span>)</span>
+<span id="cb37-45"><a href="#cb37-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, edge_index, edge_weight, h, c):</span>
+<span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a>        h_0, c_0 <span class="op">=</span> <span class="va">self</span>.recurrent(x, edge_index, edge_weight, h, c)</span>
+<span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> F.relu(h_0)</span>
+<span id="cb37-49"><a href="#cb37-49" aria-hidden="true" tabindex="-1"></a>        h <span class="op">=</span> <span class="va">self</span>.linear(h)</span>
+<span id="cb37-50"><a href="#cb37-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> h, h_0, c_0</span>
+<span id="cb37-51"><a href="#cb37-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-52"><a href="#cb37-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-53"><a href="#cb37-53" aria-hidden="true" tabindex="-1"></a><span class="co"># device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')</span></span>
+<span id="cb37-54"><a href="#cb37-54" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">'cpu'</span>)</span>
+<span id="cb37-55"><a href="#cb37-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-56"><a href="#cb37-56" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RGCN_Learner:</span>
+<span id="cb37-57"><a href="#cb37-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb37-58"><a href="#cb37-58" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.method <span class="op">=</span> <span class="st">'RecurrentGCN'</span></span>
+<span id="cb37-59"><a href="#cb37-59" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.figs <span class="op">=</span> []</span>
+<span id="cb37-60"><a href="#cb37-60" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.epochs <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb37-61"><a href="#cb37-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.losses <span class="op">=</span> []</span>
+<span id="cb37-62"><a href="#cb37-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._node_idx <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb37-63"><a href="#cb37-63" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> load(<span class="va">self</span>,y): </span>
+<span id="cb37-64"><a href="#cb37-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">self</span>.lags <span class="kw">is</span> <span class="va">None</span>) <span class="kw">or</span> (<span class="va">self</span>.train_ratio <span class="kw">is</span> <span class="va">None</span>):</span>
+<span id="cb37-65"><a href="#cb37-65" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.lags <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb37-66"><a href="#cb37-66" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.train_ratio <span class="op">=</span> <span class="fl">0.8</span> </span>
+<span id="cb37-67"><a href="#cb37-67" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.t,<span class="va">self</span>.n <span class="op">=</span> y.shape</span>
+<span id="cb37-68"><a href="#cb37-68" aria-hidden="true" tabindex="-1"></a>        dct <span class="op">=</span> makedict(FX<span class="op">=</span>y.tolist())</span>
+<span id="cb37-69"><a href="#cb37-69" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loader <span class="op">=</span> Loader(dct)</span>
+<span id="cb37-70"><a href="#cb37-70" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataset <span class="op">=</span> <span class="va">self</span>.loader.get_dataset(lags<span class="op">=</span><span class="va">self</span>.lags)</span>
+<span id="cb37-71"><a href="#cb37-71" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.X <span class="op">=</span> torch.tensor(<span class="va">self</span>.dataset.features).<span class="bu">float</span>()</span>
+<span id="cb37-72"><a href="#cb37-72" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> torch.tensor(<span class="va">self</span>.dataset.targets).<span class="bu">float</span>()</span>
+<span id="cb37-73"><a href="#cb37-73" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_dataset, <span class="va">self</span>.test_dataset <span class="op">=</span> eptstgcn.utils.temporal_signal_split(<span class="va">self</span>.dataset, train_ratio <span class="op">=</span> <span class="va">self</span>.train_ratio)</span>
+<span id="cb37-74"><a href="#cb37-74" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.len_test <span class="op">=</span> <span class="va">self</span>.test_dataset.snapshot_count</span>
+<span id="cb37-75"><a href="#cb37-75" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.len_tr <span class="op">=</span> <span class="va">self</span>.train_dataset.snapshot_count</span>
+<span id="cb37-76"><a href="#cb37-76" aria-hidden="true" tabindex="-1"></a>        <span class="co">#self.dataset_name = str(self.train_dataset) if dataset_name is None else dataset_name</span></span>
+<span id="cb37-77"><a href="#cb37-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_batches(<span class="va">self</span>, batch_size<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb37-78"><a href="#cb37-78" aria-hidden="true" tabindex="-1"></a>        num_batches <span class="op">=</span>  <span class="va">self</span>.len_tr <span class="op">//</span> batch_size <span class="op">+</span> (<span class="dv">1</span> <span class="cf">if</span> <span class="va">self</span>.len_tr <span class="op">%</span> batch_size <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb37-79"><a href="#cb37-79" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.batches <span class="op">=</span> []</span>
+<span id="cb37-80"><a href="#cb37-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_batches):</span>
+<span id="cb37-81"><a href="#cb37-81" aria-hidden="true" tabindex="-1"></a>            start_idx <span class="op">=</span> i <span class="op">*</span> batch_size</span>
+<span id="cb37-82"><a href="#cb37-82" aria-hidden="true" tabindex="-1"></a>            end_idx <span class="op">=</span> start_idx <span class="op">+</span> batch_size</span>
+<span id="cb37-83"><a href="#cb37-83" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.batches.append(<span class="va">self</span>.train_dataset[start_idx:end_idx])</span>
+<span id="cb37-84"><a href="#cb37-84" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-85"><a href="#cb37-85" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> learn(<span class="va">self</span>,epoch<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb37-86"><a href="#cb37-86" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model.train()</span>
+<span id="cb37-87"><a href="#cb37-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(epoch):</span>
+<span id="cb37-88"><a href="#cb37-88" aria-hidden="true" tabindex="-1"></a>            losses_batch <span class="op">=</span> []</span>
+<span id="cb37-89"><a href="#cb37-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> b,batch <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.batches):</span>
+<span id="cb37-90"><a href="#cb37-90" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb37-91"><a href="#cb37-91" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.h, <span class="va">self</span>.c <span class="op">=</span> <span class="va">None</span>, <span class="va">None</span></span>
+<span id="cb37-92"><a href="#cb37-92" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> t, snapshot <span class="kw">in</span> <span class="bu">enumerate</span>(batch):</span>
+<span id="cb37-93"><a href="#cb37-93" aria-hidden="true" tabindex="-1"></a>                    snapshot <span class="op">=</span> snapshot.to(device)</span>
+<span id="cb37-94"><a href="#cb37-94" aria-hidden="true" tabindex="-1"></a>                    yt_hat, <span class="va">self</span>.h, <span class="va">self</span>.c <span class="op">=</span> <span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, <span class="va">self</span>.h, <span class="va">self</span>.c)</span>
+<span id="cb37-95"><a href="#cb37-95" aria-hidden="true" tabindex="-1"></a>                    loss <span class="op">=</span> loss <span class="op">+</span> torch.mean((yt_hat.reshape(<span class="op">-</span><span class="dv">1</span>)<span class="op">-</span>snapshot.y.reshape(<span class="op">-</span><span class="dv">1</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb37-96"><a href="#cb37-96" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\r</span><span class="ss">batch=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ch">\t</span><span class="ss"> t=</span><span class="sc">{</span>t<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ch">\t</span><span class="ss"> loss=</span><span class="sc">{</span>loss<span class="op">/</span>(t<span class="op">+</span><span class="dv">1</span>)<span class="sc">}</span><span class="ch">\t</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-97"><a href="#cb37-97" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> loss <span class="op">/</span> (t<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb37-98"><a href="#cb37-98" aria-hidden="true" tabindex="-1"></a>                loss.backward()</span>
+<span id="cb37-99"><a href="#cb37-99" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.optimizer.step()</span>
+<span id="cb37-100"><a href="#cb37-100" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.optimizer.zero_grad()</span>
+<span id="cb37-101"><a href="#cb37-101" aria-hidden="true" tabindex="-1"></a>                losses_batch.append(loss.item())</span>
+<span id="cb37-102"><a href="#cb37-102" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.epochs <span class="op">=</span> <span class="va">self</span>.epochs <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb37-103"><a href="#cb37-103" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\r</span><span class="ss">epoch=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>epochs<span class="sc">}</span><span class="ch">\t</span><span class="ss"> loss=</span><span class="sc">{</span>np<span class="sc">.</span>mean(losses_batch)<span class="sc">}</span><span class="ch">\n</span><span class="ss">'</span>, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-104"><a href="#cb37-104" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.losses.append(np.mean(losses_batch))</span>
+<span id="cb37-105"><a href="#cb37-105" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._savefigs() </span>
+<span id="cb37-106"><a href="#cb37-106" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _savefigs(<span class="va">self</span>): </span>
+<span id="cb37-107"><a href="#cb37-107" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="fu">__call__</span>()</span>
+<span id="cb37-108"><a href="#cb37-108" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._node_idx</span>
+<span id="cb37-109"><a href="#cb37-109" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> plt.style.context(<span class="st">'default'</span>): </span>
+<span id="cb37-110"><a href="#cb37-110" aria-hidden="true" tabindex="-1"></a>            plt.ioff()</span>
+<span id="cb37-111"><a href="#cb37-111" aria-hidden="true" tabindex="-1"></a>            plt.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">3</span>]  <span class="co"># [가로 크기, 세로 크기]</span></span>
+<span id="cb37-112"><a href="#cb37-112" aria-hidden="true" tabindex="-1"></a>            fig,ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb37-113"><a href="#cb37-113" aria-hidden="true" tabindex="-1"></a>            ax.plot(<span class="va">self</span>.y[:,<span class="va">self</span>._node_idx],label<span class="op">=</span><span class="st">'real'</span>,lw<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb37-114"><a href="#cb37-114" aria-hidden="true" tabindex="-1"></a>            ax.plot(<span class="va">self</span>.yhat[:,<span class="va">self</span>._node_idx],<span class="st">'--'</span>,label<span class="op">=</span><span class="st">'predited'</span>,alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb37-115"><a href="#cb37-115" aria-hidden="true" tabindex="-1"></a>            ax.set_title(<span class="ss">f'Epoch=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>epochs<span class="sc">}</span><span class="ss">, node_idx=</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>_node_idx<span class="sc">}</span><span class="ss">'</span>,size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb37-116"><a href="#cb37-116" aria-hidden="true" tabindex="-1"></a>            ax.legend()</span>
+<span id="cb37-117"><a href="#cb37-117" aria-hidden="true" tabindex="-1"></a>            <span class="co">#mplcyberpunk.add_glow_effects()  </span></span>
+<span id="cb37-118"><a href="#cb37-118" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.figs.append(fig)</span>
+<span id="cb37-119"><a href="#cb37-119" aria-hidden="true" tabindex="-1"></a>        plt.close()</span>
+<span id="cb37-120"><a href="#cb37-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>,dataset<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb37-121"><a href="#cb37-121" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> dataset <span class="op">==</span> <span class="va">None</span>: </span>
+<span id="cb37-122"><a href="#cb37-122" aria-hidden="true" tabindex="-1"></a>            dataset <span class="op">=</span> <span class="va">self</span>.dataset</span>
+<span id="cb37-123"><a href="#cb37-123" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.yhat <span class="op">=</span> torch.stack([<span class="va">self</span>.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr, <span class="va">self</span>.h, <span class="va">self</span>.c)[<span class="dv">0</span>] <span class="cf">for</span> snapshot <span class="kw">in</span> dataset]).detach().squeeze().<span class="bu">float</span>()</span>
+<span id="cb37-124"><a href="#cb37-124" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {<span class="st">'X'</span>:<span class="va">self</span>.X, <span class="st">'y'</span>:<span class="va">self</span>.y, <span class="st">'yhat'</span>:<span class="va">self</span>.yhat} </span>
+<span id="cb37-125"><a href="#cb37-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-126"><a href="#cb37-126" aria-hidden="true" tabindex="-1"></a><span class="co"># learn </span></span>
+<span id="cb37-127"><a href="#cb37-127" aria-hidden="true" tabindex="-1"></a><span class="co"># def rgcn(FX,train_ratio,lags,filters,epoch):</span></span>
+<span id="cb37-128"><a href="#cb37-128" aria-hidden="true" tabindex="-1"></a><span class="co">#     dct = makedict(FX=FX.tolist())</span></span>
+<span id="cb37-129"><a href="#cb37-129" aria-hidden="true" tabindex="-1"></a><span class="co">#     loader = Loader(dct)</span></span>
+<span id="cb37-130"><a href="#cb37-130" aria-hidden="true" tabindex="-1"></a><span class="co">#     dataset = loader.get_dataset(lags=lags)</span></span>
+<span id="cb37-131"><a href="#cb37-131" aria-hidden="true" tabindex="-1"></a><span class="co">#     dataset_tr, dataset_test = eptstgcn.utils.temporal_signal_split(dataset, train_ratio = train_ratio)</span></span>
+<span id="cb37-132"><a href="#cb37-132" aria-hidden="true" tabindex="-1"></a><span class="co">#     lrnr = RGCN_Learner(dataset_tr, dataset_name = 'org &amp; arbitrary')</span></span>
+<span id="cb37-133"><a href="#cb37-133" aria-hidden="true" tabindex="-1"></a><span class="co">#     lrnr.learn(filters=filters, epoch=epoch)</span></span>
+<span id="cb37-134"><a href="#cb37-134" aria-hidden="true" tabindex="-1"></a><span class="co">#     yhat = np.array(lrnr(dataset)['yhat'])</span></span>
+<span id="cb37-135"><a href="#cb37-135" aria-hidden="true" tabindex="-1"></a><span class="co">#     yhat = np.concatenate([np.array([list(yhat[0])]*lags),yhat],axis=0)</span></span>
+<span id="cb37-136"><a href="#cb37-136" aria-hidden="true" tabindex="-1"></a><span class="co">#     return yhat</span></span></code></pre></div>
 </div>
 <section id="load-data" class="level2">
 <h2 class="anchored" data-anchor-id="load-data">Load data</h2>
 <div id="8d3d82a1-26a4-4606-91bb-39c0ca4bda34" class="cell" data-execution_count="46">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataframe </span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data_eng_230710.csv'</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make y, y_upper, y_period, time, regions </span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.loc[:,<span class="st">'Bukchoncheon'</span>:<span class="st">'Gyeongju-si'</span>].to_numpy()</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>yU <span class="op">=</span> df.loc[:,<span class="st">'Bukchoncheon_Upper'</span>:<span class="st">'Gyeongju-si_Upper'</span>].to_numpy()</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>yP <span class="op">=</span> np.divide(y, yU<span class="op">+</span><span class="fl">1e-10</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataframe </span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data_eng_230710.csv'</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make y, y_upper, y_period, time, regions </span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.loc[:,<span class="st">'Bukchoncheon'</span>:<span class="st">'Gyeongju-si'</span>].to_numpy()</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>yU <span class="op">=</span> df.loc[:,<span class="st">'Bukchoncheon_Upper'</span>:<span class="st">'Gyeongju-si_Upper'</span>].to_numpy()</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>yP <span class="op">=</span> np.divide(y, yU<span class="op">+</span><span class="fl">1e-10</span>)</span></code></pre></div>
 </div>
 </section>
 <section id="sample_codes" class="level2">
@@ -1807,20 +1920,20 @@ All results are stored in ./simulation_results/2023-08-29_18-14-16.csv</code></p
 <p><code>-</code> 예시1: y를 학습</p>
 <p><strong>학습~</strong></p>
 <div id="315bf81c-3a75-4f0a-948f-e1cc32cb006f" class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(y) </span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(y) </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch=1  loss=0.623498441781415453993988            
 epoch=2  loss=0.097667323512046848847961        
@@ -1830,43 +1943,43 @@ epoch=5  loss=0.080320493751313838172531            </code></pre>
 </div>
 </div>
 <div id="5d8a46ed-7197-4fef-a152-5e4296011a6d" class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plt.plot(y[:<span class="dv">100</span>,<span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>plt.plot(y[:<span class="dv">100</span>,<span class="dv">0</span>])</span></code></pre></div>
 </div>
 <p><strong>에폭별 적합결과(<span class="math inline">\(\hat{y}\)</span>) 시각화</strong></p>
 <div id="0c3357b9-21f7-489b-912a-7d23bb414cff" class="cell" data-execution_count="59">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="dv">0</span>]</span></code></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2023-08-25-batch_files/figure-html/cell-45-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-<div id="db095fbe-c85e-4f4c-8d6a-4f3498ed60f2" class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="dv">0</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-08-25-batch_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div id="2f8dd53c-4de9-41ea-af31-962621400b37" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div id="db095fbe-c85e-4f4c-8d6a-4f3498ed60f2" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="dv">1</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2023-08-25-batch_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<div id="2f8dd53c-4de9-41ea-af31-962621400b37" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-08-25-batch_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
+</div>
+</div>
 <p><code>-</code> 예시2: yU 학습</p>
 <div id="00aaffd7-7962-405c-994a-36a25aba678b" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(yU) </span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(yU) </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch=1  loss=1.98579962707536175294647     
 epoch=2  loss=0.202098417204133351100159        
@@ -1876,15 +1989,15 @@ epoch=5  loss=0.0191931016526596582006645   </code></pre>
 </div>
 </div>
 <div id="a3ab58b1-a18c-4e29-9fc0-cc49eec8b7c0" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-08-25-batch_files/figure-html/cell-49-output-1.png" class="img-fluid"></p>
+<p><img src="2023-08-25-batch_files/figure-html/cell-50-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>5번정도 더 돌려보자</p>
 <div id="17b8c6d6-a597-42bf-8b2a-2a14851bcf19" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch=6  loss=0.0169690931215882312923717       
 epoch=7  loss=0.0141667058247379891905975       
@@ -1894,27 +2007,27 @@ epoch=10     loss=0.009508996026937005688799        </code></pre>
 </div>
 </div>
 <div id="0d315e96-fd62-42e5-8232-ce21cc31d000" class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-08-25-batch_files/figure-html/cell-51-output-1.png" class="img-fluid"></p>
+<p><img src="2023-08-25-batch_files/figure-html/cell-52-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><code>-</code> 예시3: yP 학습</p>
 <div id="b882470b-deda-4d31-a619-c472bbc296a6" class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(yP) </span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: create lrnr object</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>lrnr <span class="op">=</span> RGCN_Learner()</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: load data </span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>lrnr.lags <span class="op">=</span> <span class="dv">4</span> </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>lrnr.train_ratio <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>lrnr.load(yP) </span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: construct networks </span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>lrnr.nof_filters <span class="op">=</span> <span class="dv">16</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>lrnr.model <span class="op">=</span> RecurrentGCN(node_features<span class="op">=</span>lrnr.lags, filters<span class="op">=</span>lrnr.nof_filters).to(device)</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>lrnr.optimizer <span class="op">=</span> torch.optim.Adam(lrnr.model.parameters(),lr<span class="op">=</span><span class="dv">10</span><span class="op">/</span><span class="dv">1000</span>)</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: learn </span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>lrnr.get_batches(batch_size<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):    </span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    lrnr.learn()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch=1  loss=0.030719049366970748393135            
 epoch=2  loss=0.0119630681123411254793358       
@@ -1924,9 +2037,9 @@ epoch=5  loss=0.0105961727974719788335514       </code></pre>
 </div>
 </div>
 <div id="8e21d2d4-d50a-416e-8c6a-b0290e83396c" class="cell" data-execution_count="45">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>] </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>lrnr.figs[<span class="op">-</span><span class="dv">1</span>] </span></code></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2023-08-25-batch_files/figure-html/cell-53-output-1.png" class="img-fluid"></p>
+<p><img src="2023-08-25-batch_files/figure-html/cell-54-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 

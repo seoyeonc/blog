@@ -1,3 +1,0 @@
-dataset,method,mrate,mtype,lags,nof_filters,batch_size,inter_method,epoch,mse,calculation_time
-testchickenpox,STGCN,0.7,rand,8,16,64,linear,50,2.0697104930877686,266.9231526851654
-testchickenpox,IT-STGCN,0.7,rand,8,16,64,linear,50,1.1673030853271484,1718.8389658927917

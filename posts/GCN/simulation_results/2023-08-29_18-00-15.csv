@@ -1,3 +1,0 @@
-dataset,method,mrate,mtype,lags,nof_filters,batch_size,inter_method,epoch,mse,calculation_time
-0829fivenodes,STGCN,0.7,rand,8,12,32,linear,50,1.86913001537323,61.93102407455444
-0829fivenodes,IT-STGCN,0.7,rand,8,12,32,linear,50,1.3204842805862427,239.8354082107544

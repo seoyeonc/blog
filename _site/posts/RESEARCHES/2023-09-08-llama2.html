@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.315">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-09-08">
+
+<title>Seoyeon’s Blog for study - [LLM]LLAMA2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-09-08-llama2.html"><strong>[LLM]</strong>LLAMA2</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-08-25-batch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Batch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-22-Baseline_SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-16-linspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">linspace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Zeroshot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-28-CAM.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-09-07-ANOMALOUS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[ANOMALOUS]</strong>Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-09-08-llama2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong>[LLM]</strong>LLAMA2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  <li><a href="#사용가능한-pretrained된-model" id="toc-사용가능한-pretrained된-model" class="nav-link" data-scroll-target="#사용가능한-pretrained된-model">사용가능한 pretrained된 model</a></li>
+  <li><a href="#텍스트-생성" id="toc-텍스트-생성" class="nav-link" data-scroll-target="#텍스트-생성">텍스트 생성</a>
+  <ul class="collapse">
+  <li><a href="#load-a-model-tokenizer" id="toc-load-a-model-tokenizer" class="nav-link" data-scroll-target="#load-a-model-tokenizer">Load a model &amp; tokenizer</a>
+  <ul class="collapse">
+  <li><a href="#chat-version은-txt-주고-받는-모델" id="toc-chat-version은-txt-주고-받는-모델" class="nav-link" data-scroll-target="#chat-version은-txt-주고-받는-모델">1. chat version은 txt 주고 받는 모델</a></li>
+  <li><a href="#단순-txt-생성하는-모델" id="toc-단순-txt-생성하는-모델" class="nav-link" data-scroll-target="#단순-txt-생성하는-모델">2. 단순 txt 생성하는 모델</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">feature-extraction</a>
+  <ul class="collapse">
+  <li><a href="#공식-예제" id="toc-공식-예제" class="nav-link" data-scroll-target="#공식-예제">공식 예제</a>
+  <ul class="collapse">
+  <li><a href="#특징화-1text에서-특징-추출" id="toc-특징화-1text에서-특징-추출" class="nav-link" data-scroll-target="#특징화-1text에서-특징-추출">특징화 1(text에서 특징 추출)</a></li>
+  <li><a href="#특징화-2토큰화한-후-특징-추출" id="toc-특징화-2토큰화한-후-특징-추출" class="nav-link" data-scroll-target="#특징화-2토큰화한-후-특징-추출">특징화 2(토큰화한 후 특징 추출)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#fine-tuning" id="toc-fine-tuning" class="nav-link" data-scroll-target="#fine-tuning">Fine-tuning</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-09-08-llama2.out.ipynb" download="2023-09-08-llama2.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/index.html">RESEARCHES</a></li><li class="breadcrumb-item"><a href="../../posts/RESEARCHES/2023-09-08-llama2.html"><strong>[LLM]</strong>LLAMA2</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><strong>[LLM]</strong>LLAMA2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 8, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<p>https://huggingface.co/Trelis</p>
+<section id="import" class="level1">
+<h1>Import</h1>
+<div id="05ea4af3-1006-4a87-89d6-9cb8630d4aa9" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -q transformers accelerate sentencepiece</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !huggingface-cli login</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> transformers</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+</div>
+</section>
+<section id="사용가능한-pretrained된-model" class="level1">
+<h1>사용가능한 pretrained된 model</h1>
+<p>사용가능한 pretrained된 model들 종류 아직 llama2는 업데이트되지 않은듯</p>
+<pre><code>- **albert** -- [`AlbertTokenizer`] or [`AlbertTokenizerFast`] (ALBERT model)
+- **align** -- [`BertTokenizer`] or [`BertTokenizerFast`] (ALIGN model)
+- **bart** -- [`BartTokenizer`] or [`BartTokenizerFast`] (BART model)
+- **barthez** -- [`BarthezTokenizer`] or [`BarthezTokenizerFast`] (BARThez model)
+- **bartpho** -- [`BartphoTokenizer`] (BARTpho model)
+- **bert** -- [`BertTokenizer`] or [`BertTokenizerFast`] (BERT model)
+- **bert-generation** -- [`BertGenerationTokenizer`] (Bert Generation model)
+- **bert-japanese** -- [`BertJapaneseTokenizer`] (BertJapanese model)
+- **bertweet** -- [`BertweetTokenizer`] (BERTweet model)
+- **big_bird** -- [`BigBirdTokenizer`] or [`BigBirdTokenizerFast`] (BigBird model)
+- **bigbird_pegasus** -- [`PegasusTokenizer`] or [`PegasusTokenizerFast`] (BigBird-Pegasus model)
+- **biogpt** -- [`BioGptTokenizer`] (BioGpt model)
+- **blenderbot** -- [`BlenderbotTokenizer`] or [`BlenderbotTokenizerFast`] (Blenderbot model)
+- **blenderbot-small** -- [`BlenderbotSmallTokenizer`] (BlenderbotSmall model)
+- **blip** -- [`BertTokenizer`] or [`BertTokenizerFast`] (BLIP model)
+- **blip-2** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (BLIP-2 model)
+- **bloom** -- [`BloomTokenizerFast`] (BLOOM model)
+- **bridgetower** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (BridgeTower model)
+- **byt5** -- [`ByT5Tokenizer`] (ByT5 model)
+- **camembert** -- [`CamembertTokenizer`] or [`CamembertTokenizerFast`] (CamemBERT model)
+- **canine** -- [`CanineTokenizer`] (CANINE model)
+- **chinese_clip** -- [`BertTokenizer`] or [`BertTokenizerFast`] (Chinese-CLIP model)
+- **clap** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (CLAP model)
+- **clip** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (CLIP model)
+- **clipseg** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (CLIPSeg model)
+- **codegen** -- [`CodeGenTokenizer`] or [`CodeGenTokenizerFast`] (CodeGen model)
+- **convbert** -- [`ConvBertTokenizer`] or [`ConvBertTokenizerFast`] (ConvBERT model)
+- **cpm** -- [`CpmTokenizer`] or [`CpmTokenizerFast`] (CPM model)
+- **cpmant** -- [`CpmAntTokenizer`] (CPM-Ant model)
+- **ctrl** -- [`CTRLTokenizer`] (CTRL model)
+- **data2vec-text** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (Data2VecText model)
+- **deberta** -- [`DebertaTokenizer`] or [`DebertaTokenizerFast`] (DeBERTa model)
+- **deberta-v2** -- [`DebertaV2Tokenizer`] or [`DebertaV2TokenizerFast`] (DeBERTa-v2 model)
+- **distilbert** -- [`DistilBertTokenizer`] or [`DistilBertTokenizerFast`] (DistilBERT model)
+- **dpr** -- [`DPRQuestionEncoderTokenizer`] or [`DPRQuestionEncoderTokenizerFast`] (DPR model)
+- **electra** -- [`ElectraTokenizer`] or [`ElectraTokenizerFast`] (ELECTRA model)
+- **ernie** -- [`BertTokenizer`] or [`BertTokenizerFast`] (ERNIE model)
+- **ernie_m** -- [`ErnieMTokenizer`] (ErnieM model)
+- **esm** -- [`EsmTokenizer`] (ESM model)
+- **flaubert** -- [`FlaubertTokenizer`] (FlauBERT model)
+- **fnet** -- [`FNetTokenizer`] or [`FNetTokenizerFast`] (FNet model)
+- **fsmt** -- [`FSMTTokenizer`] (FairSeq Machine-Translation model)
+- **funnel** -- [`FunnelTokenizer`] or [`FunnelTokenizerFast`] (Funnel Transformer model)
+- **git** -- [`BertTokenizer`] or [`BertTokenizerFast`] (GIT model)
+- **gpt-sw3** -- [`GPTSw3Tokenizer`] (GPT-Sw3 model)
+- **gpt2** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (OpenAI GPT-2 model)
+- **gpt_bigcode** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (GPTBigCode model)
+- **gpt_neo** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (GPT Neo model)
+- **gpt_neox** -- [`GPTNeoXTokenizerFast`] (GPT NeoX model)
+- **gpt_neox_japanese** -- [`GPTNeoXJapaneseTokenizer`] (GPT NeoX Japanese model)
+- **gptj** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (GPT-J model)
+- **gptsan-japanese** -- [`GPTSanJapaneseTokenizer`] (GPTSAN-japanese model)
+- **groupvit** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (GroupViT model)
+- **herbert** -- [`HerbertTokenizer`] or [`HerbertTokenizerFast`] (HerBERT model)
+- **hubert** -- [`Wav2Vec2CTCTokenizer`] (Hubert model)
+- **ibert** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (I-BERT model)
+- **jukebox** -- [`JukeboxTokenizer`] (Jukebox model)
+- **layoutlm** -- [`LayoutLMTokenizer`] or [`LayoutLMTokenizerFast`] (LayoutLM model)
+- **layoutlmv2** -- [`LayoutLMv2Tokenizer`] or [`LayoutLMv2TokenizerFast`] (LayoutLMv2 model)
+- **layoutlmv3** -- [`LayoutLMv3Tokenizer`] or [`LayoutLMv3TokenizerFast`] (LayoutLMv3 model)
+- **layoutxlm** -- [`LayoutXLMTokenizer`] or [`LayoutXLMTokenizerFast`] (LayoutXLM model)
+- **led** -- [`LEDTokenizer`] or [`LEDTokenizerFast`] (LED model)
+- **lilt** -- [`LayoutLMv3Tokenizer`] or [`LayoutLMv3TokenizerFast`] (LiLT model)
+- **llama** -- [`LlamaTokenizer`] or [`LlamaTokenizerFast`] (LLaMA model)
+- **longformer** -- [`LongformerTokenizer`] or [`LongformerTokenizerFast`] (Longformer model)
+- **longt5** -- [`T5Tokenizer`] or [`T5TokenizerFast`] (LongT5 model)
+- **luke** -- [`LukeTokenizer`] (LUKE model)
+- **lxmert** -- [`LxmertTokenizer`] or [`LxmertTokenizerFast`] (LXMERT model)
+- **m2m_100** -- [`M2M100Tokenizer`] (M2M100 model)
+- **marian** -- [`MarianTokenizer`] (Marian model)
+- **mbart** -- [`MBartTokenizer`] or [`MBartTokenizerFast`] (mBART model)
+- **mbart50** -- [`MBart50Tokenizer`] or [`MBart50TokenizerFast`] (mBART-50 model)
+- **mega** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (MEGA model)
+- **megatron-bert** -- [`BertTokenizer`] or [`BertTokenizerFast`] (Megatron-BERT model)
+- **mgp-str** -- [`MgpstrTokenizer`] (MGP-STR model)
+- **mluke** -- [`MLukeTokenizer`] (mLUKE model)
+- **mobilebert** -- [`MobileBertTokenizer`] or [`MobileBertTokenizerFast`] (MobileBERT model)
+- **mpnet** -- [`MPNetTokenizer`] or [`MPNetTokenizerFast`] (MPNet model)
+- **mt5** -- [`MT5Tokenizer`] or [`MT5TokenizerFast`] (MT5 model)
+- **mvp** -- [`MvpTokenizer`] or [`MvpTokenizerFast`] (MVP model)
+- **nezha** -- [`BertTokenizer`] or [`BertTokenizerFast`] (Nezha model)
+- **nllb** -- [`NllbTokenizer`] or [`NllbTokenizerFast`] (NLLB model)
+- **nllb-moe** -- [`NllbTokenizer`] or [`NllbTokenizerFast`] (NLLB-MOE model)
+- **nystromformer** -- [`AlbertTokenizer`] or [`AlbertTokenizerFast`] (Nyströmformer model)
+- **oneformer** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (OneFormer model)
+- **openai-gpt** -- [`OpenAIGPTTokenizer`] or [`OpenAIGPTTokenizerFast`] (OpenAI GPT model)
+- **opt** -- [`GPT2Tokenizer`] or [`GPT2TokenizerFast`] (OPT model)
+- **owlvit** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (OWL-ViT model)
+- **pegasus** -- [`PegasusTokenizer`] or [`PegasusTokenizerFast`] (Pegasus model)
+- **pegasus_x** -- [`PegasusTokenizer`] or [`PegasusTokenizerFast`] (PEGASUS-X model)
+- **perceiver** -- [`PerceiverTokenizer`] (Perceiver model)
+- **phobert** -- [`PhobertTokenizer`] (PhoBERT model)
+- **pix2struct** -- [`T5Tokenizer`] or [`T5TokenizerFast`] (Pix2Struct model)
+- **plbart** -- [`PLBartTokenizer`] (PLBart model)
+- **prophetnet** -- [`ProphetNetTokenizer`] (ProphetNet model)
+- **qdqbert** -- [`BertTokenizer`] or [`BertTokenizerFast`] (QDQBert model)
+- **rag** -- [`RagTokenizer`] (RAG model)
+- **realm** -- [`RealmTokenizer`] or [`RealmTokenizerFast`] (REALM model)
+- **reformer** -- [`ReformerTokenizer`] or [`ReformerTokenizerFast`] (Reformer model)
+- **rembert** -- [`RemBertTokenizer`] or [`RemBertTokenizerFast`] (RemBERT model)
+- **retribert** -- [`RetriBertTokenizer`] or [`RetriBertTokenizerFast`] (RetriBERT model)
+- **roberta** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (RoBERTa model)
+- **roberta-prelayernorm** -- [`RobertaTokenizer`] or [`RobertaTokenizerFast`] (RoBERTa-PreLayerNorm model)
+- **roc_bert** -- [`RoCBertTokenizer`] (RoCBert model)
+- **roformer** -- [`RoFormerTokenizer`] or [`RoFormerTokenizerFast`] (RoFormer model)
+- **rwkv** -- [`GPTNeoXTokenizerFast`] (RWKV model)
+- **speech_to_text** -- [`Speech2TextTokenizer`] (Speech2Text model)
+- **speech_to_text_2** -- [`Speech2Text2Tokenizer`] (Speech2Text2 model)
+- **speecht5** -- [`SpeechT5Tokenizer`] (SpeechT5 model)
+- **splinter** -- [`SplinterTokenizer`] or [`SplinterTokenizerFast`] (Splinter model)
+- **squeezebert** -- [`SqueezeBertTokenizer`] or [`SqueezeBertTokenizerFast`] (SqueezeBERT model)
+- **switch_transformers** -- [`T5Tokenizer`] or [`T5TokenizerFast`] (SwitchTransformers model)
+- **t5** -- [`T5Tokenizer`] or [`T5TokenizerFast`] (T5 model)
+- **tapas** -- [`TapasTokenizer`] (TAPAS model)
+- **tapex** -- [`TapexTokenizer`] (TAPEX model)
+- **transfo-xl** -- [`TransfoXLTokenizer`] (Transformer-XL model)
+- **vilt** -- [`BertTokenizer`] or [`BertTokenizerFast`] (ViLT model)
+- **visual_bert** -- [`BertTokenizer`] or [`BertTokenizerFast`] (VisualBERT model)
+- **wav2vec2** -- [`Wav2Vec2CTCTokenizer`] (Wav2Vec2 model)
+- **wav2vec2-conformer** -- [`Wav2Vec2CTCTokenizer`] (Wav2Vec2-Conformer model)
+- **wav2vec2_phoneme** -- [`Wav2Vec2PhonemeCTCTokenizer`] (Wav2Vec2Phoneme model)
+- **whisper** -- [`WhisperTokenizer`] or [`WhisperTokenizerFast`] (Whisper model)
+- **xclip** -- [`CLIPTokenizer`] or [`CLIPTokenizerFast`] (X-CLIP model)
+- **xglm** -- [`XGLMTokenizer`] or [`XGLMTokenizerFast`] (XGLM model)
+- **xlm** -- [`XLMTokenizer`] (XLM model)
+- **xlm-prophetnet** -- [`XLMProphetNetTokenizer`] (XLM-ProphetNet model)
+- **xlm-roberta** -- [`XLMRobertaTokenizer`] or [`XLMRobertaTokenizerFast`] (XLM-RoBERTa model)
+- **xlm-roberta-xl** -- [`XLMRobertaTokenizer`] or [`XLMRobertaTokenizerFast`] (XLM-RoBERTa-XL model)
+- **xlnet** -- [`XLNetTokenizer`] or [`XLNetTokenizerFast`] (XLNet model)
+- **xmod** -- [`XLMRobertaTokenizer`] or [`XLMRobertaTokenizerFast`] (X-MOD model)
+- **yoso** -- [`AlbertTokenizer`] or [`AlbertTokenizerFast`] (YOSO model)</code></pre>
+</section>
+<section id="텍스트-생성" class="level1">
+<h1>텍스트 생성</h1>
+<p>jupyter 에서 돌아갈 수 있도록 transformers.pipeline의 옵션 수정</p>
+<ul>
+<li>해결책 1.
+<ul>
+<li>https://stackoverflow.com/questions/73530569/pytorch-matmul-runtimeerror-addmm-impl-cpu-not-implemented-for-half</li>
+<li>위에서 얻은 답, 데이터 타입을float16이 아닌 float32를 사용</li>
+</ul></li>
+<li>해결책 2.
+<ul>
+<li>device_map = ’auto’를 사용하지 않음.</li>
+<li>device_map=None 이 default,</li>
+<li>device_map = ’auto’를 하면 gpu 혹은 cpu를 자동으로 잡는데, 이것을 못해서 오류가 난 듯&gt;???</li>
+</ul></li>
+</ul>
+<section id="load-a-model-tokenizer" class="level2">
+<h2 class="anchored" data-anchor-id="load-a-model-tokenizer">Load a model &amp; tokenizer</h2>
+<section id="chat-version은-txt-주고-받는-모델" class="level3">
+<h3 class="anchored" data-anchor-id="chat-version은-txt-주고-받는-모델">1. chat version은 txt 주고 받는 모델</h3>
+<div id="054c1247-d20c-4fb4-a31a-9198167645f4" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">"meta-llama/Llama-2-7b-chat-hf"</span></span></code></pre></div>
+</div>
+<p><code>AutoTokenizer.from_pretrained</code></p>
+<ul>
+<li>사전 훈련된 model 가져와</li>
+<li>인증한 tokenizer를 자동으로 선택하고 사용</li>
+</ul>
+<p><em>꼭 모델을 지정해주고 입력, 바로 모델을 pretrainded에 넣으면 에러 뜸</em></p>
+<div id="50183d44-5a52-4e0e-bfb6-3584b20a4bbc" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    model,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    use_auth_token<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<p>transformers.pipeline</p>
+<ul>
+<li>사전 훈련된 모델과 tokenizer를 자동으로 선택</li>
+<li><code>torch_dtype</code>=torch.float16 데이터 타입 지정</li>
+<li><code>"text-generation"</code> 쓰면 입력 문장 이어서 텍스트 생성하도록 함.</li>
+<li><code>device_map="auto"</code> 쓰면 gpu 혹은 cpu 자동 할당</li>
+</ul>
+<div id="dbcefe88-9c5a-4236-8613-67784f47f7d5" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> transformers.pipeline(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float32,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># device_map="gpu"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading checkpoint shards: 100%|██████████| 2/2 [00:05&lt;00:00,  2.53s/it]</code></pre>
+</div>
+</div>
+<p><code>"text-generation"</code>이외에 쓸 수 있는 task option 들</p>
+<p>task (<code>str</code>): The task defining which pipeline will be returned. Currently accepted tasks are:</p>
+<pre><code>        - `"audio-classification"`: will return a [`AudioClassificationPipeline`].
+        - `"automatic-speech-recognition"`: will return a [`AutomaticSpeechRecognitionPipeline`].
+        - `"conversational"`: will return a [`ConversationalPipeline`].
+        - `"depth-estimation"`: will return a [`DepthEstimationPipeline`].
+        - `"document-question-answering"`: will return a [`DocumentQuestionAnsweringPipeline`].
+        - `"feature-extraction"`: will return a [`FeatureExtractionPipeline`].
+        - `"fill-mask"`: will return a [`FillMaskPipeline`]:.
+        - `"image-classification"`: will return a [`ImageClassificationPipeline`].
+        - `"image-segmentation"`: will return a [`ImageSegmentationPipeline`].
+        - `"image-to-text"`: will return a [`ImageToTextPipeline`].
+        - `"mask-generation"`: will return a [`MaskGenerationPipeline`].
+        - `"object-detection"`: will return a [`ObjectDetectionPipeline`].
+        - `"question-answering"`: will return a [`QuestionAnsweringPipeline`].
+        - `"summarization"`: will return a [`SummarizationPipeline`].
+        - `"table-question-answering"`: will return a [`TableQuestionAnsweringPipeline`].
+        - `"text2text-generation"`: will return a [`Text2TextGenerationPipeline`].
+        - `"text-classification"` (alias `"sentiment-analysis"` available): will return a
+          [`TextClassificationPipeline`].
+        - `"text-generation"`: will return a [`TextGenerationPipeline`]:.
+        - `"token-classification"` (alias `"ner"` available): will return a [`TokenClassificationPipeline`].
+        - `"translation"`: will return a [`TranslationPipeline`].
+        - `"translation_xx_to_yy"`: will return a [`TranslationPipeline`].
+        - `"video-classification"`: will return a [`VideoClassificationPipeline`].
+        - `"visual-question-answering"`: will return a [`VisualQuestionAnsweringPipeline`].
+        - `"zero-shot-classification"`: will return a [`ZeroShotClassificationPipeline`].
+        - `"zero-shot-image-classification"`: will return a [`ZeroShotImageClassificationPipeline`].
+        - `"zero-shot-audio-classification"`: will return a [`ZeroShotAudioClassificationPipeline`].
+        - `"zero-shot-object-detection"`: will return a [`ZeroShotObjectDetectionPipeline`].</code></pre>
+<div id="70a1db02-9d06-458e-80b0-ccc6ad3d7117" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen(x, max_length<span class="op">=</span><span class="dv">200</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    sequences <span class="op">=</span> pipeline(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        top_k<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        num_return_sequences<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        eos_token_id<span class="op">=</span>tokenizer.eos_token_id,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        max_length<span class="op">=</span>max_length,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sequences[<span class="dv">0</span>][<span class="st">"generated_text"</span>].replace(x, <span class="st">""</span>)</span></code></pre></div>
+</div>
+<div id="3c1b599c-a119-44ec-9c2e-7f272a03bb0a" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen(<span class="st">'I liked "Breaking Bad" and "Band of Brothers". Do you have any recommendations of other shows I might like?</span><span class="ch">\n</span><span class="st">'</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Answer: Yes, definitely! If you enjoyed "Breaking Bad" and "Band of Brothers," here are some other shows you might enjoy:
+
+1. "The Sopranos" - This HBO series is a crime drama that follows the life of a New Jersey mob boss, Tony Soprano, as he navigates the criminal underworld and deals with personal and family issues.
+
+2. "The Wire" - This HBO series explores the drug trade in Baltimore from multiple perspectives, including law enforcement, drug dealers, and politicians. It's known for its gritty realism and complex characters.
+
+3. "Mad Men" - Set in the 1960s, this AMC series follows the lives ofбад advertising execut</code></pre>
+</div>
+</div>
+<div id="55228d89-8e25-4afc-b8aa-64ca1de75aae" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen(<span class="st">"대한민국에서 유명한 인공지능 유튜버 3명만 나열해봐."</span>, <span class="dv">500</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+1. 블랙파티 (Black Party) - 약 200만 subscribe, 3000만 조회수
+2. 프로젝트 (Project) - 약 150만 subscribe, 2000만 조회수
+3. 파이널 (Final) - 약 100만 subscribe, 1500만 조회수</code></pre>
+</div>
+</div>
+<div id="8f6b02e7-24a4-4e48-b09d-28c7008d0f4f" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen(<span class="st">"유튜브 빵형의 개발도상국 채널 알아?"</span>, <span class="dv">500</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ (2023-02-17)  
+
+👀 빵형의 개발도상국 채널 알아? 🤔
+
+💡 YouTube 빵형의 개발도상국 채널 알아? 🎯
+
+🔍 빵형의 개발도상국 채널 알아? 🔍
+
+📢 빵형의 개발도상국 채널 알아? 📢
+
+👉 빵형의 개발도상국 채널 알아? 👈
+
+🤝 빵형의 개발도상국 채널 알아? 🤝
+
+🎯 빵형의 개발도상국 채널 알아? 🎯
+
+👍 빵형의 개발도상국 채널 알아? 👍
+
+🤔 빵형의 개발도상국 채널 알아? 🤔
+
+👀 빵형의 개발도상국 채널 알아? 👀
+
+📢 빵형의 개발도상국 채널 알아? 📢
+
+🤝 �</code></pre>
+</div>
+</div>
+</section>
+<section id="단순-txt-생성하는-모델" class="level3">
+<h3 class="anchored" data-anchor-id="단순-txt-생성하는-모델">2. 단순 txt 생성하는 모델</h3>
+<div id="e6e930d8-4c30-4f09-9ed4-0bc543622f78" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> <span class="st">"meta-llama/Llama-2-7b-hf"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>tokenizer2 <span class="op">=</span> AutoTokenizer.from_pretrained(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    model2,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    use_auth_token<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>pipeline2 <span class="op">=</span> transformers.pipeline(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text-generation"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model2,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    torch_dtype<span class="op">=</span>torch.float32,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># device_map="auto",</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading checkpoint shards: 100%|██████████| 2/2 [00:05&lt;00:00,  2.62s/it]</code></pre>
+</div>
+</div>
+<div id="627dc998-dd32-4053-8789-9d0e3ac89ec3" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gen2(x, max_length<span class="op">=</span><span class="dv">200</span>):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    sequences <span class="op">=</span> pipeline2(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        top_k<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        num_return_sequences<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        eos_token_id<span class="op">=</span>tokenizer2.eos_token_id,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        max_length<span class="op">=</span>max_length,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sequences[<span class="dv">0</span>][<span class="st">"generated_text"</span>].replace(x, <span class="st">""</span>)</span></code></pre></div>
+</div>
+<div id="ad258ca8-8e8e-437a-8e93-f07ed18874a9" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen2(<span class="st">'I liked "Breaking Bad" and "Band of Brothers". Do you have any recommendations of other shows I might like?</span><span class="ch">\n</span><span class="st">'</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>I'm a fan of "The Wire" and "The Sopranos" but I'm not sure if you're into gangster movies.
+I'm not sure if you're into gangster movies.
+I'm a fan of "The Wire" and "The Sopranos"
+I'm not a big fan of gangster movies. I've seen a few and they are OK but I don't go out of my way to watch them. I'm not sure if I've ever seen "The Wire" or "The Sopranos".
+I'm not sure if I've ever seen "The Wire" or "The Sopranos".
+I'm a big fan of "The Wire" and</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="feature-extraction" class="level1">
+<h1>feature-extraction</h1>
+<ul>
+<li><p>ref: checkpoint 사용 가능 https://huggingface.co/models?pipeline_tag=feature-extraction</p></li>
+<li><p><code>checkpoint</code> 사전 학습된 모델 지정하기, 위에 400개 이상의 모델 존재</p></li>
+<li><p><code>framework="pt"</code>or - <code>framework=True</code> 파이토치 이용하겠다.</p></li>
+<li><p><code>framework="tf"</code> 라면 텐서플로우 이용하겠다.</p>
+<ul>
+<li>framework 사용할 수 있는 모델..다 적용되지는 않는다.</li>
+</ul></li>
+</ul>
+<div id="80df3051-dec2-48dd-aafd-8e1e94f66ccb" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>checkpoint <span class="op">=</span> <span class="st">"facebook/bart-base"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(<span class="st">'distilroberta-base'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>feature_extractor <span class="op">=</span> transformers.pipeline(<span class="st">"feature-extraction"</span>,framework<span class="op">=</span><span class="st">"pt"</span>,model<span class="op">=</span>checkpoint,tokenizer<span class="op">=</span>tokenizer)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Transformers is an awesome library!"</span></span></code></pre></div>
+</div>
+<section id="공식-예제" class="level2">
+<h2 class="anchored" data-anchor-id="공식-예제">공식 예제</h2>
+<section id="특징화-1text에서-특징-추출" class="level3">
+<h3 class="anchored" data-anchor-id="특징화-1text에서-특징-추출">특징화 1(text에서 특징 추출)</h3>
+<ul>
+<li>9개의 토큰으로 분리됌.</li>
+<li>768차원</li>
+</ul>
+<div id="827dabe5-3e15-4ad9-8396-294f42dc439a" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reducing along the first dimension to get a 768 dimensional array</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>torch.Size([9, 768])</code></pre>
+</div>
+</div>
+<ul>
+<li>feature_extractor의 결과는 torch로 지정해줘서 torch 로 나옴</li>
+</ul>
+<div id="8c04f2e4-28b7-4fab-9e9c-ef9f46dc556d" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].numpy().mean(axis<span class="op">=</span><span class="dv">0</span>).shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>(768,)</code></pre>
+</div>
+</div>
+<div id="d4f97bd1-11db-4f43-b498-9d56642a2775" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].numpy().mean(axis<span class="op">=</span><span class="dv">1</span>).shape</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>(9,)</code></pre>
+</div>
+</div>
+<ul>
+<li>특징 추출</li>
+</ul>
+<div id="7a003a70-642e-4757-8f35-d43e7900c885" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.plot(feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].numpy().mean(axis<span class="op">=</span><span class="dv">0</span>)) <span class="co"># 특징 추출</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-09-08-llama2_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="15c7f82b-0969-4934-90be-4cfc9f98cccd" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].numpy().mean(axis<span class="op">=</span><span class="dv">0</span>)).describe()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>768.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>0.083737</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>0.882607</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>-4.869781</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>-0.423363</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>0.095451</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>0.632395</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>2.976899</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="9950bafb-6817-4c71-913e-4e8c80f4f2b4" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>feature_extractor(text,return_tensors <span class="op">=</span> <span class="st">"pt"</span>)[<span class="dv">0</span>].numpy().mean(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>array([0.04353118, 0.07581159, 0.0764325 , 0.09305001, 0.08523342,
+       0.09044287, 0.09453633, 0.09341192, 0.10118499], dtype=float32)</code></pre>
+</div>
+</div>
+<div id="38a26d7f-e51a-4990-a11e-7ea7cdb79b81" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>np.array(feature_extractor.predict(<span class="st">"I do not know"</span>)[<span class="dv">0</span>]).mean(axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<pre><code>array([0.04564792, 0.0685828 , 0.09174387, 0.08442586, 0.09680472,
+       0.0981098 ])</code></pre>
+</div>
+</div>
+</section>
+<section id="특징화-2토큰화한-후-특징-추출" class="level3">
+<h3 class="anchored" data-anchor-id="특징화-2토큰화한-후-특징-추출">특징화 2(토큰화한 후 특징 추출)</h3>
+<div id="99729ec1-c61d-4215-ae1c-471e797179ba" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>inputs <span class="op">=</span> tokenizer(text,return_tensors<span class="op">=</span><span class="st">"pt"</span>,max_length<span class="op">=</span><span class="dv">9</span>)<span class="op">;</span>inputs</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>{'input_ids': tensor([[    0, 44820,   268,    16,    41,  6344,  5560,   328,     2]]), 'attention_mask': tensor([[1, 1, 1, 1, 1, 1, 1, 1, 1]])}</code></pre>
+</div>
+</div>
+<div id="d8397645-c64e-4a03-8aeb-35526b0a7886" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(inputs.input_ids[<span class="dv">0</span>]), <span class="bu">len</span>(inputs.attention_mask[<span class="dv">0</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>(9, 9)</code></pre>
+</div>
+</div>
+<div id="25770e01-e6e4-4dad-b40f-dd69b444ccf1" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>inputs[<span class="dv">0</span>]</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>Encoding(num_tokens=9, attributes=[ids, type_ids, tokens, offsets, attention_mask, special_tokens_mask, overflowing])</code></pre>
+</div>
+</div>
+<div id="d5efe3dd-3e77-4b92-843f-a25957314533" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tokenizer.decode(inputs.input_ids[<span class="dv">0</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>'&lt;s&gt;Transformers is an awesome library!&lt;/s&gt;'</code></pre>
+</div>
+</div>
+<ul>
+<li>특징 추출(outputs[0][0]~outputs[0][4] 까지 존재)</li>
+</ul>
+<div id="9abab761-92a0-4a29-a74c-e41f4db2d26a" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>outputs <span class="op">=</span> feature_extractor(<span class="op">*</span>inputs)<span class="op">;</span>plt.plot(outputs[<span class="dv">0</span>][<span class="dv">0</span>])</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring args : ('attention_mask',)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-09-08-llama2_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div id="01774365-2729-420d-a4e3-65881296491d" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(outputs[<span class="dv">0</span>][<span class="dv">0</span>])</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>768</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="fine-tuning" class="level1">
+<h1>Fine-tuning</h1>
+<p>https://github.com/facebookresearch/llama-recipes</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

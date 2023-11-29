@@ -243,6 +243,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><strong>[CAM]</strong>Score CAM(Original, Randombox)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-11-29-HCAM_Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[CAM]</strong>HCAM Tutorial</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -1040,7 +1046,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)       </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>,ref<span class="op">=</span><span class="dv">20</span>): <span class="co"># fit with ebayesthresh</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>): <span class="co"># fit with ebayesthresh</span></span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.f <span class="co"># fbar := graph fourier transform of f</span></span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>
@@ -1070,7 +1076,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.L <span class="op">=</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d)) <span class="op">@</span> (D<span class="op">-</span><span class="va">self</span>.W) <span class="op">@</span> np.diag(<span class="dv">1</span><span class="op">/</span>np.sqrt(d))</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lamb, <span class="va">self</span>.Psi <span class="op">=</span> np.linalg.eigh(<span class="va">self</span>.L)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.Lamb <span class="op">=</span> np.diag(<span class="va">self</span>.lamb)       </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>,ref<span class="op">=</span><span class="dv">6</span>): <span class="co"># fit with ebayesthresh</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,sd<span class="op">=</span><span class="dv">5</span>): <span class="co"># fit with ebayesthresh</span></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>._eigen()</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fbar <span class="op">=</span> <span class="va">self</span>.Psi.T <span class="op">@</span> <span class="va">self</span>.fnoise <span class="co"># fbar := graph fourier transform of f</span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.power <span class="op">=</span> <span class="va">self</span>.fbar<span class="op">**</span><span class="dv">2</span> </span>

@@ -17,19 +17,19 @@ from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_
 
 def GODE_Anomalous(df,contamination = 0.05):
     if 'yhat' in df:
-            mse = ((df['yhat'] - df['y'])**2).tolist()
-    elif 'y' in df:
-            mse = ((df['fhat'] - df['f'])**2).tolist()
+            outlier_old = ((df['yhat'] - df['y'])**2).tolist()
+    elif 'fhat' in df:
+            outlier_old = ((df['fhat'] - df['f'])**2).tolist()
     else : pass
         
-    sorted_data = sorted(mse,reverse=True)
+    sorted_data = sorted(outlier_old,reverse=True)
     index = int(len(sorted_data) * contamination)
     percent = sorted_data[index]
-    outlier = list(map(lambda x: 1 if x > percent else 0,mse))
-    outlier_index = [i for i, value in enumerate(mse) if value > percent]
-    return mse, outlier, outlier_index
+    outlier = list(map(lambda x: 1 if x > percent else 0,outlier_old))
+    outlier_index = [i for i, value in enumerate(outlier_old) if value > percent]
+    return outlier_old, outlier, outlier_index
         
-def Linear_plot(df, true_outlier, outlier_index, *args, ref=20,cuts=0,cutf=995,**kwargs):
+def Linear_plot(df, true_outlier, outlier_index, *args, cuts=0,cutf=995,**kwargs):
     fig,ax = plt.subplots(figsize=(10,10))
     ax.scatter(df['x'], df['y'],color='gray',s=50,alpha=0.7)
     ax.scatter(df['x'][true_outlier],df['y'][true_outlier],color='red',s=50)
@@ -39,16 +39,15 @@ def Linear_plot(df, true_outlier, outlier_index, *args, ref=20,cuts=0,cutf=995,*
     
      # fig.savefig('fig1_231103.eps',format='eps')
 
-def Orbit_plot(df,true_outlier, outlier_index, *args, ref=60, **kwargs):
+def Orbit_plot(df,true_outlier, outlier_index, *args, **kwargs):
     
     fig, (ax1,ax2,ax3) = plt.subplots(1,3,figsize=(30,15),subplot_kw={"projection":"3d"})
     ax1.grid(False)
     ax1.scatter3D(df['x'],df['y'],df['f'],zdir='z',s=50,marker='.',color='gray')
     ax1.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=50,marker='.',color='red')
     ax1.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index],edgecolors='red',zdir='z',s=100,facecolors='none')
-    
     ax1.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3)
-    ax2.view_init(elev=30., azim=60)
+    ax1.view_init(elev=30., azim=60)
     
     ax2.grid(False)
     ax2.scatter3D(df['x'],df['y'],df['f'],zdir='z',s=50,marker='.',color='gray')
@@ -66,7 +65,7 @@ def Orbit_plot(df,true_outlier, outlier_index, *args, ref=60, **kwargs):
     
     # fig.savefig('fig2_231103.eps',format='eps')
 
-def Bunny_plot(df,true_outlier, outlier_index, *args, ref=6, **kwargs):
+def Bunny_plot(df,true_outlier, outlier_index, *args, **kwargs):
 
     fig = plt.figure(figsize=(30,12),dpi=400)
     ax1 = fig.add_subplot(251, projection='3d')

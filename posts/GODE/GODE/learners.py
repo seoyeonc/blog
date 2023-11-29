@@ -74,7 +74,7 @@ class Orbit:
     def __init__(self,df):
         self.df = df
         self.n = len(self.df)
-    def fit(self,sd=5,ref=20): # fit with ebayesthresh
+    def fit(self,sd=5): # fit with ebayesthresh
         self.W = get_distance_matrix(self.df.x, self.df.y, self.n, theta=1, beta=0.5, kappa=4000)
         self.lamb, self.Psi = eigen(self.W)
         self.fbar = self.Psi.T @ self.df.f # fbar := graph fourier transform of f
@@ -96,7 +96,7 @@ class BUNNY:
         self.df = df 
         self.n = len(self.df)
         self.W = W
-    def fit(self,sd=5,ref=6): # fit with ebayesthresh
+    def fit(self,sd=5): # fit with ebayesthresh
         self.lamb, self.Psi = eigen(self.W)
         self.fbar = self.Psi.T @ self.df.f # fbar := graph fourier transform of f
         self.power = self.fbar**2 

@@ -1,192 +1,103 @@
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+from PIL import Image
 
 # torch
+import torchvision
 import torch
-import torch.nn.functional as F
-#import torch_geometric_temporal
-from torch_geometric_temporal.nn.recurrent import GConvGRU
+from torchvision import transforms
 
-# utils
-import copy
-#import time
-#import pickle
-#import itertools
-#from tqdm import tqdm
-#import warnings
+from fastai.vision.all import *
 
-# rpy2
-#import rpy2
-#import rpy2.robjects as ro 
-from rpy2.robjects.vectors import FloatVector
-import rpy2.robjects as robjects
+import rpy2
+import rpy2.robjects as ro 
+from rpy2.robjects.vectors import FloatVector 
 from rpy2.robjects.packages import importr
-import rpy2.robjects.numpy2ri as rpyn
-GNAR = importr('GNAR') # import GNAR 
-#igraph = importr('igraph') # import igraph 
-ebayesthresh = importr('EbayesThresh').ebayesthresh
 
-from .utils import convert_train_dataset
-from .utils import DatasetLoader
 
-def make_Psi(T):
-    W = np.zeros((T,T))
-    for i in range(T):
-        for j in range(T):
-            if i==j :
-                W[i,j] = 0
-            elif np.abs(i-j) <= 1 : 
-                W[i,j] = 1
-    d = np.array(W.sum(axis=1))
-    D = np.diag(d)
-    L = np.array(np.diag(1/np.sqrt(d)) @ (D-W) @ np.diag(1/np.sqrt(d)))
-    lamb, Psi = np.linalg.eigh(L)
-    return Psi
+from pytorch_grad_cam import GradCAM, HiResCAM, ScoreCAM, GradCAMPlusPlus, AblationCAM, XGradCAM, EigenCAM, FullGrad, EigenGradCAM, LayerCAM
 
-def trim(f):
-    f = np.array(f)
-    if len(f.shape)==1: f = f.reshape(-1,1)
-    T,N = f.shape
-    Psi = make_Psi(T)
-    fbar = Psi.T @ f # apply dft 
-    fbar_threshed = np.stack([ebayesthresh(FloatVector(fbar[:,i])) for i in range(N)],axis=1)
-    fhat = Psi @ fbar_threshed # inverse dft 
-    return fhat
+import cv2
 
-def update_from_freq_domain(signal, missing_index):
-    signal = np.array(signal)
-    T,N = signal.shape 
-    signal_trimed = trim(signal)
-    for i in range(N):
-        try: 
-            signal[missing_index[i],i] = signal_trimed[missing_index[i],i]
-        except: 
-            pass 
-    return signal
+from .utils import Img_loader
 
-class RecurrentGCN(torch.nn.Module):
-    def __init__(self, node_features, filters):
-        super(RecurrentGCN, self).__init__()
-        self.recurrent = GConvGRU(node_features, filters, 2)
-        self.linear = torch.nn.Linear(filters, 1)
-
-    def forward(self, x, edge_index, edge_weight):
-        h = self.recurrent(x, edge_index, edge_weight)
-        h = F.relu(h)
-        h = self.linear(h)
-        return h
-    
-class StgcnLearner:
-    def __init__(self,train_dataset,dataset_name = None):
-        self.train_dataset = train_dataset
-        self.lags = torch.tensor(train_dataset.features).shape[-1]
-        self.dataset_name = str(train_dataset) if dataset_name is None else dataset_name
-        self.mindex= getattr(self.train_dataset,'mindex',None)
-        self.mrate_eachnode = getattr(self.train_dataset,'mrate_eachnode',0)
-        self.mrate_total = getattr(self.train_dataset,'mrate_total',0)
-        self.mtype = getattr(self.train_dataset,'mtype',None)
-        self.interpolation_method = getattr(self.train_dataset,'interpolation_method',None)
-        self.method = 'STGCN'
-    def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
-        self.model.train()
-        for e in range(epoch):
-            for t, snapshot in enumerate(self.train_dataset):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
-                cost.backward()
-                self.optimizer.step()
-                self.optimizer.zero_grad()
-            print('{}/{}'.format(e+1,epoch),end='\r')
-        # recording HP
-        self.nof_filters = filters
-        self.epochs = epoch+1
-    def __call__(self,dataset):
-        X = torch.tensor(dataset.features).float()
-        y = torch.tensor(dataset.targets).float()
-        yhat = torch.stack([self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr) for snapshot in dataset]).detach().squeeze().float()
-        return {'X':X, 'y':y, 'yhat':yhat} 
-
-class ITStgcnLearner(StgcnLearner):
-    def __init__(self,train_dataset,dataset_name = None):
-        super().__init__(train_dataset)
-        self.method = 'IT-STGCN'
-    def learn(self,filters=32,epoch=50):
-        self.model = RecurrentGCN(node_features=self.lags, filters=filters)
-        self.optimizer = torch.optim.Adam(self.model.parameters(), lr=0.01)
-        self.model.train()
-        train_dataset_temp = copy.copy(self.train_dataset)
-        for e in range(epoch):
-            f,lags = convert_train_dataset(train_dataset_temp)
-            f = update_from_freq_domain(f,self.mindex)
-            T,N = f.shape 
-            data_dict_temp = {
-                'edges':self.train_dataset.edge_index.T.tolist(), 
-                'node_ids':{'node'+str(i):i for i in range(N)}, 
-                'FX':f
-            }
-            train_dataset_temp = DatasetLoader(data_dict_temp).get_dataset(lags=self.lags)  
-            for t, snapshot in enumerate(train_dataset_temp):
-                yt_hat = self.model(snapshot.x, snapshot.edge_index, snapshot.edge_attr).reshape(-1)
-                cost = torch.mean((yt_hat-snapshot.y)**2)
-                cost.backward()
-                self.optimizer.step()
-                self.optimizer.zero_grad()
-            print('{}/{}'.format(e+1,epoch),end='\r')
-        # record
-        self.nof_filters = filters
-        self.epochs = epoch+1
-
-class GNARLearner(StgcnLearner):
-    def __init__(self,train_dataset,dataset_name = None):
-        super().__init__(train_dataset)
-        self.method = 'GNAR'
-    def learn(self):
-    
-        self.N = np.array(self.train_dataset.features).shape[1]
-        w=np.zeros((self.N,self.N))
-        for k in range(len(self.train_dataset.edge_index[0])):
-            w[self.train_dataset.edge_index[0][k],self.train_dataset.edge_index[1][k]] = 1
-
-        self.m = robjects.r.matrix(FloatVector(w), nrow = self.N, ncol = self.N)
-        _vts = robjects.r.matrix(
-            rpyn.numpy2rpy(np.array(self.train_dataset.features).reshape(-1,1).squeeze()), 
-            nrow = np.array(self.train_dataset.targets).shape[0] + self.lags, 
-            ncol = self.N
-        )
-        self.fit = GNAR.GNARfit(vts=_vts,net = GNAR.matrixtoGNAR(self.m), alphaOrder = self.lags, betaOrder = FloatVector([1]*self.lags))
         
-        self.nof_filters = None
-        self.epochs = None
-    def __call__(self,dataset,mode='fit',n_ahead=1):
-        r_code = '''
-        substitute<-function(lrnr_fit1,lrnr_fit2){
-        lrnr_fit1$mod$coef = lrnr_fit2$mod$coef
-        return(lrnr_fit1)
-        }
-        '''
-        robjects.r(r_code)
-        substitute=robjects.globalenv['substitute']
-        _vts = robjects.r.matrix(
-            rpyn.numpy2rpy(np.array(dataset.features).reshape(-1,1).squeeze()), 
-            nrow = np.array(dataset.targets).shape[0] + self.lags, 
-            ncol = self.N
-        )
-        self._fit = GNAR.GNARfit(vts = _vts, net = GNAR.matrixtoGNAR(self.m), alphaOrder = self.lags, betaOrder = FloatVector([1]*self.lags))
-        self._fit = substitute(self._fit,self.fit)
+def Other_method(lrnr, *args, status='cpu', cam_method='gradcam',input_img=None):
+    md = lrnr.model.to(status)
+    target_layer = lrnr.model[0][-1]
+    if cam_method == 'gradcam':
+        other_cam = GradCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'hirescam':
+        other_cam = HiResCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'scorecam':
+        other_cam = ScoreCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'gradcamplusplus':
+        other_cam = GradCAMPlusPlus(model=md, target_layers=target_layer)
+    elif cam_method == 'ablationcam':
+        other_cam = AblationCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'xgradcam':
+        other_cam = XGradCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'eigencam':
+        other_cam = EigenCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'fullgrad':
+        other_cam = FullGrad(model=md, target_layers=target_layer)
+    elif cam_method == 'eigengradcam':
+        other_cam = EigenGradCAM(model=md, target_layers=target_layer)
+    elif cam_method == 'layercam':
+        other_cam = LayerCAM(model=md, target_layers=target_layer)
+    else:
+        raise ValueError(f"Invalid CAM method: {cam_method}")
+
+    cam_ret = other_cam(input_tensor=input_img, targets=None)
+    return cam_ret
+
+class HCAM:
+    def __init__(self,lrnr):
+        self.md = lrnr.model
+        self.net1 = self.md[0]
+        self.net2 = self.md[1]
+
+    def learner_thresh(self,Thresh=1600,input_img=None):
+        self.net1.to('cpu')
+        self.net2.to('cpu')
+
+        camimg = torch.einsum('ij,jkl -> ikl', self.net2[2].weight, self.net1(input_img).squeeze())
+        ebayesthresh = importr('EbayesThresh').ebayesthresh
+
+        power_threshed=np.array(ebayesthresh(FloatVector(torch.tensor(camimg[0].detach().reshape(-1))**2)))
+        self.ybar_threshed = np.where(power_threshed>Thresh,torch.tensor(camimg[0].detach().reshape(-1)),0)
+        self.ybar_threshed = torch.tensor(self.ybar_threshed.reshape(16,16))
+
+    def learner_step(self,Rate=-0.05):
+        self.A1 = torch.exp(Rate*(self.ybar_threshed))
+        self.A2 = 1 - self.A1
+
+    def prob(self,input_img=None):
+        self.a,self.b = self.md(input_img).tolist()[0]
+        self.a_prob = np.exp(self.a)/ (np.exp(self.a)+np.exp(self.b))
+        self.b_prob = np.exp(self.b)/ (np.exp(self.a)+np.exp(self.b))
+
+    def mode_decomp(self,input_img=None):
+        # mode res
+        X_res=np.array(self.A1.to("cpu").detach(),dtype=np.float32)
+        Y_res=torch.Tensor(cv2.resize(X_res,(512,512),interpolation=cv2.INTER_LINEAR))
+
+        self.x_res=(input_img.squeeze().to('cpu')-torch.min(input_img.squeeze().to('cpu')))*Y_res
+        self.x_res = self.x_res.reshape(1,3,512,512)
+
+        # mode
+        X=np.array(self.A2.to("cpu").detach(),dtype=np.float32)
+        Y=torch.Tensor(cv2.resize(X_res,(512,512),interpolation=cv2.INTER_LINEAR))
+
+        self.x=(input_img.squeeze().to('cpu')-torch.min(input_img.squeeze().to('cpu')))*Y
         
-        X = torch.tensor(dataset.features).float()
-        y = torch.tensor(dataset.targets).float()
-        if mode == 'fit':
-            X = np.array(dataset.features)
-            yhat = GNAR.fitted_GNARfit(self._fit,robjects.FloatVector(X))
-            X = torch.tensor(X).float()
-            yhat = torch.tensor(np.array(yhat)).float()
-        elif mode == 'fore': 
-            yhat = GNAR.predict_GNARfit(self.fit,n_ahead=n_ahead)
-            yhat = torch.tensor(np.array(yhat)).float()
-        else: 
-            print('mode should be "fit" or "fore"')
-        return {'X':X, 'y':y, 'yhat':yhat} 
+    def __call__(self,input_img=None):
+        A1 = self.A1
+        A2 = self.A2
+        x = self.x
+        x_res = self.x_res
+        return {'A1':A1, 'A2':A2, 'x':x, 'x_res':x_res} 
+
+
+

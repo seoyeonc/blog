@@ -1,113 +1,54 @@
 import numpy as np
-#import pandas as pd
 import matplotlib.pyplot as plt
-#from matplotlib import animation
 
 # # torch
 import torch
-# import torch.nn.functional as F
-import torch_geometric_temporal
-# from torch_geometric_temporal.nn.recurrent import GConvGRU
 
-# # scipy 
-# from scipy.interpolate import interp1d
+from fastai.vision.all import *
+from torchvision.models import *
 
-# utils
-#import copy
-#import time
-import pickle
-import itertools
-#from tqdm import tqdm
-#import warnings
-
-# rpy2
-#import rpy2
-#import rpy2.robjects as ro 
-#from rpy2.robjects.vectors import FloatVector
-#import rpy2.robjects as robjects
-#from rpy2.robjects.packages import importr
-#import rpy2.robjects.numpy2ri as rpyn
-#GNAR = importr('GNAR') # import GNAR 
-#igraph = importr('igraph') # import igraph 
-#ebayesthresh = importr('EbayesThresh').ebayesthresh
+def label_func(f):
+    if f[0].isupper():
+        return 'cat' 
+    else: 
+        return 'dog' 
+    
+def Img_loader(fil_path = 'original_pet',resize = 512):    
+    dls = ImageDataLoaders.from_name_func(Path(fil_path),
+                                          get_image_files(Path(fil_path)),
+                                          label_func,item_tfms=Resize(resize)) 
+    return dls
 
 
-temporal_signal_split = torch_geometric_temporal.signal.temporal_signal_split
-
-
-def load_data(fname):
-    with open(fname, 'rb') as outfile:
-        data_dict = pickle.load(outfile)
-    return data_dict
-
-def save_data(data_dict,fname):
-    with open(fname,'wb') as outfile:
-        pickle.dump(data_dict,outfile)
-        
-
-def plot(f,*args,t=None,h=2.5,**kwargs):
-    T,N = f.shape
-    if t is None: t = range(T)
-    fig = plt.figure()
-    ax = fig.subplots(N,1)
-    for n in range(N):
-        ax[n].plot(t,f[:,n],*args,**kwargs)
-        ax[n].set_title('node='+str(n))
-    fig.set_figheight(N*h)
+def plot(dls,input_img,
+         input_img1,input_img1_res,
+         *args, 
+         input_img2=None,input_img2_res=None,
+         one=0.35, one_res=0.2, two=0.35, two_res=0.2, **kwargs):
+    
+    fig, (ax1) = plt.subplots(1,1) 
+    dls.train.decode((input_img,))[0].squeeze().show(ax=ax1)
+    fig.set_figwidth(4)            
+    fig.set_figheight(4)
     fig.tight_layout()
-    plt.close()
-    return fig
-
-def plot_add(fig,f,*args,t=None,**kwargs):
-    T = f.shape[0]
-    N = f.shape[1] 
-    if t is None: t = range(T)   
-    ax = fig.get_axes()
-    for n in range(N):
-        ax[n].plot(t,f[:,n],*args,**kwargs)
-    return fig
-
-def convert_train_dataset(train_dataset):
-    lags = torch.tensor(train_dataset.features).shape[-1]
-    f = torch.concat([train_dataset[0].x.T,torch.tensor(train_dataset.targets)],axis=0).numpy()
-    return f,lags 
-
-class DatasetLoader(object):
-    def __init__(self,data_dict):
-        self._dataset = data_dict 
-    def _get_edges(self):
-        self._edges = np.array(self._dataset["edges"]).T
-
-    def _get_edge_weights(self):
-        self._edge_weights = np.ones(self._edges.shape[1])
-
-    def _get_targets_and_features(self):
-        stacked_target = np.array(self._dataset["FX"])
-        self.features = [
-            stacked_target[i : i + self.lags, :].T
-            for i in range(stacked_target.shape[0] - self.lags)
-        ]
-        self.targets = [
-            stacked_target[i + self.lags, :].T
-            for i in range(stacked_target.shape[0] - self.lags)
-        ]
-
-    def get_dataset(self, lags: int = 4) -> torch_geometric_temporal.signal.StaticGraphTemporalSignal:
-        """Returning the Chickenpox Hungary data iterator.
-
-        Args types:
-            * **lags** *(int)* - The number of time lags.
-        Return types:
-            * **dataset** *(torch_geometric_temporal.signal.StaticGraphTemporalSignal)* - The Chickenpox Hungary dataset.
-        """
-        self.lags = lags
-        self._get_edges()
-        self._get_edge_weights()
-        self._get_targets_and_features()
-        dataset = torch_geometric_temporal.signal.StaticGraphTemporalSignal(
-            self._edges, self._edge_weights, self.features, self.targets
-        )
-        return dataset
+    
+    #
+    fig, (ax1, ax2) = plt.subplots(1,2) 
+    (input_img1*one).squeeze().show(ax=ax1) 
+    (input_img1_res*one_res).squeeze().show(ax=ax2) 
+    fig.set_figwidth(8)            
+    fig.set_figheight(8)
+    fig.tight_layout()
+    
+    if input_img2 is not None:
+        fig, (ax1, ax2) = plt.subplots(1,2) 
+        (input_img2*two).squeeze().show(ax=ax1) 
+        (input_img2_res*two_res).squeeze().show(ax=ax2) 
+        fig.set_figwidth(8)            
+        fig.set_figheight(8)
+        fig.tight_layout()
+    else:
+        pass
     
 
 class Evaluator:

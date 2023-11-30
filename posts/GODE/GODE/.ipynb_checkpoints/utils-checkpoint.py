@@ -12,6 +12,7 @@ import plotly.graph_objects as go
 import copy
 
 from pygsp import graphs, filters, plotting, utils
+import plotly.express as px
 
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, accuracy_score, roc_curve, auc
 
@@ -43,24 +44,33 @@ def Orbit_plot(df,true_outlier, outlier_index, *args, **kwargs):
     
     fig, (ax1,ax2,ax3) = plt.subplots(1,3,figsize=(30,15),subplot_kw={"projection":"3d"})
     ax1.grid(False)
-    ax1.scatter3D(df['x'],df['y'],df['f'],zdir='z',s=50,marker='.',color='gray')
-    ax1.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=50,marker='.',color='red')
-    ax1.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index],edgecolors='red',zdir='z',s=100,facecolors='none')
-    ax1.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3)
+    ax1.scatter3D(df['x'][~true_outlier],df['y'][~true_outlier],df['f'][~true_outlier],zdir='z',color='gray',alpha=0.99,zorder=1)
+    ax1.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=75,color='red',alpha=0.99,zorder=2)
+    ax1.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index],edgecolors='red',zdir='z',s=300,facecolors='none',alpha=0.99,zorder=3)
+    ax1.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3,zorder=10)
+    ax1.xaxis.pane.fill = False
+    ax1.yaxis.pane.fill = False
+    ax1.zaxis.pane.fill = False
     ax1.view_init(elev=30., azim=60)
     
     ax2.grid(False)
-    ax2.scatter3D(df['x'],df['y'],df['f'],zdir='z',s=50,marker='.',color='gray')
-    ax2.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=50,marker='.',color='red') 
-    ax2.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index], edgecolors='red',zdir='z',s=100,facecolors='none')
-    ax2.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3)
+    ax2.scatter3D(df['x'][~true_outlier],df['y'][~true_outlier],df['f'][~true_outlier],zdir='z',color='gray',alpha=0.99,zorder=1)
+    ax2.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=75,color='red',alpha=0.99,zorder=2)
+    ax2.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index], edgecolors='red',zdir='z',s=300,facecolors='none',alpha=0.99,zorder=3)
+    ax2.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3,zorder=10)
+    ax2.xaxis.pane.fill = False
+    ax2.yaxis.pane.fill = False
+    ax2.zaxis.pane.fill = False
     ax2.view_init(elev=30., azim=40)
     
     ax3.grid(False)
-    ax3.scatter3D(df['x'],df['y'],df['f'],zdir='z',s=50,marker='.',color='gray')
-    ax3.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=50,marker='.',color='red') 
-    ax3.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index],edgecolors='red',zdir='z',s=100,facecolors='none')
-    ax3.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3)
+    ax3.scatter3D(df['x'][~true_outlier],df['y'][~true_outlier],df['f'][~true_outlier],zdir='z',color='gray',alpha=0.99,zorder=1)
+    ax3.scatter3D(df['x'][true_outlier],df['y'][true_outlier],df['f'][true_outlier],zdir='z',s=75, color='red',alpha=0.99,zorder=2)
+    ax3.scatter3D(df['x'][outlier_index],df['y'][outlier_index],df['f'][outlier_index],edgecolors='red',zdir='z',s=300,facecolors='none',alpha=0.99,zorder=3)
+    ax3.plot3D(df['x'],df['y'],df['f1'],'--k',lw=3,zorder=10)
+    ax3.xaxis.pane.fill = False
+    ax3.yaxis.pane.fill = False
+    ax3.zaxis.pane.fill = False
     ax3.view_init(elev=30., azim=10)
     
     # fig.savefig('fig2_231103.eps',format='eps')
@@ -125,6 +135,47 @@ def Bunny_plot(df,true_outlier, outlier_index, *args, **kwargs):
     ax10.view_init(elev=-60., azim=-90)    
     
     # fig.savefig('fig_bunny.eps',format='eps')
+
+def Earthquake_plot(df,outlier_index, *args, lat_center=37.7749, lon_center=-122.4194,fThresh=7,adjzoom=5,adjmarkersize = 40,**kwargs):
+    df = pd.DataFrame(df)
+    
+    fig = px.density_mapbox(df, 
+                    lat='x', 
+                    lon='y', 
+                    z='f', 
+                    radius=15,
+                    center=dict(lat=lat_center, lon=lon_center), 
+                    zoom= adjzoom,
+                    height=900,
+                    opacity = 0.8,
+                    mapbox_style="stamen-terrain",
+                    range_color=[-3,3])
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    fig.add_scattermapbox(lat = df.query('f > @fThresh')['x'],
+                  lon = df.query('f > @fThresh')['y'],
+                  text = df.query('f > @fThresh')['f'],
+                  marker_size= 5,
+                  marker_color= 'blue',
+                  opacity = 0.1
+                  )
+    fig.add_scattermapbox(lat = df['x'][outlier_index],
+                  lon = df['y'][outlier_index],
+                  text = df['f'][outlier_index],
+                  marker_size= adjmarkersize,
+                  marker_color= 'red',
+                  opacity = 0.8
+                  )
+    fig.add_trace(go.Scattermapbox(
+                lat=df['x'][outlier_index],
+                lon=df['y'][outlier_index],
+                mode='markers',
+                marker=go.scattermapbox.Marker(
+                    size=20,
+                    color='rgb(255, 255, 255)',
+                    opacity=0.4
+                )
+            ))
+    return fig
 
 class Conf_matrx:
     def __init__(self,original,compare):

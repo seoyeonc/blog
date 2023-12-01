@@ -1,0 +1,2880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.315">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="SEOYEON CHOI">
+<meta name="dcterms.date" content="2023-10-18">
+
+<title>Seoyeon’s Blog for study - CAMOther Methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Seoyeon’s Blog for study</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/seoyeonc/blog/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/CAM/2023-08-28-HCAM_random_old.html">CAM</a></li><li class="breadcrumb-item"><a href="../../posts/CAM/2023-10-18-CAM_Other_Methods.html"><strong><a href="#cam">CAM</a></strong>Other Methods</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Posts</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">CAM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-08-28-HCAM_random_old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>HCAM random</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-09-15-CAM-Original_rst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>Original CAM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-09-16-Grad_CAM_rst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>Grad CAM(Original, Randombox)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-09-19-HCAM_original.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>HCAM original</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-09-21-CAM_chest_xray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>chest xray</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-09-23-HCAM_hy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>HCAM_ebayes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-10-18-CAM_Other_Methods.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>Other Methods</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-10-31-HCAM_Other_Methods_chest_xray.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>other methods chest xray</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-11-09-CAM_Scorecam_rst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>Score CAM(Original, Randombox)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CAM/2023-11-29-HCAM_Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong><a href="#cam">CAM</a></strong>HCAM Tutorial</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">FRAUD</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/FRAUD/2023-07-10-fraud_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fraud data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GCN/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-07-torchgcn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TORCH_GEOMETRIC.NN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-21-ST-GCN_Dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyTorch ST-GCN Dataset</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-28-gcn_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation of geometric-temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2022-12-29-STGCN-tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[IT-STGCN]</strong> STGCN 튜토리얼</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-05-GNAR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GNAR data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-11-Algorithm_EX_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCN Algorithm Example 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-18-Algorithm_traintest_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-20-Algorithm_traintest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ST-GCN Example dividing train and test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-21-Class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_GNAR_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-ESTGCN_WIKI_DATA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-01-26-guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-06-ESTGCN_GNAR_DATA_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(GNAR) lag 1 80% Missing repeat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-07-ESTGCN_WIKI_DATA_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class of Method(WikiMath) lag 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-02-20-ESTGCN_GNAR_edit_guebin2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2nd ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-03-ESTGCN_GNAR_edit_guebin2_seoyeon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SY 1st ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-17-ITSTGCN-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-03-20-data load, data save as pickle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data load, data save as pickle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-05-Simulation_boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-06-METRLADatasetLoader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">METRLADatasetLoader-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-25-note_matrix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Note_weight amatrix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-simulation_table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-27-toy_example_notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Note</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-04-29-pedalme_GSO_st.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Padalme GSO_st</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-04-questions of pytorch geometric temporal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questions of PyTorch Geometric Temporal</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-06-article_refer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN Article Refernece</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-CPUvsGPU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal CPU vs GPU</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-11-PyGGeometricTemporalEx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG Geometric Temporal Examples</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-itstgcntry)fail_version__Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-17-xx_GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU and GNAR_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-25-GCONVGRU_snd_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvGRU_Simulation Boxplot_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-27-AddingtheRecurrentGCNmodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adding the RecurrentGCN models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-05-30-GConvLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GConvLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-06-GCLSTM_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GCLSTM_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-13-DCRNN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DCRNN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-19-LRGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LRGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-20-TGCN_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TGCN_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-25-EvolveGCNO_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNO_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_Simulation_boxplot_reshape (SEOYEON CHOI's conflicted copy 2023-09-27).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-06-28-DYGRENCODER_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DYGRENCODER_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_Simulation_boxplot_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-01-EvolveGCNH_simulation_table_reshape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EvolveGCNH_Simulation Tables_reshape</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-04-toy_example_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy Example Figure(Intro)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-08-toy_example_using_gnar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-17-toy_example_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Toy example using GNAR</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-EbayesThresh toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EbayesThresh Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-07-18-Self Consistency toy ex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Self Consistency Toy ex</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2023-08-25-batch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Batch</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-18-SimulationPlanner-Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-03-22-Baseline_SimulationPlanner-Tutorial_test_test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimualtionPlanner-Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-05-31-Other Method.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ITSTGCN add Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-05-ITSTGCN_data_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management for ITSTGCN</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GCN/2099-07-20-ITSTGCN_data_magement_figure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data management Figure for ITSTGCN</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/GODE/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GODE</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-09-02-paper_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-10-02-Earthquake_real.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Earthquake</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-11-19-class_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Class code for Comparison Study</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-01-graph_code_guebin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-16-linspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">linspace</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2022-12-27-DFT_study.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete Fourier Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-22-comparison_earthquake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Comparison Results on Real Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-06-27-Linear_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Graph code for Paper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-07-03-other_outlier_detection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-05-semifinal_simulation_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semifinal_Other Outlier Detection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-final GODE code(paper).html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">final GODE code(paper)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-08-16-options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The options of Outlier Detection method</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-10-20-final_GODE_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[GODE]</strong>final GODE code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-11-03-final_graph_code_for_paper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">[GODE]Final Graph code for GODE Paper</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-11-27-GODE_Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[GODE]</strong>Package Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/GODE/2023-11-29-PR_Other Methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LOF<span class="citation" data-cites="breunig2000lof">[@breunig2000lof]</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/RESEARCHES/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RESEARCHES</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-07-Stock_Crawling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock Crawling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-08-stock_on_graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stock on Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-07-22-ls2.out.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyG lesson2: 벤치마크 데이터셋 (train/test분리)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-08-26-zero-shot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>Zeroshot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-09-07-ANOMALOUS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[ANOMALOUS]</strong>Graph</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-09-08-llama2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[LLM]</strong>LLAMA2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/RESEARCHES/2023-10-26-pygod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>[ANOMALOUS]</strong>PYGOD</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import" id="toc-import" class="nav-link active" data-scroll-target="#import">Import</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#cam" id="toc-cam" class="nav-link" data-scroll-target="#cam">CAM</a></li>
+  <li><a href="#gradcam" id="toc-gradcam" class="nav-link" data-scroll-target="#gradcam">GradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_gradcam" id="toc-cat_gradcam" class="nav-link" data-scroll-target="#cat_gradcam">Cat_GradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_gradcam_original" id="toc-cat_gradcam_original" class="nav-link" data-scroll-target="#cat_gradcam_original">Cat_GradCAM_Original</a></li>
+  <li><a href="#cat_gradcam_randombox" id="toc-cat_gradcam_randombox" class="nav-link" data-scroll-target="#cat_gradcam_randombox">Cat_GradCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_gradcam" id="toc-dog_gradcam" class="nav-link" data-scroll-target="#dog_gradcam">Dog_GradCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_gradcam_original" id="toc-dog_gradcam_original" class="nav-link" data-scroll-target="#dog_gradcam_original">Dog_GradCAM_Original</a></li>
+  <li><a href="#dog_gradcam_randombox" id="toc-dog_gradcam_randombox" class="nav-link" data-scroll-target="#dog_gradcam_randombox">Dog_GradCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#hirescam" id="toc-hirescam" class="nav-link" data-scroll-target="#hirescam">HiResCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_hirescam" id="toc-cat_hirescam" class="nav-link" data-scroll-target="#cat_hirescam">Cat_HiResCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_hirescam_original" id="toc-cat_hirescam_original" class="nav-link" data-scroll-target="#cat_hirescam_original">Cat_HiResCAM_Original</a></li>
+  <li><a href="#cat_hirescam_randombox" id="toc-cat_hirescam_randombox" class="nav-link" data-scroll-target="#cat_hirescam_randombox">Cat_HiResCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_hirescam" id="toc-dog_hirescam" class="nav-link" data-scroll-target="#dog_hirescam">Dog_HiResCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_hirescam_original" id="toc-dog_hirescam_original" class="nav-link" data-scroll-target="#dog_hirescam_original">Dog_HiResCAM_Original</a></li>
+  <li><a href="#dog_hirescam_random" id="toc-dog_hirescam_random" class="nav-link" data-scroll-target="#dog_hirescam_random">Dog_HiResCAM_Random</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#scorecam" id="toc-scorecam" class="nav-link" data-scroll-target="#scorecam">ScoreCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_scorecam" id="toc-cat_scorecam" class="nav-link" data-scroll-target="#cat_scorecam">Cat_ScoreCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_scorecam_original" id="toc-cat_scorecam_original" class="nav-link" data-scroll-target="#cat_scorecam_original">Cat_ScoreCAM_Original</a></li>
+  <li><a href="#cat_scorecam_randombox" id="toc-cat_scorecam_randombox" class="nav-link" data-scroll-target="#cat_scorecam_randombox">Cat_ScoreCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_scorecam" id="toc-dog_scorecam" class="nav-link" data-scroll-target="#dog_scorecam">Dog_ScoreCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_scorecam_original" id="toc-dog_scorecam_original" class="nav-link" data-scroll-target="#dog_scorecam_original">Dog_ScoreCAM_Original</a></li>
+  <li><a href="#dog_scorecam_randombox" id="toc-dog_scorecam_randombox" class="nav-link" data-scroll-target="#dog_scorecam_randombox">Dog_ScoreCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#gradcamplusplus" id="toc-gradcamplusplus" class="nav-link" data-scroll-target="#gradcamplusplus">GradCAMPlusPlus</a>
+  <ul class="collapse">
+  <li><a href="#cat_gradcamplusplus" id="toc-cat_gradcamplusplus" class="nav-link" data-scroll-target="#cat_gradcamplusplus">Cat_GradCAMPlusPlus</a>
+  <ul class="collapse">
+  <li><a href="#cat_gradcamplusplus_original" id="toc-cat_gradcamplusplus_original" class="nav-link" data-scroll-target="#cat_gradcamplusplus_original">Cat_GradCAMPlusPlus_Original</a></li>
+  <li><a href="#cat_gradcamplusplus_randombox" id="toc-cat_gradcamplusplus_randombox" class="nav-link" data-scroll-target="#cat_gradcamplusplus_randombox">Cat_GradCAMPlusPlus_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_gradcamplusplus" id="toc-dog_gradcamplusplus" class="nav-link" data-scroll-target="#dog_gradcamplusplus">Dog_GradCAMPlusPlus</a>
+  <ul class="collapse">
+  <li><a href="#dog_gradcamplusplus_original" id="toc-dog_gradcamplusplus_original" class="nav-link" data-scroll-target="#dog_gradcamplusplus_original">Dog_GradCAMPlusPlus_Original</a></li>
+  <li><a href="#dog_gradcamplusplus_randombox" id="toc-dog_gradcamplusplus_randombox" class="nav-link" data-scroll-target="#dog_gradcamplusplus_randombox">Dog_GradCAMPlusPlus_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ablationcam" id="toc-ablationcam" class="nav-link" data-scroll-target="#ablationcam">AblationCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_ablationcam" id="toc-cat_ablationcam" class="nav-link" data-scroll-target="#cat_ablationcam">Cat_AblationCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_ablationcam_original" id="toc-cat_ablationcam_original" class="nav-link" data-scroll-target="#cat_ablationcam_original">Cat_AblationCAM_Original</a></li>
+  <li><a href="#cat_ablationcam_randombox" id="toc-cat_ablationcam_randombox" class="nav-link" data-scroll-target="#cat_ablationcam_randombox">Cat_AblationCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_ablationcam" id="toc-dog_ablationcam" class="nav-link" data-scroll-target="#dog_ablationcam">Dog_AblationCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_ablationcam_original" id="toc-dog_ablationcam_original" class="nav-link" data-scroll-target="#dog_ablationcam_original">Dog_AblationCAM_Original</a></li>
+  <li><a href="#dog_ablationcam_randombox" id="toc-dog_ablationcam_randombox" class="nav-link" data-scroll-target="#dog_ablationcam_randombox">Dog_AblationCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#xgradcam" id="toc-xgradcam" class="nav-link" data-scroll-target="#xgradcam">XGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_xgradcam" id="toc-cat_xgradcam" class="nav-link" data-scroll-target="#cat_xgradcam">Cat_XGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_xgradcam_original" id="toc-cat_xgradcam_original" class="nav-link" data-scroll-target="#cat_xgradcam_original">Cat_XGradCAM_Original</a></li>
+  <li><a href="#cat_xgradcam_randombox" id="toc-cat_xgradcam_randombox" class="nav-link" data-scroll-target="#cat_xgradcam_randombox">Cat_XGradCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_xgradcam" id="toc-dog_xgradcam" class="nav-link" data-scroll-target="#dog_xgradcam">Dog_XGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_xgradcam_original" id="toc-dog_xgradcam_original" class="nav-link" data-scroll-target="#dog_xgradcam_original">Dog_XGradCAM_Original</a></li>
+  <li><a href="#dog_xgradcam_randombox" id="toc-dog_xgradcam_randombox" class="nav-link" data-scroll-target="#dog_xgradcam_randombox">Dog_XGradCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#eigencam" id="toc-eigencam" class="nav-link" data-scroll-target="#eigencam">EigenCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_eigencam" id="toc-cat_eigencam" class="nav-link" data-scroll-target="#cat_eigencam">Cat_EigenCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_eigencam_original" id="toc-cat_eigencam_original" class="nav-link" data-scroll-target="#cat_eigencam_original">Cat_EigenCAM_Original</a></li>
+  <li><a href="#cat_eigencam_randombox" id="toc-cat_eigencam_randombox" class="nav-link" data-scroll-target="#cat_eigencam_randombox">Cat_EigenCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_eigencam" id="toc-dog_eigencam" class="nav-link" data-scroll-target="#dog_eigencam">Dog_EigenCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_eigencam_original" id="toc-dog_eigencam_original" class="nav-link" data-scroll-target="#dog_eigencam_original">Dog_EigenCAM_Original</a></li>
+  <li><a href="#dog_eigencam_randombox" id="toc-dog_eigencam_randombox" class="nav-link" data-scroll-target="#dog_eigencam_randombox">Dog_EigenCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#fullgrad" id="toc-fullgrad" class="nav-link" data-scroll-target="#fullgrad">FullGrad</a>
+  <ul class="collapse">
+  <li><a href="#cat_fullgrad" id="toc-cat_fullgrad" class="nav-link" data-scroll-target="#cat_fullgrad">Cat_FullGrad</a>
+  <ul class="collapse">
+  <li><a href="#cat_fullgrad_original" id="toc-cat_fullgrad_original" class="nav-link" data-scroll-target="#cat_fullgrad_original">Cat_FullGrad_Original</a></li>
+  <li><a href="#cat_fullgrad_randombox" id="toc-cat_fullgrad_randombox" class="nav-link" data-scroll-target="#cat_fullgrad_randombox">Cat_FullGrad_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_fullgrad" id="toc-dog_fullgrad" class="nav-link" data-scroll-target="#dog_fullgrad">Dog_FullGrad</a>
+  <ul class="collapse">
+  <li><a href="#dog_fullgrad_original" id="toc-dog_fullgrad_original" class="nav-link" data-scroll-target="#dog_fullgrad_original">Dog_FullGrad_Original</a></li>
+  <li><a href="#dog_fullgrad_randombox" id="toc-dog_fullgrad_randombox" class="nav-link" data-scroll-target="#dog_fullgrad_randombox">Dog_FullGrad_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#eigengradcam" id="toc-eigengradcam" class="nav-link" data-scroll-target="#eigengradcam">EigenGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_eigengradcam" id="toc-cat_eigengradcam" class="nav-link" data-scroll-target="#cat_eigengradcam">Cat_EigenGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_eigengradcam_original" id="toc-cat_eigengradcam_original" class="nav-link" data-scroll-target="#cat_eigengradcam_original">Cat_EigenGradCAM_Original</a></li>
+  <li><a href="#cat_eigengradcam_randombox" id="toc-cat_eigengradcam_randombox" class="nav-link" data-scroll-target="#cat_eigengradcam_randombox">Cat_EigenGradCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_eigengradcam" id="toc-dog_eigengradcam" class="nav-link" data-scroll-target="#dog_eigengradcam">Dog_EigenGradCAM</a>
+  <ul class="collapse">
+  <li><a href="#dog_eigengradcam_original" id="toc-dog_eigengradcam_original" class="nav-link" data-scroll-target="#dog_eigengradcam_original">Dog_EigenGradCAM_Original</a></li>
+  <li><a href="#dog_eigengradcam_randombox" id="toc-dog_eigengradcam_randombox" class="nav-link" data-scroll-target="#dog_eigengradcam_randombox">Dog_EigenGradCAM_Randombox</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#layercam" id="toc-layercam" class="nav-link" data-scroll-target="#layercam">LayerCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_layercam" id="toc-cat_layercam" class="nav-link" data-scroll-target="#cat_layercam">Cat_LayerCAM</a>
+  <ul class="collapse">
+  <li><a href="#cat_layercam_original" id="toc-cat_layercam_original" class="nav-link" data-scroll-target="#cat_layercam_original">Cat_LayerCAM_Original</a></li>
+  <li><a href="#cat_layercam_randombox" id="toc-cat_layercam_randombox" class="nav-link" data-scroll-target="#cat_layercam_randombox">Cat_LayerCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#dog_layercam" id="toc-dog_layercam" class="nav-link" data-scroll-target="#dog_layercam">Dog_LayerCAM</a></li>
+  <li><a href="#dog_layercam_original" id="toc-dog_layercam_original" class="nav-link" data-scroll-target="#dog_layercam_original">Dog_LayerCAM_Original</a></li>
+  <li><a href="#dog_layercam_randombox" id="toc-dog_layercam_randombox" class="nav-link" data-scroll-target="#dog_layercam_randombox">Dog_LayerCAM_Randombox</a></li>
+  </ul></li>
+  <li><a href="#figure" id="toc-figure" class="nav-link" data-scroll-target="#figure">Figure</a>
+  <ul class="collapse">
+  <li><a href="#figure_original" id="toc-figure_original" class="nav-link" data-scroll-target="#figure_original">Figure_Original</a></li>
+  <li><a href="#figure_randombox" id="toc-figure_randombox" class="nav-link" data-scroll-target="#figure_randombox">Figure_Randombox</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2023-10-18-CAM_Other_Methods.out.ipynb" download="2023-10-18-CAM_Other_Methods.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Posts</li><li class="breadcrumb-item"><a href="../../posts/CAM/2023-08-28-HCAM_random_old.html">CAM</a></li><li class="breadcrumb-item"><a href="../../posts/CAM/2023-10-18-CAM_Other_Methods.html"><strong><a href="#cam">CAM</a></strong>Other Methods</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><strong>[CAM]</strong>Other Methods</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>SEOYEON CHOI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 18, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+<p>https://pythonrepo.com/repo/jacobgil-pytorch-grad-cam</p>
+<p>https://github.com/jacobgil/pytorch-grad-cam</p>
+<table class="table">
+<colgroup>
+<col style="width: 57%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Method</th>
+<th style="text-align: left;">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">GradCAM</td>
+<td style="text-align: left;">Weight the 2D activations by the average gradient</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">GradCAM++</td>
+<td style="text-align: left;">Like GradCAM but uses second order gradients</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">XGradCAM</td>
+<td style="text-align: left;">Like GradCAM but scale the gradients by the normalized activations</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AblationCAM</td>
+<td style="text-align: left;">Zero out activations and measure how the output drops (this repository includes a fast batched implementation)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ScoreCAM</td>
+<td style="text-align: left;">Perbutate the image by the scaled activations and measure how the output drops</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">EigenCAM</td>
+<td style="text-align: left;">Takes the first principle component of the 2D Activations (no class discrimination, but seems to give great results)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">EigenGradCAM</td>
+<td style="text-align: left;">Like EigenCAM but with class discrimination: First principle component of Activations*Grad. Looks like GradCAM, but cleaner</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">LayerCAM</td>
+<td style="text-align: left;">Spatially weight the activations by positive gradients. Works better especially in lower layers</td>
+</tr>
+</tbody>
+</table>
+<section id="import" class="level1">
+<h1>Import</h1>
+<div id="c35e4c07-1b4d-4c2a-a1e1-2076136427ef" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pytorch_grad_cam <span class="im">import</span> GradCAM, HiResCAM, ScoreCAM, GradCAMPlusPlus, AblationCAM, XGradCAM, EigenCAM, FullGrad, EigenGradCAM, LayerCAM</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span></code></pre></div>
+</div>
+<div id="f00d1783-d061-40ab-96b5-2265e43d1fa6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.models <span class="im">import</span> resnet50</span></code></pre></div>
+</div>
+<div id="9057585c-3642-4587-b6ec-ef2d5f6043b2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> transforms</span></code></pre></div>
+</div>
+<div id="13bc9d87-eba7-4b41-a6a8-c10f2500054f" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> label_func(f):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> f[<span class="dv">0</span>].isupper():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'cat'</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>: </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'dog'</span> </span></code></pre></div>
+</div>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<div id="ed27eef1-7857-42c5-a399-c8388cdf7ab7" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>path<span class="op">=</span>Path(<span class="st">'original_pet'</span>) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>files<span class="op">=</span>get_image_files(path)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dls<span class="op">=</span>ImageDataLoaders.from_name_func(path,files,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">512</span>)) </span></code></pre></div>
+</div>
+<div id="b97fce58-3a07-4fbb-8b48-e63125d01420" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>path_r<span class="op">=</span>Path(<span class="st">'random_pet_one'</span>)   <span class="co">#랜덤박스넣은사진</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>files_r<span class="op">=</span>get_image_files(path_r)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dls_r<span class="op">=</span>ImageDataLoaders.from_name_func(path_r,files_r,label_func,item_tfms<span class="op">=</span>Resize(<span class="dv">512</span>)) </span></code></pre></div>
+</div>
+</section>
+<section id="cam" class="level1">
+<h1>CAM</h1>
+<div id="a340571f-fa44-4b6a-91fb-0f74c6dfd143" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lrnr<span class="op">=</span>cnn_learner(dls,resnet34,metrics<span class="op">=</span>error_rate)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lrnr.fine_tune(<span class="dv">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/fastai/vision/learner.py:288: UserWarning: `cnn_learner` has been renamed to `vision_learner` -- please update your code
+  warn("`cnn_learner` has been renamed to `vision_learner` -- please update your code")
+/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/csy/anaconda3/envs/temp_csy/lib/python3.8/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet34_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet34_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.175802</td>
+<td>0.017629</td>
+<td>0.006089</td>
+<td>00:35</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.044077</td>
+<td>0.004809</td>
+<td>0.002030</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="53ff0952-e669-4b3a-9083-5fd715289785" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>net1<span class="op">=</span>lrnr.model[<span class="dv">0</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>net2<span class="op">=</span>lrnr.model[<span class="dv">1</span>]</span></code></pre></div>
+</div>
+<div id="d199a9b0-0747-4c8b-8030-549cb096c540" class="cell" data-tags="[]" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>net2 <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.AdaptiveAvgPool2d(output_size<span class="op">=</span><span class="dv">1</span>), </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Flatten(),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">2</span>,bias<span class="op">=</span><span class="va">False</span>))</span></code></pre></div>
+</div>
+<div id="a334001a-22e8-4c2f-b96b-742d3e114e41" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>net<span class="op">=</span>torch.nn.Sequential(net1,net2)</span></code></pre></div>
+</div>
+<div id="45855ff5-336e-4b92-9f4f-90c6e45d0f7f" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lrnr2<span class="op">=</span>Learner(dls,net,metrics<span class="op">=</span>accuracy) </span></code></pre></div>
+</div>
+<div id="6e5ab269-8785-41ec-b519-ff11f363c7ac" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lrnr2.fine_tune(<span class="dv">5</span>) </span></code></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.247475</td>
+<td>0.831850</td>
+<td>0.725304</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.122386</td>
+<td>0.438715</td>
+<td>0.914750</td>
+<td>00:43</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.114546</td>
+<td>0.220883</td>
+<td>0.916779</td>
+<td>00:43</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.071775</td>
+<td>0.079565</td>
+<td>0.963464</td>
+<td>00:43</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.032215</td>
+<td>0.058077</td>
+<td>0.977673</td>
+<td>00:43</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.011436</td>
+<td>0.050615</td>
+<td>0.982409</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="a4649628-dfe4-4db9-9c42-9d2ef6338dd5" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>lrnr_r<span class="op">=</span>cnn_learner(dls_r,resnet34,metrics<span class="op">=</span>error_rate)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lrnr_r.fine_tune(<span class="dv">1</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.117688</td>
+<td>0.012863</td>
+<td>0.005413</td>
+<td>00:33</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">error_rate</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.000532</td>
+<td>0.000008</td>
+<td>0.000000</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="41cbf4b4-e68b-4c67-a9a9-860845c7d319" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>net1_r<span class="op">=</span>lrnr_r.model[<span class="dv">0</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>net2_r<span class="op">=</span>lrnr_r.model[<span class="dv">1</span>]</span></code></pre></div>
+</div>
+<div id="f8919fd1-e94b-43db-8a0e-19c103019d5b" class="cell" data-tags="[]" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>net2_r <span class="op">=</span> torch.nn.Sequential(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    torch.nn.AdaptiveAvgPool2d(output_size<span class="op">=</span><span class="dv">1</span>), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    torch.nn.Flatten(),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    torch.nn.Linear(<span class="dv">512</span>,out_features<span class="op">=</span><span class="dv">2</span>,bias<span class="op">=</span><span class="va">False</span>))</span></code></pre></div>
+</div>
+<div id="448b8e41-c5e4-4003-9ccf-bceadf7fb57c" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>net_r<span class="op">=</span>torch.nn.Sequential(net1_r,net2_r)</span></code></pre></div>
+</div>
+<div id="2e431312-92ad-4f99-bd6a-9d6c84bab52e" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lrnr2_r<span class="op">=</span>Learner(dls_r,net_r,metrics<span class="op">=</span>accuracy) </span></code></pre></div>
+</div>
+<div id="ca33ac5a-5632-43be-9819-99815b5b656f" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lrnr2_r.fine_tune(<span class="dv">5</span>) </span></code></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.008425</td>
+<td>0.000942</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.000006</td>
+<td>0.000001</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.000001</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.000001</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>00:43</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="1ef3ad50-f980-49bd-81f4-83dae2c1e55a" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x_cat, <span class="op">=</span> first(dls.test_dl([PILImage.create(get_image_files(path)[<span class="dv">2</span>])]))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x_cat <span class="op">=</span> x_cat.to(<span class="st">'cpu'</span>)</span></code></pre></div>
+</div>
+<div id="32339f05-4338-4940-98d4-6ed17f76dcfb" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x_cat_r, <span class="op">=</span> first(dls_r.test_dl([PILImage.create(get_image_files(path_r)[<span class="dv">2</span>])]))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x_cat_r <span class="op">=</span> x_cat_r.to(<span class="st">'cpu'</span>)</span></code></pre></div>
+</div>
+<div id="644b1200-a4da-490b-bc27-26f60bbc73b6" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x_dog, <span class="op">=</span> first(dls.test_dl([PILImage.create(get_image_files(path)[<span class="dv">12</span>])]))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x_dog <span class="op">=</span> x_dog.to(<span class="st">'cpu'</span>)</span></code></pre></div>
+</div>
+<div id="e8754e5f-3fd5-4f9d-8cc5-3b5a89414cbc" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x_dog_r, <span class="op">=</span> first(dls_r.test_dl([PILImage.create(get_image_files(path_r)[<span class="dv">12</span>])]))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x_dog_r <span class="op">=</span> x_dog_r.to(<span class="st">'cpu'</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="gradcam" class="level1">
+<h1>GradCAM</h1>
+<section id="cat_gradcam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_gradcam">Cat_GradCAM</h2>
+<section id="cat_gradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_gradcam_original">Cat_GradCAM_Original</h3>
+<div id="2367a892-e5d1-433c-9925-5b2b33d0f16d" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gradcam_original <span class="op">=</span> GradCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="568ccedf-3b43-4e85-8b1d-b4ed2e92dd07" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cam_cat_gradcam_original <span class="op">=</span> gradcam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="65cd909f-4c3a-4352-9753-4e6cb437207f" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_gradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9dbc3c4340&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_gradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_gradcam_randombox">Cat_GradCAM_Randombox</h3>
+<div id="1707d470-0ca5-4eb7-a000-8b1648e34f83" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gradcam_randombox <span class="op">=</span> GradCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="99d09719-c9ae-4ed2-b7bc-f8bae803cffa" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cam_cat_gradcam_randombox <span class="op">=</span> gradcam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="10da8719-ef86-40dd-b199-32d7fd979de4" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_gradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f209a88e0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_gradcam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_gradcam">Dog_GradCAM</h2>
+<section id="dog_gradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_gradcam_original">Dog_GradCAM_Original</h3>
+<div id="2aabb571-e641-4681-b18a-af2618239a47" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cam_dog_gradcam_original <span class="op">=</span> gradcam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="756c115f-5841-493e-8204-72610a3c2959" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_gradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f206d0e80&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_gradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_gradcam_randombox">Dog_GradCAM_Randombox</h3>
+<div id="140c9f24-87bc-4cd0-965b-7501ba88d01e" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cam_dog_gradcam_randombox <span class="op">=</span> gradcam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="336e5dfa-3af2-4dc8-a6c7-cc642c0cbdab" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_gradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0ccfa550&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="hirescam" class="level1">
+<h1>HiResCAM</h1>
+<section id="cat_hirescam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_hirescam">Cat_HiResCAM</h2>
+<section id="cat_hirescam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_hirescam_original">Cat_HiResCAM_Original</h3>
+<div id="4c65e237-6868-4f45-b211-61040dff0234" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>hirescam_original <span class="op">=</span> HiResCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="01a4c1d0-1597-46c2-9498-4764e0b447f5" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>cam_cat_hirescam_original <span class="op">=</span> hirescam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="9b2eae35-158f-4df0-8e81-4cc6fa7f9d0e" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_hirescam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cc68a60&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_hirescam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_hirescam_randombox">Cat_HiResCAM_Randombox</h3>
+<div id="5d020d7d-b232-4791-997b-552b08fec93c" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>hirescam_randombox <span class="op">=</span> HiResCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="dbd73fbf-9ac1-455b-8b2c-501bfe007bbf" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>cam_cat_hirescam_randombox <span class="op">=</span> hirescam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="8d59ac74-d266-4986-81fc-b94e4f8a4beb" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_hirescam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cc48e20&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-39-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_hirescam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_hirescam">Dog_HiResCAM</h2>
+<section id="dog_hirescam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_hirescam_original">Dog_HiResCAM_Original</h3>
+<div id="9c045e6a-415e-4b23-840e-611be5728b5d" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>cam_dog_hirescam_original <span class="op">=</span> hirescam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="7cd45095-595c-450f-96c8-237c3979fdca" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_hirescam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cbe6f70&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_hirescam_random" class="level3">
+<h3 class="anchored" data-anchor-id="dog_hirescam_random">Dog_HiResCAM_Random</h3>
+<div id="cf6de925-d0eb-4afc-a53f-ebd3cf8bacf9" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>cam_dog_hirescam_randombox <span class="op">=</span> hirescam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="de2bd2cd-9d70-4646-b09c-c0108fedd33f" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_hirescam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cb30d30&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="scorecam" class="level1">
+<h1>ScoreCAM</h1>
+<section id="cat_scorecam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_scorecam">Cat_ScoreCAM</h2>
+<section id="cat_scorecam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_scorecam_original">Cat_ScoreCAM_Original</h3>
+<div id="9762f306-c1a7-4ab8-9c8e-b1a6265a542c" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>scorecam_original <span class="op">=</span> ScoreCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="07064dcc-be49-4195-8c6a-7a2104b4aefb" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cam_cat_scorecam_original <span class="op">=</span> scorecam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 32/32 [00:26&lt;00:00,  1.23it/s]
+100%|██████████| 32/32 [00:25&lt;00:00,  1.27it/s]
+100%|██████████| 32/32 [00:25&lt;00:00,  1.26it/s]</code></pre>
+</div>
+</div>
+<div id="25996bfe-7f6c-4cd1-8996-1f8caa75728a" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_scorecam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cb143a0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-46-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_scorecam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_scorecam_randombox">Cat_ScoreCAM_Randombox</h3>
+<div id="2781a8e8-78c7-4d6b-8c4a-0c818a09ef2c" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>scorecam_randombox <span class="op">=</span> ScoreCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="db551072-806e-4274-82eb-45cd5adfcb3c" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>cam_cat_scorecam_randombox <span class="op">=</span> scorecam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 32/32 [00:25&lt;00:00,  1.25it/s]
+100%|██████████| 32/32 [00:25&lt;00:00,  1.26it/s]
+100%|██████████| 32/32 [00:25&lt;00:00,  1.26it/s]</code></pre>
+</div>
+</div>
+<div id="7c556182-25fe-49cd-90db-aecf73343003" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_scorecam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d9025d040&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-49-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_scorecam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_scorecam">Dog_ScoreCAM</h2>
+<section id="dog_scorecam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_scorecam_original">Dog_ScoreCAM_Original</h3>
+<div id="0dcb6075-5bfc-493b-8d08-77c8348d542e" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>cam_dog_scorecam_original <span class="op">=</span> scorecam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 32/32 [00:25&lt;00:00,  1.25it/s]
+100%|██████████| 32/32 [00:25&lt;00:00,  1.27it/s]
+100%|██████████| 32/32 [00:24&lt;00:00,  1.30it/s]</code></pre>
+</div>
+</div>
+<div id="0ee4f9e5-b57e-406c-adac-3fc3fcaab2e1" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_scorecam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9dbc0a6040&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-51-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_scorecam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_scorecam_randombox">Dog_ScoreCAM_Randombox</h3>
+<div id="f8447b67-bc94-4b19-a27d-d8e303466e66" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cam_dog_scorecam_randombox <span class="op">=</span> scorecam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 32/32 [00:24&lt;00:00,  1.30it/s]
+100%|██████████| 32/32 [00:24&lt;00:00,  1.30it/s]
+100%|██████████| 32/32 [00:24&lt;00:00,  1.29it/s]</code></pre>
+</div>
+</div>
+<div id="637dd8ed-0245-46be-b666-7a3f00323208" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_scorecam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d90101130&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-53-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="gradcamplusplus" class="level1">
+<h1>GradCAMPlusPlus</h1>
+<section id="cat_gradcamplusplus" class="level2">
+<h2 class="anchored" data-anchor-id="cat_gradcamplusplus">Cat_GradCAMPlusPlus</h2>
+<section id="cat_gradcamplusplus_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_gradcamplusplus_original">Cat_GradCAMPlusPlus_Original</h3>
+<div id="59a5c42b-54c4-435f-815c-93bdef1797d6" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>gradcamplusplus_original <span class="op">=</span> GradCAMPlusPlus(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="acf83e52-c8a1-4452-b553-09cf5ffcf06b" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>cam_cat_gradcamplusplus_original <span class="op">=</span> gradcamplusplus_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="73200622-2b00-4789-928d-be86afc47abc" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_gradcamplusplus_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d6cf9e6d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-56-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_gradcamplusplus_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_gradcamplusplus_randombox">Cat_GradCAMPlusPlus_Randombox</h3>
+<div id="e1da8611-96b4-4e3a-81d8-af8c0b777d1b" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>gradcamplusplus_randombox <span class="op">=</span> GradCAMPlusPlus(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="0a947e04-6a46-477d-ae53-326cb63296dd" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>cam_cat_gradcamplusplus_randombox <span class="op">=</span> gradcamplusplus_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="a6b1766b-c482-4c67-a9fe-dac520b3ac1e" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_gradcamplusplus_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d6cf0fbb0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-59-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_gradcamplusplus" class="level2">
+<h2 class="anchored" data-anchor-id="dog_gradcamplusplus">Dog_GradCAMPlusPlus</h2>
+<section id="dog_gradcamplusplus_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_gradcamplusplus_original">Dog_GradCAMPlusPlus_Original</h3>
+<div id="c69f0d66-b337-4325-8219-847b05b725f9" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>cam_dog_gradcamplusplus_original <span class="op">=</span> gradcamplusplus_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="e6403736-cdeb-4574-8a27-09f013d155bd" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_gradcamplusplus_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d6ce8b100&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-61-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_gradcamplusplus_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_gradcamplusplus_randombox">Dog_GradCAMPlusPlus_Randombox</h3>
+<div id="e3825597-2a4b-4c8d-87fb-bfc0b0caf5aa" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>cam_dog_gradcamplusplus_randombox <span class="op">=</span> gradcamplusplus_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="8260a8e5-6287-4d0f-a17b-e282e4ed9f29" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_gradcamplusplus_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f280609d0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-63-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="ablationcam" class="level1">
+<h1>AblationCAM</h1>
+<section id="cat_ablationcam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_ablationcam">Cat_AblationCAM</h2>
+<section id="cat_ablationcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_ablationcam_original">Cat_AblationCAM_Original</h3>
+<div id="2eaa0562-ebbf-4f16-9c16-a110bb354e10" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>ablationcam_original <span class="op">=</span> AblationCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="a199b07d-f217-4e29-8272-e2347f5dd267" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>cam_cat_ablationcam_original <span class="op">=</span> ablationcam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 16/16 [00:28&lt;00:00,  1.75s/it]
+100%|██████████| 16/16 [00:28&lt;00:00,  1.78s/it]
+100%|██████████| 16/16 [00:27&lt;00:00,  1.72s/it]</code></pre>
+</div>
+</div>
+<div id="0d201b1f-8d68-41c6-a60b-f5b9d556fd25" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_ablationcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9dbc52cb80&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-66-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_ablationcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_ablationcam_randombox">Cat_AblationCAM_Randombox</h3>
+<div id="94cdb1a4-c707-429a-be05-e618c132767f" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>ablationcam_randombox <span class="op">=</span> AblationCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="fca5bfa9-17fb-41b1-b5e7-4e851d22ecb3" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>cam_cat_ablationcam_randombox <span class="op">=</span> ablationcam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 16/16 [00:26&lt;00:00,  1.63s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.60s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.60s/it]</code></pre>
+</div>
+</div>
+<div id="a9ed7807-d6ce-4512-9998-a574d555cb2d" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_ablationcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="71">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0cca57c0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-69-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_ablationcam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_ablationcam">Dog_AblationCAM</h2>
+<section id="dog_ablationcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_ablationcam_original">Dog_AblationCAM_Original</h3>
+<div id="aeacf585-fe12-4609-8eb1-c9ee57a62e15" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cam_dog_ablationcam_original <span class="op">=</span> ablationcam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 16/16 [00:25&lt;00:00,  1.61s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.58s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.58s/it]</code></pre>
+</div>
+</div>
+<div id="dfb2b4d8-2dcc-4345-ab34-c9834d9531f5" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_ablationcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d5405caf0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-71-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_ablationcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_ablationcam_randombox">Dog_AblationCAM_Randombox</h3>
+<div id="d4b443d0-24a8-4f70-972d-8cc9b8219bc3" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>cam_dog_ablationcam_randombox <span class="op">=</span> ablationcam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 16/16 [00:25&lt;00:00,  1.60s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.60s/it]
+100%|██████████| 16/16 [00:25&lt;00:00,  1.59s/it]</code></pre>
+</div>
+</div>
+<div id="e243d5d6-2ca2-410f-95fc-75d0daf14073" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_ablationcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a7631c0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-73-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="xgradcam" class="level1">
+<h1>XGradCAM</h1>
+<section id="cat_xgradcam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_xgradcam">Cat_XGradCAM</h2>
+<section id="cat_xgradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_xgradcam_original">Cat_XGradCAM_Original</h3>
+<div id="3a76f0cf-d543-47ea-988c-286ac2f2c130" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>xgradcam_original <span class="op">=</span> XGradCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="bc4e3510-a073-48a7-a8a6-87b004c2a2a3" class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>cam_cat_xgradcam_original <span class="op">=</span> xgradcam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="4efd3144-62dc-48cd-bd59-cb96894eff52" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_xgradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a730fd0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-76-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_xgradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_xgradcam_randombox">Cat_XGradCAM_Randombox</h3>
+<div id="a00be9a2-1292-4cdd-986e-4be1e6985440" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>xgradcam_randombox <span class="op">=</span> XGradCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="cd90fafb-78bb-48c1-a403-d978a2c654ee" class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>cam_cat_xgradcam_randombox <span class="op">=</span> xgradcam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="9b5ed46a-22a4-4850-8b96-e3584233b4bf" class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_xgradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a67f220&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-79-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_xgradcam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_xgradcam">Dog_XGradCAM</h2>
+<section id="dog_xgradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_xgradcam_original">Dog_XGradCAM_Original</h3>
+<div id="57cc1b38-5b36-4fb1-b400-c6437f2a0fe6" class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>cam_dog_xgradcam_original <span class="op">=</span> xgradcam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="1081b0b8-5297-40eb-88cc-47fc3321abb2" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_xgradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a606730&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-81-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_xgradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_xgradcam_randombox">Dog_XGradCAM_Randombox</h3>
+<div id="ba704806-45c4-4685-94dd-ec668af95fa9" class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>cam_dog_xgradcam_randombox <span class="op">=</span> xgradcam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="5b815746-6a09-4322-8f50-4430f1e08652" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_xgradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a6657f0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-83-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="eigencam" class="level1">
+<h1>EigenCAM</h1>
+<section id="cat_eigencam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_eigencam">Cat_EigenCAM</h2>
+<section id="cat_eigencam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_eigencam_original">Cat_EigenCAM_Original</h3>
+<div id="1846a4d2-4c19-4447-a700-da580fcae835" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>eigencam_original <span class="op">=</span> EigenCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="0dc9b5f5-5eaa-43b8-8de3-b0f367246821" class="cell" data-execution_count="87">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>cam_cat_eigencam_original <span class="op">=</span> eigencam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="ca46bc92-5cf9-48ed-b7c7-80a4478d85ec" class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_eigencam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="88">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a55af70&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-86-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_eigencam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_eigencam_randombox">Cat_EigenCAM_Randombox</h3>
+<div id="0debfd43-6f20-49e2-832b-c32a0deecc63" class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>eigencam_randombox <span class="op">=</span> EigenCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="2e1b20b7-7325-4722-b126-1a19e615d38e" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>cam_cat_eigencam_randombox <span class="op">=</span> eigencam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="8383baf7-24f7-43ee-be2d-210f08c70b46" class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_eigencam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="91">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a4c8d30&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-89-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_eigencam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_eigencam">Dog_EigenCAM</h2>
+<section id="dog_eigencam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_eigencam_original">Dog_EigenCAM_Original</h3>
+<div id="4a9f0821-f9bb-4971-9225-380f2c33febb" class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>cam_dog_eigencam_original <span class="op">=</span> eigencam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="8d6fc2c4-bb03-439b-b302-66e16cbd0ea5" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_eigencam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a51fa90&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-91-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_eigencam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_eigencam_randombox">Dog_EigenCAM_Randombox</h3>
+<div id="66e5f587-eb71-4d0b-828d-41a18255b29b" class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>cam_dog_eigencam_randombox <span class="op">=</span> eigencam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="962c1c93-547c-41c9-81e5-6ce9399bae67" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_eigencam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="95">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a418d90&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-93-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="fullgrad" class="level1">
+<h1>FullGrad</h1>
+<section id="cat_fullgrad" class="level2">
+<h2 class="anchored" data-anchor-id="cat_fullgrad">Cat_FullGrad</h2>
+<section id="cat_fullgrad_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_fullgrad_original">Cat_FullGrad_Original</h3>
+<div id="2559d057-3fa5-4b64-b184-68c1c6953f75" class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>fullgrad_original <span class="op">=</span> FullGrad(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Warning: target_layers is ignored in FullGrad. All bias layers will be used instead</code></pre>
+</div>
+</div>
+<div id="9a2341ef-cbfc-46b2-888d-c6d95dc7a500" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>cam_cat_fullgrad_original <span class="op">=</span> fullgrad_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="a4b0f546-a6ce-46a9-84ae-16cec14ff316" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_fullgrad_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a38de80&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-96-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_fullgrad_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_fullgrad_randombox">Cat_FullGrad_Randombox</h3>
+<div id="8860d1e4-ebae-4a6b-be69-c8196cf33345" class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>fullgrad_randombox <span class="op">=</span> FullGrad(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Warning: target_layers is ignored in FullGrad. All bias layers will be used instead</code></pre>
+</div>
+</div>
+<div id="0ae26bde-acfd-496f-98c3-7a7f64ea787f" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>cam_cat_fullgrad_randombox <span class="op">=</span> fullgrad_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="1fb1d254-5859-4fee-80f3-5ac4bb6708e3" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_fullgrad_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a243d90&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-99-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_fullgrad" class="level2">
+<h2 class="anchored" data-anchor-id="dog_fullgrad">Dog_FullGrad</h2>
+<section id="dog_fullgrad_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_fullgrad_original">Dog_FullGrad_Original</h3>
+<div id="72075332-a079-41fc-9c63-8f51ef11a148" class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>cam_dog_fullgrad_original <span class="op">=</span> fullgrad_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="95d2acc8-5639-4cf5-aa6e-791fd69d8534" class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_fullgrad_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="103">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a269670&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-101-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_fullgrad_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_fullgrad_randombox">Dog_FullGrad_Randombox</h3>
+<div id="2a337fb4-d694-4dd0-9006-7c01fba82e4b" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>cam_dog_fullgrad_randombox <span class="op">=</span> fullgrad_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="d8b19dc5-754f-46a1-a823-431b4ba84cb7" class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_fullgrad_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="105">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9f0caf5af0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-103-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="eigengradcam" class="level1">
+<h1>EigenGradCAM</h1>
+<section id="cat_eigengradcam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_eigengradcam">Cat_EigenGradCAM</h2>
+<section id="cat_eigengradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_eigengradcam_original">Cat_EigenGradCAM_Original</h3>
+<div id="f9cbb492-bc7e-4612-a84f-ec4152c325cb" class="cell" data-execution_count="106">
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>eigengradcam_original <span class="op">=</span> EigenGradCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="34f18365-c3f9-4c70-ab28-eb5d55779d12" class="cell" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>cam_cat_eigengradcam_original <span class="op">=</span> eigengradcam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="d2956e23-0b72-4078-b451-77526cd8d51d" class="cell" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_eigengradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="108">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a15f400&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-106-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_eigengradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_eigengradcam_randombox">Cat_EigenGradCAM_Randombox</h3>
+<div id="4d0b24d9-bc14-4504-acda-c46f9cc77602" class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>eigengradcam_randombox <span class="op">=</span> EigenGradCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="39067a86-6b5d-48a8-b3c0-397903026628" class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>cam_cat_eigengradcam_randombox <span class="op">=</span> eigengradcam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="f981b37d-6a51-47cf-a834-16970c65c1e9" class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_eigengradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="111">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a0d16a0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-109-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_eigengradcam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_eigengradcam">Dog_EigenGradCAM</h2>
+<section id="dog_eigengradcam_original" class="level3">
+<h3 class="anchored" data-anchor-id="dog_eigengradcam_original">Dog_EigenGradCAM_Original</h3>
+<div id="734b21e6-179b-4daf-8c97-87119034c1f6" class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>cam_dog_eigengradcam_original <span class="op">=</span> eigengradcam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="b5518f86-ef07-4615-a4ef-c41e0537d6c8" class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_eigengradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a03db80&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-111-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_eigengradcam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="dog_eigengradcam_randombox">Dog_EigenGradCAM_Randombox</h3>
+<div id="2ce0bfa2-e18c-4731-9be1-9de9f23e6224" class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>cam_dog_eigengradcam_randombox <span class="op">=</span> eigengradcam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="d3cc4562-04a7-49b5-b36c-985a0d1e19eb" class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_eigengradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="115">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d0a02e850&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-113-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="layercam" class="level1">
+<h1>LayerCAM</h1>
+<section id="cat_layercam" class="level2">
+<h2 class="anchored" data-anchor-id="cat_layercam">Cat_LayerCAM</h2>
+<section id="cat_layercam_original" class="level3">
+<h3 class="anchored" data-anchor-id="cat_layercam_original">Cat_LayerCAM_Original</h3>
+<div id="86a202c4-7db9-4485-ba84-a4076436ac77" class="cell" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>layercam_original <span class="op">=</span> LayerCAM(model<span class="op">=</span>lrnr2.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="b449c790-e1c1-4f47-b2fa-1ef9faa66173" class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>cam_cat_layercam_original <span class="op">=</span> layercam_original(input_tensor<span class="op">=</span>x_cat,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="019dabb7-077e-4a3d-a940-816fe9af0b5a" class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_layercam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="118">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d09fa14c0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-116-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="cat_layercam_randombox" class="level3">
+<h3 class="anchored" data-anchor-id="cat_layercam_randombox">Cat_LayerCAM_Randombox</h3>
+<div id="b31c5152-86b0-4b41-9feb-7363181c453d" class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>layercam_randombox <span class="op">=</span> LayerCAM(model<span class="op">=</span>lrnr2_r.model.to(<span class="st">'cpu'</span>), target_layers<span class="op">=</span>lrnr2_r.model[<span class="dv">0</span>][<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
+</div>
+<div id="c7bb6595-4495-45b0-890e-0854c475d3c4" class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a>cam_cat_layercam_randombox <span class="op">=</span> layercam_randombox(input_tensor<span class="op">=</span>x_cat_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="cb592831-5006-46c8-8fed-6dc552d9683f" class="cell">
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb166-2"><a href="#cb166-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_cat_layercam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="121">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d09f78f40&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dog_layercam" class="level2">
+<h2 class="anchored" data-anchor-id="dog_layercam">Dog_LayerCAM</h2>
+</section>
+<section id="dog_layercam_original" class="level2">
+<h2 class="anchored" data-anchor-id="dog_layercam_original">Dog_LayerCAM_Original</h2>
+<div id="66427b25-b1b9-4391-b120-c1234b248c8f" class="cell" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>cam_dog_layercam_original <span class="op">=</span> layercam_original(input_tensor<span class="op">=</span>x_dog,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="df81e122-fa9b-42a8-9e63-a601ac3475c4" class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_layercam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="123">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d09ee0940&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-121-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="dog_layercam_randombox" class="level2">
+<h2 class="anchored" data-anchor-id="dog_layercam_randombox">Dog_LayerCAM_Randombox</h2>
+<div id="8648229a-e159-490a-a49f-e9a97dd6853c" class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb171"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a>cam_dog_layercam_randombox <span class="op">=</span> layercam_randombox(input_tensor<span class="op">=</span>x_dog_r,targets<span class="op">=</span><span class="va">None</span>)</span></code></pre></div>
+</div>
+<div id="f40b8dbd-acf9-462d-abe2-09b43ababc5f" class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show()</span>
+<span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(cam_dog_layercam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f9d09ed7700&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-123-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="figure" class="level1">
+<h1>Figure</h1>
+<section id="figure_original" class="level2">
+<h2 class="anchored" data-anchor-id="figure_original">Figure_Original</h2>
+<div id="acd3ba6b-7f67-4572-8b53-506838c0e41e" class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>fig, ((ax1,ax2,ax3,ax4),</span>
+<span id="cb174-2"><a href="#cb174-2" aria-hidden="true" tabindex="-1"></a>      (ax5,ax6,ax7,ax8),</span>
+<span id="cb174-3"><a href="#cb174-3" aria-hidden="true" tabindex="-1"></a>      (ax9,ax10,ax11,ax12),</span>
+<span id="cb174-4"><a href="#cb174-4" aria-hidden="true" tabindex="-1"></a>      (ax13,ax14,ax15,ax16),</span>
+<span id="cb174-5"><a href="#cb174-5" aria-hidden="true" tabindex="-1"></a>     (ax17,ax18,ax19,ax20)) <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">4</span>) </span>
+<span id="cb174-6"><a href="#cb174-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Original'</span>)</span>
+<span id="cb174-7"><a href="#cb174-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-8"><a href="#cb174-8" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax1)</span>
+<span id="cb174-9"><a href="#cb174-9" aria-hidden="true" tabindex="-1"></a>ax1.imshow(cam_cat_gradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-10"><a href="#cb174-10" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"GradCAM CAT PART"</span>)</span>
+<span id="cb174-11"><a href="#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-12"><a href="#cb174-12" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax2)</span>
+<span id="cb174-13"><a href="#cb174-13" aria-hidden="true" tabindex="-1"></a>ax2.imshow(cam_dog_gradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-14"><a href="#cb174-14" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"GradCAM DOG PART"</span>)</span>
+<span id="cb174-15"><a href="#cb174-15" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-16"><a href="#cb174-16" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax3)</span>
+<span id="cb174-17"><a href="#cb174-17" aria-hidden="true" tabindex="-1"></a>ax3.imshow(cam_cat_hirescam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-18"><a href="#cb174-18" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">"HiResCAM CAT PART"</span>)</span>
+<span id="cb174-19"><a href="#cb174-19" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-20"><a href="#cb174-20" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax4)</span>
+<span id="cb174-21"><a href="#cb174-21" aria-hidden="true" tabindex="-1"></a>ax4.imshow(cam_dog_hirescam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-22"><a href="#cb174-22" aria-hidden="true" tabindex="-1"></a>ax4.set_title(<span class="st">"HiResCAM DOG PART"</span>)</span>
+<span id="cb174-23"><a href="#cb174-23" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-24"><a href="#cb174-24" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax5)</span>
+<span id="cb174-25"><a href="#cb174-25" aria-hidden="true" tabindex="-1"></a>ax5.imshow(cam_cat_scorecam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-26"><a href="#cb174-26" aria-hidden="true" tabindex="-1"></a>ax5.set_title(<span class="st">"ScoreCAM CAT PART"</span>)</span>
+<span id="cb174-27"><a href="#cb174-27" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-28"><a href="#cb174-28" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax6)</span>
+<span id="cb174-29"><a href="#cb174-29" aria-hidden="true" tabindex="-1"></a>ax6.imshow(cam_dog_scorecam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-30"><a href="#cb174-30" aria-hidden="true" tabindex="-1"></a>ax6.set_title(<span class="st">"ScoreCAM DOG PART"</span>)</span>
+<span id="cb174-31"><a href="#cb174-31" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-32"><a href="#cb174-32" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax7)</span>
+<span id="cb174-33"><a href="#cb174-33" aria-hidden="true" tabindex="-1"></a>ax7.imshow(cam_cat_gradcamplusplus_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-34"><a href="#cb174-34" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">"GradCAMPlusPlus CAT PART"</span>)</span>
+<span id="cb174-35"><a href="#cb174-35" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-36"><a href="#cb174-36" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax8)</span>
+<span id="cb174-37"><a href="#cb174-37" aria-hidden="true" tabindex="-1"></a>ax8.imshow(cam_dog_gradcamplusplus_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-38"><a href="#cb174-38" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">"GradCAMPlusPlus DOG PART"</span>)</span>
+<span id="cb174-39"><a href="#cb174-39" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-40"><a href="#cb174-40" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax9)</span>
+<span id="cb174-41"><a href="#cb174-41" aria-hidden="true" tabindex="-1"></a>ax9.imshow(cam_cat_ablationcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-42"><a href="#cb174-42" aria-hidden="true" tabindex="-1"></a>ax9.set_title(<span class="st">"AblationCAM CAT PART"</span>)</span>
+<span id="cb174-43"><a href="#cb174-43" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-44"><a href="#cb174-44" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax10)</span>
+<span id="cb174-45"><a href="#cb174-45" aria-hidden="true" tabindex="-1"></a>ax10.imshow(cam_dog_ablationcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-46"><a href="#cb174-46" aria-hidden="true" tabindex="-1"></a>ax10.set_title(<span class="st">"AblationCAM DOG PART"</span>)</span>
+<span id="cb174-47"><a href="#cb174-47" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-48"><a href="#cb174-48" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax11)</span>
+<span id="cb174-49"><a href="#cb174-49" aria-hidden="true" tabindex="-1"></a>ax11.imshow(cam_cat_xgradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-50"><a href="#cb174-50" aria-hidden="true" tabindex="-1"></a>ax11.set_title(<span class="st">"XGradCAM CAT PART"</span>)</span>
+<span id="cb174-51"><a href="#cb174-51" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-52"><a href="#cb174-52" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax12)</span>
+<span id="cb174-53"><a href="#cb174-53" aria-hidden="true" tabindex="-1"></a>ax12.imshow(cam_dog_xgradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-54"><a href="#cb174-54" aria-hidden="true" tabindex="-1"></a>ax12.set_title(<span class="st">"XGradCAM DOG PART"</span>)</span>
+<span id="cb174-55"><a href="#cb174-55" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-56"><a href="#cb174-56" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax13)</span>
+<span id="cb174-57"><a href="#cb174-57" aria-hidden="true" tabindex="-1"></a>ax13.imshow(cam_cat_eigencam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-58"><a href="#cb174-58" aria-hidden="true" tabindex="-1"></a>ax13.set_title(<span class="st">"EigenCAM CAT PART"</span>)</span>
+<span id="cb174-59"><a href="#cb174-59" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-60"><a href="#cb174-60" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax14)</span>
+<span id="cb174-61"><a href="#cb174-61" aria-hidden="true" tabindex="-1"></a>ax14.imshow(cam_dog_eigencam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-62"><a href="#cb174-62" aria-hidden="true" tabindex="-1"></a>ax14.set_title(<span class="st">"EigenCAM DOG PART"</span>)</span>
+<span id="cb174-63"><a href="#cb174-63" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-64"><a href="#cb174-64" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax15)</span>
+<span id="cb174-65"><a href="#cb174-65" aria-hidden="true" tabindex="-1"></a>ax15.imshow(cam_cat_fullgrad_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-66"><a href="#cb174-66" aria-hidden="true" tabindex="-1"></a>ax15.set_title(<span class="st">"FullGrad CAT PART"</span>)</span>
+<span id="cb174-67"><a href="#cb174-67" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-68"><a href="#cb174-68" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax16)</span>
+<span id="cb174-69"><a href="#cb174-69" aria-hidden="true" tabindex="-1"></a>ax16.imshow(cam_dog_fullgrad_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-70"><a href="#cb174-70" aria-hidden="true" tabindex="-1"></a>ax16.set_title(<span class="st">"FullGrad DOG PART"</span>)</span>
+<span id="cb174-71"><a href="#cb174-71" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-72"><a href="#cb174-72" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax17)</span>
+<span id="cb174-73"><a href="#cb174-73" aria-hidden="true" tabindex="-1"></a>ax17.imshow(cam_cat_eigengradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-74"><a href="#cb174-74" aria-hidden="true" tabindex="-1"></a>ax17.set_title(<span class="st">"EigenGradCAM CAT PART"</span>)</span>
+<span id="cb174-75"><a href="#cb174-75" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-76"><a href="#cb174-76" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax18)</span>
+<span id="cb174-77"><a href="#cb174-77" aria-hidden="true" tabindex="-1"></a>ax18.imshow(cam_dog_eigengradcam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-78"><a href="#cb174-78" aria-hidden="true" tabindex="-1"></a>ax18.set_title(<span class="st">"EigenGradCAM DOG PART"</span>)</span>
+<span id="cb174-79"><a href="#cb174-79" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-80"><a href="#cb174-80" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax19)</span>
+<span id="cb174-81"><a href="#cb174-81" aria-hidden="true" tabindex="-1"></a>ax19.imshow(cam_cat_layercam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-82"><a href="#cb174-82" aria-hidden="true" tabindex="-1"></a>ax19.set_title(<span class="st">"LayerCAM CAT PART"</span>)</span>
+<span id="cb174-83"><a href="#cb174-83" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-84"><a href="#cb174-84" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax20)</span>
+<span id="cb174-85"><a href="#cb174-85" aria-hidden="true" tabindex="-1"></a>ax20.imshow(cam_dog_layercam_original.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb174-86"><a href="#cb174-86" aria-hidden="true" tabindex="-1"></a>ax20.set_title(<span class="st">"LayerCAM DOG PART"</span>)</span>
+<span id="cb174-87"><a href="#cb174-87" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb174-88"><a href="#cb174-88" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">20</span>)            </span>
+<span id="cb174-89"><a href="#cb174-89" aria-hidden="true" tabindex="-1"></a>fig.set_figheight(<span class="dv">20</span>)</span>
+<span id="cb174-90"><a href="#cb174-90" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-124-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="figure_randombox" class="level2">
+<h2 class="anchored" data-anchor-id="figure_randombox">Figure_Randombox</h2>
+<div id="38bdf71d-9062-48ef-a846-bf101f6f267b" class="cell" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb175"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb175-1"><a href="#cb175-1" aria-hidden="true" tabindex="-1"></a>fig, ((ax1,ax2,ax3,ax4),</span>
+<span id="cb175-2"><a href="#cb175-2" aria-hidden="true" tabindex="-1"></a>      (ax5,ax6,ax7,ax8),</span>
+<span id="cb175-3"><a href="#cb175-3" aria-hidden="true" tabindex="-1"></a>      (ax9,ax10,ax11,ax12),</span>
+<span id="cb175-4"><a href="#cb175-4" aria-hidden="true" tabindex="-1"></a>      (ax13,ax14,ax15,ax16),</span>
+<span id="cb175-5"><a href="#cb175-5" aria-hidden="true" tabindex="-1"></a>     (ax17,ax18,ax19,ax20)) <span class="op">=</span> plt.subplots(<span class="dv">5</span>,<span class="dv">4</span>) </span>
+<span id="cb175-6"><a href="#cb175-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Randombox'</span>)</span>
+<span id="cb175-7"><a href="#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-8"><a href="#cb175-8" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax1)</span>
+<span id="cb175-9"><a href="#cb175-9" aria-hidden="true" tabindex="-1"></a>ax1.imshow(cam_cat_gradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-10"><a href="#cb175-10" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"GradCAM CAT PART"</span>)</span>
+<span id="cb175-11"><a href="#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-12"><a href="#cb175-12" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax2)</span>
+<span id="cb175-13"><a href="#cb175-13" aria-hidden="true" tabindex="-1"></a>ax2.imshow(cam_dog_gradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-14"><a href="#cb175-14" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"GradCAM DOG PART"</span>)</span>
+<span id="cb175-15"><a href="#cb175-15" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-16"><a href="#cb175-16" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax3)</span>
+<span id="cb175-17"><a href="#cb175-17" aria-hidden="true" tabindex="-1"></a>ax3.imshow(cam_cat_hirescam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-18"><a href="#cb175-18" aria-hidden="true" tabindex="-1"></a>ax3.set_title(<span class="st">"HiResCAM CAT PART"</span>)</span>
+<span id="cb175-19"><a href="#cb175-19" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-20"><a href="#cb175-20" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax4)</span>
+<span id="cb175-21"><a href="#cb175-21" aria-hidden="true" tabindex="-1"></a>ax4.imshow(cam_dog_hirescam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-22"><a href="#cb175-22" aria-hidden="true" tabindex="-1"></a>ax4.set_title(<span class="st">"HiResCAM DOG PART"</span>)</span>
+<span id="cb175-23"><a href="#cb175-23" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-24"><a href="#cb175-24" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax5)</span>
+<span id="cb175-25"><a href="#cb175-25" aria-hidden="true" tabindex="-1"></a>ax5.imshow(cam_cat_scorecam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-26"><a href="#cb175-26" aria-hidden="true" tabindex="-1"></a>ax5.set_title(<span class="st">"ScoreCAM CAT PART"</span>)</span>
+<span id="cb175-27"><a href="#cb175-27" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-28"><a href="#cb175-28" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax6)</span>
+<span id="cb175-29"><a href="#cb175-29" aria-hidden="true" tabindex="-1"></a>ax6.imshow(cam_dog_scorecam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-30"><a href="#cb175-30" aria-hidden="true" tabindex="-1"></a>ax6.set_title(<span class="st">"ScoreCAM DOG PART"</span>)</span>
+<span id="cb175-31"><a href="#cb175-31" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-32"><a href="#cb175-32" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax7)</span>
+<span id="cb175-33"><a href="#cb175-33" aria-hidden="true" tabindex="-1"></a>ax7.imshow(cam_cat_gradcamplusplus_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-34"><a href="#cb175-34" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">"GradCAMPlusPlus CAT PART"</span>)</span>
+<span id="cb175-35"><a href="#cb175-35" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-36"><a href="#cb175-36" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax8)</span>
+<span id="cb175-37"><a href="#cb175-37" aria-hidden="true" tabindex="-1"></a>ax8.imshow(cam_dog_gradcamplusplus_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-38"><a href="#cb175-38" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">"GradCAMPlusPlus DOG PART"</span>)</span>
+<span id="cb175-39"><a href="#cb175-39" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-40"><a href="#cb175-40" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax9)</span>
+<span id="cb175-41"><a href="#cb175-41" aria-hidden="true" tabindex="-1"></a>ax9.imshow(cam_cat_ablationcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-42"><a href="#cb175-42" aria-hidden="true" tabindex="-1"></a>ax9.set_title(<span class="st">"AblationCAM CAT PART"</span>)</span>
+<span id="cb175-43"><a href="#cb175-43" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-44"><a href="#cb175-44" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax10)</span>
+<span id="cb175-45"><a href="#cb175-45" aria-hidden="true" tabindex="-1"></a>ax10.imshow(cam_dog_ablationcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-46"><a href="#cb175-46" aria-hidden="true" tabindex="-1"></a>ax10.set_title(<span class="st">"AblationCAM DOG PART"</span>)</span>
+<span id="cb175-47"><a href="#cb175-47" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-48"><a href="#cb175-48" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax11)</span>
+<span id="cb175-49"><a href="#cb175-49" aria-hidden="true" tabindex="-1"></a>ax11.imshow(cam_cat_xgradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-50"><a href="#cb175-50" aria-hidden="true" tabindex="-1"></a>ax11.set_title(<span class="st">"XGradCAM CAT PART"</span>)</span>
+<span id="cb175-51"><a href="#cb175-51" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-52"><a href="#cb175-52" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax12)</span>
+<span id="cb175-53"><a href="#cb175-53" aria-hidden="true" tabindex="-1"></a>ax12.imshow(cam_dog_xgradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-54"><a href="#cb175-54" aria-hidden="true" tabindex="-1"></a>ax12.set_title(<span class="st">"XGradCAM DOG PART"</span>)</span>
+<span id="cb175-55"><a href="#cb175-55" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-56"><a href="#cb175-56" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax13)</span>
+<span id="cb175-57"><a href="#cb175-57" aria-hidden="true" tabindex="-1"></a>ax13.imshow(cam_cat_eigencam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-58"><a href="#cb175-58" aria-hidden="true" tabindex="-1"></a>ax13.set_title(<span class="st">"EigenCAM CAT PART"</span>)</span>
+<span id="cb175-59"><a href="#cb175-59" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-60"><a href="#cb175-60" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax14)</span>
+<span id="cb175-61"><a href="#cb175-61" aria-hidden="true" tabindex="-1"></a>ax14.imshow(cam_dog_eigencam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-62"><a href="#cb175-62" aria-hidden="true" tabindex="-1"></a>ax14.set_title(<span class="st">"EigenCAM DOG PART"</span>)</span>
+<span id="cb175-63"><a href="#cb175-63" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-64"><a href="#cb175-64" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax15)</span>
+<span id="cb175-65"><a href="#cb175-65" aria-hidden="true" tabindex="-1"></a>ax15.imshow(cam_cat_fullgrad_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-66"><a href="#cb175-66" aria-hidden="true" tabindex="-1"></a>ax15.set_title(<span class="st">"FullGrad CAT PART"</span>)</span>
+<span id="cb175-67"><a href="#cb175-67" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-68"><a href="#cb175-68" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax16)</span>
+<span id="cb175-69"><a href="#cb175-69" aria-hidden="true" tabindex="-1"></a>ax16.imshow(cam_dog_fullgrad_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-70"><a href="#cb175-70" aria-hidden="true" tabindex="-1"></a>ax16.set_title(<span class="st">"FullGrad DOG PART"</span>)</span>
+<span id="cb175-71"><a href="#cb175-71" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-72"><a href="#cb175-72" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax17)</span>
+<span id="cb175-73"><a href="#cb175-73" aria-hidden="true" tabindex="-1"></a>ax17.imshow(cam_cat_eigengradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-74"><a href="#cb175-74" aria-hidden="true" tabindex="-1"></a>ax17.set_title(<span class="st">"EigenGradCAM CAT PART"</span>)</span>
+<span id="cb175-75"><a href="#cb175-75" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-76"><a href="#cb175-76" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax18)</span>
+<span id="cb175-77"><a href="#cb175-77" aria-hidden="true" tabindex="-1"></a>ax18.imshow(cam_dog_eigengradcam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-78"><a href="#cb175-78" aria-hidden="true" tabindex="-1"></a>ax18.set_title(<span class="st">"EigenGradCAM DOG PART"</span>)</span>
+<span id="cb175-79"><a href="#cb175-79" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-80"><a href="#cb175-80" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_cat_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax19)</span>
+<span id="cb175-81"><a href="#cb175-81" aria-hidden="true" tabindex="-1"></a>ax19.imshow(cam_cat_layercam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-82"><a href="#cb175-82" aria-hidden="true" tabindex="-1"></a>ax19.set_title(<span class="st">"LayerCAM CAT PART"</span>)</span>
+<span id="cb175-83"><a href="#cb175-83" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-84"><a href="#cb175-84" aria-hidden="true" tabindex="-1"></a>dls.train.decode((x_dog_r,))[<span class="dv">0</span>].squeeze().show(ax<span class="op">=</span>ax20)</span>
+<span id="cb175-85"><a href="#cb175-85" aria-hidden="true" tabindex="-1"></a>ax20.imshow(cam_dog_layercam_randombox.squeeze(), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb175-86"><a href="#cb175-86" aria-hidden="true" tabindex="-1"></a>ax20.set_title(<span class="st">"LayerCAM DOG PART"</span>)</span>
+<span id="cb175-87"><a href="#cb175-87" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb175-88"><a href="#cb175-88" aria-hidden="true" tabindex="-1"></a>fig.set_figwidth(<span class="dv">20</span>)            </span>
+<span id="cb175-89"><a href="#cb175-89" aria-hidden="true" tabindex="-1"></a>fig.set_figheight(<span class="dv">20</span>)</span>
+<span id="cb175-90"><a href="#cb175-90" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2023-10-18-CAM_Other_Methods_files/figure-html/cell-125-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        console.log("RESIZE");
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="seoyeonc/blog" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

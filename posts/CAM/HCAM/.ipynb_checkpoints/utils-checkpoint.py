@@ -13,7 +13,7 @@ def label_func(f):
     else: 
         return 'dog' 
     
-def Img_loader(fil_path = 'original_pet',resize = 512):    
+def Img_loader(fil_path = 'random_pet_one',resize = 512):    
     dls = ImageDataLoaders.from_name_func(Path(fil_path),
                                           get_image_files(Path(fil_path)),
                                           label_func,item_tfms=Resize(resize)) 

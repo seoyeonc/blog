@@ -30,8 +30,6 @@ def Other_method(lrnr, *args, status='cpu', cam_method='gradcam',input_img=None)
         other_cam = GradCAM(model=md, target_layers=target_layer)
     elif cam_method == 'hirescam':
         other_cam = HiResCAM(model=md, target_layers=target_layer)
-    elif cam_method == 'scorecam':
-        other_cam = ScoreCAM(model=md, target_layers=target_layer)
     elif cam_method == 'gradcamplusplus':
         other_cam = GradCAMPlusPlus(model=md, target_layers=target_layer)
     elif cam_method == 'ablationcam':
@@ -88,7 +86,7 @@ class HCAM:
 
         # mode
         X=np.array(self.A2.to("cpu").detach(),dtype=np.float32)
-        Y=torch.Tensor(cv2.resize(X_res,(512,512),interpolation=cv2.INTER_LINEAR))
+        Y=torch.Tensor(cv2.resize(X,(512,512),interpolation=cv2.INTER_LINEAR))
 
         self.x=(input_img.squeeze().to('cpu')-torch.min(input_img.squeeze().to('cpu')))*Y
         

@@ -86,7 +86,7 @@ class HCAM:
 
         # mode
         X=np.array(self.A2.to("cpu").detach(),dtype=np.float32)
-        Y=torch.Tensor(cv2.resize(X_res,(512,512),interpolation=cv2.INTER_LINEAR))
+        Y=torch.Tensor(cv2.resize(X,(512,512),interpolation=cv2.INTER_LINEAR))
 
         self.x=(input_img.squeeze().to('cpu')-torch.min(input_img.squeeze().to('cpu')))*Y
         
